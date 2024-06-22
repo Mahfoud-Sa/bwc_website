@@ -1,0 +1,186 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nav {
+  background-color: #333;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2;
+  padding: 0 1rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.nav-left-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dropdownlanguage {
+  position: absolute;
+  top: 4.5rem;
+  left: 10px;
+  color: black;
+  width: 100px;
+  text-align: center;
+  padding: 15px;
+  font-weight: bolder;
+  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.dropdownlanguage ul li {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px 10px;
+  border-radius: 8px;
+}
+.dropdownlanguage ul li:hover {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: black;
+  color: white;
+}
+.navActive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* .carousel{
+  max-width: 700px;
+  margin-inline: 2erm;
+  border-radius: 10px;
+  position: relative;
+  margin: 12rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-images img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  transition: opacity 0.3 ease;
+}
+.carousel-images img.inactive{
+  display: none;
+}
+.carousel-images img.active{
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+opacity: 1;
+  }
+} */
+
+.carousel_parant {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+}
+.carousel {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel img {
+  object-fit: contain;
+  aspect-ratio: 16/9;
+  transition: opacity 0.3 ease;
+}
+.slide {
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 7px #666;
+  width: 100%;
+  height: 100%;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-hidden {
+  display: none;
+}
+
+.arrow {
+  position: absolute;
+  filter: drop-shadow(0px 0px 5px #555);
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.arrow-left {
+  left: 1rem;
+}
+
+.arrow-right {
+  right: 1rem;
+}
+
+.indicators {
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.indicator {
+  background-color: white;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+
+.indicator-inactive {
+  background-color: grey;
+}
