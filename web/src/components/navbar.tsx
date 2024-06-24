@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import logo from "../resourses/img/logo.png";
-import LanguageWorld from "../resourses/icons/language-world";
+import logo from "../assets/img/logo.png";
+import logo2 from "../assets/img/عالم الأعمال خلفية أبيض 1.png";
+import LanguageWorld from "../assets/icons/language-world";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import DropDownLang from "./dropDownLang";
@@ -8,6 +9,7 @@ import DropDownLang from "./dropDownLang";
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const [fix, setFix] = useState<boolean>();
+
   window.addEventListener("scroll", function () {
     if (window.scrollY >= 50) {
       setFix(true);
@@ -17,16 +19,15 @@ export default function Navbar() {
   });
   const [isdropDownOpen, setIsdropDownOpen] = useState(false);
   useEffect(() => {
-    i18n.changeLanguage(navigator.language);
+    i18n.changeLanguage(navigator.language);    
   }, []);
-
-  const position = (document.body.dir = i18n.dir());
-  console.log(position);
+  
+  const dir = i18n.dir();
 
   return (
     <nav className={fix ? "navActive nav" : "nav"}>
       <a href="/" className="site-title">
-        <img src={logo} alt="" />
+        <img src={fix ? logo2 : logo} alt="" />
       </a>
       <ul>
         <li>
@@ -48,7 +49,7 @@ export default function Navbar() {
         </li>
       </ul>
       <div className="nav-left-buttons">
-        <button>join us</button>
+        <button>{t("jobs")}</button>
         <div
           className="cursor-pointer"
           onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
@@ -59,7 +60,7 @@ export default function Navbar() {
           className="cursor-pointer"
           onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
         >
-          EN
+          {dir === "ltr" ?   "EN" : "عربي" }
           {isdropDownOpen && <DropDownLang />}
         </div>
       </div>

@@ -1,63 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-interface Props {
-  imgs: string[];
+import ArrowRight from "../assets/icons/arrow-right";
+import ArrowLeft from "../assets/icons/arrow-left";
+
+interface publish {
+  imgs: string;
+  title: string;
+  publish_date: Date;
+  writers: {
+    name: string;
+    img: string;
+  };
 }
-// export default function CarouselsHeroSection({ imgs }: Props) {
-//   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-//   function handlePrevious() {
-//     setCurrentIndex((prevIndex) =>
-//       prevIndex - 1 < 0 ? imgs.length - 1 : prevIndex - 1
-//     );
-//   }
+interface CarouselProps {
+  publishes: publish[];
+}
 
-//   function handleNext() {
-//     setCurrentIndex((prevIndex) =>
-//       prevIndex + 1 === imgs.length ? 0 : prevIndex + 1
-//     );
-//   }
-//   return (
-//     <div className="carousel">
-//       <div className="carousel-images">
-//         {imgs.map((img, index) => (
-//           <img
-//             key={index}
-//             src={img}
-//             className={currentIndex === index ? "active" : "inactive"}
-//           />
-//         ))}
-//       </div>
-//       <div className="carousel-controls">
-//         <button className="left-btn" onClick={handlePrevious}>
-//           l
-//         </button>
-
-//         <button className="right-btn" onClick={handleNext}>
-//           n
-//         </button>
-//       </div>
-//       {/*  */}
-//       <div className="carousel-indcator">
-//         {imgs.map((_, index) => (
-//           <div
-//             key={index}
-//             className={`dot ${currentIndex === index ? "active" : ""}`}
-//           ></div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-export default function CarouselsHeroSection({ imgs }: Props) {
+export default function CarouselsHeroSection({ publishes }: CarouselProps) {
   const [slide, setSlide] = useState(0);
 
   const nextSlide = () => {
-    setSlide(slide === imgs.length - 1 ? 0 : slide + 1);
+    setSlide(slide === publishes.length - 1 ? 0 : slide + 1);
   };
 
   const prevSlide = () => {
-    setSlide(slide === 0 ? imgs.length - 1 : slide - 1);
+    setSlide(slide === 0 ? publishes.length - 1 : slide - 1);
   };
 
   useEffect(() => {
@@ -65,30 +33,45 @@ export default function CarouselsHeroSection({ imgs }: Props) {
       nextSlide();
     }, 5000);
   }, [slide]);
-
+  const d = new Date("2022-03-25");
   return (
     <div className="carousel_parant">
       <div className="carousel">
-        <BsArrowLeftCircleFill
-          onClick={prevSlide}
-          className="arrow arrow-left"
-        />
-        {imgs.map((item, idx) => {
+        <div className="arrow arrow-left" onClick={prevSlide}>
+          <ArrowLeft className="cursor-pointer" />
+        </div>
+        {publishes.map((item, idx) => {
           return (
-            <img
-              src={item}
-              // alt={item.alt}
+            <div
               key={idx}
               className={slide === idx ? "slide" : "slide slide-hidden"}
-            />
+            >
+              <img
+                src={item.imgs}
+                key={idx}
+                className={slide === idx ? "slide" : "slide slide-hidden"}
+              />
+
+              <div className="info-carousel">
+                <div key={idx}>
+                  <h2>{item.title}</h2>
+                  <p>{item.publish_date.toLocaleDateString()}</p>
+                  <div className="inside-image">
+                    <p>{item.writers.name}</p>
+                    <img src={item.writers.img} alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
           );
         })}
-        <BsArrowRightCircleFill
-          onClick={nextSlide}
-          className="arrow arrow-right"
-        />
+
+        <div className="arrow arrow-right">
+          <ArrowRight color="white" onClick={nextSlide} />
+        </div>
+
         <span className="indicators">
-          {imgs.map((_, idx) => {
+          {publishes.map((_, idx) => {
             return (
               <button
                 key={idx}

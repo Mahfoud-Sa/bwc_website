@@ -11,21 +11,21 @@ export default function DropDownLang() {
   const changeLanguage = (code: any) => {
     i18n.changeLanguage(code);
   };
-
+  const dir = i18n.dir();
   useEffect(() => {
     document.body.dir = i18n.dir();
   }, [i18n, i18n.language]);
   return (
-    <div className="flex flex-col dropdownlanguage">
+    <div className={dir === "ltr" ? "flex flex-col dropdownlanguage" : "flex flex-col dropdownlanguage-rigth"}>
       <ul className="flex flex-col gap-4">
         {languages.map(({ name, lang, code }) => (
-          <button
+          <li
             className={code === i18n.language ? "selected" : ""}
             key={code}
             onClick={() => changeLanguage(code)}
           >
             {name}
-          </button>
+          </li>
         ))}
       </ul>
     </div>
