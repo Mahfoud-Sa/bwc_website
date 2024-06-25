@@ -10,35 +10,34 @@ interface publish {
   imgs : string;
   title: string;
   publish_date: Date;
-  writers: {
-    name: string;
-    img: string;
-  };
+  writers?: {
+    name?: string | undefined;
+    img?: string | undefined;
+  } | undefined;
 }
 const publishes: publish[] = [
   {
     imgs: image1,
-    title: "يناير",
-    publish_date: new Date("dd/mm/yyyy"),
-    writers: { name: "ahmed", img: image1 },
+    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    publish_date: new Date(),
+    writers: { name: "حمود احمد سيف العطاس", img: image1 },
   },
   {
     imgs: image2,
-    title: "يناير",
-    publish_date: new Date("dd/mm/yyyy"),
-    writers: { name: "ahmed", img: image2 },
+    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    publish_date: new Date(),
+    writers: { name: "حمود احمد سيف العطاس", img: image2 },
   },
   {
     imgs: image3,
-    title: "يناير",
-    publish_date: new Date("dd/mm/yyyy"),
-    writers: { name: "ahmed", img: image3 },
+    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    publish_date: new Date(),
+    writers: { name: "حمود احمد سيف العطاس", img: image3 },
   },
   {
     imgs: image4,
-    title: "يناير",
-    publish_date: new Date("dd/mm/yyyy"),
-    writers: { name: "ahmed", img: image4 },
+    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    publish_date: new Date(),
   }
 ];
 export default function HeroSection() {

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import ArrowRight from "../assets/icons/arrow-right";
 import ArrowLeft from "../assets/icons/arrow-left";
+import formattedDate from "../utilities/formattedDate";
+import formattedDateEn from "../utilities/formattedDateEn";
+import { useTranslation } from "react-i18next";
 
 interface publish {
   imgs: string;
   title: string;
   publish_date: Date;
-  writers: {
-    name: string;
-    img: string;
-  };
+  writers?: {
+    name?: string | undefined;
+    img?: string | undefined;
+  } | undefined;
 }
 
 interface CarouselProps {
@@ -19,6 +21,7 @@ interface CarouselProps {
 
 export default function CarouselsHeroSection({ publishes }: CarouselProps) {
   const [slide, setSlide] = useState(0);
+  const { t, i18n } = useTranslation();
 
   const nextSlide = () => {
     setSlide(slide === publishes.length - 1 ? 0 : slide + 1);
@@ -28,6 +31,7 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
     setSlide(slide === 0 ? publishes.length - 1 : slide - 1);
   };
 
+  const dir = i18n.dir();
   useEffect(() => {
     setTimeout(() => {
       nextSlide();
@@ -53,12 +57,12 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
               />
 
               <div className="info-carousel">
-                <div key={idx}>
+                <div className="title-info-carousel" key={idx}>
                   <h2>{item.title}</h2>
-                  <p>{item.publish_date.toLocaleDateString()}</p>
+                  <p>{}{dir === "ltr" ?   formattedDateEn(item.publish_date) : formattedDate(item.publish_date) }</p>
                   <div className="inside-image">
-                    <p>{item.writers.name}</p>
-                    <img src={item.writers.img} alt="" />
+                    <p>{item?.writers?.name}</p>
+                    <img src={item?.writers?.img} className={item?.writers?.img ?"w-[50px] h-[50px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]" : ""} alt="" />
                   </div>
                 </div>
               </div>
