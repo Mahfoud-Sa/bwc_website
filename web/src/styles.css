@@ -300,3 +300,31 @@ opacity: 1;
   margin: 0 0.2rem;
   outline: 1px solid #6c6a6a;
 }
+.slick-slide >div{
+  margin: 0 10px;
+}
+.slick-dots li.slick-active button:before {
+  background-color: #cca972;
+  height: 0.5rem;
+  width: 1.5rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  outline: 1px solid #6c6a6a;
+  color: transparent;
+}
+.slick-dots li button:before{
+  background-color: #dddddd;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  outline: 1px solid #6c6a6a;
+  color: transparent;
+}
