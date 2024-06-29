@@ -7,6 +7,8 @@ import FullCircle from "./assets/icons/full-circle";
 import Borad from "./assets/icons/borad";
 import Image1 from "./assets/img/اعلان خدمة الفايبر.jpg";
 import anlyisit from "./assets/img/whiteboard.png";
+import Vector from "./assets/icons/vector";
+import LastProject from "./components/lastProject";
 function App() {
   return (
     <div className="App">
@@ -30,7 +32,7 @@ function App() {
         </div>
       </div>
       {/*  */}
-      <div className="w-full h-[70vh] grid grid-cols-12 px-2 relative">
+      <div className="w-full h-[120vh] grid grid-cols-12 px-2 relative ">
         <div className=" w-full h-full col-span-6 p-4">
           <div className="flex items-start justify-end py-16">
             <h1 className="text-xl font-extrabold">من نحن</h1>
@@ -69,7 +71,8 @@ function App() {
         <div className=" absolute top-[-18px] right-0">
           <FullCircle />
         </div>
-        <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-220px] z-10 left-1/2">
+
+        <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
           {/*  */}
           <div className="">
             <span>
@@ -111,9 +114,106 @@ function App() {
             <p className="text-black">التطوير البرمجي</p>
           </div>
         </div>
+
+        {/*  */}
+      </div>
+      <div className="w-full h-[10vh] p-2 overflow-hidde relative">
+        <div className="w-full h-8 mt-16 flex justify-center items-center ">
+          <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
+        </div>
       </div>
 
       {/*  */}
+      <div className="w-full h-[10vh] p-2 overflow-hidde relative">
+        <div className="flex justify-end p-5">
+          <h1 className="text-3xl">خدماتنا</h1>
+          <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="w-full h-[110vh] mt-10 grid grid-cols-12 px-2 gap-2 relative">
+        <div className=" absolute top-24 left-0">
+          <FullCircle />
+        </div>
+        <div className=" w-full h-full col-span-5 p-4 overflow-hidden ">
+          {/*  */}
+          <div className=" w-full h-full grid gap-20">
+          <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+            <div className=" text-end w-[100%] h-[50%] p-4">
+              <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+              <p className="text-xl text-[#525252]">
+                تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                للشركــــــــات والمؤسسات التجارية
+              </p>
+            </div>
+          </div>
+          {/*  */}
+          <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+            <div className=" text-end w-[100%] h-[50%] p-4">
+              <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+              <p className="text-xl text-[#525252]">
+                تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                للشركــــــــات والمؤسسات التجارية
+              </p>
+            </div>
+          </div>
+
+          {/*  */}
+          <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+            <div className=" text-end w-[100%] h-[50%] p-4">
+              <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+              <p className="text-xl text-[#525252]">
+                تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                للشركــــــــات والمؤسسات التجارية
+              </p>
+            </div>
+          </div>
+          {/*  */}
+          <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+            <div className=" text-end w-[100%] h-[50%] p-4">
+              <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+              <p className="text-xl text-[#525252]">
+                تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                للشركــــــــات والمؤسسات التجارية
+              </p>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div className=" w-full h-full col-span-7 p-4">
+          <Vector />
+        </div>
+      </div>
+      {/*  */}
+      <div className="w-full h-[90vh] relative">
+      <div className="flex justify-end p-5">
+          <h1 className="text-3xl">اخر المشاريع</h1>
+          <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+        </div>
+
+        <div className="w-full h-screen p-2 overflow-hidden relative">
+        <LastProject />
+        <div className="w-full h-8 mt-16 flex justify-center items-center ">
+          <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
+        </div>
+        
+      </div>
+      </div>
+      {/*  */}
+      <div className="w-full h-[90vh] relative">
+      <div className="flex justify-end p-5">
+          <h1 className="text-3xl">التعليم و التدريب</h1>
+          <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+        </div>
+
+        <div className="w-full h-screen p-2 overflow-hidden relative">
+        <LastProject />
+        <div className="w-full h-8 mt-16 flex justify-center items-center ">
+          <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
+        </div>
+        
+      </div>
+      </div>
     </div>
   );
 }
