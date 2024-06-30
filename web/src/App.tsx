@@ -9,6 +9,11 @@ import Image1 from "./assets/img/اعلان خدمة الفايبر.jpg";
 import anlyisit from "./assets/img/whiteboard.png";
 import Vector from "./assets/icons/vector";
 import LastProject from "./components/lastProject";
+import LeariningAndTraning from "./components/learnAndTraining";
+import OurPartners from "./components/ourPartners";
+import CarouselsHeroSection from "./components/carouselsHeroSection";
+import OurOrgnaztion from "./components/ourOrgnaztion";
+import ContectUs from "./components/contectUs";
 function App() {
   return (
     <div className="App">
@@ -200,18 +205,52 @@ function App() {
       </div>
       </div>
       {/*  */}
-      <div className="w-full h-[90vh] relative">
+      <div className="w-full h-[70vh] relative mt-5">
       <div className="flex justify-end p-5">
           <h1 className="text-3xl">التعليم و التدريب</h1>
           <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
         </div>
 
-        <div className="w-full h-screen p-2 overflow-hidden relative">
-        <LastProject />
-        <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
-        </div>
+        <div className="h-[70vh] p-2 overflow-hidden relative ">
+        <LeariningAndTraning />
         
+      </div>
+      </div>
+{/*  */}
+      <div className="w-full h-[70vh] relative bg-[#CBA871]">
+      <div className="flex justify-center p-5">
+          <h1 className="text-xl text-white">نعمل معا شركاؤنا</h1>
+        </div>
+
+        <div className="h-[30vh] w-full p-2 overflow-hidden relative ">
+        <OurPartners />
+      </div>
+      <div className="h-[30vh] p-2 overflow-hidden relative ">
+        <OurPartners />
+      </div>
+      </div>
+
+      {/*  */}
+
+      <div className="w-full h-[70vh] relative mt-5">
+      <div className="flex justify-center p-5">
+          <h1 className="text-xl">المؤسسات التي نديرها</h1>
+        </div>
+
+        <div className="h-[50vh] p-2 overflow-hidden relative">
+        <OurOrgnaztion />
+        
+      </div>
+      </div>
+      {/*  */}
+      <div className="w-full h-[110vh] relative">
+      <div className="flex justify-end p-5">
+          <h1 className="text-3xl">تــواصل معنا</h1>
+          <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+        </div>
+
+        <div className="h-[100vh] p-2 overflow-hidden relative ">
+        <ContectUs/>
       </div>
       </div>
     </div>
