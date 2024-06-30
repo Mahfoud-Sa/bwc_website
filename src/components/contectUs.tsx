@@ -16,7 +16,7 @@ export default function ContectUs() {
               id=""
               dir="rtl"
               placeholder="ادخل الاسم ..."
-              className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+              className="w-full px-4 py-3 rounded-lg bg-black mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
             />
 
             <div>
