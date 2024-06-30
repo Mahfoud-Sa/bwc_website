@@ -10,7 +10,7 @@ export default function ContectUs() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d634.0013811751327!2d49.12067139261173!3d14.532088105942686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de8e7a7ef4a3659%3A0x805ca06a13dfebf5!2z2YXYudmH2K8g2KjYsdmK2YXZitmI2YUgTUlJIFByZW1pdW0!5e0!3m2!1sar!2s!4v1719749824322!5m2!1sar!2s"
             width="600"
             height="450"
-            className="border-0 w-full h-full"
+            className="border-0 w-full h-full shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)]"
             loading="lazy"
           ></iframe>
         </div>
