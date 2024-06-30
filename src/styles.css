@@ -1,0 +1,336 @@
+@font-face {
+  font-family: "Tajawal";
+  src: url("../public/fonts/Tajawal-Bold.ttf") format("truetype");
+  /* Add additional src lines for other font variations if available */
+  font-weight: normal;
+  font-style: normal;
+}
+:root{
+  --white-color:#FFFFFF;
+  --gray-white:#D1D1D1;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Tajawal;
+}
+
+.nav {
+  background-color: white;
+  width: 100%;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2;
+  padding: 0 1rem;
+}
+.navActive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 999;
+}
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.nav-left-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dropdownlanguage {
+  position: absolute;
+  top: 4.5rem;
+  right: 10px;
+  color: black;
+  width: 100px;
+  text-align: center;
+  padding: 15px;
+  font-weight: bolder;
+  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.dropdownlanguage ul li {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px 10px;
+  border-radius: 8px;
+}
+.dropdownlanguage ul li:hover {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+.dropdownlanguage-rigth {
+  position: absolute;
+  top: 4.5rem;
+  left: 10px;
+  color: black;
+  width: 100px;
+  text-align: center;
+  padding: 15px;
+  font-weight: bolder;
+  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.dropdownlanguage-rigth ul li {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px 10px;
+  border-radius: 8px;
+}
+.dropdownlanguage-rigth ul li:hover {
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+.selected {
+  background-color: black;
+  color: white;
+}
+
+/* .carousel{
+  max-width: 700px;
+  margin-inline: 2erm;
+  border-radius: 10px;
+  position: relative;
+  margin: 12rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-images img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  transition: opacity 0.3 ease;
+}
+.carousel-images img.inactive{
+  display: none;
+}
+.carousel-images img.active{
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+opacity: 1;
+  }
+} */
+
+.carousel_parant {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+}
+.carousel {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.info-carousel {
+  position: absolute;
+  width: 32rem;
+  height: 10rem;
+  background-color: rgb(49, 51, 53,55%);
+  bottom: 1rem;
+  color: black;
+  right: 5rem;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: end;
+  padding: 20px;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
+.title-info-carousel{
+  width: 100%;
+  text-overflow: ellipsis;
+  text-align: end;
+}
+.title-info-carousel h2{
+  font-size: 20px;
+  color: var(--white-color);
+}
+.title-info-carousel p{
+  color: var(--gray-white);
+}
+.info-carousel .inside-image {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.slide img {
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  transition: opacity 0.3 ease;
+}
+.slide {
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-hidden {
+  display: none;
+}
+
+.arrow {
+  position: absolute;
+  filter: drop-shadow(0px 0px 5px #555);
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.arrow-left {
+  width: 4rem;
+  height: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.005)
+  );
+  left: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(100px);
+}
+
+.arrow-left:hover {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.01)
+  );
+}
+.arrow-right:hover {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.01)
+  );
+}
+.arrow-right {
+  width: 4rem;
+  height: 100%;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.005),
+    rgba(0, 0, 0, 0.1)
+  );
+  right: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(100px);
+}
+
+.indicators {
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.indicator {
+  background-color: #cca972;
+  height: 0.5rem;
+  width: 1.5rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  outline: 1px solid #6c6a6a;
+}
+
+.indicator-inactive {
+  background-color: #dddddd;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  outline: 1px solid #6c6a6a;
+}
+.slick-slide >div{
+  margin: 0 10px;
+}
+.slick-dots li.slick-active button:before {
+  background-color: #cca972;
+  height: 0.5rem;
+  width: 1.5rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  outline: 1px solid #6c6a6a;
+  color: transparent;
+}
+.slick-dots li button:before{
+  background-color: #dddddd;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  outline: 1px solid #6c6a6a;
+  color: transparent;
+}
+.services:before{
+  content:url('./assets/img/Group\ 3610.png');
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
