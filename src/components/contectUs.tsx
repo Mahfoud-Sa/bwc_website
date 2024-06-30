@@ -14,8 +14,8 @@ export default function ContectUs() {
                 type="text"
                 name=""
                 id=""
-                placeholder="ادخل الاسم"
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none placeholder:text-end"
+                placeholder=" ... ادخل الاسم"
+                className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none placeholder:text-end"
               />
             
           
@@ -29,8 +29,9 @@ export default function ContectUs() {
                 type="text"
                 name=""
                 id=""
-                placeholder="ادخل الاسم"
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none placeholder:text-end"
+                dir="rtl"
+                placeholder="... ادخل الموضوع"
+                className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none placeholder:text-end"
               />
             
           </div>
@@ -45,7 +46,7 @@ export default function ContectUs() {
                 name=""
                 id=""
                 placeholder="ادخل الاسم"
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border-2 border-red-500 focus:bg-white focus:outline-none placeholder:text-end"
+                className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none placeholder:text-end"
               />
             </div>
           </div>
@@ -60,7 +61,7 @@ export default function ContectUs() {
                 rows={10}
                 cols={40}
                 placeholder="ادخل التفاصيل"
-                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none placeholder:text-end"
+                className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none placeholder:text-end"
               />
             
           </div>
