@@ -2,9 +2,9 @@ import React from "react";
 import Instgram from "../assets/icons/instgram";
 import Whatsapp from "../assets/icons/whatsapp";
 import X from "../assets/icons/x";
-import Facebook from "../assets/icons/facebook";
-import Linkedin from "../assets/icons/linkedin";
+import { FaXTwitter,FaWhatsapp,FaInstagram } from "react-icons/fa6";
 import LogoWhite from "../assets/img/logo-white.png";
+import { FaFacebookF,FaLinkedinIn } from "react-icons/fa";
 export default function Footer() {
   return (
     <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -25,27 +25,27 @@ export default function Footer() {
           <ul className="flex items-start mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-white ">
             <li>
               <a href="">
-                <Linkedin />
+                <FaLinkedinIn />
               </a>
             </li>
             <li>
               <a href="">
-                <Facebook />
+                <FaFacebookF />
               </a>
             </li>
             <li>
               <a href="">
-                <X />
+                <FaXTwitter />
               </a>
             </li>
             <li>
               <a href="">
-                <Whatsapp />
+                <FaWhatsapp />
               </a>
             </li>
             <li>
               <a href="">
-                <Instgram />
+                <FaInstagram />
               </a>
             </li>
           </ul>
@@ -54,54 +54,20 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-1 sm:gap-6 text-end sm:grid-cols-5 h-[35vh]">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              من نحن
+            أرشيف
             </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="https://flowbite.com/" className="hover:underline">
-                  Flowbite
-                </a>
-              </li>
-              <li>
-                <a href="https://tailwindcss.com/" className="hover:underline">
-                  Tailwind CSS
-                </a>
-              </li>
-            </ul>
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            التقارير
+            </h2>
+            
           </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
               من نحن
             </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="https://flowbite.com/" className="hover:underline">
-                  Flowbite
-                </a>
-              </li>
-              <li>
-                <a href="https://tailwindcss.com/" className="hover:underline">
-                  Tailwind CSS
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              من نحن
-            </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="https://flowbite.com/" className="hover:underline">
-                  Flowbite
-                </a>
-              </li>
-              <li>
-                <a href="https://tailwindcss.com/" className="hover:underline">
-                  Tailwind CSS
-                </a>
-              </li>
-            </ul>
+            
           </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
@@ -113,15 +79,23 @@ export default function Footer() {
                   href="https://github.com/themesberg/flowbite"
                   className="hover:underline "
                 >
-                  Github
+                  منشورات
                 </a>
               </li>
-              <li>
+              <li className="mb-4">
                 <a
                   href="https://discord.gg/4eeurUVvTy"
                   className="hover:underline"
                 >
-                  Discord
+                  تحليلات
+                </a>
+              </li>
+              <li >
+                <a
+                  href="https://discord.gg/4eeurUVvTy"
+                  className="hover:underline"
+                >
+                  اخبار
                 </a>
               </li>
             </ul>
