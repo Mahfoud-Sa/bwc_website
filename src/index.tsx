@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TermsOfUse from "./page/(User)/termsOfUse";
 import PrivacyPolicy from "./page/(User)/privacyPolicy";
 import LoginPage from "./page/(Admin)/loginPage";
+import DashboardPage from "./page/(Admin)/dashboardPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/admin-dashboard",
+    element: <DashboardPage />,
   },
 ]);
 const root = ReactDOM.createRoot(

@@ -147,9 +147,9 @@ export default function Footer() {
         <div className="w-[35%] text-end">
           
         {t("rights")}
-           <a href="https://flowbite.com/" className="hover:underline">
+           <Link to={`/`} className="hover:underline">
            &nbsp; {t("rights1")} &nbsp;
-          </a>
+          </Link>
           {(new Date().getFullYear())}{" "}© 
          
         </div>
