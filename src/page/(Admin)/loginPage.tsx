@@ -19,14 +19,14 @@ export default function LoginPage() {
             <form action="" className="px-10 text-end">
               <div>
                 <label className="block text-balck font-black text-lg  mt-1">
-                  الاسم
+                كلمة المرور
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   name=""
                   id=""
                   dir="rtl"
-                  placeholder="ادخل الاسم ..."
+                  placeholder="ادخل كلمة المرور ..."
                   className="w-full px-4 py-2 rounded-xl bg-white mt-2 border-2 border-[#797B7D] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
                 />
               </div>
@@ -35,7 +35,7 @@ export default function LoginPage() {
                 className=" mt-10 w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
               >
                 <div className="flex items-center justify-center">
-                  <span className="ml-4 text-white">إرسـال</span>
+                  <span className="ml-4 text-white">تسجيل دخول</span>
                 </div>
               </button>
             </form>
