@@ -7,6 +7,7 @@ import "./styles.css";
 import "./i18n.ts";
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import TermsOfUse  from "./page/termsOfUse";
+import PrivacyPolicy from "./page/privacyPolicy";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
   {
     path: "/terms-of-use",
     element:<TermsOfUse/>
+  }
+  ,
+  {
+    path: "/privacy-policy",
+    element:<PrivacyPolicy/>
   }
 ]);
 const root = ReactDOM.createRoot(

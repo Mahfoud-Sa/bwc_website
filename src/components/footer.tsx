@@ -138,7 +138,7 @@ export default function Footer() {
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div className="flex items-center justify-between text-sm text-gray-500 sm:text-center dark:text-gray-400">
         <div className=" w-[35%] text-start">
-          <a href="" className="">{t("policy_privacy")}</a>
+          <Link to={`/privacy-policy`} className="">{t("policy_privacy")}</Link>
           <Link to={`/terms-of-use`} className={dir === "ltr" ? "ml-2" : "mr-2"}>{t("terms_of_use")}</Link>
         </div>
         <div className="w-[30%] ">
