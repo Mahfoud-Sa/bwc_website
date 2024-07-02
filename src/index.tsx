@@ -5,23 +5,27 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./styles.css";
 import "./i18n.ts";
-import {createBrowserRouter,RouterProvider} from "react-router-dom";
-import TermsOfUse  from "./page/termsOfUse";
-import PrivacyPolicy from "./page/privacyPolicy";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TermsOfUse from "./page/(User)/termsOfUse";
+import PrivacyPolicy from "./page/(User)/privacyPolicy";
+import LoginPage from "./page/(Admin)/loginPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<App/>
+    element: <App />,
   },
   {
     path: "/terms-of-use",
-    element:<TermsOfUse/>
-  }
-  ,
+    element: <TermsOfUse />,
+  },
   {
     path: "/privacy-policy",
-    element:<PrivacyPolicy/>
-  }
+    element: <PrivacyPolicy />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
 ]);
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
