@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 export default function TermsOfUse() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
-  console.log(dir);
   return (
     <div  >
       <Navber />
