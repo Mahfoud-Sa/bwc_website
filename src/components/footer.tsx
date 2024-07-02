@@ -1,13 +1,14 @@
 import React from "react";
-import Instgram from "../assets/icons/instgram";
-import Whatsapp from "../assets/icons/whatsapp";
-import X from "../assets/icons/x";
 import { FaXTwitter,FaWhatsapp,FaInstagram } from "react-icons/fa6";
 import LogoWhite from "../assets/img/logo-white.png";
 import { FaFacebookF,FaLinkedinIn } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 export default function Footer() {
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   return (
-    <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+    <div dir={dir === "ltr" ? "rtl" : "ltr"} className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
       <div className="sm:flex sm:items-center sm:justify-between">
         <div className="h-[35vh]">
           <div className="mb-6 md:mb-0 hidden">
@@ -54,24 +55,24 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-1 sm:gap-6 text-end sm:grid-cols-5 h-[35vh]">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-            أرشيف
+            {t("footerLink5")}
             </h2>
           </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-            التقارير
-            </h2>
-            
-          </div>
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              من نحن
+            {t("footerLink4")}
             </h2>
             
           </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              المنشورات
+            {t("footerLink3")}
+            </h2>
+            
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+            {t("footerLink2")}
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
@@ -79,7 +80,7 @@ export default function Footer() {
                   href="https://github.com/themesberg/flowbite"
                   className="hover:underline "
                 >
-                  منشورات
+                  {t("Publications1")}
                 </a>
               </li>
               <li className="mb-4">
@@ -87,7 +88,7 @@ export default function Footer() {
                   href="https://discord.gg/4eeurUVvTy"
                   className="hover:underline"
                 >
-                  تحليلات
+                  {t("Publications2")}
                 </a>
               </li>
               <li >
@@ -95,39 +96,39 @@ export default function Footer() {
                   href="https://discord.gg/4eeurUVvTy"
                   className="hover:underline"
                 >
-                  اخبار
+                  {t("Publications3")}
                 </a>
               </li>
             </ul>
           </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              الاقـــــــســـــــــام
+              {t("footerLink1")}
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
                 <a href="#" className="hover:underline">
-                  التعليم و التدريب
+                  {t("departmentLinks")}
                 </a>
               </li>
               <li className="mb-4">
                 <a href="#" className="hover:underline">
-                  التطوير البرمجي
+                {t("departmentLinks1")}
                 </a>
               </li>
               <li className="mb-4">
                 <a href="#" className="hover:underline">
-                  ريادة الاعمال
+                {t("departmentLinks2")}
                 </a>
               </li>
               <li className="mb-4">
                 <a href="#" className="hover:underline">
-                  إدارة مشاريع
+                {t("departmentLinks3")}
                 </a>
               </li>
               <li className="mb-4">
                 <a href="#" className="hover:underline">
-                  دراسات
+                {t("departmentLinks4")}
                 </a>
               </li>
             </ul>
@@ -137,18 +138,20 @@ export default function Footer() {
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div className="flex items-center justify-between text-sm text-gray-500 sm:text-center dark:text-gray-400">
         <div className=" w-[35%] text-start">
-          <a href="">شروط الاستخدام</a>
-          <a href="">سياسة الخصوصية</a>
+          <a href="" className="">{t("policy_privacy")}</a>
+          <Link to={`/terms-of-use`} className={dir === "ltr" ? "ml-2" : "mr-2"}>{t("terms_of_use")}</Link>
         </div>
         <div className="w-[30%] ">
           <img src={LogoWhite} alt="" className="m-auto" />
         </div>
         <div className="w-[35%] text-end">
-          © {(new Date().getFullYear())}{" "}
-          <a href="https://flowbite.com/" className="hover:underline">
-          شركة عالم
+          
+        {t("rights")}
+           <a href="https://flowbite.com/" className="hover:underline">
+           &nbsp; {t("rights1")} &nbsp;
           </a>
-           جميع الحقوق محفوظة لـ 
+          {(new Date().getFullYear())}{" "}© 
+         
         </div>
       </div>
     </div>
