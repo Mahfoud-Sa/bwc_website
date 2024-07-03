@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import login from "../../assets/img/8H4A08688.jpg(1).jpg";
 import login1 from "../../assets/img/عالم الأعمال خلفية أبيض 21.png";
 export default function LoginPage() {
+  const [loginPassword, setLoginPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState("");
+  function handlePasswoed(value: string) {
+    setLoginPassword(value);
+  }
+
+  const usernameServer = "11183953";
+  const password = "60-dayfreetrial";
+  const email = "";
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+
+    const encodedCredentials = btoa("11183953:60-dayfreetrial");
+
+    try {
+      const response = await axios.post(
+        "https://fakestoreapi.com/products",{title:'test product',price:"13.5",description:"lorem ipsum set",image: 'https://i.pravatar.cc',category: 'electronic'}
+        
+        // { username, password },
+        // {
+        //   headers: {
+        //     Authorization: `Basic ${encodedCredentials}`,
+        //   },
+        // }
+      );
+
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="h-[100vh] w-full flex">
       <div className="w-[60%] h-full flex justify-center items-center">
@@ -16,10 +48,13 @@ export default function LoginPage() {
           {/*  */}
           <div className="text-center mt-10">
             <h1 className="text-3xl mb-5">مرحبا بعودتك</h1>
-            <form action="" className="px-10 text-end">
+            <form action="" className="px-10 text-end" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-balck font-black text-lg  mt-1">
-                كلمة المرور
+                <label
+                  htmlFor="password"
+                  className="block text-balck font-black text-lg  mt-1"
+                >
+                  كلمة المرور
                 </label>
                 <input
                   type="password"
@@ -27,6 +62,8 @@ export default function LoginPage() {
                   id=""
                   dir="rtl"
                   placeholder="ادخل كلمة المرور ..."
+                  value={loginPassword}
+                  onChange={(e) => handlePasswoed(e.target.value)}
                   className="w-full px-4 py-2 rounded-xl bg-white mt-2 border-2 border-[#797B7D] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
                 />
               </div>
@@ -35,7 +72,7 @@ export default function LoginPage() {
                 className=" mt-10 w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
               >
                 <div className="flex items-center justify-center">
-                  <span className="ml-4 text-white">تسجيل دخول</span>
+                  <button className="ml-4 text-white">تسجيل دخول</button>
                 </div>
               </button>
             </form>
