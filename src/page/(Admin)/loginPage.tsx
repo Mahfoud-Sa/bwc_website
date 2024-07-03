@@ -18,17 +18,22 @@ export default function LoginPage() {
     const encodedCredentials = btoa("11183953:60-dayfreetrial");
 
     try {
-      const response = await axios.post(
-        "https://fakestoreapi.com/products",{title:'test product',price:"13.5",description:"lorem ipsum set",image: 'https://i.pravatar.cc',category: 'electronic'}
-        
-        // { username, password },
-        // {
-        //   headers: {
-        //     Authorization: `Basic ${encodedCredentials}`,
-        //   },
-        // }
-      );
-
+      const response = await axios(
+      {
+        url:"/login",
+        method:"post",
+        baseURL:"http://mahfoudsabbah-001-site1.jtempurl.com/",
+        data:{
+          email: 'test product_2500',
+          password: loginPassword,
+         
+        },
+        auth: {
+          username: usernameServer,
+          password: password
+        },
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+      })
       console.log("Login successful:", response.data);
     } catch (error) {
       console.log(error);
