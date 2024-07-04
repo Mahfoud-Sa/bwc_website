@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../../components/(Admin)/navBar'
+import SideNab from '../../components/(Admin)/sideNab'
 
 export default function DashboardPage() {
   return (
@@ -11,8 +12,8 @@ export default function DashboardPage() {
             <div className=' w-[85%] h-full bg-slate-700'>
 
             </div>
-            <aside className=' w-[15%] h-full bg-orange-500'>
-
+            <aside className=' w-[15%] h-full '>
+            <SideNab/>
             </aside>
         </div>
     </div>

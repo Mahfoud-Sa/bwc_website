@@ -394,3 +394,7 @@ opacity: 1;
   right: 10px;
   top: 10px;
 }
+.selected-sidbar{
+  background-color: rgba(213, 174, 120, 0.2);
+  color: #D5AE78;
+}
