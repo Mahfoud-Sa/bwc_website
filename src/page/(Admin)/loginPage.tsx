@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import login from "../../assets/img/8H4A08688.jpg(1).jpg";
 import login1 from "../../assets/img/عالم الأعمال خلفية أبيض 21.png";
+import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [loginPassword, setLoginPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState("");
   function handlePasswoed(value: string) {
@@ -18,23 +20,33 @@ export default function LoginPage() {
     const encodedCredentials = btoa("11183953:60-dayfreetrial");
 
     try {
-      const response = await axios(
-      {
-        url:"/login",
-        method:"post",
-        baseURL:"http://mahfoudsabbah-001-site1.jtempurl.com/",
-        data:{
-          email: 'test product_2500',
+      const response = await axios({
+        url: "/login",
+        method: "post",
+        baseURL: "http://mahfoudsabbah-001-site1.jtempurl.com/",
+        data: {
+          email: "hamoud@gmail.com",
           password: loginPassword,
-         
         },
         auth: {
           username: usernameServer,
-          password: password
+          password: password,
         },
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
-      })
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      });
       console.log("Login successful:", response.data);
+
+      if (response.data.accessToken) {
+        localStorage.setItem("accessToken", response.data.accessToken);
+      }
+      if (response.data.refreshToken) {
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+      }
+      if (response?.status === 200) {
+        navigate("/admin-dashboard");
+      } else {
+        console.log("wrong password");
+      }
     } catch (error) {
       console.log(error);
     }
