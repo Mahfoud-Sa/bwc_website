@@ -79,6 +79,7 @@ export default function LoginPage() {
                   id=""
                   dir="rtl"
                   placeholder="ادخل كلمة المرور ..."
+                  required
                   value={loginPassword}
                   onChange={(e) => handlePasswoed(e.target.value)}
                   className="w-full px-4 py-2 rounded-xl bg-white mt-2 border-2 border-[#797B7D] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
