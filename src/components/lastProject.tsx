@@ -54,12 +54,46 @@ export default function LastProject() {
     slidesToShow: 4,
     slidesToScroll: 3,
     rtl: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 980,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 880,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+    ],
   };
   return (
+    <div className="slider-container">
     <Slider {...settings}>
       {Cards.map((item, idx) => (
         <div
-          className="max-w-sm rounded-xl h-[420px] overflow-hidden shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] "
+          className="max-w-sm rounded-xl mt-1 h-[420px] overflow-hidden shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)] "
           key={idx}
         >
           <div className="px-6 mt-6 text-end">
@@ -78,5 +112,6 @@ export default function LastProject() {
         </div>
       ))}
     </Slider>
+    </div>
   );
 }

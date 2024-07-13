@@ -90,7 +90,7 @@ export default function PublishesCards() {
       {
         breakpoint: 880,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -102,7 +102,6 @@ export default function PublishesCards() {
           initialSlide: 2,
         },
       },
-      
     ],
   };
   return (
@@ -110,7 +109,7 @@ export default function PublishesCards() {
       <Slider {...settings}>
         {Cards.map((item, idx) => (
           <div
-            className="max-w-sm rounded h-[500px] overflow-hidden shadow-lg "
+            className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg "
             key={idx}
           >
             <div className="md:w-full md:h-60 sm:w-full sm:h-52">
