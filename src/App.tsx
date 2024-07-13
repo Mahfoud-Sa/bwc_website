@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/navbar";
 import HeroSection from "./components/heroSection";
 import PublishesCards from "./components/publishes-cards";
@@ -16,9 +16,30 @@ import OurOrgnaztion from "./components/ourOrgnaztion";
 import ContectUs from "./components/contectUs";
 import Footer from "./components/footer";
 function App() {
+  const [widthScreen, setWidthScreen] = useState({
+    winWidth: window.innerWidth,
+    winHight: window.innerHeight,
+  });
+
+  const detectSize = () => {
+    setWidthScreen({
+      winWidth: window.innerWidth,
+      winHight: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [widthScreen]);
+  console.log(widthScreen.winWidth)
   return (
     <div className="App">
+      <div className="w-full h-[11vh]">
       <Navbar />
+      </div>
       <HeroSection />
       {/*  */}
       <div className="w-full h-36 flex justify-end items-center ">
@@ -252,7 +273,7 @@ function App() {
         </div>
       </div>
       <footer className="h-[65vh] p-2 overflow-hidden relative bg-black mt-10">
-        <Footer/>
+        <Footer />
       </footer>
     </div>
   );
