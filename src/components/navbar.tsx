@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/img/logo.png";
-import logo2 from "../assets/img/no-name.png";
+import logo2 from "../assets/img/no-name (2).png";
 import LanguageWorld from "../assets/icons/language-world";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";

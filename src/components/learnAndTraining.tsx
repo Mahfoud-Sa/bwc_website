@@ -51,8 +51,42 @@ export default function LeariningAndTraning() {
     slidesToShow: 3,
     slidesToScroll: 3,
     rtl: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 980,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 880,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+    ],
   };
   return (
+    <div className="slider-container">
     <Slider {...settings}>
       {Cards.map((item, idx) => (
         <div
@@ -77,21 +111,9 @@ export default function LeariningAndTraning() {
               </div>
             </div>
           </div>
-          {/* <div className="px-6 mt-6 text-end">
-            <p className="text-black text-xl font-extrabold">{item.title}</p>
-          </div>          
-          <div className="px-6 py-4 text-end">
-            <p className="text-[#525252] text-sm">{item.subTitle}</p>
-          </div>
-          <div className="w-full h-60 px-3">
-            <img
-              className="object-cover w-full h-full rounded-xl"
-              src={item.img}
-              alt="Sunset in the mountains"
-            />
-          </div> */}
         </div>
       ))}
     </Slider>
+    </div>
   );
 }
