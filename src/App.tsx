@@ -372,7 +372,7 @@ function App() {
           <ContectUs />
         </div>
       </div>
-      <footer className="h-[65vh] p-2 overflow-hidden relative bg-black mt-10">
+      <footer className="min-h-[65vh] p-2 overflow-hidden relative bg-black mt-10">
         <Footer />
       </footer>
     </div>
