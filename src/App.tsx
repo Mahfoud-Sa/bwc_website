@@ -327,7 +327,7 @@ function App() {
       </div>
       {/*  */}
       <div className="w-full h-[60vh] relative">
-        <div className="flex justify-end p-5">
+        <div className="flex justify-end p-5 sm:mt-20">
           <h1 className="text-3xl">التعليم و التدريب</h1>
           <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
         </div>
@@ -352,7 +352,7 @@ function App() {
 
       {/*  */}
 
-      <div className="w-full h-[70vh] relative mt-5">
+      <div className="w-full h-[50vh] relative mt-5">
         <div className="flex justify-center p-5">
           <h1 className="text-xl">المؤسسات التي نديرها</h1>
         </div>

@@ -85,7 +85,7 @@ export default function OurPartners() {
             className="flex-shrink-0"
             style={{ width: `${100 / slides.length}%` }}
           >
-            <div className=" inline-block rounded-xl w-[80%] h-[150px] mx-10 overflow-hidden mt-2 bg-white">
+            <div className=" inline-block rounded-xl lg:w-[80%] sm:w-[80%] h-[150px] mx-10 overflow-hidden mt-2 bg-white">
               <div className=" flex-row-reverse w-[100%] h-[100%] ">
                 <div className="flex justify-center items-center w-[100%] h-full p-2">
                   <img
