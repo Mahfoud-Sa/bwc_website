@@ -362,13 +362,13 @@ function App() {
         </div>
       </div>
       {/*  */}
-      <div className="w-full h-[110vh] relative">
+      <div className="w-full lg:h-[110vh] sm:h[300vh] relative">
         <div className="flex justify-end p-5">
           <h1 className="text-3xl">تــواصل معنا</h1>
           <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
         </div>
 
-        <div className="h-[110vh] p-2 overflow-hidden relative ">
+        <div className="h-full p-2 overflow-hidden relative ">
           <ContectUs />
         </div>
       </div>
