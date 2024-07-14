@@ -16,6 +16,7 @@ import CarouselsHeroSection from "./components/carouselsHeroSection";
 import OurOrgnaztion from "./components/ourOrgnaztion";
 import ContectUs from "./components/contectUs";
 import Footer from "./components/footer";
+import SecondOurPartners from "./components/secoundPartner";
 function App() {
   const [widthScreen, setWidthScreen] = useState({
     winWidth: window.innerWidth,
@@ -345,7 +346,7 @@ function App() {
           <OurPartners />
         </div>
         <div className="h-[30vh] p-2 overflow-hidden relative ">
-          <OurPartners />
+          <SecondOurPartners />
         </div>
       </div>
 

@@ -55,7 +55,7 @@ const Cards: publishesDataCard[] = [
       "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
   },
 ];
-export default function OurPartners() {
+export default function SecondOurPartners() {
   const slides = [
     { number: 1 },
     { number: 2 },
@@ -70,7 +70,7 @@ export default function OurPartners() {
       <motion.div
         className="flex"
         animate={{
-          x: ["0%", "-100%"],
+          x: ["-100%", "0%"],
           transition: {
             ease: "linear",
             duration: 10,
