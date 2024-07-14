@@ -36,7 +36,20 @@
     transform: rotate(360deg);
   }
 }
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes slide-left {
+  from {
+    transform: translateX(0);
+  }
 
-.dropdownlangage{
-  
+  to {
+    transform: translateX(-100%);
+  }
 }

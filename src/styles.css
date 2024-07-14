@@ -1,3 +1,11 @@
+@import "./App.css";
+
+.slider-anmition {
+  animation: 20s slide infinite linear;
+}
+.rever-slider-anmition {
+  animation: slide-left 8s infinite linear;
+}
 @font-face {
   font-family: "Tajawal";
   src: url("../public/fonts/Tajawal-Bold.ttf") format("truetype");
@@ -15,7 +23,7 @@
   box-sizing: border-box;
   font-family: Tajawal;
 }
-.no{
+.no {
   display: none !important;
 }
 @media (max-width: 700px) {
@@ -54,7 +62,7 @@
     font-size: 32px;
     border-radius: 8px;
   }
-  .language-icon{
+  .language-icon {
     display: flex !important;
     align-items: center !important;
     width: 100% !important;
