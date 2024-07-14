@@ -35,6 +35,9 @@ export default function Footer() {
           <div className="sm:flex sm:items-center sm: sm:justify-end">
             <div className=" grid grid-cols-2 gap-1 sm:gap-6 text-end sm:grid-cols-1 min-h-[35vh]">
               <div>
+                <div className="w-[100%] sm:mb-8">
+                  <img src={LogoWhite} alt="" className="m-auto" />
+                </div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                   {t("footerLink1")}
                 </h2>
@@ -118,52 +121,59 @@ export default function Footer() {
             <ul className="flex items-start mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-white ">
               <li>
                 <a href="">
-                  <FaLinkedinIn size={24}/>
+                  <FaLinkedinIn size={24} />
                 </a>
               </li>
               <li>
                 <a href="">
-                  <FaFacebookF size={24}/>
+                  <FaFacebookF size={24} />
                 </a>
               </li>
               <li>
                 <a href="">
-                  <FaXTwitter size={24}/>
+                  <FaXTwitter size={24} />
                 </a>
               </li>
               <li>
                 <a href="">
-                  <FaWhatsapp size={24}/>
+                  <FaWhatsapp size={24} />
                 </a>
               </li>
               <li>
                 <a href="">
-                  <FaInstagram size={24}/>
+                  <FaInstagram size={24} />
                 </a>
               </li>
             </ul>
-            <h4 className="text-white flex items-center mt-3">info@bwiscompltd.com</h4>
+            <h4 className="text-white flex items-center mt-3">
+              info@bwiscompltd.com
+            </h4>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-          <div className=" text-sm text-gray-500 sm:text-start dark:text-gray-400">
-            <div className=" w-[100%]  text-end">
-              <Link to={`/privacy-policy`} className=" sm:block sm:mb-2">
+          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-[#BA8D30] lg:my-8" />
+          <div className=" text-sm text-gray-500 sm:text-start dark:text-gray-400 sm:mt-10">
+            <div className=" w-[100%] sm:mb-5  text-end">
+              <Link to={`/privacy-policy`} className=" sm:block sm:mb-5">
                 {t("policy_privacy")}
               </Link>
               <Link
                 to={`/terms-of-use`}
-                className={dir === "ltr" ? "ml-2 sm:ml-0 sm:block sm:mt-2" : "mr-2 sm:mr-0 "}
+                className={
+                  dir === "ltr"
+                    ? "ml-2 sm:ml-0 sm:block sm:mt-5"
+                    : "mr-2 sm:mr-0 "
+                }
               >
                 {t("terms_of_use")}
               </Link>
             </div>
-            
-            <div className="w-[100%] text-end sm:mt-2">
+
+            <div className="w-[100%] sm:mb-5 text-end sm:mt-2">
+              © &nbsp;
               {t("rights")}
               <Link to={`/`} className="hover:underline">
                 &nbsp; {t("rights1")} &nbsp;
               </Link>
-              {new Date().getFullYear()} ©
+              {new Date().getFullYear()}
             </div>
           </div>
         </div>
@@ -296,7 +306,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-[#BA8D30] lg:my-8" />
           <div className="flex items-center justify-between text-sm text-gray-500 sm:text-center dark:text-gray-400">
             <div className=" w-[35%] text-start">
               <Link to={`/privacy-policy`} className="">
@@ -313,11 +323,12 @@ export default function Footer() {
               <img src={LogoWhite} alt="" className="m-auto" />
             </div>
             <div className="w-[35%] text-end">
+              ©&nbsp;
               {t("rights")}
               <Link to={`/`} className="hover:underline">
                 &nbsp; {t("rights1")} &nbsp;
               </Link>
-              {new Date().getFullYear()} ©
+              {new Date().getFullYear()}
             </div>
           </div>
         </div>
