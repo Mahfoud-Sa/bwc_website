@@ -199,30 +199,33 @@ export default function Footer() {
               <ul className="flex items-start mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-white ">
                 <li>
                   <a href="">
-                    <FaLinkedinIn />
+                    <FaLinkedinIn size={23}/>
                   </a>
                 </li>
                 <li>
                   <a href="">
-                    <FaFacebookF />
+                    <FaFacebookF size={23}/>
                   </a>
                 </li>
                 <li>
                   <a href="">
-                    <FaXTwitter />
+                    <FaXTwitter size={23}/>
                   </a>
                 </li>
                 <li>
                   <a href="">
-                    <FaWhatsapp />
+                    <FaWhatsapp size={23}/>
                   </a>
                 </li>
                 <li>
                   <a href="">
-                    <FaInstagram />
+                    <FaInstagram size={23}/>
                   </a>
                 </li>
               </ul>
+              <a href="" className="text-white flex items-center mt-7 underline hover:no-underline ">
+              info@bwiscompltd.com
+            </a>
             </div>
 
             <div className="grid grid-cols-2 gap-1 sm:gap-6 text-end sm:grid-cols-5 h-[35vh]">
@@ -271,6 +274,7 @@ export default function Footer() {
                     </a>
                   </li>
                 </ul>
+                
               </div>
               <div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
@@ -303,6 +307,7 @@ export default function Footer() {
                     </a>
                   </li>
                 </ul>
+                
               </div>
             </div>
           </div>
