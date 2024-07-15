@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import imga from "../assets/img/1706714290731.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -64,41 +64,99 @@ export default function OurPartners() {
     { number: 5 },
   ];
   const duplicatedSlides = [...Cards, ...Cards];
+  const [widthScreen, setWidthScreen] = useState({
+    winWidth: window.innerWidth,
+    winHight: window.innerHeight,
+  });
+
+  const detectSize = () => {
+    setWidthScreen({
+      winWidth: window.innerWidth,
+      winHight: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [widthScreen]);
   return (
-    <div className="relative w-full overflow-hidden">
-      {/* Wrapping div for seamless looping */}
-      <motion.div
-        className="flex"
-        animate={{
-          x: ["0%", "-100%"],
-          transition: {
-            ease: "linear",
-            duration: 10,
-            repeat: Infinity,
-          },
-        }}
-      >
-        {/* Render duplicated slides */}
-        {duplicatedSlides.map((slide, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0"
-            style={{ width: `${100 / slides.length}%` }}
+    <>
+      {widthScreen.winWidth <= 980 ? (
+        <div className="relative w-full overflow-hidden">
+          {/* Wrapping div for seamless looping */}
+          <motion.div
+            className="flex w-[250%]"
+            animate={{
+              x: ["-100%", "0"],
+              transition: {
+                ease: "linear",
+                duration: 10,
+                repeat: Infinity,
+              },
+            }}
           >
-            <div className=" inline-block rounded-xl lg:w-[80%] sm:w-[80%] h-[150px] mx-10 overflow-hidden mt-2 bg-white">
-              <div className=" flex-row-reverse w-[100%] h-[100%] ">
-                <div className="flex justify-center items-center w-[100%] h-full p-2">
-                  <img
-                    src={slide.img}
-                    className="object-contain w-[100%] h-[100%]"
-                    alt=""
-                  />
+            {/* Render duplicated slides */}
+            {duplicatedSlides.map((slide, index) => (
+              <div
+                // key={index}
+                className="flex-shrink-0"
+                style={{ width: `${100 / slides.length}%` }}
+              >
+                <div className=" flex rounded-xl sm:w-[80%] h-[150px] mx-10 overflow-hidden mt-2 bg-white">
+                  <div className=" flex-row-reverse w-[100%] h-[100%]">
+                    <div className="flex justify-center items-center w-[100%] h-full p-2">
+                      <img
+                        src={slide.img}
+                        className="object-contain w-[100%] h-[100%]"
+                        alt=""
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
-      </motion.div>
-    </div>
+            ))}
+          </motion.div>
+        </div>
+      ) : (
+        <div className="relative w-full overflow-hidden">
+          {/* Wrapping div for seamless looping */}
+          <motion.div
+            className="flex"
+            animate={{
+              x: ["-100%", "0"],
+              transition: {
+                ease: "linear",
+                duration: 10,
+                repeat: Infinity,
+              },
+            }}
+          >
+            {/* Render duplicated slides */}
+            {duplicatedSlides.map((slide, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0"
+                style={{ width: `${100 / slides.length}%` }}
+              >
+                <div className=" inline-block rounded-xl lg:w-[80%] sm:w-[80%] h-[150px] mx-10 overflow-hidden mt-2 bg-white">
+                  <div className=" flex-row-reverse w-[100%] h-[100%] ">
+                    <div className="flex justify-center items-center w-[100%] h-full p-2">
+                      <img
+                        src={slide.img}
+                        className="object-contain w-[100%] h-[100%]"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      )}
+    </>
   );
 }
