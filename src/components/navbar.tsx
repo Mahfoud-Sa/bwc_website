@@ -12,7 +12,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const [fix, setFix] = useState<boolean>();
-
+  const [language,setLanguage] = useState<string>("");
   window.addEventListener("scroll", function () {
     if (window.scrollY >= 50) {
       setFix(true);
@@ -31,17 +31,27 @@ export default function Navbar() {
       winHight: window.innerHeight,
     });
   };
-
+  // 
+  const onChangeLanguage = () => {
+    language === "ar" ? setLanguage("en") : setLanguage("ar");
+  };
+  
+  const changeLanguage = (code: string) => {
+    i18n.changeLanguage(code);
+  };
+  // 
   const [isdropDownOpen, setIsdropDownOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   useEffect(() => {
-    i18n.changeLanguage(navigator.language);
+    changeLanguage(language);
+    document.body.dir = i18n.dir();
 
     window.addEventListener("resize", detectSize);
     return () => {
       window.removeEventListener("resize", detectSize);
     };
-  }, [widthScreen]);
+    
+  }, [widthScreen,i18n, i18n.language,language]);
 
   const dir = i18n.dir();
   let Links = [
@@ -80,56 +90,52 @@ export default function Navbar() {
             open ? "top-20 " : "top-[-490px]"
           }`}
         >
-          <li className="md:ml-8  text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-4 sm:rounded-md">
+          <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
             <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
               {t("depertment")}
             </a>
           </li>
 
-          <li className="md:ml-8 text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-4 sm:rounded-md">
+          <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
             <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
               {t("About_us")}
             </a>
           </li>
 
-          <li className="md:ml-8 text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-4 sm:rounded-md">
+          <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
             <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
               {t("publishes")}
             </a>
           </li>
-          <li className="md:ml-8 text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-4 sm:rounded-md">
+          <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
             <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
               {t("reports")}
             </a>
           </li>
-          <li className="md:ml-8 text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-4 sm:rounded-md">
+          <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
             <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
               {t("archive")}
             </a>
           </li>
-          <div className="lg:hidden">
-            <Button>{t("jobs")}</Button>
-
+          <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+            <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+            {t("jobs")}
+            </a>
+          </li>
+          <li className=" lg:hidden md:ml-8 sm:flex sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md " onClick={onChangeLanguage}>
+            <a className="sm:flex text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
             <div
-              className={
-                dir === "ltr" ? "language-icon lg:ml-4" : "language-icon"
-              }
-            >
-              <div
-                className="cursor-pointer"
-                onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
+                className="cursor-pointer mr-3"
               >
                 <LanguageWorld color="black" />
               </div>
               <div
                 className="cursor-pointer"
-                onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
               >
                 {dir === "ltr" ? "EN" : "عربي"}
-                {isdropDownOpen && <DropDownLang />}
               </div>
-            </div>
-          </div>
+            </a>
+          </li>
         </ul>
 
         <div className="flex items-center lg:flex sm:hidden">
