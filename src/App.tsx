@@ -84,13 +84,13 @@ function App() {
                 <h1 className="text-3xl font-extrabold">من نحن</h1>
                 <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
               </div>
-              <div>
-                <p className="text-end  text-[#5B5B5B] leading-7">
+              <div className="text-end">
+                <p className="text-justify text-[#5B5B5B] leading-7">
                   شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة.أسسها
                   الدكتور ربيع بن علي العوبثاني في مدينة المكلا و حضرموت في مارس
                   2021م تحمل سجل تجاري رقم(21/2831).
                 </p>
-                <p className="text-end  mt-6 text-[#5B5B5B] leading-8">
+                <p className="text-justify mt-6 text-[#5B5B5B] leading-8">
                   تعمل على إدارة وتشغيل المشاريع الاستثمارية وتقديم الدراسات
                   الاقتصادية والاستشارات الادارية والمالية والتسويقية وحلول
                   تكنولوجيا المعلومات وتقدم خدماتها من خلال مجموعة من الخبراء
