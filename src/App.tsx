@@ -98,6 +98,51 @@ function App() {
                   الخبراء والاستشاريين المتعاقدين.
                 </p>
               </div>
+              <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md bg-white/30 border border-black mt-8 ">
+                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-around">
+                  {" "}
+                  <div>
+                    <span>
+                      <Borad />
+                    </span>
+                    <h1 className="text-black">1+</h1>
+                    <p className="text-black">ريادة إعمال</p>
+                  </div>
+                  <div>
+                    <span>
+                      <Borad />
+                    </span>
+                    <h1 className="text-black">1+</h1>
+                    <p className="text-black">إدارة مشاريع</p>
+                  </div>
+                </div>
+                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
+                <div className="translate-y-4">
+                  <div className="h-[60px] w-[58px] -translate-y-4">
+                    <img src={anlyisit} alt="" className="w-full h-full" />
+                  </div>
+                  <h1 className="text-black">1+</h1>
+                  <p className="text-black">دراسات</p>
+                </div>
+                </div>
+                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-around">
+                <div className="">
+                  <span>
+                    <Borad />
+                  </span>
+                  <h1 className="text-black">+1</h1>
+                  <p className="text-black">تعليم و تدريب</p>
+                </div>
+
+                <div className="translate-y-4">
+                  <div className="h-[60px] w-[58px] -translate-y-4">
+                    <img src={anlyisit} alt="" className="w-full h-full" />
+                  </div>
+                  <h1 className="text-black">1+</h1>
+                  <p className="text-black">دراسات</p>
+                </div>
+                </div>
+              </div>
               <div className="flex justify-center mt-10">
                 <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                   <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
@@ -105,6 +150,7 @@ function App() {
                   </button>
                 </div>
               </div>
+              
             </div>
           </>
         ) : (
