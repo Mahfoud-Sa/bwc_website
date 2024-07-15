@@ -78,17 +78,17 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
                     key={idx}
                     className={slide === idx ? "slide" : "slide slide-hidden"}
                   />
-                <div className="bg-[#979CA1]/[.70] min-h-[30vh]" >
+                <div className="bg-[#979CA1]/[.70] md:min-h-[20vh] sm:min-h-[30vh]" >
                     <div className="" key={idx}>
-                      <h2 className="text-end pt-3 text-2xl px-2">{item.title}</h2>
-                      <p className="text-end mt-5  px-2">
+                      <h2 className="md:text-end md:pt-3 md:text-3xl md:px-2 sm:text-end sm:pt-3 sm:text-xl sm:px-2">{item.title}</h2>
+                      <p className="md:text-end md:text-xl md:mt-5  md:px-2 sm:text-end sm:mt-3  sm:px-2">
                         {}
                         {dir === "ltr"
                           ? formattedDateEn(item.publish_date)
                           : formattedDate(item.publish_date)}
                       </p>
                       <div className="flex items-center justify-end px-2 mt-3">
-                        <p className={dir === "ltr" ? "mr-2":"ml-2"}>{item?.writers?.name}</p>
+                        <p className={dir === "ltr" ? "sm:mr-2 md:text-2xl":"sm:ml-2 md:text-2xl"}>{item?.writers?.name}</p>
                         <img
                           src={item?.writers?.img}
                           className={
@@ -128,7 +128,7 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
           </div>
 
         </div>
-        <div className="w-full h-[30vh] bg-black">
+        <div className="w-full md:h-[20vh] sm:h-[30vh] bg-black">
         {/* {publishes.map((item, idx) => {
           return(
             
