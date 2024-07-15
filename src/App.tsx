@@ -58,8 +58,8 @@ function App() {
           <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
         </div>
         {widthScreen.winWidth <= 980 ? (
-          <div className=" absolute bottom-[-40px] right-0">
-            <SideCircle />
+          <div className=" absolute bottom-[60px] right-0">
+            {/* <SideCircle /> */}
           </div>
         ) : (
           <div className=" absolute bottom-0 right-0">
@@ -69,6 +69,10 @@ function App() {
       </div>
       {/*  */}
       <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 px-4 relative">
+        <div className="flex items-start justify-end py-10">
+          <h1 className="text-3xl font-extrabold">من نحن</h1>
+          <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+        </div>
         {widthScreen.winWidth <= 980 ? (
           <>
             <div className="">
@@ -80,10 +84,6 @@ function App() {
             </div>
 
             <div className=" px-4">
-              <div className="flex items-start justify-end py-16">
-                <h1 className="text-3xl font-extrabold">من نحن</h1>
-                <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-              </div>
               <div className="text-end">
                 <p className="text-justify text-[#5B5B5B] leading-7">
                   شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة.أسسها
@@ -117,30 +117,30 @@ function App() {
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
-                <div className="translate-y-4">
-                  <div className="h-[60px] w-[58px] -translate-y-4">
-                    <img src={anlyisit} alt="" className="w-full h-full" />
+                  <div className="translate-y-4">
+                    <div className="h-[60px] w-[58px] -translate-y-4">
+                      <img src={anlyisit} alt="" className="w-full h-full" />
+                    </div>
+                    <h1 className="text-black">1+</h1>
+                    <p className="text-black">دراسات</p>
                   </div>
-                  <h1 className="text-black">1+</h1>
-                  <p className="text-black">دراسات</p>
-                </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-around">
-                <div className="">
-                  <span>
-                    <Borad />
-                  </span>
-                  <h1 className="text-black">+1</h1>
-                  <p className="text-black">تعليم و تدريب</p>
-                </div>
-
-                <div className="translate-y-4">
-                  <div className="h-[60px] w-[58px] -translate-y-4">
-                    <img src={anlyisit} alt="" className="w-full h-full" />
+                  <div className="">
+                    <span>
+                      <Borad />
+                    </span>
+                    <h1 className="text-black">+1</h1>
+                    <p className="text-black">تعليم و تدريب</p>
                   </div>
-                  <h1 className="text-black">1+</h1>
-                  <p className="text-black">دراسات</p>
-                </div>
+
+                  <div className="translate-y-4">
+                    <div className="h-[60px] w-[58px] -translate-y-4">
+                      <img src={anlyisit} alt="" className="w-full h-full" />
+                    </div>
+                    <h1 className="text-black">1+</h1>
+                    <p className="text-black">دراسات</p>
+                  </div>
                 </div>
               </div>
               <div className="flex justify-center mt-10">
@@ -150,7 +150,6 @@ function App() {
                   </button>
                 </div>
               </div>
-              
             </div>
           </>
         ) : (
