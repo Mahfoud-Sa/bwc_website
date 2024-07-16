@@ -80,15 +80,15 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
                   />
                 <div className="bg-[#979CA1]/[.70] md:min-h-[20vh] sm:min-h-[30vh]" >
                     <div className="" key={idx}>
-                      <h2 className="md:text-end md:pt-3 md:text-3xl md:px-2 sm:text-end sm:pt-3 sm:text-xl sm:px-2">{item.title}</h2>
-                      <p className="md:text-end md:text-xl md:mt-5  md:px-2 sm:text-end sm:mt-3  sm:px-2">
+                      <h2 className={dir === "ltr" ? "md:text-end md:pt-3 md:text-3xl md:px-2 sm:text-start sm:pt-3 sm:text-xl sm:px-2" : "md:text-end md:pt-3 md:text-3xl md:px-2 sm:text-start sm:pt-3 sm:text-xl sm:px-2"}>{item.title}</h2>
+                      <p className={dir === "ltr" ? "md:text-end md:text-xl md:mt-5  md:px-2 sm:text-start sm:mt-3  sm:px-2" : "md:text-end md:text-xl md:mt-5  md:px-2 sm:text-start sm:mt-3  sm:px-2"}>
                         {}
                         {dir === "ltr"
                           ? formattedDateEn(item.publish_date)
                           : formattedDate(item.publish_date)}
                       </p>
-                      <div className="flex items-center justify-end px-2 mt-3">
-                        <p className={dir === "ltr" ? "sm:mr-2 md:text-2xl":"sm:ml-2 md:text-2xl"}>{item?.writers?.name}</p>
+                      <div className={dir === "ltr" ? "flex items-center justify-end flex-row-reverse px-2 mt-3" : "flex items-center flex-row-reverse justify-end px-2 mt-3"}>
+                        <p className={dir === "ltr" ? "sm:ml-2 md:text-2xl":"sm:mr-2 md:text-2xl"}>{item?.writers?.name}</p>
                         <img
                           src={item?.writers?.img}
                           className={
@@ -154,8 +154,8 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
                     className={slide === idx ? "slide" : "slide slide-hidden"}
                   />
 
-                  <div className="info-carousel">
-                    <div className="title-info-carousel" key={idx}>
+                  <div className={dir === "ltr" ? "info-carousel-end": "info-carousel"}>
+                    <div className={dir === "ltr" ? "title-info-carousel-end" : "title-info-carousel"} key={idx}>
                       <h2>{item.title}</h2>
                       <p>
                         {}
@@ -163,7 +163,7 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
                           ? formattedDateEn(item.publish_date)
                           : formattedDate(item.publish_date)}
                       </p>
-                      <div className="inside-image">
+                      <div className={dir === "ltr" ? "inside-image-en" : "inside-image"}>
                         <p>{item?.writers?.name}</p>
                         <img
                           src={item?.writers?.img}

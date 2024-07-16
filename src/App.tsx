@@ -40,7 +40,7 @@ function App() {
   console.log(widthScreen.winWidth);
   return (
     <div className="App">
-      <div className="w-full h-[11vh]">
+      <div className="w-full lg:h-[8.45vh] sm:h-[11vh]">
         <Navbar />
       </div>
       <HeroSection />
@@ -69,12 +69,13 @@ function App() {
       </div>
       {/*  */}
       <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 px-4 relative">
-        <div className="flex items-start justify-end py-10">
+        
+        {widthScreen.winWidth <= 980 ? (
+          <>
+          <div className="flex items-start justify-end py-10">
           <h1 className="text-3xl font-extrabold">من نحن</h1>
           <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
         </div>
-        {widthScreen.winWidth <= 980 ? (
-          <>
             <div className="">
               <img
                 src={Image1}
@@ -98,8 +99,8 @@ function App() {
                   الخبراء والاستشاريين المتعاقدين.
                 </p>
               </div>
-              <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md bg-white/30 border border-black mt-8 ">
-                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-around">
+              <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md p-7 bg-white/30 border border-black mt-8 ">
+                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
                   {" "}
                   <div>
                     <span>
@@ -125,7 +126,7 @@ function App() {
                     <p className="text-black">دراسات</p>
                   </div>
                 </div>
-                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-around">
+                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
                   <div className="">
                     <span>
                       <Borad />
