@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ContectUs() {
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const [widthScreen, setWidthScreen] = useState({
     winWidth: window.innerWidth,
     winHight: window.innerHeight,
@@ -23,76 +26,142 @@ export default function ContectUs() {
     <>
       {widthScreen.winWidth <= 980 ? (
         <div className=" w-full h-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-          
           <div className="flex-1 w-[100%] h-[90vh]">
-            <form action="" className="lg:px-10 sm:px-1 text-end">
-              <div>
-                <label className="block text-balck font-black text-lg mb-2 mt-1">
-                  الاسم
-                </label>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  dir="rtl"
-                  placeholder="ادخل الاسم ..."
-                  className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
-                />
-
+            {dir === "ltr" ? (
+              <form action="" className="lg:px-10 sm:px-1 text-start">
                 <div>
                   <label className="block text-balck font-black text-lg mb-2 mt-1">
-                    الموضوع
+                    Name
                   </label>
-
                   <input
                     type="text"
                     name=""
                     id=""
-                    dir="rtl"
-                    placeholder="ادخل الموضوع ..."
-                    className="w-full px-4 py-3 rounded-lg mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    placeholder="Enter Name ... "
+                    className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white placeholder:text-start focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                  />
+
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      Title
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      placeholder="Enter Title ..."
+                      className="w-full px-4 py-3 rounded-lg mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      Email Address
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      placeholder="Email Address ..."
+                      className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-balck font-black text-lg mb-2 mt-1">
+                    Details
+                  </label>
+
+                  <textarea
+                    name=""
+                    id=""
+                    rows={10}
+                    cols={40}
+                    placeholder="Enter Details ..."
+                    className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#cca972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
                   />
                 </div>
-
+                <button
+                  type="button"
+                  className="w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="ml-4 text-white">إرسـال</span>
+                  </div>
+                </button>
+              </form>
+            ) : (
+              <form action="" className="lg:px-10 sm:px-1 text-start">
                 <div>
                   <label className="block text-balck font-black text-lg mb-2 mt-1">
-                    البريد الإلكتروني
+                    الاسم
                   </label>
-
                   <input
                     type="text"
                     name=""
                     id=""
                     dir="rtl"
-                    placeholder="البريد الإلكتروني ..."
+                    placeholder="ادخل الاسم ..."
                     className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
                   />
-                </div>
-              </div>
-              <div>
-                <label className="block text-balck font-black text-lg mb-2 mt-1">
-                  التفاصيل
-                </label>
 
-                <textarea
-                  name=""
-                  id=""
-                  rows={10}
-                  cols={40}
-                  dir="rtl"
-                  placeholder="ادخل التفاصيل ..."
-                  className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#cca972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
-                />
-              </div>
-              <button
-                type="button"
-                className="w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
-              >
-                <div className="flex items-center justify-center">
-                  <span className="ml-4 text-white">إرسـال</span>
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      الموضوع
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      dir="rtl"
+                      placeholder="ادخل الموضوع ..."
+                      className="w-full px-4 py-3 rounded-lg mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      البريد الإلكتروني
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      dir="rtl"
+                      placeholder="البريد الإلكتروني ..."
+                      className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
                 </div>
-              </button>
-            </form>
+                <div>
+                  <label className="block text-balck font-black text-lg mb-2 mt-1">
+                    التفاصيل
+                  </label>
+
+                  <textarea
+                    name=""
+                    id=""
+                    rows={10}
+                    cols={40}
+                    dir="rtl"
+                    placeholder="ادخل التفاصيل ..."
+                    className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#cca972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="ml-4 text-white">إرسـال</span>
+                  </div>
+                </button>
+              </form>
+            )}
           </div>
 
           {/*  */}
@@ -125,74 +194,145 @@ export default function ContectUs() {
             </div>
           </div>
           <div className="flex-1 w-[100%] h-full">
-            <form action="" className="px-10 text-end">
-              <div>
-                <label className="block text-balck font-black text-lg mb-2 mt-1">
-                  الاسم
-                </label>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  dir="rtl"
-                  placeholder="ادخل الاسم ..."
-                  className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
-                />
-
+            {dir === "ltr" ? (
+              <form action="" className="px-10 text-start">
                 <div>
                   <label className="block text-balck font-black text-lg mb-2 mt-1">
-                    الموضوع
+                    Name
                   </label>
-
                   <input
                     type="text"
                     name=""
                     id=""
-                    dir="rtl"
-                    placeholder="ادخل الموضوع ..."
-                    className="w-full px-4 py-3 rounded-lg mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-balck font-black text-lg mb-2 mt-1">
-                    البريد الإلكتروني
-                  </label>
-
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    dir="rtl"
-                    placeholder="البريد الإلكتروني ..."
+                    dir="ltr"
+                    placeholder="Enter Name ..."
                     className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
                   />
-                </div>
-              </div>
-              <div>
-                <label className="block text-balck font-black text-lg mb-2 mt-1">
-                  التفاصيل
-                </label>
 
-                <textarea
-                  name=""
-                  id=""
-                  rows={10}
-                  cols={40}
-                  dir="rtl"
-                  placeholder="ادخل التفاصيل ..."
-                  className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#cca972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
-                />
-              </div>
-              <button
-                type="button"
-                className="w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
-              >
-                <div className="flex items-center justify-center">
-                  <span className="ml-4 text-white">إرسـال</span>
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      Title
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      dir="ltr"
+                      placeholder="Enter Title ..."
+                      className="w-full px-4 py-3 rounded-lg mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      Email Address
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      dir="ltr"
+                      placeholder="Email Address ... "
+                      className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
                 </div>
-              </button>
-            </form>
+                <div>
+                  <label className="block text-balck font-black text-lg mb-2 mt-1">
+                    Details
+                  </label>
+
+                  <textarea
+                    name=""
+                    id=""
+                    rows={10}
+                    cols={40}
+                    dir="ltr"
+                    placeholder="Enter Details ... "
+                    className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#cca972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="ml-4 text-white">إرسـال</span>
+                  </div>
+                </button>
+              </form>
+            ) : (
+              <form action="" className="px-10 text-start">
+                <div>
+                  <label className="block text-balck font-black text-lg mb-2 mt-1">
+                    الاسم
+                  </label>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    dir="rtl"
+                    placeholder="ادخل الاسم ..."
+                    className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                  />
+
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      الموضوع
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      dir="rtl"
+                      placeholder="ادخل الموضوع ..."
+                      className="w-full px-4 py-3 rounded-lg mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-balck font-black text-lg mb-2 mt-1">
+                      البريد الإلكتروني
+                    </label>
+
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      dir="rtl"
+                      placeholder="البريد الإلكتروني ..."
+                      className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#CCA972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-balck font-black text-lg mb-2 mt-1">
+                    التفاصيل
+                  </label>
+
+                  <textarea
+                    name=""
+                    id=""
+                    rows={10}
+                    cols={40}
+                    dir="rtl"
+                    placeholder="ادخل التفاصيل ..."
+                    className="w-full px-4 py-3 rounded-lg bg-white mt-2 border-2 border-[#cca972] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="ml-4 text-white">إرسـال</span>
+                  </div>
+                </button>
+              </form>
+            )}
           </div>
         </div>
       )}
