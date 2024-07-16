@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import { motion } from "framer-motion";
 import image1 from "../assets/img/عالم الأعمال خلفية أبيض.png";
+import { useTranslation } from "react-i18next";
 interface publishesDataCard {
   img: string;
   title: string;
@@ -63,6 +64,9 @@ export default function OurPartners() {
     { number: 4 },
     { number: 5 },
   ];
+
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const duplicatedSlides = [...Cards, ...Cards];
   const [widthScreen, setWidthScreen] = useState({
     winWidth: window.innerWidth,
@@ -124,13 +128,21 @@ export default function OurPartners() {
         <div className="relative w-full overflow-hidden">
           {/* Wrapping div for seamless looping */}
           <motion.div
-            className="flex"
-            animate={{
+            className="flex "
+            animate={dir === "ltr" ?{
               x: ["-100%", "0"],
               transition: {
                 ease: "linear",
                 duration: 10,
                 repeat: Infinity,
+              },
+            } :{
+              x: ["100%", "0%"],
+              transition: {
+                ease: "linear",
+                duration: 10,
+                repeat: Infinity,
+                animationDirection: "reverse",
               },
             }}
           >

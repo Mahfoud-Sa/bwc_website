@@ -26,7 +26,7 @@ export default function ContectUs() {
     <>
       {widthScreen.winWidth <= 980 ? (
         <div className=" w-full h-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-          <div className="flex-1 w-[100%] h-[90vh]">
+          <div className="flex-1 w-[100%] h-[100vh]">
             {dir === "ltr" ? (
               <form action="" className="lg:px-10 sm:px-1 text-start">
                 <div>
