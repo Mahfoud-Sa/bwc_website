@@ -499,6 +499,12 @@ opacity: 1;
 .services:before {
   content: url("./assets/img/Group\ 3610.png");
   position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.services-ar:before {
+  content: url("./assets/img/Group\ 3610.png");
+  position: absolute;
   right: 10px;
   top: 10px;
 }
