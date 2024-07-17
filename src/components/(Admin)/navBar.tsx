@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import adminLogo from "../../assets/img/admin_admin.png";
 import Avter from "../../assets/img/avtar.png";
 import { useTranslation } from "react-i18next";
 import LanguageWorld from "../../assets/icons/language-world";
 import DropDownLang from "./../dropDownLang";
 import ArrowDowm from "../../assets/icons/arrow-dowm";
+import { useNavigate } from "react-router-dom";
+import nav from "react-router-dom";
 export default function NavBar() {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [isdropDownOpen, setIsdropDownOpen] = useState(false);
   const [isLogoutDropDown, setLogoutDropDown] = useState(false);
   const dir = i18n.dir();
+
+  const isLoggedIn = localStorage.getItem("accessToken");
+  const onLogOut = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("accessToken");
+      navigate("/login");
+    } else {
+      navigate("/login");
+    }
+  };
+  useEffect(() => {}, []);
   return (
     <>
       <div className="w-[15%] h-full flex">
@@ -21,16 +35,16 @@ export default function NavBar() {
             <ArrowDowm />
             {isLogoutDropDown && (
               <div
-              className={
-                dir === "ltr"
-                  ? "flex flex-col logout"
-                  : "flex flex-col logout-rigth"
-              }
-            >
-              <ul className="flex flex-col gap-4">
-                <li>Logout</li>
-              </ul>
-            </div>
+                className={
+                  dir === "ltr"
+                    ? "flex flex-col logout"
+                    : "flex flex-col logout-rigth"
+                }
+              >
+                <ul className="flex flex-col gap-4" onClick={onLogOut}>
+                  <li>Logout</li>
+                </ul>
+              </div>
             )}
           </div>
           <div className="w-[20%] h-[50%] rounded-full ">
@@ -46,7 +60,11 @@ export default function NavBar() {
         </div>
         <div className="w-[25%]  flex justify-center items-center relative">
           <div
-            className={dir === "ltr" ? "cursor-pointer mr-5 text-2xl font-black" : "cursor-pointer ml-5 text-xl font-black"}
+            className={
+              dir === "ltr"
+                ? "cursor-pointer mr-5 text-2xl font-black"
+                : "cursor-pointer ml-5 text-xl font-black"
+            }
             onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
           >
             {dir === "ltr" ? "EN" : "عربي"}
