@@ -4,6 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import Slider from "react-slick";
+import PublishesImage from "../assets/img/PublishesImage.jpg";
+import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
 import image1 from "../assets/img/1706714290731.jpg";
 import image2 from "../assets/img/1706714564880.jpg";
 import image3 from "../assets/img/IMG_9024.jpg";
@@ -23,44 +25,41 @@ interface publishesDataCard {
 
 const Cards: publishesDataCard[] = [
   {
-    img: image1,
+    img: PublishesImage,
     type: "منشور",
     title:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
     date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: image1 },
+    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
+ 
   {
-    img: image1,
-    type: "الاخبار",
-    title:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: image1 },
-  },
-  {
-    img: image1,
-    type: "تحليلات",
-    title:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: image1 },
-  },
-  {
-    img: image1,
+    img: PublishesImage,
     type: "منشور",
     title:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
     date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: image1 },
+    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
+ 
   {
-    img: image1,
+    img: PublishesImage,
     type: "منشور",
     title:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
     date: new Date(),
+    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
+ 
+  {
+    img: PublishesImage,
+    type: "منشور",
+    title:
+    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
+    date: new Date(),
+    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+  },
+ 
 ];
 export default function PublishesCards() {
   const settings = {

@@ -43,11 +43,14 @@ function App() {
   console.log(widthScreen.winWidth);
   return (
     <div className="App">
+      {/* nav bar  */}
       <div className="w-full lg:h-[8.45vh] sm:h-[11vh]">
         <Navbar />
       </div>
+      {/* hero section  */}
       <HeroSection />
-      {/*  */}
+    
+      {/*Publishes Section Title */}
       {widthScreen.winWidth <= 980 ? (
         <div className="w-full h-36 flex justify-start items-center ">
           <div className="flex p-5">
@@ -69,7 +72,9 @@ function App() {
           </div>
         </div>
       )}
-      {/*  */}
+     
+     
+      {/* Publishes Cards  */}
       <div className="w-full h-screen p-2 overflow-hidden relative">
         <PublishesCards />
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
@@ -93,7 +98,9 @@ function App() {
           </>
         )}
       </div>
-      {/*  */}
+
+
+      {/* about us section */}
       <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 px-4 relative">
         {widthScreen.winWidth <= 980 ? (
           <>
@@ -364,6 +371,7 @@ function App() {
           </>
         )}
       </div>
+     
       {/*  */}
       <div className="w-full h-[10vh] md:p-2  overflow-hidde relative">
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
@@ -402,10 +410,9 @@ function App() {
               <div className=" w-full h-full grid gap-[5.5rem]">
                 <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                   <div className=" text-end w-[100%] h-[50%] p-4">
-                    <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                    <h1 className="text-3xl mb-6">هذا العنوان مؤقت</h1>
                     <p className="text-xl text-[#525252]">
-                      تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                      للشركــــــــات والمؤسسات التجارية
+                     هذا النص مؤقت لحين تطوير الموقع الالكتورني حيث انه سيتم استبداله لاحقا.
                     </p>
                   </div>
                 </div>
