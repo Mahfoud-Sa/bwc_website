@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import NavBar from "../../components/(Admin)/navBar";
 import SideNab from "../../components/(Admin)/sideNab";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("accessToken");
   useEffect(() => {
     if (isLoggedIn) {
       toast.success("You are logged in successfully!"); 
+    }
+    if (!isLoggedIn) {
+      navigate('/NoAccess');
     }
   }, []);
   return (

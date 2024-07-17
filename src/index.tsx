@@ -11,6 +11,8 @@ import PrivacyPolicy from "./page/(User)/privacyPolicy";
 import LoginPage from "./page/(Admin)/loginPage";
 import DashboardPage from "./page/(Admin)/dashboardPage";
 import Try from "./page/try";
+import NoAccess from "./page/(Admin)/noaccess";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/admin-dashboard",
     element: <DashboardPage />,
+  },
+  {
+    path: "/NoAccess",
+    element: <NoAccess />,
   },
   {
     path: "/try",
