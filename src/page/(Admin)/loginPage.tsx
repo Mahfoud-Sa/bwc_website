@@ -3,6 +3,7 @@ import axios from "axios";
 import login from "../../assets/img/8H4A08688.jpg(1).jpg";
 import login1 from "../../assets/img/عالم الأعمال خلفية أبيض 21.png";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 export default function LoginPage() {
   const navigate = useNavigate();
   const [loginPassword, setLoginPassword] = useState<string>("");
@@ -45,10 +46,12 @@ export default function LoginPage() {
       if (response?.status === 200) {
         navigate("/admin-dashboard");
       } else {
-        console.log("wrong password");
+        toast.error("wrong Password");
       }
     } catch (error) {
-      console.log(error);
+      const errors = error;
+      console.error(error);
+      toast.error("An error occurred during login.");
     }
   };
   return (
@@ -91,6 +94,7 @@ export default function LoginPage() {
               >
                 <div className="flex items-center justify-center">
                   <button className="ml-4 text-white">تسجيل دخول</button>
+                  <Toaster />
                 </div>
               </button>
             </form>
