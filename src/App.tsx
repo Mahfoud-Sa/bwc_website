@@ -126,15 +126,15 @@ function App() {
             <div className=" px-4">
               <div className="text-end">
                 <p className="text-justify text-[#5B5B5B] leading-7">
-                  شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة.أسسها
-                  الدكتور ربيع بن علي العوبثاني في مدينة المكلا و حضرموت في مارس
-                  2021م تحمل سجل تجاري رقم(21/2831).
+                شركة عالم الأعمال هي شركة وطنية ذات مسؤولية محدودة.أسسها
+                  الدكتور ربيع بن علي العوبثاني في مدينة المكلا - محافظة حضرموت في مارس
+                  2021م تحمل سجل تجاري رقم (21/2831).
                 </p>
                 <p className="text-justify mt-6 text-[#5B5B5B] leading-8">
                   تعمل على إدارة وتشغيل المشاريع الاستثمارية وتقديم الدراسات
                   الاقتصادية والاستشارات الادارية والمالية والتسويقية وحلول
                   تكنولوجيا المعلومات وتقدم خدماتها من خلال مجموعة من الخبراء
-                  والاستشاريين المتخصصين الذين يعملون في الشركة ومجموعة اخرى من
+                  والاستشاريين المتخصصين الذين يعملون في الشركة ومجموعة أخرى من
                   الخبراء والاستشاريين المتعاقدين.
                 </p>
               </div>
@@ -146,14 +146,14 @@ function App() {
                       <Borad />
                     </span>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">ريادة إعمال</p>
+                    <p className="text-black">{t("departmentLinks2")}</p>
                   </div>
                   <div>
                     <span>
                       <Borad />
                     </span>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">إدارة مشاريع</p>
+                    <p className="text-black">{t( "departmentLinks3")}</p>
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
@@ -162,7 +162,7 @@ function App() {
                       <img src={anlyisit} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">دراسات</p>
+                    <p className="text-black">{t( "departmentLinks4")}</p>
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
@@ -171,7 +171,7 @@ function App() {
                       <Borad />
                     </span>
                     <h1 className="text-black">+1</h1>
-                    <p className="text-black">تعليم و تدريب</p>
+                    <p className="text-black">{t( "departmentLinks")}</p>
                   </div>
 
                   <div className="translate-y-4">
@@ -179,7 +179,7 @@ function App() {
                       <img src={anlyisit} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">دراسات</p>
+                    <p className="text-black">{t( "departmentLinks")}</p>
                   </div>
                 </div>
               </div>
@@ -215,16 +215,16 @@ function App() {
                   </div>
                   <div>
                     <p className="text-start  text-[#5B5B5B] leading-7">
-                      شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة.أسسها
-                      الدكتور ربيع بن علي العوبثاني في مدينة المكلا و حضرموت في
-                      مارس 2021م تحمل سجل تجاري رقم(21/2831).
+                    شركة عالم الأعمال هي شركة وطنية ذات مسؤولية محدودة.أسسها
+                  الدكتور ربيع بن علي العوبثاني في مدينة المكلا - محافظة حضرموت في مارس
+                  2021م تحمل سجل تجاري رقم (21/2831).
                     </p>
                     <p className="text-start  mt-6 text-[#5B5B5B] leading-8">
                       تعمل على إدارة وتشغيل المشاريع الاستثمارية وتقديم الدراسات
                       الاقتصادية والاستشارات الادارية والمالية والتسويقية وحلول
                       تكنولوجيا المعلومات وتقدم خدماتها من خلال مجموعة من
                       الخبراء والاستشاريين المتخصصين الذين يعملون في الشركة
-                      ومجموعة اخرى من الخبراء والاستشاريين المتعاقدين.
+                      ومجموعة أخرى من الخبراء والاستشاريين المتعاقدين.
                     </p>
                   </div>
                   <div className="flex justify-start mt-10">
@@ -243,7 +243,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">+1</h1>
-                      <p className="text-black">تعليم و تدريب</p>
+                      <p className="text-black">{t( "departmentLinks")}</p>
                     </div>
 
                     <div className="translate-y-4">
@@ -251,7 +251,7 @@ function App() {
                         <img src={anlyisit} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">دراسات</p>
+                      <p className="text-black">{t( "departmentLinks4")}</p>
                     </div>
 
                     <div>
@@ -259,7 +259,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">ريادة إعمال</p>
+                      <p className="text-black">{t("departmentLinks2")}</p>
                     </div>
 
                     <div>
@@ -267,7 +267,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">إدارة مشاريع</p>
+                      <p className="text-black">{t( "departmentLinks3")}</p>
                     </div>
 
                     <div>
@@ -275,7 +275,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">التطوير البرمجي</p>
+                      <p className="text-black">{t( "departmentLinks1")}</p>
                     </div>
                   </div>
                 </div>
@@ -330,7 +330,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">+1</h1>
-                      <p className="text-black">تعليم و تدريب</p>
+                      <p className="text-black">{t( "departmentLinks")}</p>
                     </div>
 
                     <div className="translate-y-4">
@@ -338,7 +338,7 @@ function App() {
                         <img src={anlyisit} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">دراسات</p>
+                      <p className="text-black">{t( "departmentLinks4")}</p>
                     </div>
 
                     <div>
@@ -346,7 +346,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">ريادة إعمال</p>
+                      <p className="text-black">{t( "departmentLinks2")}</p>
                     </div>
 
                     <div>
@@ -354,7 +354,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">إدارة مشاريع</p>
+                      <p className="text-black">{t( "departmentLinks3")}</p>
                     </div>
 
                     <div>
@@ -362,7 +362,7 @@ function App() {
                         <Borad />
                       </span>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">التطوير البرمجي</p>
+                      <p className="text-black">{t( "departmentLinks1")}</p>
                     </div>
                   </div>
                 </div>
@@ -547,7 +547,8 @@ function App() {
           </>
         )}
       </div>
-      {/*  */}
+
+      {/* Last Projects Setcion Title */}
       <div className="w-full h-[80vh] sm:mt-5 relative">
         {dir === "ltr" ? (
           <div className="flex justify-start p-5">
@@ -568,7 +569,10 @@ function App() {
           </div>
         </div>
       </div>
-      {/*  */}
+
+
+
+      {/* Treaning Section Title  */}
       <div className="w-full h-[60vh] relative">
         {dir === "ltr" ? (
           <div className="flex justify-start p-5 sm:mt-20">
@@ -586,6 +590,9 @@ function App() {
           <LeariningAndTraning />
         </div>
       </div>
+
+
+
       {/*  */}
       <div className="w-full h-[70vh] relative bg-[#CBA871]">
         <div className="flex justify-center p-5">
