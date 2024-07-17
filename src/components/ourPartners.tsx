@@ -93,12 +93,20 @@ export default function OurPartners() {
           {/* Wrapping div for seamless looping */}
           <motion.div
             className="flex w-[250%]"
-            animate={{
+            animate={dir === "ltr" ?{
               x: ["-100%", "0"],
               transition: {
                 ease: "linear",
-                duration: 10,
+                duration: 30,
                 repeat: Infinity,
+              },
+            } :{
+              x: ["100%", "0%"],
+              transition: {
+                ease: "linear",
+                duration: 30,
+                repeat: Infinity,
+                animationDirection: "reverse",
               },
             }}
           >
@@ -133,14 +141,14 @@ export default function OurPartners() {
               x: ["-100%", "0"],
               transition: {
                 ease: "linear",
-                duration: 10,
+                duration: 30,
                 repeat: Infinity,
               },
             } :{
               x: ["100%", "0%"],
               transition: {
                 ease: "linear",
-                duration: 10,
+                duration: 30,
                 repeat: Infinity,
                 animationDirection: "reverse",
               },

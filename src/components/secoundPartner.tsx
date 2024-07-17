@@ -92,14 +92,26 @@ export default function SecondOurPartners() {
           {/* Wrapping div for seamless looping */}
           <motion.div
             className="flex w-[250%]"
-            animate={{
-              x: ["0%", "-100%"],
-              transition: {
-                ease: "linear",
-                duration: 10,
-                repeat: Infinity,
-              },
-            }}
+            animate={
+              dir === "ltr"
+                ? {
+                    x: ["0%", "-100%"],
+                    transition: {
+                      ease: "linear",
+                      duration: 30,
+                      repeat: Infinity,
+                    },
+                  }
+                : {
+                    x: ["0%", "100%"],
+                    transition: {
+                      ease: "linear",
+                      duration: 30,
+                      repeat: Infinity,
+                      animationDirection: "reverse",
+                    },
+                  }
+            }
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
@@ -134,7 +146,7 @@ export default function SecondOurPartners() {
                     x: ["0%", "-100%"],
                     transition: {
                       ease: "linear",
-                      duration: 10,
+                      duration: 30,
                       repeat: Infinity,
                     },
                   }
@@ -142,7 +154,7 @@ export default function SecondOurPartners() {
                     x: ["0%", "100%"],
                     transition: {
                       ease: "linear",
-                      duration: 10,
+                      duration: 30,
                       repeat: Infinity,
                       animationDirection: "reverse",
                     },
