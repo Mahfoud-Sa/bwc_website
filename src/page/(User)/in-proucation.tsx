@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-export default function NoAccess() {
+
+export default function InProucation() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   return (
     <div className="h-screen w-[50%] m-auto flex justify-center items-center">
       <div className=" text-center m-auto">
         <h1 className="text-3xl">
-          {dir === "ltr" ? "Access Denied" : "لا تمتلك الصلاحيه للدخول"}
+          {dir === "ltr" ? "In Production" : "جاري العمل على الموقع"}
         </h1>
         <button
           type="button"
@@ -16,7 +17,9 @@ export default function NoAccess() {
         >
           <div className="flex items-center  justify-center">
             <button className=" text-white ">
-              <Link to={'/login'}>{dir === "ltr" ? "go back to login page ": "عد لصفحة تسجيل الدخول" }</Link>
+              <Link to={"/"}>
+                {dir === "ltr" ? "go back to home page " : "عد لصفحة الاساسية"}
+              </Link>
             </button>
           </div>
         </button>
