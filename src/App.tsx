@@ -8,7 +8,11 @@ import { useMediaQuery } from "react-responsive";
 import Borad from "./assets/icons/borad";
 import Image1 from "./assets/img/اعلان خدمة الفايبر.jpg";
 import anlyisit from "./assets/img/whiteboard.png";
-import Vector from "./assets/icons/vector";
+import enterpnure from "./assets/img/enterpnure.png";
+import projectManager from "./assets/img/project-manager.png";
+import whiteboard2 from "./assets/img/whiteboard 2.png";
+import educationLearning from "./assets/img/education-learning-24-svgrepo-com 1 (1).png";
+import tech from "./assets/img/service(2) 1.png";
 import LastProject from "./components/lastProject";
 import LeariningAndTraning from "./components/learnAndTraining";
 import OurPartners from "./components/ourPartners";
@@ -137,19 +141,19 @@ function App() {
               <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md p-7 bg-white/30 border border-black mt-8 ">
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
                   {" "}
-                  <div>
-                    <span>
-                      <Borad />
-                    </span>
+                  <div className="translate-y-4">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-8" : "h-[60px] w-[58px] -translate-y-4 -translate-x-2"}>
+                      <img src={enterpnure} alt="" className="w-full h-full" />
+                    </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">ريادة إعمال</p>
+                    <p className="text-black">{t('entrepreneurship')}</p>
                   </div>
-                  <div>
-                    <span>
-                      <Borad />
-                    </span>
+                  <div className="translate-y-4">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 -translate-x-4"}>
+                      <img src={projectManager} alt="" className="w-full h-full" />
+                    </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">إدارة مشاريع</p>
+                    <p className="text-black">{t('project_management')}</p>
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
@@ -158,24 +162,24 @@ function App() {
                       <img src={anlyisit} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">دراسات</p>
+                    <p className="text-black">{t('studies')}</p>
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
-                  <div className="">
-                    <span>
-                      <Borad />
-                    </span>
+                <div className="translate-y-4">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"}>
+                      <img src={educationLearning} alt="" className="w-full h-full" />
+                    </div>
                     <h1 className="text-black">+1</h1>
-                    <p className="text-black">تعليم و تدريب</p>
+                    <p className="text-black">{t('Education_and_Training')}</p>
                   </div>
 
                   <div className="translate-y-4">
-                    <div className="h-[60px] w-[58px] -translate-y-4">
-                      <img src={anlyisit} alt="" className="w-full h-full" />
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-12" : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"}>
+                      <img src={tech} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">دراسات</p>
+                    <p className="text-black">{t('software_development')}</p>
                   </div>
                 </div>
               </div>
@@ -234,44 +238,44 @@ function App() {
 
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
-                    <div className="">
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 translate-x-4"}>
+                        <img src={educationLearning} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">+1</h1>
-                      <p className="text-black">تعليم و تدريب</p>
+                      <p className="text-black">{t('Education_and_Training')}</p>
                     </div>
 
-                    <div className="translate-y-4">
+                    <div className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4">
-                        <img src={anlyisit} alt="" className="w-full h-full" />
+                        <img src={whiteboard2} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">دراسات</p>
+                      <p className="text-black">{t('studies')}</p>
                     </div>
 
-                    <div>
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-7" : "h-[60px] w-[58px] -translate-y-4 translate-x-1"}>
+                        <img src={enterpnure} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">ريادة إعمال</p>
+                      <p className="text-black">{t('entrepreneurship')}</p>
                     </div>
 
-                    <div>
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 translate-x-3"}>
+                        <img src={projectManager} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">إدارة مشاريع</p>
+                      <p className="text-black">{t('project_management')}</p>
                     </div>
 
-                    <div>
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-12" : "h-[60px] w-[58px] -translate-y-4 translate-x-5"}>
+                        <img src={tech} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">التطوير البرمجي</p>
+                      <p className="text-black">{t('software_development')}</p>
                     </div>
                   </div>
                 </div>
@@ -321,44 +325,44 @@ function App() {
 
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
-                    <div className="">
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className= "h-[60px] w-[58px] -translate-y-4 -translate-x-6">
+                        <img src={educationLearning} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">+1</h1>
-                      <p className="text-black">تعليم و تدريب</p>
+                      <p className="text-black">{t('Education_and_Training')}</p>
                     </div>
 
-                    <div className="translate-y-4">
+                    <div className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4">
-                        <img src={anlyisit} alt="" className="w-full h-full" />
+                        <img src={whiteboard2} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">دراسات</p>
+                      <p className="text-black">{t('studies')}</p>
                     </div>
 
-                    <div>
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className= "h-[60px] w-[58px] -translate-y-4 -translate-x-2">
+                        <img src={enterpnure} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">ريادة إعمال</p>
+                      <p className="text-black">{t('entrepreneurship')}</p>
                     </div>
 
-                    <div>
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-5">
+                        <img src={projectManager} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">إدارة مشاريع</p>
+                      <p className="text-black">{t('project_management')}</p>
                     </div>
 
-                    <div>
-                      <span>
-                        <Borad />
-                      </span>
+                    <div className="translate-y-3">
+                    <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
+                        <img src={tech} alt="" className="w-full h-full" />
+                      </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">التطوير البرمجي</p>
+                      <p className="text-black">{t('software_development')}</p>
                     </div>
                   </div>
                 </div>

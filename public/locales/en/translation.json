@@ -77,8 +77,12 @@
   "homePage5":"Education & Training",
   "homePage6":"We Work Together With Our Partners",
   "homePage7":"The Institutions We Manage",
-  
   "homePage8":"Contact Us",
   "showMore":"Show More",
-  "knowMoreAboutUs":"Show More"
+  "knowMoreAboutUs":"Show More",
+  "Education_and_Training":"Education & Training",
+  "studies":"studies",
+  "entrepreneurship":"Entrepreneurship",
+  "project_management":"Project Management",
+  "software_development":"Software Development"
 }
