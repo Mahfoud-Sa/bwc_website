@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/img/logo.png";
 import logo2 from "../assets/img/no-name (2).png";
 import logo3 from "../assets/img/logo3.png";
+import job1 from "../assets/img/jobs-2.png";
 import LanguageWorld from "../assets/icons/language-world";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
@@ -127,13 +128,13 @@ export default function Navbar() {
                 {t("archive")}
               </a>
             </li>
-            <li className="lg:hidden md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
-                {t("jobs")}
+            <li className="lg:hidden md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex">
+                <img src={job1} className={dir === "ltr" ? "sm:mr-2" :"sm:ml-2"} alt="" />{t("jobs")}
               </a>
             </li>
             <li
-              className=" lg:hidden md:ml-8 sm:flex sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md "
+              className=" lg:hidden md:ml-8 sm:flex sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md "
               onClick={onChangeLanguage}
             >
               <a className="sm:flex text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">

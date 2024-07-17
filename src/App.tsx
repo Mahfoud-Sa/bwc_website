@@ -12,7 +12,7 @@ import Vector from "./assets/icons/vector";
 import LastProject from "./components/lastProject";
 import LeariningAndTraning from "./components/learnAndTraining";
 import OurPartners from "./components/ourPartners";
-import CarouselsHeroSection from "./components/carouselsHeroSection";
+import services2 from "./assets/img/services-2.png";
 import OurOrgnaztion from "./components/ourOrgnaztion";
 import ContectUs from "./components/contectUs";
 import Footer from "./components/footer";
@@ -43,10 +43,13 @@ function App() {
   console.log(widthScreen.winWidth);
   return (
     <div className="App">
+      {/*  */}
       <div className="w-full lg:h-[8.45vh] sm:h-[11vh]">
         <Navbar />
       </div>
+      {/*  */}
       <HeroSection />
+      {/*  */}
       {/*  */}
       {widthScreen.winWidth <= 980 ? (
         <div className="w-full h-36 flex justify-start items-center ">
@@ -64,7 +67,7 @@ function App() {
       ) : (
         <div className="w-full h-36 flex justify-start items-center ">
           <div className="flex p-5">
-            <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+            <div className={dir === "ltr" ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] " : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "}></div>
             <h1 className="text-3xl">{t("homePage1")}</h1>
           </div>
         </div>
@@ -73,7 +76,7 @@ function App() {
       <div className="w-full h-screen p-2 overflow-hidden relative">
         <PublishesCards />
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
+          <h1 className="text-3xl text-[#CCA972]">{t('showMore')}</h1>
         </div>
         {widthScreen.winWidth <= 980 ? (
           <div className=" absolute bottom-[60px] right-0">
@@ -179,7 +182,7 @@ function App() {
               <div className="flex justify-center mt-10">
                 <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                   <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                    أعرف عنا أكثر
+                    {t('knowMoreAboutUs')}
                   </button>
                 </div>
               </div>
@@ -223,7 +226,7 @@ function App() {
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                       <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                        أعرف عنا أكثر
+                        {t('knowMoreAboutUs')}
                       </button>
                     </div>
                   </div>
@@ -310,7 +313,7 @@ function App() {
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                       <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                        أعرف عنا أكثر
+                        {t('knowMoreAboutUs')}
                       </button>
                     </div>
                   </div>
@@ -367,7 +370,7 @@ function App() {
       {/*  */}
       <div className="w-full h-[10vh] md:p-2  overflow-hidde relative">
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
+          <h1 className="text-3xl text-[#CCA972]">{t('showMore')}</h1>
         </div>
       </div>
 
@@ -535,7 +538,7 @@ function App() {
             )}
 
             <div className=" w-full h-full p-4">
-              <Vector />
+              <img src={services2} alt="" />
             </div>
           </>
         )}
@@ -557,7 +560,7 @@ function App() {
         <div className="w-full h-screen p-2 overflow-hidden relative">
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
-            <h1 className="text-3xl text-[#CCA972]">أعرض المزيد</h1>
+            <h1 className="text-3xl text-[#CCA972]">{t('showMore')}</h1>
           </div>
         </div>
       </div>
