@@ -578,7 +578,7 @@ function App() {
 
 
 
-      {/*  */}
+      {/*work with Our Partners Title Section  */}
       <div className="w-full h-[70vh] relative bg-[#CBA871]">
         <div className="flex justify-center p-5">
           <h1 className="text-xl text-white">{t("homePage6")}</h1>

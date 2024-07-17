@@ -4,58 +4,47 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import { motion } from "framer-motion";
-import image1 from "../assets/img/عالم الأعمال خلفية أبيض.png";
+import image1 from "../assets/img/1706714290731.jpg";
 import { useTranslation } from "react-i18next";
 interface publishesDataCard {
   img: string;
-  title: string;
-  subTitle: string;
+  
 }
 
 const Cards: publishesDataCard[] = [
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
   {
     img: image1,
-    title: "التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    subTitle:
-      "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+   
   },
-];
+  {
+    img: image1,
+   
+  },
+]
 export default function OurPartners() {
   const slides = [
     { number: 1 },
