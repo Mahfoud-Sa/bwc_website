@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import Slider from "react-slick";
-import image4 from "../assets/img/logo.png";
+import image4 from "../assets/img/1706714290731.jpg";
 interface publishesDataCard {
   img: string;
 }

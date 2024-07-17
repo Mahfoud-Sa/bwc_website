@@ -4,7 +4,8 @@ import CarouselsHeroSection from "./carouselsHeroSection";
 import image1 from "../assets/img/1706714290731.jpg";
 import image2 from "../assets/img/1706714564880.jpg";
 import image3 from "../assets/img/IMG_9024.jpg";
-import image4 from "../assets/img/logo.png";
+import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
+import sliderImagePlaceholder from "../assets/img/sliderImagePlaceholder.png";
 
 interface publish {
   imgs : string;
@@ -17,28 +18,17 @@ interface publish {
 }
 const publishes: publish[] = [
   {
-    imgs: image1,
-    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    imgs: sliderImagePlaceholder,
+    title: "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
     publish_date: new Date(),
-    writers: { name: "حمود احمد سيف العطاس", img: image1 },
+    writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
   {
-    imgs: image2,
-    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
+    imgs: sliderImagePlaceholder,
+    title: "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
     publish_date: new Date(),
-    writers: { name: "حمود احمد سيف العطاس", img: image2 },
+    writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
-  {
-    imgs: image3,
-    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    publish_date: new Date(),
-    writers: { name: "حمود احمد سيف العطاس", img: image3 },
-  },
-  {
-    imgs: image4,
-    title: "بينما يتطلع العالم نحو التطورات في البحر الأحمر وتأثير هجمات جماعة الحوثيين",
-    publish_date: new Date(),
-  }
 ];
 export default function HeroSection() {
   return (
