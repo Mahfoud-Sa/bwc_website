@@ -4,7 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import { motion } from "framer-motion";
-import image1 from "../assets/img/1706714290731.jpg";
+import image1 from "../assets/img/ourpartines/haramoutCh_brand.png";
+import image2 from "../assets/img/ourpartines/hadramoutUniversty_brand.png";
+import image3 from "../assets/img/ourpartines/mii_brand.png";
+import image4 from "../assets/img/ourpartines/ozonoor_brand.png";
 import { useTranslation } from "react-i18next";
 interface publishesDataCard {
   img: string;
@@ -13,35 +16,19 @@ interface publishesDataCard {
 
 const Cards: publishesDataCard[] = [
   {
-    img: image1,
+    img:  image1,
    
   },
   {
-    img: image1,
+    img: image2,
    
   },
   {
-    img: image1,
+    img: image3,
    
   },
   {
-    img: image1,
-   
-  },
-  {
-    img: image1,
-   
-  },
-  {
-    img: image1,
-   
-  },
-  {
-    img: image1,
-   
-  },
-  {
-    img: image1,
+    img: image4,
    
   },
 ]
