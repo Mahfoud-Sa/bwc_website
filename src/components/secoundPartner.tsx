@@ -112,7 +112,7 @@ export default function SecondOurPartners() {
           </motion.div>
         </div>
       ) : (
-        <div className="relative w-full overflow-hidden">
+        <div  className="relative w-full overflow-hidden">
           {/* Wrapping div for seamless looping */}
           <motion.div
             className="flex"

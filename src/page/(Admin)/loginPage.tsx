@@ -24,7 +24,7 @@ export default function LoginPage() {
       const response = await axios({
         url: "/login",
         method: "post",
-        baseURL: "http://mahfoudsabbah-001-site1.jtempurl.com/",
+        baseURL: "https://mahfoudsabbah-001-site1.jtempurl.com/",
         data: {
           email: "hamoud@gmail.com",
           password: loginPassword,
