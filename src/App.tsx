@@ -5,7 +5,7 @@ import PublishesCards from "./components/publishes-cards";
 import SideCircle from "./assets/icons/side-circle";
 import FullCircle from "./assets/icons/full-circle";
 import { useMediaQuery } from "react-responsive";
-import Borad from "./assets/icons/borad";
+import { Link } from "react-router-dom";
 import Image1 from "./assets/img/اعلان خدمة الفايبر.jpg";
 import anlyisit from "./assets/img/whiteboard.png";
 import enterpnure from "./assets/img/enterpnure.png";
@@ -37,7 +37,6 @@ function App() {
     });
   };
 
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1022px)" });
   useEffect(() => {
     window.addEventListener("resize", detectSize);
     return () => {
@@ -80,7 +79,7 @@ function App() {
       <div className="w-full h-screen p-2 overflow-hidden relative">
         <PublishesCards />
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]">{t('showMore')}</h1>
+          <h1 className="text-3xl text-[#CCA972]"><Link to={'/InProucation'}>{t('showMore')}</Link></h1>
         </div>
         {widthScreen.winWidth <= 980 ? (
           <div className=" absolute bottom-[60px] right-0">
