@@ -13,6 +13,7 @@ import DashboardPage from "./page/(Admin)/dashboardPage";
 import Try from "./page/try";
 import NoAccess from "./page/(Admin)/noaccess";
 import InProucation from "./page/(User)/in-proucation";
+import AboutUs from "./page/(User)/aboutUs";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/privacy-policy",
     element: <PrivacyPolicy />,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
   },
   {
     path: "/login",
