@@ -14,6 +14,7 @@ interface publishesDataCard {
 const Cards: publishesDataCard[] = [
   {
     img: image1,
+    
    
   },
   {

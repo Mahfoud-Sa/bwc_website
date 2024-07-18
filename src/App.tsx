@@ -25,6 +25,16 @@ import SecondOurPartners from "./components/secoundPartner";
 function App() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
+  const [scrolls, setScrolls] = useState(false);
+  function setScrollDiv() {
+    if (window.scrollY >= 2400 && window.scrollY <= 3350) {
+      setScrolls(true);
+    } else {
+      setScrolls(false);
+    }
+  }
+
+  window.addEventListener("scroll", setScrollDiv);
   const [widthScreen, setWidthScreen] = useState({
     winWidth: window.innerWidth,
     winHight: window.innerHeight,
@@ -70,7 +80,13 @@ function App() {
       ) : (
         <div className="w-full h-36 flex justify-start items-center ">
           <div className="flex p-5">
-            <div className={dir === "ltr" ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] " : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "}></div>
+            <div
+              className={
+                dir === "ltr"
+                  ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "
+                  : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "
+              }
+            ></div>
             <h1 className="text-3xl">{t("homePage1")}</h1>
           </div>
         </div>
@@ -79,7 +95,9 @@ function App() {
       <div className="w-full h-screen p-2 overflow-hidden relative">
         <PublishesCards />
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]"><Link to={'/InProucation'}>{t('showMore')}</Link></h1>
+          <h1 className="text-3xl text-[#CCA972]">
+            <Link to={"/InProucation"}>{t("showMore")}</Link>
+          </h1>
         </div>
         {widthScreen.winWidth <= 980 ? (
           <div className=" absolute bottom-[60px] right-0">
@@ -141,18 +159,34 @@ function App() {
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
                   {" "}
                   <div className="translate-y-4">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-8" : "h-[60px] w-[58px] -translate-y-4 -translate-x-2"}>
+                    <div
+                      className={
+                        dir === "ltr"
+                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-8"
+                          : "h-[60px] w-[58px] -translate-y-4 -translate-x-2"
+                      }
+                    >
                       <img src={enterpnure} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">{t('entrepreneurship')}</p>
+                    <p className="text-black">{t("entrepreneurship")}</p>
                   </div>
                   <div className="translate-y-4">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 -translate-x-4"}>
-                      <img src={projectManager} alt="" className="w-full h-full" />
+                    <div
+                      className={
+                        dir === "ltr"
+                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                          : "h-[60px] w-[58px] -translate-y-4 -translate-x-4"
+                      }
+                    >
+                      <img
+                        src={projectManager}
+                        alt=""
+                        className="w-full h-full"
+                      />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">{t('project_management')}</p>
+                    <p className="text-black">{t("project_management")}</p>
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
@@ -161,31 +195,47 @@ function App() {
                       <img src={anlyisit} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">{t('studies')}</p>
+                    <p className="text-black">{t("studies")}</p>
                   </div>
                 </div>
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
-                <div className="translate-y-4">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"}>
-                      <img src={educationLearning} alt="" className="w-full h-full" />
+                  <div className="translate-y-4">
+                    <div
+                      className={
+                        dir === "ltr"
+                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                          : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"
+                      }
+                    >
+                      <img
+                        src={educationLearning}
+                        alt=""
+                        className="w-full h-full"
+                      />
                     </div>
                     <h1 className="text-black">+1</h1>
-                    <p className="text-black">{t('Education_and_Training')}</p>
+                    <p className="text-black">{t("Education_and_Training")}</p>
                   </div>
 
                   <div className="translate-y-4">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-12" : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"}>
+                    <div
+                      className={
+                        dir === "ltr"
+                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-12"
+                          : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"
+                      }
+                    >
                       <img src={tech} alt="" className="w-full h-full" />
                     </div>
                     <h1 className="text-black">1+</h1>
-                    <p className="text-black">{t('software_development')}</p>
+                    <p className="text-black">{t("software_development")}</p>
                   </div>
                 </div>
               </div>
               <div className="flex justify-center mt-10">
                 <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                   <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                    {t('knowMoreAboutUs')}
+                    {t("knowMoreAboutUs")}
                   </button>
                 </div>
               </div>
@@ -229,7 +279,7 @@ function App() {
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                       <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                        {t('knowMoreAboutUs')}
+                        {t("knowMoreAboutUs")}
                       </button>
                     </div>
                   </div>
@@ -238,43 +288,85 @@ function App() {
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
                     <div className="translate-y-3">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 translate-x-4"}>
-                        <img src={educationLearning} alt="" className="w-full h-full" />
+                      <div
+                        className={
+                          dir === "ltr"
+                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                            : "h-[60px] w-[58px] -translate-y-4 translate-x-4"
+                        }
+                      >
+                        <img
+                          src={educationLearning}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">+1</h1>
-                      <p className="text-black">{t('Education_and_Training')}</p>
+                      <p className="text-black">
+                        {t("Education_and_Training")}
+                      </p>
                     </div>
 
                     <div className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4">
-                        <img src={whiteboard2} alt="" className="w-full h-full" />
+                        <img
+                          src={whiteboard2}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('studies')}</p>
+                      <p className="text-black">{t("studies")}</p>
                     </div>
 
                     <div className="translate-y-3">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-7" : "h-[60px] w-[58px] -translate-y-4 translate-x-1"}>
-                        <img src={enterpnure} alt="" className="w-full h-full" />
+                      <div
+                        className={
+                          dir === "ltr"
+                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-7"
+                            : "h-[60px] w-[58px] -translate-y-4 translate-x-1"
+                        }
+                      >
+                        <img
+                          src={enterpnure}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('entrepreneurship')}</p>
+                      <p className="text-black">{t("entrepreneurship")}</p>
                     </div>
 
                     <div className="translate-y-3">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-10" : "h-[60px] w-[58px] -translate-y-4 translate-x-3"}>
-                        <img src={projectManager} alt="" className="w-full h-full" />
+                      <div
+                        className={
+                          dir === "ltr"
+                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                            : "h-[60px] w-[58px] -translate-y-4 translate-x-3"
+                        }
+                      >
+                        <img
+                          src={projectManager}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('project_management')}</p>
+                      <p className="text-black">{t("project_management")}</p>
                     </div>
 
                     <div className="translate-y-3">
-                    <div className={dir === "ltr" ? "h-[60px] w-[58px] -translate-y-4 translate-x-12" : "h-[60px] w-[58px] -translate-y-4 translate-x-5"}>
+                      <div
+                        className={
+                          dir === "ltr"
+                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-12"
+                            : "h-[60px] w-[58px] -translate-y-4 translate-x-5"
+                        }
+                      >
                         <img src={tech} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('software_development')}</p>
+                      <p className="text-black">{t("software_development")}</p>
                     </div>
                   </div>
                 </div>
@@ -316,7 +408,7 @@ function App() {
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                       <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                        {t('knowMoreAboutUs')}
+                        {t("knowMoreAboutUs")}
                       </button>
                     </div>
                   </div>
@@ -325,43 +417,61 @@ function App() {
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
                     <div className="translate-y-3">
-                    <div className= "h-[60px] w-[58px] -translate-y-4 -translate-x-6">
-                        <img src={educationLearning} alt="" className="w-full h-full" />
+                      <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
+                        <img
+                          src={educationLearning}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">+1</h1>
-                      <p className="text-black">{t('Education_and_Training')}</p>
+                      <p className="text-black">
+                        {t("Education_and_Training")}
+                      </p>
                     </div>
 
                     <div className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4">
-                        <img src={whiteboard2} alt="" className="w-full h-full" />
+                        <img
+                          src={whiteboard2}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('studies')}</p>
+                      <p className="text-black">{t("studies")}</p>
                     </div>
 
                     <div className="translate-y-3">
-                    <div className= "h-[60px] w-[58px] -translate-y-4 -translate-x-2">
-                        <img src={enterpnure} alt="" className="w-full h-full" />
+                      <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-2">
+                        <img
+                          src={enterpnure}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('entrepreneurship')}</p>
+                      <p className="text-black">{t("entrepreneurship")}</p>
                     </div>
 
                     <div className="translate-y-3">
-                    <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-5">
-                        <img src={projectManager} alt="" className="w-full h-full" />
+                      <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-5">
+                        <img
+                          src={projectManager}
+                          alt=""
+                          className="w-full h-full"
+                        />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('project_management')}</p>
+                      <p className="text-black">{t("project_management")}</p>
                     </div>
 
                     <div className="translate-y-3">
-                    <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
+                      <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
                         <img src={tech} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
-                      <p className="text-black">{t('software_development')}</p>
+                      <p className="text-black">{t("software_development")}</p>
                     </div>
                   </div>
                 </div>
@@ -373,7 +483,7 @@ function App() {
       {/*  */}
       <div className="w-full h-[10vh] md:p-2  overflow-hidde relative">
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]">{t('showMore')}</h1>
+          <h1 className="text-3xl text-[#CCA972]">{t("showMore")}</h1>
         </div>
       </div>
 
@@ -391,8 +501,8 @@ function App() {
           </div>
         )}
       </div>
-      {/*  */}
-      <div className="w-full h-[110vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative">
+      {/* خدماتنا  */}
+      <div className="w-full h-[200vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative">
         {dir === "ltr" ? (
           <div className=" absolute top-24 left-0">
             <FullCircle />
@@ -495,7 +605,7 @@ function App() {
                 </div>
               </div>
             ) : (
-              <div className=" w-full h-full  p-4 overflow-hidden ">
+              <div className=" w-full h-full  p-4">
                 <div className=" w-full h-full grid gap-20">
                   <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                     <div className=" text-start w-[100%] h-[50%] p-4">
@@ -540,7 +650,15 @@ function App() {
               </div>
             )}
 
-            <div className=" w-full h-full p-4">
+            <div
+              className={`
+              ${
+                scrolls
+                  ? "w-full h-full fixed top-[8%] right-[51%]"
+                  : "w-[50%]  h-full p-4 absolute bottom-0 right-[50%]"
+              }
+            `}
+            >
               <img src={services2} alt="" />
             </div>
           </>
@@ -563,7 +681,7 @@ function App() {
         <div className="w-full h-screen p-2 overflow-hidden relative">
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
-            <h1 className="text-3xl text-[#CCA972]">{t('showMore')}</h1>
+            <h1 className="text-3xl text-[#CCA972]">{t("showMore")}</h1>
           </div>
         </div>
       </div>
