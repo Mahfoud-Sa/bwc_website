@@ -603,7 +603,19 @@ function App() {
                     </div>
                   </div>
                 </div>
+                <div
+              className={`
+              ${
+                scrolls 
+                  ? "w-full h-full fixed top-[6%] left-[51%] "
+                  : "w-[50%]  h-full p-4 absolute bottom-0 left-[50%]"
+              }
+            `}
+            >
+              <img src={services2} alt="" />
+            </div>
               </div>
+              
             ) : (
               <div className=" w-full h-full  p-4">
                 <div className=" w-full h-full grid gap-20">
@@ -653,13 +665,13 @@ function App() {
             <div
               className={`
               ${
-                scrolls
+                scrolls && dir === "rtl"
                   ? "w-full h-full fixed top-[6%] right-[51%]"
                   : "w-[50%]  h-full p-4 absolute bottom-0 right-[50%]"
               }
             `}
             >
-              <img src={services2} alt="" />
+              {dir === "ltr" ? (<img src={services2} className="hidden" alt="" />) : (<img src={services2} alt="" />)}
             </div>
           </>
         )}
