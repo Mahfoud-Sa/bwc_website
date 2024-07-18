@@ -654,7 +654,7 @@ function App() {
               className={`
               ${
                 scrolls
-                  ? "w-full h-full fixed top-[8%] right-[51%]"
+                  ? "w-full h-full fixed top-[6%] right-[51%]"
                   : "w-[50%]  h-full p-4 absolute bottom-0 right-[50%]"
               }
             `}
