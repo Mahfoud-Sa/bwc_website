@@ -7,24 +7,24 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function RefreshTokenPage() {
   const navigate = useNavigate();
-  const refreshToken = localStorage.getItem("refreshToken");
+  const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken') || null); 
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const usernameServer = "11183953";
-    const password = "60-dayfreetrial";
-    const encodedCredentials = btoa("11183953:60-dayfreetrial");
 
     try {
-      const response = await axios({
-        url: "/refreshToken",
-        method: "post",
-        baseURL: "https://mahfoudsabbah-001-site1.jtempurl.com/",
-        data: {
-          RefreshToken: refreshToken,
-        },
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-      });
-      console.log("Login successful:", response.data);
+      const response = await axios.post(
+        `https://mahfoudsabbah-001-site1.jtempurl.com/?refreshToken`,
+        { RefreshToken: refreshToken }, // Send refresh token in request body
+        {
+          headers: {
+            Authorization: `Bearer ${
+              localStorage.getItem("accessToken") || ""
+            }`, // Include access token if available (optional depending on API)
+          },
+        }
+      );
+      console.log("refresh successful:", response.data);
 
       if (response.data.accessToken) {
         localStorage.setItem("accessToken", response.data.accessToken);
