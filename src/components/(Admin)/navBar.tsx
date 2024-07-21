@@ -34,6 +34,9 @@ export default function NavBar() {
   const changeLanguage = (code: string) => {
     i18n.changeLanguage(code);
   };
+  function handleDeleteRefresh() {
+    localStorage.removeItem("refreshToken");
+  }
   useEffect(() => {
     changeLanguage(language);
     document.body.dir = i18n.dir();
@@ -44,7 +47,7 @@ export default function NavBar() {
         <>
           <div className="w-[20%] h-full flex justify-between items-center">
             <div className="w-[1px] h-[70%] bg-[#D4D4D4] float-end"></div>
-            <div className="w-[80%] mr-7">
+            <div className="w-[80%] mr-7 cursor-pointer" onClick={handleDeleteRefresh}>
               <img src={adminLogo} alt="" className="w-[60%] h-[80%]" />
             </div>
           </div>

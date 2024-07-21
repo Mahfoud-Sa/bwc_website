@@ -14,6 +14,7 @@ import Try from "./page/try";
 import NoAccess from "./page/(Admin)/noaccess";
 import InProucation from "./page/(User)/in-proucation";
 import AboutUs from "./page/(User)/aboutUs";
+import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/InProucation",
     element: <InProucation />,
+  },
+  {
+    path: "/RefreshToken",
+    element: <RefreshTokenPage />,
   },
   {
     path: "/try",
