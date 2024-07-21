@@ -7,22 +7,17 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function RefreshTokenPage() {
   const navigate = useNavigate();
-  const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken') || null); 
+  const [refreshToken, setRefreshToken] = useState(
+    localStorage.getItem("refreshToken") || null
+  );
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     try {
       const response = await axios.post(
-        `https://mahfoudsabbah-001-site1.jtempurl.com/?refreshToken`,
-        { RefreshToken: refreshToken }, // Send refresh token in request body
-        {
-          headers: {
-            Authorization: `Bearer ${
-              localStorage.getItem("accessToken") || ""
-            }`, // Include access token if available (optional depending on API)
-          },
-        }
+        "https://mahfoudsabbah-001-site1.jtempurl.com/?refreshToken",
+        { refreshToken }
       );
       console.log("refresh successful:", response.data);
 
