@@ -11,6 +11,8 @@ export default function DashboardPage() {
   const dir = i18n.dir();
 
   const isLoggedIn = localStorage.getItem("accessToken");
+  const isRefreshToken = localStorage.getItem("refreshToken");
+  const [isRefreshTokenDeleted, setIsRefreshTokenDeleted] = useState(false);
   useEffect(() => {
     if (isLoggedIn) {
       toast.success("You are logged in successfully!");
@@ -18,8 +20,24 @@ export default function DashboardPage() {
     if (!isLoggedIn) {
       navigate("/NoAccess");
     }
-  }, []);
+    // if (!isRefreshToken) {
+    //   navigate("/RefreshToken");
+    // }
+    const checkAndDeleteRefreshToken = async () => {
+      const localStorageRefreshToken = localStorage.getItem("refreshToken");
 
+      if (localStorageRefreshToken) {
+        const timeoutId = setTimeout(() => {
+          setIsRefreshTokenDeleted(true);
+          navigate("/RefreshToken");
+        }, 3000);
+
+        return () => clearTimeout(timeoutId);
+      }
+    };
+
+    checkAndDeleteRefreshToken();
+  }, []);
   return (
     <>
       {dir === "ltr" ? (
