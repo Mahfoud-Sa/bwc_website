@@ -29,6 +29,9 @@ function App() {
   const [scrolls, setScrolls] = useState(false);
   const [topPos, setTopPos] = useState<number>(0);
   const [bottomPos, setBottomPos] = useState<number>(0);
+  const [scrollPosition, setScrollPosition] = useState(window.scrollY);
+  const topPosions = topPos;
+  const bottomPosions = window.innerHeight - bottomPos;
 
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
@@ -45,6 +48,16 @@ function App() {
     });
   };
   useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     if (serversRef.current) {
       const rect = serversRef.current.getBoundingClientRect();
       setTopPos(rect.top);
@@ -55,7 +68,11 @@ function App() {
     return () => {
       window.removeEventListener("resize", detectSize);
     };
-  }, [widthScreen,serversRef]);
+  }, [widthScreen, serversRef]);
+  const isWithinRange =
+    scrollPosition >= topPos &&
+    scrollPosition <= bottomPos - window.innerHeight;
+
   function setScrollDiv() {
     if (window.scrollY >= topPos && window.scrollY <= bottomPos) {
       setScrolls(true);
@@ -514,7 +531,7 @@ function App() {
       {/* خدماتنا  */}
       <div
         ref={serversRef}
-        className="w-full h-[200vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative"
+        className="w-full h-[250vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative"
       >
         {dir === "ltr" ? (
           <div className=" absolute top-24 left-0">
@@ -530,132 +547,124 @@ function App() {
         ) : (
           <>
             {dir === "ltr" ? (
-              <div className=" w-full h-full  p-4 overflow-hidden ">
-                <div className=" w-full h-full grid gap-20 ">
-                  <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+              <>
+                <div className=" w-full h-full  p-4 overflow-hidden ">
+                  <div className=" w-full h-full grid gap-20 ">
+                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
                   className={`
-              ${
-                scrolls
-                  ? "w-full h-full fixed top-[20%] left-[51%] "
-                  : "w-[50%]  h-full p-4 absolute bottom-0 left-[50%] "
-              }
-            `}
+                    ${
+                      isWithinRange
+                        ? "w-full h-full fixed top-[6%] left-[51%] "
+                        : "w-[50%] h-full p-4 absolute bottom-0 left-[50%]"
+                    }
+                  `}
                 >
-                  <img src={services2} alt="" />
+                  <img
+                    src={services2}
+                    alt=""
+                    className={`${scrolls ? "absolute bottom-0" : ""}`}
+                  />
                 </div>
-              </div>
+              </>
             ) : (
-              <div className=" w-full h-full  p-4">
-                <div className=" w-full h-full grid gap-20">
-                  <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+              <>
+                <div className=" w-full h-full  p-4">
+                  <div className=" w-full h-full grid gap-20">
+                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                      <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                        للشركــــــــات والمؤسسات التجارية
-                      </p>
+                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <p className="text-xl text-[#525252]">
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
+                          للشركــــــــات والمؤسسات التجارية
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                <div
+                  className={`
+                    ${
+                      isWithinRange
+                        ? "w-[70%] m-auto h-full fixed top-[6%] right-[51%] "
+                        : "w-[50%] h-full p-4 absolute bottom-0 right-[50%]"
+                    }
+                  `}
+                >
+                  <img src={services2} alt="" className={`${scrolls ? "absolute bottom-0 " : ""}`}/>
+                </div>
+              </>
             )}
-
-            <div className="w-full h-full relative overflow-auto ">
-              <img
-                src={services2}
-                className={`${scrolls ? "hidden" : ""}`}
-                alt=""
-              />
-              {dir === "ltr" ? (
-                <img
-                  src={services2}
-                  className={`${
-                    scrolls ? "hidden" : "absolute bottom-[4rem] right-[17.7%]"
-                  }`}
-                  alt=""
-                />
-              ) : (
-                <img
-                  src={services2}
-                  className={`${
-                    scrolls
-                      ? "fixed top-[20%] right-[50.2%]"
-                      : "absolute bottom-[0rem] left-[19%]"
-                  }`}
-                  alt=""
-                />
-              )}
-            </div>
           </>
         )}
       </div>
