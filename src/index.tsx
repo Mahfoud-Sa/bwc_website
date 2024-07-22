@@ -15,6 +15,7 @@ import NoAccess from "./page/(Admin)/noaccess";
 import InProucation from "./page/(User)/in-proucation";
 import AboutUs from "./page/(User)/aboutUs";
 import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
+import PageServices from "./components/(user)/pageServices";
 
 const router = createBrowserRouter([
   {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/try",
-    element: <Try />,
+    element: <PageServices />,
   },
 ]);
 const root = ReactDOM.createRoot(

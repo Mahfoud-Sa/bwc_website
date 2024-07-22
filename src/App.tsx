@@ -26,24 +26,12 @@ import Services from "./components/(user)/Services";
 import ServicesArb from "./components/(user)/ServicesArb";
 function App() {
   const serversRef = useRef<HTMLDivElement>(null);
-  if (serversRef.current) {
-    const rect = serversRef.current.getBoundingClientRect();
-    const topPos = rect.top;
-    const bottomPos = rect.bottom;
-    console.log("Toppppppp", topPos);
-    console.log("Bottttom", bottomPos);
-  }
+  const [scrolls, setScrolls] = useState(false);
+  const [topPos, setTopPos] = useState<number>(0);
+  const [bottomPos, setBottomPos] = useState<number>(0);
+
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
-  const [scrolls, setScrolls] = useState(false);
-  function setScrollDiv() {
-    if (window.scrollY >= 2400 && window.scrollY <= 3350) {
-      setScrolls(true);
-    } else {
-      setScrolls(false);
-    }
-  }
-
   window.addEventListener("scroll", setScrollDiv);
   const [widthScreen, setWidthScreen] = useState({
     winWidth: window.innerWidth,
@@ -56,15 +44,26 @@ function App() {
       winHight: window.innerHeight,
     });
   };
-
   useEffect(() => {
+    if (serversRef.current) {
+      const rect = serversRef.current.getBoundingClientRect();
+      setTopPos(rect.top);
+      setBottomPos(rect.bottom);
+    }
+
     window.addEventListener("resize", detectSize);
     return () => {
       window.removeEventListener("resize", detectSize);
     };
-  }, [widthScreen]);
+  }, [widthScreen,serversRef]);
+  function setScrollDiv() {
+    if (window.scrollY >= topPos && window.scrollY <= bottomPos) {
+      setScrolls(true);
+    } else {
+      setScrolls(false);
+    }
+  }
 
-  const servicesDev = document.getElementById("services") as HTMLElement;
   return (
     <div className="App">
       {/*  */}
@@ -527,57 +526,12 @@ function App() {
           </div>
         )}
         {widthScreen.winWidth <= 980 ? (
-          <>
-            {/* <div className=" w-full h-full  p-4 overflow-hidden ">
-              <div className=" w-full h-full grid gap-[5.5rem]">
-                <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                  <div className=" text-end w-[100%] h-[50%] p-4">
-                    <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                    <p className="text-xl text-[#525252]">
-                      تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                      للشركــــــــات والمؤسسات التجارية
-                    </p>
-                  </div>
-                </div>
-
-                <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                  <div className=" text-end w-[100%] h-[50%] p-4">
-                    <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                    <p className="text-xl text-[#525252]">
-                      تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                      للشركــــــــات والمؤسسات التجارية
-                    </p>
-                  </div>
-                </div>
-
-                <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                  <div className=" text-end w-[100%] h-[50%] p-4">
-                    <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                    <p className="text-xl text-[#525252]">
-                      تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                      للشركــــــــات والمؤسسات التجارية
-                    </p>
-                  </div>
-                </div>
-
-                <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                  <div className=" text-end w-[100%] h-[50%] p-4">
-                    <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                    <p className="text-xl text-[#525252]">
-                      تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                      للشركــــــــات والمؤسسات التجارية
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-            {dir === "ltr" ? (<Services/>) : (<ServicesArb/>)}
-          </>
+          <>{dir === "ltr" ? <Services /> : <ServicesArb />}</>
         ) : (
           <>
             {dir === "ltr" ? (
               <div className=" w-full h-full  p-4 overflow-hidden ">
-                <div className=" w-full h-full grid gap-20">
+                <div className=" w-full h-full grid gap-20 ">
                   <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                     <div className=" text-start w-[100%] h-[50%] p-4">
                       <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
@@ -622,8 +576,8 @@ function App() {
                   className={`
               ${
                 scrolls
-                  ? "w-full h-full fixed top-[6%] left-[51%] "
-                  : "w-[50%]  h-full p-4 absolute bottom-0 left-[50%]"
+                  ? "w-full h-full fixed top-[20%] left-[51%] "
+                  : "w-[50%]  h-full p-4 absolute bottom-0 left-[50%] "
               }
             `}
                 >
@@ -676,11 +630,30 @@ function App() {
               </div>
             )}
 
-            <div className="w-full h-full sticky overflow-auto  bg-black">
+            <div className="w-full h-full relative overflow-auto ">
+              <img
+                src={services2}
+                className={`${scrolls ? "hidden" : ""}`}
+                alt=""
+              />
               {dir === "ltr" ? (
-                <img src={services2} className="hidden fixed" alt="" />
+                <img
+                  src={services2}
+                  className={`${
+                    scrolls ? "hidden" : "absolute bottom-[4rem] right-[17.7%]"
+                  }`}
+                  alt=""
+                />
               ) : (
-                <img src={services2} className="" alt="" />
+                <img
+                  src={services2}
+                  className={`${
+                    scrolls
+                      ? "fixed top-[20%] right-[50.2%]"
+                      : "absolute bottom-[0rem] left-[19%]"
+                  }`}
+                  alt=""
+                />
               )}
             </div>
           </>
