@@ -1,0 +1,55 @@
+/* your website should have no margin on the body */
+body {
+    margin: 0;
+  }
+  
+  /* border-box is required for this method */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* make an at-least-full-height flex wrapper */
+  .wrapper {
+    /* important styles */
+    display: flex;
+    min-height: 50vh;
+    /* extra styles */
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .sidebar {
+    /* important styles */
+    flex-shrink: 0;
+    width: 200px; /* make this whatever you need */
+    height: 100vh;
+    overflow: auto;
+    position: sticky;
+    top: 0;
+  
+    /* 
+      you could use `position: absolute` above, but using
+      `sticky` means we don't need to separately move the
+      content section over to prevent the elements from
+      overlapping
+    */
+  
+    /* extra styles */
+    padding: 16px;
+    border: 3px solid seagreen;
+  }
+  
+  .content {
+    /* important styles */
+    flex-grow: 1;
+    
+    /* extra styles */
+    padding: 16px;
+    border: 3px solid salmon;
+  }
+  
+  /* make the nav take up more room :P */
+  .nav li {
+    line-height: 1.5;
+  }
+  

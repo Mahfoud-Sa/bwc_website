@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "./components/navbar";
 import HeroSection from "./components/heroSection";
 import PublishesCards from "./components/publishes-cards";
@@ -22,7 +22,17 @@ import ContectUs from "./components/contectUs";
 import Footer from "./components/footer";
 import { useTranslation } from "react-i18next";
 import SecondOurPartners from "./components/secoundPartner";
+import Services from "./components/(user)/Services";
+import ServicesArb from "./components/(user)/ServicesArb";
 function App() {
+  const serversRef = useRef<HTMLDivElement>(null);
+  if (serversRef.current) {
+    const rect = serversRef.current.getBoundingClientRect();
+    const topPos = rect.top;
+    const bottomPos = rect.bottom;
+    console.log("Toppppppp", topPos);
+    console.log("Bottttom", bottomPos);
+  }
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const [scrolls, setScrolls] = useState(false);
@@ -53,7 +63,8 @@ function App() {
       window.removeEventListener("resize", detectSize);
     };
   }, [widthScreen]);
-  console.log(widthScreen.winWidth);
+
+  const servicesDev = document.getElementById("services") as HTMLElement;
   return (
     <div className="App">
       {/*  */}
@@ -502,7 +513,10 @@ function App() {
         )}
       </div>
       {/* خدماتنا  */}
-      <div className="w-full h-[200vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative">
+      <div
+        ref={serversRef}
+        className="w-full h-[200vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative"
+      >
         {dir === "ltr" ? (
           <div className=" absolute top-24 left-0">
             <FullCircle />
@@ -514,7 +528,7 @@ function App() {
         )}
         {widthScreen.winWidth <= 980 ? (
           <>
-            <div className=" w-full h-full  p-4 overflow-hidden ">
+            {/* <div className=" w-full h-full  p-4 overflow-hidden ">
               <div className=" w-full h-full grid gap-[5.5rem]">
                 <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                   <div className=" text-end w-[100%] h-[50%] p-4">
@@ -556,7 +570,8 @@ function App() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            {dir === "ltr" ? (<Services/>) : (<ServicesArb/>)}
           </>
         ) : (
           <>
@@ -604,18 +619,17 @@ function App() {
                   </div>
                 </div>
                 <div
-              className={`
+                  className={`
               ${
-                scrolls 
+                scrolls
                   ? "w-full h-full fixed top-[6%] left-[51%] "
                   : "w-[50%]  h-full p-4 absolute bottom-0 left-[50%]"
               }
             `}
-            >
-              <img src={services2} alt="" />
-            </div>
+                >
+                  <img src={services2} alt="" />
+                </div>
               </div>
-              
             ) : (
               <div className=" w-full h-full  p-4">
                 <div className=" w-full h-full grid gap-20">
@@ -662,16 +676,12 @@ function App() {
               </div>
             )}
 
-            <div
-              className={`
-              ${
-                scrolls && dir === "rtl"
-                  ? "w-full h-full fixed top-[6%] right-[51%]"
-                  : "w-[50%]  h-full p-4 absolute bottom-0 right-[50%]"
-              }
-            `}
-            >
-              {dir === "ltr" ? (<img src={services2} className="hidden" alt="" />) : (<img src={services2} alt="" />)}
+            <div className="w-full h-full sticky overflow-auto  bg-black">
+              {dir === "ltr" ? (
+                <img src={services2} className="hidden fixed" alt="" />
+              ) : (
+                <img src={services2} className="" alt="" />
+              )}
             </div>
           </>
         )}
