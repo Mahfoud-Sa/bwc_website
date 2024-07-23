@@ -185,7 +185,7 @@ function App() {
               <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md p-7 bg-white/30 border border-black mt-8 ">
                 <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
                   {" "}
-                  <div className="translate-y-4">
+                  <Link to={"InProucation"} className="translate-y-4">
                     <div
                       className={
                         dir === "ltr"
@@ -197,8 +197,8 @@ function App() {
                     </div>
                     <h1 className="text-black">1+</h1>
                     <p className="text-black">{t("entrepreneurship")}</p>
-                  </div>
-                  <div className="translate-y-4">
+                  </Link>
+                  <Link to={"InProucation"} className="translate-y-4">
                     <div
                       className={
                         dir === "ltr"
@@ -214,9 +214,9 @@ function App() {
                     </div>
                     <h1 className="text-black">1+</h1>
                     <p className="text-black">{t("project_management")}</p>
-                  </div>
+                  </Link>
                 </div>
-                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
+                <Link to={"InProucation"} className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
                   <div className="translate-y-4">
                     <div className="h-[60px] w-[58px] -translate-y-4">
                       <img src={anlyisit} alt="" className="w-full h-full" />
@@ -224,8 +224,8 @@ function App() {
                     <h1 className="text-black">1+</h1>
                     <p className="text-black">{t("studies")}</p>
                   </div>
-                </div>
-                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
+                </Link>
+                <Link to={"InProucation"} className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
                   <div className="translate-y-4">
                     <div
                       className={
@@ -257,13 +257,13 @@ function App() {
                     <h1 className="text-black">1+</h1>
                     <p className="text-black">{t("software_development")}</p>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="flex justify-center mt-10">
                 <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
-                  <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                  <Link to={"InProucation"} className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                     {t("knowMoreAboutUs")}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -305,16 +305,16 @@ function App() {
                   </div>
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
-                      <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Link to={"InProucation"} className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                         {t("knowMoreAboutUs")}
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
 
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div
                         className={
                           dir === "ltr"
@@ -332,9 +332,9 @@ function App() {
                       <p className="text-black">
                         {t("Education_and_Training")}
                       </p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4">
                         <img
                           src={whiteboard2}
@@ -344,9 +344,9 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("studies")}</p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div
                         className={
                           dir === "ltr"
@@ -362,9 +362,9 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("entrepreneurship")}</p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div
                         className={
                           dir === "ltr"
@@ -380,9 +380,9 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("project_management")}</p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div
                         className={
                           dir === "ltr"
@@ -394,7 +394,7 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("software_development")}</p>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </>
@@ -434,16 +434,16 @@ function App() {
                   </div>
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
-                      <button className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Link to={"InProucation"} className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                         {t("knowMoreAboutUs")}
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
 
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
                         <img
                           src={educationLearning}
@@ -455,9 +455,9 @@ function App() {
                       <p className="text-black">
                         {t("Education_and_Training")}
                       </p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4">
                         <img
                           src={whiteboard2}
@@ -467,9 +467,9 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("studies")}</p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-2">
                         <img
                           src={enterpnure}
@@ -479,9 +479,9 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("entrepreneurship")}</p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-5">
                         <img
                           src={projectManager}
@@ -491,15 +491,15 @@ function App() {
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("project_management")}</p>
-                    </div>
+                    </Link>
 
-                    <div className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3">
                       <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
                         <img src={tech} alt="" className="w-full h-full" />
                       </div>
                       <h1 className="text-black">1+</h1>
                       <p className="text-black">{t("software_development")}</p>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import imga from "../assets/img/1706714290731.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import formattedDate from "../utilities/formattedDate";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import image1 from "../assets/img/1706714290731.jpg";
 import { useTranslation } from "react-i18next";
@@ -104,7 +104,7 @@ export default function SecondOurPartners() {
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
-              <div
+              <Link to={"InProucation"}
                 // key={index}
                 className="flex-shrink-0"
                 style={{ width: `${100 / slides.length}%` }}
@@ -120,7 +120,7 @@ export default function SecondOurPartners() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>
@@ -152,7 +152,7 @@ export default function SecondOurPartners() {
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
-              <div
+              <Link to={"InProucation"}
                 key={index}
                 className="flex-shrink-0"
                 style={{ width: `${100 / slides.length}%` }}
@@ -168,7 +168,7 @@ export default function SecondOurPartners() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>

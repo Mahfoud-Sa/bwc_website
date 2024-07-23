@@ -87,7 +87,7 @@ const Card = ({ card }: any) => {
   return (
     <div
       key={card.id}
-      className="group relative h-[350px] w-[450px] overflow-hidden bg-white rounded-lg shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] services-ar"
+      className="group relative h-[350px] w-[450px] overflow-hidden bg-white rounded-lg hover:bg-[#FFDAA0]/[.35] cursor-pointer shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] services-ar"
     >
       <div
         style={{
