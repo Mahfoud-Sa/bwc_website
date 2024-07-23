@@ -6,10 +6,7 @@ import formattedDate from "../utilities/formattedDate";
 import Slider from "react-slick";
 import PublishesImage from "../assets/img/PublishesImage.jpg";
 import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
-import image1 from "../assets/img/1706714290731.jpg";
-import image2 from "../assets/img/1706714564880.jpg";
-import image3 from "../assets/img/IMG_9024.jpg";
-import image4 from "../assets/img/logo.png";
+import { Link } from "react-router-dom";
 interface publishesDataCard {
   img: string;
   type: string;
@@ -107,8 +104,8 @@ export default function PublishesCards() {
     <div className="slider-container">
       <Slider {...settings}>
         {Cards.map((item, idx) => (
-          <div
-            className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg "
+          <Link to={'/InProucation'}
+            className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
             key={idx}
           >
             <div className="md:w-full md:h-60 sm:w-full sm:h-52">
@@ -154,7 +151,7 @@ export default function PublishesCards() {
                 alt=""
               />
             </div>
-          </div>
+          </Link>
         ))}
       </Slider>
     </div>

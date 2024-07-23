@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import Slider from "react-slick";
-import image1 from "../assets/img/عالم الأعمال خلفية أبيض.png";
+import { Link } from "react-router-dom";
 import image2 from "../assets/img/treaningImagePlaceholder.jpg";
 interface publishesDataCard {
   img: string;
@@ -85,8 +85,8 @@ export default function LeariningAndTraning() {
     <div className="slider-container">
     <Slider {...settings}>
       {Cards.map((item, idx) => (
-        <div
-          className=" rounded-xl  h-[250px] overflow-hidden mt-2 shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] "
+        <Link to={"InProucation"}
+          className=" rounded-xl  h-[250px] overflow-hidden mt-2 shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer "
           key={idx}
         >
           <div className=" flex-row-reverse w-[100%] h-[100%] flex">
@@ -107,7 +107,7 @@ export default function LeariningAndTraning() {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </Slider>
     </div>

@@ -2,50 +2,40 @@ import React, { useEffect, useState } from "react";
 import imga from "../assets/img/1706714290731.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import formattedDate from "../utilities/formattedDate";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import image1 from "../assets/img/1706714290731.jpg";
 import { useTranslation } from "react-i18next";
 interface publishesDataCard {
   img: string;
-  
 }
 
 const Cards: publishesDataCard[] = [
   {
     img: image1,
-    
-   
   },
   {
     img: image1,
-   
   },
   {
     img: image1,
-   
   },
   {
     img: image1,
-   
   },
   {
     img: image1,
-   
   },
   {
     img: image1,
-   
   },
   {
     img: image1,
-   
   },
   {
     img: image1,
-   
   },
-]
+];
 export default function OurPartners() {
   const slides = [
     { number: 1 },
@@ -83,26 +73,30 @@ export default function OurPartners() {
           {/* Wrapping div for seamless looping */}
           <motion.div
             className="flex w-[250%]"
-            animate={dir === "ltr" ?{
-              x: ["-100%", "0"],
-              transition: {
-                ease: "linear",
-                duration: 30,
-                repeat: Infinity,
-              },
-            } :{
-              x: ["100%", "0%"],
-              transition: {
-                ease: "linear",
-                duration: 30,
-                repeat: Infinity,
-                animationDirection: "reverse",
-              },
-            }}
+            animate={
+              dir === "ltr"
+                ? {
+                    x: ["-100%", "0"],
+                    transition: {
+                      ease: "linear",
+                      duration: 30,
+                      repeat: Infinity,
+                    },
+                  }
+                : {
+                    x: ["100%", "0%"],
+                    transition: {
+                      ease: "linear",
+                      duration: 30,
+                      repeat: Infinity,
+                      animationDirection: "reverse",
+                    },
+                  }
+            }
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
-              <div
+              <Link to={"InProucation"}
                 // key={index}
                 className="flex-shrink-0"
                 style={{ width: `${100 / slides.length}%` }}
@@ -118,7 +112,7 @@ export default function OurPartners() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>
@@ -127,26 +121,30 @@ export default function OurPartners() {
           {/* Wrapping div for seamless looping */}
           <motion.div
             className="flex "
-            animate={dir === "ltr" ?{
-              x: ["-100%", "0"],
-              transition: {
-                ease: "linear",
-                duration: 30,
-                repeat: Infinity,
-              },
-            } :{
-              x: ["100%", "0%"],
-              transition: {
-                ease: "linear",
-                duration: 30,
-                repeat: Infinity,
-                animationDirection: "reverse",
-              },
-            }}
+            animate={
+              dir === "ltr"
+                ? {
+                    x: ["-100%", "0"],
+                    transition: {
+                      ease: "linear",
+                      duration: 30,
+                      repeat: Infinity,
+                    },
+                  }
+                : {
+                    x: ["100%", "0%"],
+                    transition: {
+                      ease: "linear",
+                      duration: 30,
+                      repeat: Infinity,
+                      animationDirection: "reverse",
+                    },
+                  }
+            }
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
-              <div
+              <Link to={"InProucation"}
                 key={index}
                 className="flex-shrink-0"
                 style={{ width: `${100 / slides.length}%` }}
@@ -162,7 +160,7 @@ export default function OurPartners() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>
