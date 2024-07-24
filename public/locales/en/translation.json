@@ -85,7 +85,16 @@
   "entrepreneurship":"Entrepreneurship",
   "project_management":"Project Management",
   "software_development":"Software Development",
-  "our_mission":"Our Mission",
-  "our_goals":"Our Goals",
-  "our_message":"Our Message"
+  "our_mission":"Mission",
+  "our_goals":"Goals",
+  "our_message":"Message",
+  "our_mission1":"Our Mission",
+  "our_goals1":"Our Goals",
+  "our_message1":"Our Message",
+  "our_missionDesc":"Business World Investment & Studies Co., Ltd is a specialized and leading company in managing and operating investment projects and providing high quality DAT management studies and consulting in Hadramawt .",
+  "our_goalsDesc":"Business World is a specialized company offering high-quality bruises in the field of investment, project management and entrepreneurship through management, financial and marketing studies and investments and high-value IT solutions to enable investors and stakeholders to obtain the best economic results and benefits .",
+  "our_messageDesc1":"Empower and assist investors and business owners to manage and operate their investment projects in Hadramawt according to the latest modern and innovative management systems and methods .",
+  "our_messageDesc2":"Interest and care for entrepreneurs and emerging entrepreneurs through active studies and consulting to enable them to compete and continue in the market .",
+  "our_messageDesc3":"Enhance the performance of companies and institutions administratively and financially through the application of qualitative and innovative management systems .",
+  "our_messageDesc4":"Help companies and private and public institutions to use IT applications ."
 }
