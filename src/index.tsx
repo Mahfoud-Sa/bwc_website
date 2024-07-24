@@ -56,7 +56,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/try",
-    element: <PageServices />,
+    element: <Try />,
   },
 ]);
 const root = ReactDOM.createRoot(
