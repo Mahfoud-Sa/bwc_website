@@ -682,7 +682,7 @@ function App() {
           </div>
         )}
 
-        <div className="w-full h-screen p-2 overflow-hidden relative">
+        <div className="w-full h-screen p-2  overflow-hidden relative">
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
             <h1 className="text-3xl text-[#CCA972]">{t("showMore")}</h1>
