@@ -8,7 +8,7 @@ export default function AboutUs() {
       <div className="w-full lg:h-[8vh] md:h-[8vh]  sm:h-[11vh]">
         <Navbar />
       </div>
-      <div className="w-full h-[90vh] md:h-[150vh] md:mt-11 sm:mt-8">
+      <div className="w-full lg:h-[80vh] md:h-[150vh] sm:h-[150vh] md:mt-11 sm:mt-8">
         <AboutUsHeader />
       </div>
       <div className="lg:w-[98%] lg:min-h-[80vh] m-auto mb-16  lg:mt-16 sm:mt-40">
