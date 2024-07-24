@@ -106,7 +106,7 @@ export default function LastProject() {
     <Slider {...settings}>
       {Cards.map((item, idx) => (
         <div
-          className="max-w-sm rounded-xl mt-1 h-[420px] overflow-hidden shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)] "
+          className="max-w-sm rounded-xl my-5 h-[430px]  shadow-[0_0px_5px_0px_rgba(0,0,0,0.3)] hover:scale-105 hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer  "
           key={idx}
         >
           <div className="px-6 mt-6 text-end">

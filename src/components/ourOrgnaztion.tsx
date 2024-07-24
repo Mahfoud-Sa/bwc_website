@@ -73,7 +73,7 @@ export default function OurOrgnaztion() {
       <Slider {...settings}>
         {Cards.map((item, idx) => (
           <div className="whitespace-nowrap ">
-            <div className=" inline-block rounded-xl w-[65%] h-[200px] mx-10 overflow-hidden mt-2 bg-white shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)]">
+            <div className=" inline-block rounded-xl w-[65%] h-[200px] mx-10 overflow-hidden mt-2 bg-white shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer hover:scale-105">
               <div className=" flex-row-reverse w-[100%] h-[100%] ">
                 <div className="flex justify-center items-center w-[100%] h-full p-2 ">
                   <img
