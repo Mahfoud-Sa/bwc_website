@@ -23,20 +23,20 @@ export default function DashboardPage() {
     // if (!isRefreshToken) {
     //   navigate("/RefreshToken");
     // }
-    const checkAndDeleteRefreshToken = async () => {
-      const localStorageRefreshToken = localStorage.getItem("refreshToken");
+    // const checkAndDeleteRefreshToken = async () => {
+    //   const localStorageRefreshToken = localStorage.getItem("refreshToken");
 
-      if (localStorageRefreshToken) {
-        const timeoutId = setTimeout(() => {
-          setIsRefreshTokenDeleted(true);
-          navigate("/RefreshToken");
-        }, 3000);
+    //   if (localStorageRefreshToken) {
+    //     const timeoutId = setTimeout(() => {
+    //       setIsRefreshTokenDeleted(true);
+    //       navigate("/RefreshToken");
+    //     }, 3000);
 
-        return () => clearTimeout(timeoutId);
-      }
-    };
+    //     return () => clearTimeout(timeoutId);
+    //   }
+    // };
 
-    checkAndDeleteRefreshToken();
+    // checkAndDeleteRefreshToken();
   }, []);
   return (
     <>
@@ -47,10 +47,10 @@ export default function DashboardPage() {
             <NavBar />
           </div>
           <div className="w-full h-[90vh] flex">
-            <aside className=" w-[15%] h-full ">
+            <aside className=" w-[17%] h-full ">
               <SideNab />
             </aside>
-            <div className=" w-[85%] h-full bg-slate-700"></div>
+            <div className=" w-[83%] h-full bg-slate-700"></div>
           </div>
         </div>
       ) : (
@@ -60,10 +60,10 @@ export default function DashboardPage() {
             <NavBar />
           </div>
           <div className="w-full h-[90vh] flex">
-            <aside className=" w-[15%] h-full ">
+            <aside className=" w-[17%] h-full ">
               <SideNab />
             </aside>
-            <div className=" w-[85%] h-full bg-slate-700"></div>
+            <div className=" w-[83%] h-full bg-slate-700"></div>
           </div>
         </div>
       )}
