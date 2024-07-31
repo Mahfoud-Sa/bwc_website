@@ -16,6 +16,7 @@ import InProucation from "./page/(User)/in-proucation";
 import AboutUs from "./page/(User)/aboutUs";
 import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
 import PageServices from "./components/(user)/pageServices";
+import VideoCourse from "./components/(user)/videocourse";
 
 const router = createBrowserRouter([
   {
