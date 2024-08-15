@@ -9,11 +9,14 @@ import { useNavigate } from "react-router-dom";
 import nav from "react-router-dom";
 export default function NavBar() {
   const navigate = useNavigate();
+  const [language, setLanguage] = useState<string>("");
+  // 
   const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
+  // 
   const [isdropDownOpen, setIsdropDownOpen] = useState(false);
   const [isLogoutDropDown, setLogoutDropDown] = useState(false);
-  const dir = i18n.dir();
-
+  //
   const isLoggedIn = localStorage.getItem("accessToken");
   const onLogOut = () => {
     if (isLoggedIn) {
@@ -23,69 +26,126 @@ export default function NavBar() {
       navigate("/login");
     }
   };
-  useEffect(() => {}, []);
+  //
+  const onChangeLanguage = () => {
+    language === "ar" ? setLanguage("en") : setLanguage("ar");
+  };
+
+  const changeLanguage = (code: string) => {
+    i18n.changeLanguage(code);
+  };
+  function handleDeleteRefresh() {
+    localStorage.removeItem("refreshToken");
+  }
+  useEffect(() => {
+    changeLanguage(language);
+    document.body.dir = i18n.dir();
+  }, [i18n, i18n.language, language]);
   return (
     <>
-      <div className="w-[15%] h-full flex">
-        <div className="w-[75%] flex text-white justify-center  items-center ">
-          <div
-            className="w-[24%] mr-1 flex justify-end cursor-pointer relative"
-            onClick={() => setLogoutDropDown((prvIndex) => !prvIndex)}
-          >
-            <ArrowDowm />
-            {isLogoutDropDown && (
+      {dir === "ltr" ? (
+        <>
+          <div className="w-[20%] h-full flex justify-between items-center">
+            <div className="w-[1px] h-[70%] bg-[#D4D4D4] float-end"></div>
+            <div className="w-[80%] mr-7 cursor-pointer" onClick={handleDeleteRefresh}>
+              <img src={adminLogo} alt="" className="w-[60%] h-[80%]" />
+            </div>
+          </div>
+          <div className="w-[60%]  h-full"></div>
+          <div className="w-[20%] h-full flex">
+            <div className="w-[25%]  flex justify-center items-center relative">
               <div
-                className={
-                  dir === "ltr"
-                    ? "flex flex-col logout"
-                    : "flex flex-col logout-rigth"
-                }
+                className="cursor-pointer mr-1 text-xl font-black"
+                onClick={onChangeLanguage}
               >
-                <ul className="flex flex-col gap-4" onClick={onLogOut}>
-                  <li>Logout</li>
-                </ul>
+                EN
               </div>
-            )}
-          </div>
-          <div className="w-[20%] h-[50%] rounded-full ">
-            <img
-              src={Avter}
-              alt=""
-              className="rounded-full h-[100%] w-[100%]"
-            />
-          </div>
-          <div className="w-[54%] ml-1 m-auto text-sm text-black">
-            محفوظ بن سباح
-          </div>
-        </div>
-        <div className="w-[25%]  flex justify-center items-center relative">
-          <div
-            className={
-              dir === "ltr"
-                ? "cursor-pointer mr-5 text-2xl font-black"
-                : "cursor-pointer ml-5 text-xl font-black"
-            }
-            onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
-          >
-            {dir === "ltr" ? "EN" : "عربي"}
-            {isdropDownOpen && <DropDownLang />}
-          </div>
 
-          <div
-            className="cursor-pointer"
-            onClick={() => setIsdropDownOpen((prevValue) => !prevValue)}
-          >
-            <LanguageWorld color="black" />
+              <div className="cursor-pointer" onClick={onChangeLanguage}>
+                <LanguageWorld color="black" />
+              </div>
+            </div>
+            <div className="w-[75%] text-white flex justify-center items-center ">
+              <div className=" w-full h-full flex justify-center items-center">
+                <div className="w-[20%] h-[50%] m-auto ">
+                  <img
+                    src={Avter}
+                    alt=""
+                    className="rounded-full float-end h-[100%] w-[80%]"
+                  />
+                </div>
+                <div className="w-[60%] text-center ml-1 m-auto text-sm text-black ">
+                  محفوظ بن سباح
+                </div>
+                <div
+                  className="w-[20%] mr-1 flex justify-start cursor-pointer relative "
+                  onClick={() => setLogoutDropDown((prvIndex) => !prvIndex)}
+                >
+                  <ArrowDowm />
+                  {isLogoutDropDown && (
+                    <div className="flex flex-col logout">
+                      <ul className="flex flex-col gap-4" onClick={onLogOut}>
+                        <li>Logout</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="w-[70%]  h-full"></div>
-      <div className="w-[15%] h-full flex justify-between items-center">
-        <div className="w-[1px] h-[70%] bg-[#D4D4D4] float-end"></div>
-        <div className="w-[80%] mr-7">
-          <img src={adminLogo} alt="" className="w-[100%] h-[80%]" />
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <div className="w-[20%] h-full flex justify-between items-center">
+            <div className="w-[1px] h-[70%] bg-[#D4D4D4] float-start"></div>
+            <div className="w-[80%] mr-7">
+              <img src={adminLogo} alt="" className="w-[60%] h-[80%]" />
+            </div>
+          </div>
+          <div className="w-[60%]  h-full"></div>
+          <div className="w-[20%] h-full flex">
+            <div className="w-[25%]  flex justify-center items-center relative">
+              <div
+                className="cursor-pointer ml-2 text-xl font-black"
+                onClick={onChangeLanguage}
+              >
+                عربي
+              </div>
+
+              <div className="cursor-pointer" onClick={onChangeLanguage}>
+                <LanguageWorld color="black" />
+              </div>
+            </div>
+            <div className="w-[75%] text-white flex justify-center items-center ">
+              <div className=" w-full h-full flex justify-center items-center">
+                <div className="w-[20%] h-[50%] m-auto ">
+                  <img
+                    src={Avter}
+                    alt=""
+                    className="rounded-full float-end h-[100%] w-[80%]"
+                  />
+                </div>
+                <div className="w-[60%] text-center ml-1 m-auto text-sm text-black ">
+                  محفوظ بن سباح
+                </div>
+                <div
+                  className="w-[20%] mr-1 flex justify-start cursor-pointer relative "
+                  onClick={() => setLogoutDropDown((prvIndex) => !prvIndex)}
+                >
+                  <ArrowDowm />
+                  {isLogoutDropDown && (
+                    <div className="flex flex-col logout-ar">
+                      <ul className="flex flex-col gap-4" onClick={onLogOut}>
+                        <li>تسجيل الخروج</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

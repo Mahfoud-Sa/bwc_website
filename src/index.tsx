@@ -13,6 +13,10 @@ import DashboardPage from "./page/(Admin)/dashboardPage";
 import Try from "./page/try";
 import NoAccess from "./page/(Admin)/noaccess";
 import InProucation from "./page/(User)/in-proucation";
+import AboutUs from "./page/(User)/aboutUs";
+import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
+import PageServices from "./components/(user)/pageServices";
+import VideoCourse from "./components/(user)/videocourse";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/privacy-policy",
     element: <PrivacyPolicy />,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
   },
   {
     path: "/login",
@@ -42,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/InProucation",
     element: <InProucation />,
+  },
+  {
+    path: "/RefreshToken",
+    element: <RefreshTokenPage />,
   },
   {
     path: "/try",

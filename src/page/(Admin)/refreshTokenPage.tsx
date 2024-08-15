@@ -5,43 +5,21 @@ import login1 from "../../assets/img/عالم الأعمال خلفية أبيض
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-interface RefreshToken {
-  token: string;
-}
-
-export default function LoginPage() {
+export default function RefreshTokenPage() {
   const navigate = useNavigate();
-  const [loginPassword, setLoginPassword] = useState<string>("");
-  const [refreshToken, setRefreshToken] = useState<RefreshToken | null>(null);
-  const [errorMessage, setErrorMessage] = useState("");
-  function handlePasswoed(value: string) {
-    setLoginPassword(value);
-  }
+  const [refreshToken, setRefreshToken] = useState(
+    localStorage.getItem("refreshToken") || null
+  );
 
-  const usernameServer = "11183953";
-  const password = "60-dayfreetrial";
-  const email = "";
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const encodedCredentials = btoa("11183953:60-dayfreetrial");
-
     try {
-      const response = await axios({
-        url: "/login",
-        method: "post",
-        baseURL: "https://mahfoudsabbah-001-site1.jtempurl.com/",
-        data: {
-          email: "hamoud@gmail.com",
-          password: loginPassword,
-        },
-        auth: {
-          username: usernameServer,
-          password: password,
-        },
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-      });
-      console.log("Login successful:", response.data);
+      const response = await axios.post(
+        "https://mahfoudsabbah-001-site1.jtempurl.com/?refreshToken",
+        { refreshToken }
+      );
+      console.log("refresh successful:", response.data);
 
       if (response.data.accessToken) {
         localStorage.setItem("accessToken", response.data.accessToken);
@@ -55,12 +33,10 @@ export default function LoginPage() {
         toast.error("wrong Password");
       }
     } catch (error) {
-      const errors = error;
       console.error(error);
       toast.error("An error occurred during login.");
     }
   };
-  
   return (
     <div className="h-[100vh] w-full flex">
       <div className="w-[60%] h-full flex justify-center items-center">
@@ -75,32 +51,16 @@ export default function LoginPage() {
           {/*  */}
           <div className="text-center mt-10">
             <h1 className="text-3xl mb-5">مرحبا بعودتك</h1>
-            <form action="" className="px-10 text-end" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-balck font-black text-lg  mt-1"
-                >
-                  كلمة المرور
-                </label>
-                <input
-                  type="password"
-                  name=""
-                  id=""
-                  dir="rtl"
-                  placeholder="ادخل كلمة المرور ..."
-                  required
-                  value={loginPassword}
-                  onChange={(e) => handlePasswoed(e.target.value)}
-                  className="w-full px-4 py-2 rounded-xl bg-white mt-2 border-2 border-[#797B7D] focus:bg-white focus:outline-none focus:text-[#818080] placeholder:text-[#818080]"
-                />
-              </div>
+            <form action="" className="px-10 text-end">
               <button
                 type="button"
                 className=" mt-10 w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
               >
+                <div></div>
                 <div className="flex items-center justify-center">
-                  <button className="ml-4 text-white">تسجيل دخول</button>
+                  <button className="ml-4 text-white" onClick={handleSubmit}>
+                    تسجيل دخول
+                  </button>
                   <Toaster />
                 </div>
               </button>
