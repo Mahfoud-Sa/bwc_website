@@ -123,7 +123,7 @@ function App() {
         <PublishesCards />
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
           <h1 className="text-3xl text-[#CCA972]">
-            <Link to={"/InProucation"}>{t("showMore")}</Link>
+            <Link target="_blank" to={"https://www.facebook.com/bwiscompltd/"}>{t("showMore")}</Link>
           </h1>
         </div>
         {widthScreen.winWidth <= 980 ? (
