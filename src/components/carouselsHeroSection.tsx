@@ -156,8 +156,8 @@ export default function CarouselsHeroSection({ publishes }: CarouselProps) {
 
                   <div className={dir === "ltr" ? "info-carousel-end": "info-carousel"}>
                     <div className={dir === "ltr" ? "title-info-carousel-end" : "title-info-carousel"} key={idx}>
-                      <h2>{item.title}</h2>
-                      <p>
+                      <h2 className="publishesHero">{item.title}</h2>
+                      <p className="mt-4">
                         {}
                         {dir === "ltr"
                           ? formattedDateEn(item.publish_date)

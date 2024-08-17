@@ -522,3 +522,10 @@ opacity: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.publishesHero {
+  text-align: start;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
