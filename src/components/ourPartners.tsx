@@ -4,7 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import image1 from "../assets/img/1706714290731.jpg";
+import image1 from "../assets/img/ourpartines/alomgy_brand.png";
+import image2 from "../assets/img/ourpartines/bina_brand.png"
+import image3 from "../assets/img/ourpartines/certiport_brand.png";
+import image4 from "../assets/img/ourpartines/franklincove_brand.png";
 import { useTranslation } from "react-i18next";
 interface publishesDataCard {
   img: string;
@@ -15,27 +18,19 @@ const Cards: publishesDataCard[] = [
     img: image1,
   },
   {
-    img: image1,
+    img: image2,
+   
   },
   {
-    img: image1,
+    img: image3,
+   
   },
   {
-    img: image1,
+    img: image4,
+   
   },
-  {
-    img: image1,
-  },
-  {
-    img: image1,
-  },
-  {
-    img: image1,
-  },
-  {
-    img: image1,
-  },
-];
+  
+]
 export default function OurPartners() {
   const slides = [
     { number: 1 },
