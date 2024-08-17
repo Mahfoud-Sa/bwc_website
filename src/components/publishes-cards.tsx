@@ -140,8 +140,8 @@ export default function PublishesCards() {
               </span>
             </div>
             <div className="px-6 py-4 text-end">
-              <p className="text-gray-700 text-base">{item.title}</p>
-              <div className="font-bold text-sm mb-2">
+              <p dir="rtl" className="publishesTitle">{item.title}</p>
+              <div className="font-bold text-sm mb-2 mt-2">
                 {formattedDate(item.date)}
               </div>
             </div>

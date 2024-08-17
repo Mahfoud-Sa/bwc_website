@@ -1,11 +1,5 @@
 @import "./App.css";
 
-.slider-anmition {
-  animation: 20s slide infinite linear;
-}
-.rever-slider-anmition {
-  animation: slide-left 8s infinite linear;
-}
 @font-face {
   font-family: "Tajawal";
   src: url("../public/fonts/Tajawal-Bold.ttf") format("truetype");
@@ -13,16 +7,24 @@
   font-weight: normal;
   font-style: normal;
 }
-:root {
-  --white-color: #ffffff;
-  --gray-white: #d1d1d1;
-}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: Tajawal;
 }
+.slider-anmition {
+  animation: 20s slide infinite linear;
+}
+.rever-slider-anmition {
+  animation: slide-left 8s infinite linear;
+}
+
+:root {
+  --white-color: #ffffff;
+  --gray-white: #d1d1d1;
+}
+
 .no {
   display: none !important;
 }
@@ -305,7 +307,7 @@ opacity: 1;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
 }
-.info-carousel-end{
+.info-carousel-end {
   position: absolute;
   width: 32rem;
   height: 10rem;
@@ -326,7 +328,7 @@ opacity: 1;
   text-overflow: ellipsis;
   text-align: justify;
 }
-.title-info-carousel-end{
+.title-info-carousel-end {
   width: 100%;
   text-overflow: ellipsis;
   text-align: start;
@@ -353,7 +355,7 @@ opacity: 1;
   gap: 10px;
   flex-direction: row-reverse;
 }
-.inside-image-en{
+.inside-image-en {
   display: flex;
   align-items: center;
   justify-content: start;
@@ -512,4 +514,11 @@ opacity: 1;
 .selected-sidbar {
   background-color: rgba(213, 174, 120, 0.2);
   color: #d5ae78;
+}
+.publishesTitle {
+  text-align: start;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
