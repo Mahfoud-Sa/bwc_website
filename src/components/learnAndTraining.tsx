@@ -6,37 +6,31 @@ import formattedDate from "../utilities/formattedDate";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import image2 from "../assets/img/treaningImagePlaceholder.jpg";
+import miiImage from "../assets/img/mii_brand.png";
+import premiumImage from "../assets/img/premium_brand.png";
 interface publishesDataCard {
   img: string;
   title: string;
   subTitle: string;
+  link:string;
+
 }
 
 const Cards: publishesDataCard[] = [
   {
-    img: image2,
-    title:"عنوان المنشاء التعليمة",
+    img: miiImage,
+    link:"http://mii.edu.ye/",
+    title:"المعهد الدولي الحديث",
     subTitle:
-      "وصف بسيط عن هذه المنشاه التعليمية",
+      "تأسس المعهد الدولي الحديث على يد الدكتور ربيع بن علي العوبثاني في يونيو 2003م، ويعمل المعهد تحت إشراف وزارة التعليم الفني والتدريب المهني بترخيص رقم (132) صادر في يناير 2004م. تسعى المؤسسة لأن تكون الرائدة في تقديم خدمات تعليمية وتدريبية ذات جودة عالية وبمعايير عالمية. ",
   },
   {
-    img: image2,
-    title:"عنوان المنشاء التعليمة",
+    img: premiumImage,
+    link:"/InProduction",
+    title:"أكاديمية بريميوم للقيادة والإدارة",
     subTitle:
-      "وصف بسيط عن هذه المنشاه التعليمية",
-  },
-  {
-    img: image2,
-    title:"عنوان المنشاء التعليمة",
-    subTitle:
-      "وصف بسيط عن هذه المنشاه التعليمية",
-  },
-  {
-    img: image2,
-    title:"عنوان المنشاء التعليمة",
-    subTitle:
-      "وصف بسيط عن هذه المنشاه التعليمية",
-  },
+     "أكاديمية بريميوم للقيادة والإدارة، مؤسسة تعليمية وتدريبية تساعد في المقام الأول على إعداد وصناعة كفاءات بشرية مؤهلة من خلال برامج تدريب عالية الجودة للدفع بعملائها أفراداً ومؤسسات لاستغلال أقصى ما لديهم من إمكانيات وقدرات ومهارات ليكونوا قادرين على المنافسة محلياً وعالمياً. "
+  }
   
 ];
 export default function LeariningAndTraning() {
@@ -85,14 +79,14 @@ export default function LeariningAndTraning() {
     <div className="slider-container">
     <Slider {...settings}>
       {Cards.map((item, idx) => (
-        <Link to={"InProucation"}
+        <Link target="_blank" to={item.link}
           className=" rounded-xl  h-[250px] overflow-hidden mt-2 shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer "
           key={idx}
         >
           <div className=" flex-row-reverse w-[100%] h-[100%] flex">
             <div className="flex justify-center items-center w-[40%] h-full p-5">
               <img
-                src={image2}
+                src={item.img}
                 className="object-contain w-[100%] h-[100%]"
                 alt=""
               />
