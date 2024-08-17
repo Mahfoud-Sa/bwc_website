@@ -43,7 +43,7 @@ export default function AboutUs() {
       <OurPortfolio />
 
       <VideoCourse
-        items={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+        items={["https://www.youtube.com/watch?v=kdeL2LwWDC4", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE"]}
         itemsToShow={3}
       />
 

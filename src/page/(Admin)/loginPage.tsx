@@ -4,13 +4,16 @@ import login from "../../assets/img/8H4A08688.jpg(1).jpg";
 import login1 from "../../assets/img/عالم الأعمال خلفية أبيض 21.png";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-
+import { useTranslation } from "react-i18next";
 interface RefreshToken {
   token: string;
 }
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
+
   const [loginPassword, setLoginPassword] = useState<string>("");
   const [refreshToken, setRefreshToken] = useState<RefreshToken | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -79,7 +82,7 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-balck font-black text-lg  mt-1"
+                  className={dir === "ltr" ? "block text-black text-start font-black text-lg  mt-1" : "block text-start text-black font-black text-lg  mt-1"}
                 >
                   كلمة المرور
                 </label>
