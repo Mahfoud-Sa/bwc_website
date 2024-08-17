@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components"; // Optional for styling
-import { FaArrowRightLong , FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import ReactPlayer from "react-player/youtube";
+import Button from "../../components/button";
+import { useTranslation } from "react-i18next";
 
 interface CarouselProps {
   items: string[];
@@ -29,6 +32,8 @@ const CarouselItem = styled.div`
 export default function Carousel({ items, itemsToShow }: CarouselProps) {
   const [startIndex, setStartIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -50,19 +55,71 @@ export default function Carousel({ items, itemsToShow }: CarouselProps) {
   const visibleItems = items.slice(startIndex, startIndex + itemsToShow);
 
   return (
-    <div className="h-[50vh] w-[98%] m-auto">
-      <CarouselContainer ref={carouselRef}>
-        {visibleItems.map((item, index) => (
-          <CarouselItem key={index}>
-            {<div className="w-full h-full bg-slate-600">{item}</div>}
-          </CarouselItem>
-        ))}
-      </CarouselContainer>
-      <div className="h-[2px] mt-10 w-[90%] m-auto bg-[#CECECE]"></div>
-      <div className="h-[2px] m-auto w-[90%] ">
-      <button onClick={handlePrev}>Prev</button>
-        <button onClick={handleNext}>Next</button>
+    <>
+      <div className="w-full h-36 flex justify-around items-center ">
+        <div className="w-[80%]">
+          <div className="flex p-5">
+            <div
+              className={
+                dir === "ltr"
+                  ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "
+                  : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "
+              }
+            ></div>
+            <h1 className="text-3xl">{t("Talk-about-us")}</h1>
+          </div>
+        </div>
+        <div className="w-[20%] ">
+          <Button>{t("See-All")}</Button>
+        </div>
       </div>
-    </div>
+      <div className="h-[50vh] w-[98%] m-auto">
+        <CarouselContainer ref={carouselRef}>
+          {visibleItems.map((item, index) => (
+            <CarouselItem key={index}>
+              {
+                <div className="w-full h-full bg-slate-600">
+                  <ReactPlayer
+                    url={item}
+                    controls={true}
+                    height="100%"
+                    width="100%"
+                  />
+                </div>
+              }
+            </CarouselItem>
+          ))}
+        </CarouselContainer>
+        <div className="h-[2px] mt-10 w-[90%] m-auto bg-[#CECECE]"></div>
+        <div className="h-[2px] m-auto w-[90%]">
+          <div
+            className={dir === "ltr" ? "mt-3 float-end" : "mt-3 float-start"}
+          >
+            <button
+              className=" w-10 h-10 border-[2px] border-[#656565] rounded-full ml-2"
+              onClick={handlePrev}
+            >
+              <div
+                className="w-full h-full rounded-full flex justify-center items-center hover:bg-[#656565] text-[#656565] hover:text-white"
+                onClick={handlePrev}
+              >
+                <FaArrowRightLong size={22} />
+              </div>
+            </button>
+            <button
+              className=" w-10 h-10 border-[2px] border-[#656565] rounded-full ml-2"
+              onClick={handleNext}
+            >
+              <div
+                className="w-full h-full rounded-full flex justify-center items-center hover:bg-[#656565] text-[#656565] hover:text-white"
+                onClick={handleNext}
+              >
+                <FaArrowLeftLong size={22} />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
