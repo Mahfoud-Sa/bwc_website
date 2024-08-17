@@ -5,7 +5,8 @@ import image1 from "../assets/img/1706714290731.jpg";
 import image2 from "../assets/img/1706714564880.jpg";
 import image3 from "../assets/img/IMG_9024.jpg";
 import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
-import sliderImagePlaceholder from "../assets/img/sliderImagePlaceholder.png";
+import sliderImagePlaceholder from "../assets/img/news_1.jpg";
+import sliderImagePlaceholder1 from "../assets/img/news_2.jpg";
 
 interface publish {
   imgs : string;
@@ -19,15 +20,15 @@ interface publish {
 const publishes: publish[] = [
   {
     imgs: sliderImagePlaceholder,
-    title: "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
-    publish_date: new Date(),
-    writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+    title: "تعمل شركة عالم الأعمال للاستثمار والدراسات على تمكين المستثمرين وأصحاب الأعمال لإدارة وتشغيل مشاريعهم الاستثمارية في حضرموت وفق أحدث النظم والأساليب الإدارية الحديثة والمبتكرة",
+    publish_date: new Date("2024-03-9"),
+    // writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
   {
-    imgs: sliderImagePlaceholder,
-    title: "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
-    publish_date: new Date(),
-    writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+    imgs: sliderImagePlaceholder1,
+    title: "مدير عام بنك بن دول للتمويل الأصغر الإسلامي يزور شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة. ",
+    publish_date:new Date("2024-03-1"),
+    // writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
 ];
 export default function HeroSection() {

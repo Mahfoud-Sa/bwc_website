@@ -5,6 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import formattedDate from "../utilities/formattedDate";
 import Slider from "react-slick";
 import PublishesImage from "../assets/img/PublishesImage.jpg";
+import PublishesImage1 from "../assets/img/publish_1.jpg";
+import PublishesImage2 from "../assets/img/publish_2.jpg";
+import PublishesImage3 from "../assets/img/publish_3.jpg";
+import PublishesImage4 from "../assets/img/publish_4.jpg";
 import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
 import { Link } from "react-router-dom";
 interface publishesDataCard {
@@ -12,6 +16,7 @@ interface publishesDataCard {
   type: string;
   title: string;
   date: Date;
+  link:string;
   writer?:
     | {
         img: string;
@@ -22,39 +27,43 @@ interface publishesDataCard {
 
 const Cards: publishesDataCard[] = [
   {
-    img: PublishesImage,
-    type: "منشور",
+    img: PublishesImage1,
+    type: "الاخبار",
+    link:"https://www.facebook.com/share/p/VzeHNxT5exEnUjuD/ ",
     title:
-    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
-    date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+    "مدير عام شركة عالم الأعمال للاستثمار والدراسات ورئيس مؤسسة حاضنة بناء لريادة الأعمال يزور الغرفة التجارية والصناعية في مدينة عدن",
+    date: new  Date("2024-11-9"),
+    writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
  
   {
-    img: PublishesImage,
-    type: "منشور",
+    img: PublishesImage2,
+    type: "الاخبار",
+    link:"https://www.facebook.com/share/p/EMDAez298MYM8kR4/",
     title:
-    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
-    date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+    "مدير الصندوق الاجتماعي للتنمية -- حضرموت يزور شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة",
+    date: new  Date("2024-12-5"),
+    writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
  
   {
-    img: PublishesImage,
+    img: PublishesImage3,
     type: "منشور",
+    link:"https://www.facebook.com/share/p/eookDQbmwzhNWGY7/",
     title:
-    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
-    date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+    "زيارة مؤسسة صنائع المعروف الإنسانية إلى شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة ومؤسسة حاضنة بناء لريادة الأعمال.",
+    date: new  Date("2024-2-20"),
+    writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
  
   {
-    img: PublishesImage,
+    img: PublishesImage4,
     type: "منشور",
+    link:"https://www.facebook.com/share/p/7YwHJFty8vKTYuq7/",
     title:
-    "هذا النص موقت لحين اكتمال الموقع وبدايه نشر الاخبار على الموقع",
-    date: new Date(),
-    writer: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
+    "توقيع مذكرة تعاون مشترك بين شركة عالم الأعمال للاستثمار والدراسات المحدودة ومنتدى طلاب المشقاص ",
+    date: new  Date("2024-2-22"),
+    writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
  
 ];
@@ -104,7 +113,7 @@ export default function PublishesCards() {
     <div className="slider-container">
       <Slider {...settings}>
         {Cards.map((item, idx) => (
-          <Link to={'/InProucation'}
+          <Link target="_blank" to={item.link}
             className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
             key={idx}
           >
