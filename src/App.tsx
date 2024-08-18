@@ -6,7 +6,7 @@ import SideCircle from "./assets/icons/side-circle";
 import FullCircle from "./assets/icons/full-circle";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import Image1 from "./assets/img/اعلان خدمة الفايبر.jpg";
+import Image1 from "./assets/img/about_us.png";
 import anlyisit from "./assets/img/whiteboard.png";
 import enterpnure from "./assets/img/enterpnure.png";
 import projectManager from "./assets/img/project-manager.png";
@@ -552,10 +552,18 @@ function App() {
                   <div className=" w-full h-full grid gap-20 ">
                     <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                       <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        إدارة وتشغيل المشاريع التجارية في اليمن
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
+                        <p className="text-xl text-[#525252]">
+                        عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع الاستثمارية. 
                         </p>
                       </div>
                     </div>
@@ -564,28 +572,16 @@ function App() {
                       <div className=" text-start w-[100%] h-[50%] p-4">
                         <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمل للشركات والمؤسسات التجارية. 
                         </p>
                       </div>
                     </div>
 
                     <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                       <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <h1 className="text-3xl mb-6">تقديم الاستشارات</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                        <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        تقديم الاستشارات الإدارية والمالية والتسويقية والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة للشركات والمؤسسات الخاصة والعامة. 
                         </p>
                       </div>
                     </div>
@@ -613,10 +609,19 @@ function App() {
                   <div className=" w-full h-full grid gap-20">
                     <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                       <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        إدارة وتشغيل المشاريع التجارية في اليمن
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
+                        <p className="text-xl text-[#525252]">
+                        عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع الاستثمارية. 
+
                         </p>
                       </div>
                     </div>
@@ -625,31 +630,35 @@ function App() {
                       <div className=" text-start w-[100%] h-[50%] p-4">
                         <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمل للشركات والمؤسسات التجارية. 
                         </p>
                       </div>
                     </div>
 
                     <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                       <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        تقديم الاستشارات الإدارية والمالية والتسويقية والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة للشركات والمؤسسات الخاصة والعامة. 
                         </p>
                       </div>
                     </div>
-
+                    {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                      <div className=" text-start w-[100%] h-[50%] p-4">
+                        <h1 className="text-3xl mb-6">البناء والتطوير</h1>
+                        <p className="text-xl text-[#525252]">
+                        بناء وتطوير فرق عمل قوية ومتجانسة والاهتمام بالمورد البشري لخلق الميزة التنافسية للشركات والمؤسسات التجارية.
+                        </p>
+                      </div>
+                    </div>
                     <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                       <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
+                        <h1 className="text-3xl mb-6">تقديم الحلول</h1>
                         <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمــــــــل
-                          للشركــــــــات والمؤسسات التجارية
+                        تقديم الحلول في تكنولوجيا المعلومات وقيادة مشاريع التحول الرقمي للقطاع الخاص والعام. 
                         </p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div
@@ -685,7 +694,10 @@ function App() {
         <div className="w-full h-screen p-2  overflow-hidden relative">
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
-            <h1 className="text-3xl text-[#CCA972]">{t("showMore")}</h1>
+            <h1 className="text-3xl text-[#CCA972]">
+              <Link to={'/InProduction'}>  {t("showMore")}
+              </Link>
+            </h1>
           </div>
         </div>
       </div>
