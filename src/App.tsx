@@ -523,7 +523,9 @@ function App() {
       {/*  */}
       <div className="w-full h-[10vh] md:p-2  overflow-hidde relative">
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <h1 className="text-3xl text-[#CCA972]">{t("showMore")}</h1>
+          <Link to={"/InProduction"} className="text-3xl text-[#CCA972]">
+            {t("showMore")}
+          </Link>
         </div>
       </div>
 

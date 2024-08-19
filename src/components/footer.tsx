@@ -43,29 +43,29 @@ export default function Footer() {
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks1")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks2")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks3")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks4")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -75,28 +75,19 @@ export default function Footer() {
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a
-                      href="https://github.com/themesberg/flowbite"
-                      className="hover:underline "
-                    >
+                    <Link to="/InProucation" className="hover:underline ">
                       {t("Publications1")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a
-                      href="https://discord.gg/4eeurUVvTy"
-                      className="hover:underline"
-                    >
+                    <Link to="/InProucation" className="hover:underline">
                       {t("Publications2")}
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="https://discord.gg/4eeurUVvTy"
-                      className="hover:underline"
-                    >
+                    <Link to="/InProucation" className="hover:underline">
                       {t("Publications3")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -120,33 +111,33 @@ export default function Footer() {
           <div className="h-[10vh]">
             <ul className="flex items-start mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-white ">
               <li>
-                <a href="">
+                <Link to="/InProucation">
                   <FaLinkedinIn size={24} />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="">
+                <Link to="/InProucation">
                   <FaFacebookF size={24} />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="">
+                <Link to="/InProucation">
                   <FaXTwitter size={24} />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="">
+                <Link to="/InProucation">
                   <FaWhatsapp size={24} />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="">
+                <Link to="/InProucation">
                   <FaInstagram size={24} />
-                </a>
+                </Link>
               </li>
             </ul>
             <h4 className="text-white flex items-center mt-3">
-              info@bwiscompltd.com
+              <Link to="/InProucation">info@bwiscompltd.com</Link>
             </h4>
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-[#BA8D30] lg:my-8" />
@@ -184,48 +175,39 @@ export default function Footer() {
         >
           <div className="sm:flex sm:items-center sm:justify-between">
             <div className="h-[35vh]">
-              <div className="mb-6 md:mb-0 hidden">
-                <a href="https://flowbite.com/" className="flex items-center">
-                  <img
-                    src="https://flowbite.com/docs/images/logo.svg"
-                    className="h-8 me-3"
-                    alt="FlowBite Logo"
-                  />
-                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                    Flowbite
-                  </span>
-                </a>
-              </div>
               <ul className="flex items-start mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-white ">
                 <li>
-                  <a href="">
-                    <FaLinkedinIn size={23}/>
-                  </a>
+                  <Link to="/InProucation">
+                    <FaLinkedinIn size={23} />
+                  </Link>
                 </li>
                 <li>
-                  <a href="">
-                    <FaFacebookF size={23}/>
-                  </a>
+                  <Link to="/InProucation">
+                    <FaFacebookF size={23} />
+                  </Link>
                 </li>
                 <li>
-                  <a href="">
-                    <FaXTwitter size={23}/>
-                  </a>
+                  <Link to="/InProucation">
+                    <FaXTwitter size={23} />
+                  </Link>
                 </li>
                 <li>
-                  <a href="">
-                    <FaWhatsapp size={23}/>
-                  </a>
+                  <Link to="/InProucation">
+                    <FaWhatsapp size={23} />
+                  </Link>
                 </li>
                 <li>
-                  <a href="">
-                    <FaInstagram size={23}/>
-                  </a>
+                  <Link to="/InProucation">
+                    <FaInstagram size={23} />
+                  </Link>
                 </li>
               </ul>
-              <a href="" className="text-white flex items-center mt-7 underline hover:no-underline ">
-              info@bwiscompltd.com
-            </a>
+              <Link
+                to="/InProucation"
+                className="text-white flex items-center mt-7 underline hover:no-underline "
+              >
+                info@bwiscompltd.com
+              </Link>
             </div>
 
             <div className="grid grid-cols-2 gap-1 sm:gap-6 text-end sm:grid-cols-5 h-[35vh]">
@@ -250,31 +232,21 @@ export default function Footer() {
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a
-                      href="https://github.com/themesberg/flowbite"
-                      className="hover:underline "
-                    >
+                    <Link to="/InProucation" className="hover:underline ">
                       {t("Publications1")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a
-                      href="https://discord.gg/4eeurUVvTy"
-                      className="hover:underline"
-                    >
+                    <Link to="/InProucation" className="hover:underline">
                       {t("Publications2")}
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="https://discord.gg/4eeurUVvTy"
-                      className="hover:underline"
-                    >
+                    <Link to="/InProucation" className="hover:underline">
                       {t("Publications3")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
-                
               </div>
               <div>
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
@@ -282,32 +254,31 @@ export default function Footer() {
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks1")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks2")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks3")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link to="/InProucation" className="hover:underline">
                       {t("departmentLinks4")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
-                
               </div>
             </div>
           </div>
