@@ -89,7 +89,7 @@ export default function LastProject() {
             <p className="text-black text-xl font-extrabold">{item.title}</p>
           </div>          
           <div className="px-6 py-4 text-end">
-            <p className="text-[#525252] text-sm">{item.subTitle}</p>
+            <p className="text-[#525252] text-sm publishesProject">{item.subTitle}</p>
           </div>
           <div className="w-full h-60 px-3">
             <img
