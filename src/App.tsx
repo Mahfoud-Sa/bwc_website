@@ -4,7 +4,6 @@ import HeroSection from "./components/heroSection";
 import PublishesCards from "./components/publishes-cards";
 import SideCircle from "./assets/icons/side-circle";
 import FullCircle from "./assets/icons/full-circle";
-import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import Image1 from "./assets/img/about_us.png";
 import anlyisit from "./assets/img/whiteboard.png";
@@ -27,15 +26,13 @@ import ServicesArb from "./components/(user)/ServicesArb";
 function App() {
   const serversRef = useRef<HTMLDivElement>(null);
   const [scrolls, setScrolls] = useState(false);
-  const [topPos, setTopPos] = useState<number>(0);
-  const [bottomPos, setBottomPos] = useState<number>(0);
+  const [topPosition, setTopPosition] = useState<number>(0);
+  const [bottomPosition, setBottomPosition] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState(window.scrollY);
-  const topPosions = topPos;
-  const bottomPosions = window.innerHeight - bottomPos;
 
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
-  window.addEventListener("scroll", setScrollDiv);
+  // window.addEventListener("scroll", setScrollDiv);
   const [widthScreen, setWidthScreen] = useState({
     winWidth: window.innerWidth,
     winHight: window.innerHeight,
@@ -60,8 +57,8 @@ function App() {
   useEffect(() => {
     if (serversRef.current) {
       const rect = serversRef.current.getBoundingClientRect();
-      setTopPos(rect.top);
-      setBottomPos(rect.bottom);
+      setTopPosition(rect.top);
+      setBottomPosition(rect.bottom);
     }
 
     window.addEventListener("resize", detectSize);
@@ -69,17 +66,16 @@ function App() {
       window.removeEventListener("resize", detectSize);
     };
   }, [widthScreen, serversRef]);
-  const isWithinRange =
-    scrollPosition >= topPos &&
-    scrollPosition <= bottomPos - window.innerHeight;
-
-  function setScrollDiv() {
-    if (window.scrollY >= topPos && window.scrollY <= bottomPos) {
-      setScrolls(true);
-    } else {
-      setScrolls(false);
-    }
-  }
+  // const isWithinRange =
+  //   scrollPosition >= topPos &&
+  //   scrollPosition <= bottomPos - window.innerHeight;
+  // function setScrollDiv() {
+  //   if (window.scrollY >= topPos && window.scrollY <= bottomPos) {
+  //     setScrolls(true);
+  //   } else {
+  //     setScrolls(false);
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -123,7 +119,9 @@ function App() {
         <PublishesCards />
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
           <h1 className="text-3xl text-[#CCA972]">
-            <Link target="_blank" to={"https://www.facebook.com/bwiscompltd/"}>{t("showMore")}</Link>
+            <Link target="_blank" to={"https://www.facebook.com/bwiscompltd/"}>
+              {t("showMore")}
+            </Link>
           </h1>
         </div>
         {widthScreen.winWidth <= 980 ? (
@@ -216,7 +214,10 @@ function App() {
                     <p className="text-black">{t("project_management")}</p>
                   </Link>
                 </div>
-                <Link to={"InProucation"} className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center">
+                <Link
+                  to={"InProucation"}
+                  className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-center"
+                >
                   <div className="translate-y-4">
                     <div className="h-[60px] w-[58px] -translate-y-4">
                       <img src={anlyisit} alt="" className="w-full h-full" />
@@ -225,7 +226,10 @@ function App() {
                     <p className="text-black">{t("studies")}</p>
                   </div>
                 </Link>
-                <Link to={"InProucation"} className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
+                <Link
+                  to={"InProucation"}
+                  className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between"
+                >
                   <div className="translate-y-4">
                     <div
                       className={
@@ -261,7 +265,10 @@ function App() {
               </div>
               <div className="flex justify-center mt-10">
                 <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
-                  <Link to={"InProucation"} className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                  <Link
+                    to={"InProucation"}
+                    className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                  >
                     {t("knowMoreAboutUs")}
                   </Link>
                 </div>
@@ -305,7 +312,10 @@ function App() {
                   </div>
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
-                      <Link to={"InProucation"} className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Link
+                        to={"InProucation"}
+                        className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                      >
                         {t("knowMoreAboutUs")}
                       </Link>
                     </div>
@@ -434,7 +444,10 @@ function App() {
                   </div>
                   <div className="flex justify-start mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
-                      <Link to={"InProucation"} className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Link
+                        to={"InProucation"}
+                        className="inline-flex w-[9rem] h-[3.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                      >
                         {t("knowMoreAboutUs")}
                       </Link>
                     </div>
@@ -515,7 +528,7 @@ function App() {
       </div>
 
       {/*  */}
-      <div className="w-full h-[10vh] p-2 overflow-hidde relative">
+      {/* <div className="w-full h-[10vh] p-2 overflow-hidde relative">
         {dir === "ltr" ? (
           <div className="flex justify-start p-5">
             <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
@@ -527,11 +540,11 @@ function App() {
             <h1 className="text-3xl">{t("homePage3")}</h1>
           </div>
         )}
-      </div>
+      </div> */}
       {/* خدماتنا  */}
-      <div
+      {/* <div
         ref={serversRef}
-        className="w-full h-[250vh] mt-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 px-2 gap-2 relative"
+        className="w-full min-h-[150vh] mt-10 px-2  relative"
       >
         {dir === "ltr" ? (
           <div className=" absolute top-24 left-0">
@@ -554,7 +567,7 @@ function App() {
                       <div className=" text-start w-[100%] h-[50%] p-4">
                         <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
                         <p className="text-xl text-[#525252]">
-                        إدارة وتشغيل المشاريع التجارية في اليمن
+                          إدارة وتشغيل المشاريع التجارية في اليمن
                         </p>
                       </div>
                     </div>
@@ -563,7 +576,8 @@ function App() {
                       <div className=" text-start w-[100%] h-[50%] p-4">
                         <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
                         <p className="text-xl text-[#525252]">
-                        عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع الاستثمارية. 
+                          عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع
+                          الاستثمارية.
                         </p>
                       </div>
                     </div>
@@ -572,7 +586,8 @@ function App() {
                       <div className=" text-start w-[100%] h-[50%] p-4">
                         <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
                         <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمل للشركات والمؤسسات التجارية. 
+                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمل للشركات
+                          والمؤسسات التجارية.
                         </p>
                       </div>
                     </div>
@@ -581,7 +596,9 @@ function App() {
                       <div className=" text-start w-[100%] h-[50%] p-4">
                         <h1 className="text-3xl mb-6">تقديم الاستشارات</h1>
                         <p className="text-xl text-[#525252]">
-                        تقديم الاستشارات الإدارية والمالية والتسويقية والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة للشركات والمؤسسات الخاصة والعامة. 
+                          تقديم الاستشارات الإدارية والمالية والتسويقية
+                          والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة
+                          للشركات والمؤسسات الخاصة والعامة.
                         </p>
                       </div>
                     </div>
@@ -592,92 +609,112 @@ function App() {
                     ${
                       isWithinRange
                         ? "w-full h-full fixed top-[6%] left-[51%] "
-                        : "w-[50%] h-full p-4 absolute bottom-0 left-[50%]"
+                        : "w-[100%] h-full p-4 absolute bottom-0 left-[50%]"
                     }
                   `}
                 >
                   <img
                     src={services2}
                     alt=""
-                    className={`${scrolls ? "absolute bottom-0" : ""}`}
+                    className={`${scrolls ? "absolute bottom-0 w-full" : ""}`}
                   />
                 </div>
               </>
             ) : (
-              <>
-                <div className=" w-full h-full  p-4">
-                  <div className=" w-full h-full grid gap-20">
-                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
-                        <p className="text-xl text-[#525252]">
-                        إدارة وتشغيل المشاريع التجارية في اليمن
-                        </p>
-                      </div>
-                    </div>
+              <div className="w-full h-full flex overflow-x-hidden">
+                <div className=" w-[40%]">
+                  <div className="w-full h-full  p-4">
+                    <div className="">
+                      <div className=" w-full h-full grid gap-20">
+                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                          <div className=" text-start w-[100%] h-[50%] p-4">
+                            <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
+                            <p className="text-xl text-[#525252]">
+                              إدارة وتشغيل المشاريع التجارية في اليمن
+                            </p>
+                          </div>
+                        </div>
 
-                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
-                        <p className="text-xl text-[#525252]">
-                        عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع الاستثمارية. 
+                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                          <div className=" text-start w-[100%] h-[50%] p-4">
+                            <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
+                            <p className="text-xl text-[#525252]">
+                              عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع
+                              الاستثمارية.
+                            </p>
+                          </div>
+                        </div>
 
-                        </p>
-                      </div>
-                    </div>
+                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                          <div className=" text-start w-[100%] h-[50%] p-4">
+                            <h1 className="text-3xl mb-6">
+                              تصميم الاستراتيجيات
+                            </h1>
+                            <p className="text-xl text-[#525252]">
+                              تصميم الاستراتيجيات الفعالة وتطوير خطط العمل
+                              للشركات والمؤسسات التجارية.
+                            </p>
+                          </div>
+                        </div>
 
-                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                        <p className="text-xl text-[#525252]">
-                        تصميم الاستراتيجيات الفعالة وتطوير خطط العمل للشركات والمؤسسات التجارية. 
-                        </p>
+                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                          <div className=" text-start w-[100%] h-[50%] p-4">
+                            <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
+                            <p className="text-xl text-[#525252]">
+                              تقديم الاستشارات الإدارية والمالية والتسويقية
+                              والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة
+                              للشركات والمؤسسات الخاصة والعامة.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
-                        <p className="text-xl text-[#525252]">
-                        تقديم الاستشارات الإدارية والمالية والتسويقية والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة للشركات والمؤسسات الخاصة والعامة. 
-                        </p>
-                      </div>
-                    </div>
-                    {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">البناء والتطوير</h1>
-                        <p className="text-xl text-[#525252]">
-                        بناء وتطوير فرق عمل قوية ومتجانسة والاهتمام بالمورد البشري لخلق الميزة التنافسية للشركات والمؤسسات التجارية.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تقديم الحلول</h1>
-                        <p className="text-xl text-[#525252]">
-                        تقديم الحلول في تكنولوجيا المعلومات وقيادة مشاريع التحول الرقمي للقطاع الخاص والعام. 
-                        </p>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
-                <div
-                  className={`
+                <div className="w-[55%] mx-auto relative">
+                  {isWithinRange ? (
+                    <div className="w-[50%]  h-[40rem] fixed top-80">
+                      <img
+                        src={services2}
+                        alt=""
+                        className="w-full h-full object-cover rounded-md"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full  h-[40rem] absolute bottom-0  overflow-hidden">
+                      <img
+                        src={services2}
+                        alt=""
+                        className="w-full h-full object-cover rounded-md"
+                      />
+                    </div>
+                  )}
+                  <div
+                    className={`
                     ${
                       isWithinRange
-                        ? "w-[70%] m-auto h-full fixed top-[6%] right-[51%] "
-                        : "w-[50%] h-full p-4 absolute bottom-0 right-[50%]"
+                        ? "w-[50%]  h-[40rem] fixed top-10"
+                        : "w-full  h-[40rem] absolute bottom-0  overflow-hidden"
                     }
                   `}
-                >
-                  <img src={services2} alt="" className={`${scrolls ? "absolute bottom-0 " : ""}`}/>
+                  >
+                    <img
+                      src={services2}
+                      alt=""
+                      className={`${
+                        scrolls
+                          ? "w-full h-full object-cover rounded-md"
+                          : "w-full h-full object-cover rounded-md"
+                      }`}
+                    />
+                  </div>
                 </div>
-              </>
+              </div>
             )}
           </>
         )}
-      </div>
-      {/*  */}
+      </div> */}
+
       <div className="w-full h-[80vh] sm:mt-5 relative">
         {dir === "ltr" ? (
           <div className="flex justify-start p-5">
@@ -695,8 +732,7 @@ function App() {
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
             <h1 className="text-3xl text-[#CCA972]">
-              <Link to={'/InProduction'}>  {t("showMore")}
-              </Link>
+              <Link to={"/InProduction"}> {t("showMore")}</Link>
             </h1>
           </div>
         </div>
