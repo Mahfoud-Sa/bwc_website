@@ -523,7 +523,7 @@ function App() {
       {/*  */}
       <div className="w-full h-[10vh] md:p-2  overflow-hidde relative">
         <div className="w-full h-8 mt-16 flex justify-center items-center ">
-          <Link to={"/InProduction"} className="text-3xl text-[#CCA972]">
+          <Link to={"InProucation"} className="text-3xl text-[#CCA972]">
             {t("showMore")}
           </Link>
         </div>
@@ -734,7 +734,7 @@ function App() {
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
             <h1 className="text-3xl text-[#CCA972]">
-              <Link to={"/InProduction"}> {t("showMore")}</Link>
+              <Link to={"InProucation"}> {t("showMore")}</Link>
             </h1>
           </div>
         </div>

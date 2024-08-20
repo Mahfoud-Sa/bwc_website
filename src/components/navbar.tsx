@@ -112,13 +112,25 @@ export default function Navbar() {
                   }`
             }
           >
-            <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+            <li
+              className={
+                dir === "ltr"
+                  ? "md:ml-8 sm:text-end text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+                  : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+              }
+            >
+              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer ">
                 {t("depertment")}
               </a>
             </li>
 
-            <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+            <li
+              className={
+                dir === "ltr"
+                  ? "md:ml-8 sm:text-end text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+                  : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+              }
+            >
               <Link
                 to={"/about-us"}
                 className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
@@ -127,50 +139,89 @@ export default function Navbar() {
               </Link>
             </li>
 
-            <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+            <li
+              className={
+                dir === "ltr"
+                  ? "md:ml-8 sm:text-end text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+                  : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+              }
+            >
               <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
                 {t("publishes")}
               </a>
             </li>
-            <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+            <li
+              className={
+                dir === "ltr"
+                  ? "md:ml-8 sm:text-end text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+                  : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+              }
+            >
               <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
                 {t("reports")}
               </a>
             </li>
-            <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+            <li
+              className={
+                dir === "ltr"
+                  ? "md:ml-8 sm:text-end text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+                  : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
+              }
+            >
               <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
                 {t("archive")}
               </a>
             </li>
-            <li className="lg:hidden md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex">
-                <img
-                  src={job1}
-                  className={dir === "ltr" ? "sm:mr-2" : "sm:ml-2"}
-                  alt=""
-                />
-                {t("jobs")}
-              </a>
-            </li>
-            <li
-              className=" lg:hidden md:ml-8 sm:flex sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md "
-              onClick={onChangeLanguage}
-            >
-              <a className="sm:flex text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
-                <div
-                  className={
-                    dir === "ltr"
-                      ? "cursor-pointer mr-3"
-                      : "cursor-pointer ml-3"
-                  }
+            {dir === "ltr" ? (
+              <>
+                <li className="lg:hidden md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+                  <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex justify-end">
+                    {t("jobs")}
+                    <img src={job1} className="sm:mr-2" alt="" />
+                  </a>
+                </li>
+                <li
+                  className=" lg:hidden md:ml-8 sm:flex sm:justify-end sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md "
+                  onClick={onChangeLanguage}
                 >
-                  <LanguageWorld color="black" />
-                </div>
-                <div className="cursor-pointer">
-                  {dir === "ltr" ? "EN" : "عربي"}
-                </div>
-              </a>
-            </li>
+                  <a className="sm:flex text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+                    <div className="cursor-pointer">
+                      {dir === "ltr" ? "EN" : "عربي"}
+                    </div>
+                    <div
+                      className={
+                        dir === "ltr"
+                          ? "cursor-pointer mr-3"
+                          : "cursor-pointer ml-3"
+                      }
+                    >
+                      <LanguageWorld color="black" />
+                    </div>
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="lg:hidden md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
+                  <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex">
+                    <img src={job1} className={"sm:ml-2"} alt="" />
+                    {t("jobs")}
+                  </a>
+                </li>
+
+                <li
+                  className=" lg:hidden md:ml-8 sm:flex sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md "
+                  onClick={onChangeLanguage}
+                >
+                  <a className="sm:flex text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+                    <div className="cursor-pointer ml-3">
+                      <LanguageWorld color="black" />
+                    </div>
+                    <div className="cursor-pointer">عربي</div>
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         ) : (
           <ul
