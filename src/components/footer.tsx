@@ -116,12 +116,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/InProucation">
+                <Link
+                  target="_blank"
+                  to="https://www.facebook.com/bwiscompltd/"
+                >
                   <FaFacebookF size={24} />
                 </Link>
               </li>
               <li>
-                <Link to="/InProucation">
+                <Link
+                  target="_blank"
+                  to="https://x.com/bwiscompltd?t=kvtAioCB94muIDpQOzXcpA&s=09"
+                >
                   <FaXTwitter size={24} />
                 </Link>
               </li>
@@ -131,7 +137,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/InProucation">
+                <Link
+                  target="_blank"
+                  to="https://www.instagram.com/bwiscompltd?igsh=cjc1dTRqczkxMGV5"
+                >
                   <FaInstagram size={24} />
                 </Link>
               </li>
@@ -182,12 +191,18 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/InProucation">
+                  <Link
+                    target="_blank"
+                    to="https://www.facebook.com/bwiscompltd/"
+                  >
                     <FaFacebookF size={23} />
                   </Link>
                 </li>
                 <li>
-                  <Link to="/InProucation">
+                  <Link
+                    target="_blank"
+                    to="https://x.com/bwiscompltd?t=kvtAioCB94muIDpQOzXcpA&s=09"
+                  >
                     <FaXTwitter size={23} />
                   </Link>
                 </li>
@@ -197,7 +212,10 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/InProucation">
+                  <Link
+                    target="_blank"
+                    to="https://www.instagram.com/bwiscompltd?igsh=cjc1dTRqczkxMGV5"
+                  >
                     <FaInstagram size={23} />
                   </Link>
                 </li>

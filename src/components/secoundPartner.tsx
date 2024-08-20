@@ -11,27 +11,22 @@ import image4 from "../assets/img/ourpartines/ozonoor_brand.png";
 import { useTranslation } from "react-i18next";
 interface publishesDataCard {
   img: string;
- 
 }
 
 const Cards: publishesDataCard[] = [
   {
-    img:  image1,
-   
+    img: image1,
   },
   {
     img: image2,
-   
   },
   {
     img: image3,
-   
   },
   {
     img: image4,
-   
   },
-]
+];
 export default function SecondOurPartners() {
   const slides = [
     { number: 1 },
@@ -91,7 +86,7 @@ export default function SecondOurPartners() {
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
-              <Link to={"InProucation"}
+              <a
                 // key={index}
                 className="flex-shrink-0"
                 style={{ width: `${100 / slides.length}%` }}
@@ -107,12 +102,12 @@ export default function SecondOurPartners() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </motion.div>
         </div>
       ) : (
-        <div  className="relative w-full overflow-hidden">
+        <div className="relative w-full overflow-hidden">
           {/* Wrapping div for seamless looping */}
           <motion.div
             className="flex"
@@ -139,7 +134,7 @@ export default function SecondOurPartners() {
           >
             {/* Render duplicated slides */}
             {duplicatedSlides.map((slide, index) => (
-              <Link to={"InProucation"}
+              <a
                 key={index}
                 className="flex-shrink-0"
                 style={{ width: `${100 / slides.length}%` }}
@@ -155,7 +150,7 @@ export default function SecondOurPartners() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </motion.div>
         </div>
