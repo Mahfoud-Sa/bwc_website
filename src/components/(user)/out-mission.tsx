@@ -13,12 +13,12 @@ export default function OutMission() {
   return (
     <>
       <div>
-        <div className="px-5">
+        <div className="px-5" dir={dir === "ltr" ? "ltr" : "rtl"}>
           <h1 className="text-5xl">{t("our_mission1")}</h1>
-          <p className="mt-8 text-xl text-[#5B5B5B]">{t("our_missionDesc")}</p>
+          <p className="mt-8 text-xl text-[#5B5B5B] ">{t("our_missionDesc")}</p>
         </div>
         {/*  */}
-        <div className="px-5 mt-20">
+        <div className={dir === "ltr" ? "px-5 text-left mt-20" : "px-5 mt-20"}>
           <h1 className="text-5xl">{t("our_goals1")}</h1>
           <p className="mt-8 text-xl text-[#5B5B5B] leading-10">
             {t("our_goalsDesc")}
@@ -26,95 +26,93 @@ export default function OutMission() {
         </div>
         {/*  */}
         <div className="px-5 mt-20">
-          <h1 className="text-5xl">{t("our_message1")}</h1>
+          <h1
+            className={
+              dir === "ltr" ? "text-5xl text-end" : "text-5xl text-start"
+            }
+          >
+            {t("our_message1")}
+          </h1>
           <div className="mt-10">
-            <div className="flex items-start  ">
-              <div
-                className={
-                  dir === "ltr"
-                    ? "lg:w-[3%] md:w-[5%] lg:mr-0 sm:mr-2 md:mr-3 sm:w-[6%] "
-                    : "lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:ml-3 sm:w-[6%] "
-                }
-              >
-                <div
-                  className={
-                    dir === "ltr"
-                      ? "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                      : "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                  }
-                ></div>
-              </div>
-              <div className="w-[95%] text-justify">
-                <p className="text-[#5B5B5B]">{t("our_messageDesc1")}</p>
-              </div>
-            </div>
-            {/*  */}
-            <div className="flex items-start mt-10 text-justify">
-              <div
-                className={
-                  dir === "ltr"
-                    ? "lg:w-[3%] md:w-[5%] lg:mr-0 sm:mr-2 md:mr-3 sm:w-[6%] "
-                    : "lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:ml-3 sm:w-[6%] "
-                }
-              >
-                <div
-                  className={
-                    dir === "ltr"
-                      ? "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                      : "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                  }
-                ></div>
-              </div>
-              <div className="w-[95%] text-justify">
-                <p className="text-[#5B5B5B]">{t("our_messageDesc2")}</p>
-              </div>
-            </div>
-            {/*  */}
-            <div className="flex items-start mt-10">
-              <div
-                className={
-                  dir === "ltr"
-                    ? "lg:w-[3%] md:w-[5%] lg:mr-0 sm:mr-2 md:mr-3 sm:w-[6%] "
-                    : "lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:ml-3 sm:w-[6%] "
-                }
-              >
-                <div
-                  className={
-                    dir === "ltr"
-                      ? "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                      : "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                  }
-                ></div>
-              </div>
-              <div className="w-[95%] text-justify">
-                <p className="text-[#5B5B5B]">{t("our_messageDesc3")}</p>
-              </div>
-            </div>
-            {/*  */}
-            <div className="flex items-start mt-10">
-              <div
-                className={
-                  dir === "ltr"
-                    ? "lg:w-[3%] md:w-[5%] lg:mr-0 sm:mr-2 md:mr-3 sm:w-[6%] "
-                    : "lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:ml-3 sm:w-[6%] "
-                }
-              >
-                <div
-                  className={
-                    dir === "ltr"
-                      ? "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                      : "w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"
-                  }
-                ></div>
-              </div>
-              <div className="w-[95%]">
-                <p className="text-[#5B5B5B]">{t("our_messageDesc4")}</p>
-              </div>
-            </div>
+            {dir === "ltr" ? (
+              <>
+                <div className="flex items-start mt-10 ">
+                  <div className="w-[95%] text-start" dir="ltr">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc1")}</p>
+                  </div>
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-3 sm:mr-2 md:ml-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                </div>
+                {/*  */}
+                <div className="flex items-start mt-10 ">
+                  <div className="w-[95%] text-start" dir="ltr">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc2")}</p>
+                  </div>
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-3 sm:mr-2 md:ml-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                </div>
+                {/*  */}
+                <div className="flex items-start mt-10 ">
+                  <div className="w-[95%] text-start" dir="ltr">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc3")}</p>
+                  </div>
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-3 sm:mr-2 md:ml-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                </div>
+                <div className="flex items-start mt-10 ">
+                  <div className="w-[95%] text-start" dir="ltr">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc4")}</p>
+                  </div>
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-3 sm:mr-2 md:ml-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-start  ">
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:mr-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                  <div className="w-[95%] text-justify">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc1")}</p>
+                  </div>
+                </div>
+                {/*  */}
+                <div className="flex items-start mt-10 text-justify">
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:mr-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                  <div className="w-[95%] text-justify">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc2")}</p>
+                  </div>
+                </div>
+                {/*  */}
+                <div className="flex items-start mt-10">
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:mr-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                  <div className="w-[95%] text-justify">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc3")}</p>
+                  </div>
+                </div>
+                {/*  */}
+                <div className="flex items-start mt-10">
+                  <div className="lg:w-[3%] md:w-[5%] lg:mr-0 sm:ml-2 md:mr-3 sm:w-[6%] ">
+                    <div className="w-7 h-7 border-2 border-[#333333] bg-gradient-to-r from-[#997740] to-[#CCA972]"></div>
+                  </div>
+                  <div className="w-[95%]">
+                    <p className="text-[#5B5B5B]">{t("our_messageDesc4")}</p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
     </>
-    
   );
 }

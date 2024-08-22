@@ -28,9 +28,9 @@ const Cards: publishesDataCard[] = [
       name: "حمود احمد سيف العطاس",
       major: "بكلاريوس علوم الكمبيوتر",
       role: "مهندس برمجيات",
-      nameEng:"Hamood Abudrqeb Ahmed Saif",
-      majorEng:"Computer Information System",
-      roleEng:"Front-End"
+      nameEng: "Hamood Abudrqeb Ahmed Saif",
+      majorEng: "Computer Information System",
+      roleEng: "Front-End",
     },
   },
 
@@ -40,9 +40,9 @@ const Cards: publishesDataCard[] = [
       name: "حمود احمد سيف العطاس",
       major: "بكلاريوس علوم الكمبيوتر",
       role: "مهندس برمجيات",
-      nameEng:"Hamood Abudrqeb Ahmed Saif",
-      majorEng:"Computer Information System",
-      roleEng:"Front-End"
+      nameEng: "Hamood Abudrqeb Ahmed Saif",
+      majorEng: "Computer Information System",
+      roleEng: "Front-End",
     },
   },
 
@@ -52,9 +52,9 @@ const Cards: publishesDataCard[] = [
       name: "حمود احمد سيف العطاس",
       major: "بكلاريوس علوم الكمبيوتر",
       role: "مهندس برمجيات",
-      nameEng:"Hamood Abudrqeb Ahmed Saif",
-      majorEng:"Computer Information System",
-      roleEng:"Front-End"
+      nameEng: "Hamood Abudrqeb Ahmed Saif",
+      majorEng: "Computer Information System",
+      roleEng: "Front-End",
     },
   },
 
@@ -64,9 +64,9 @@ const Cards: publishesDataCard[] = [
       name: "حمود احمد سيف العطاس",
       major: "بكلاريوس علوم الكمبيوتر",
       role: "مهندس برمجيات",
-      nameEng:"Hamood Abudrqeb Ahmed Saif",
-      majorEng:"Computer Information System",
-      roleEng:"Front-End"
+      nameEng: "Hamood Abudrqeb Ahmed Saif",
+      majorEng: "Computer Information System",
+      roleEng: "Front-End",
     },
   },
 ];
@@ -95,6 +95,8 @@ export default function TaskForce() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          infinite: true,
+          dots: true,
         },
       },
       {
@@ -102,6 +104,8 @@ export default function TaskForce() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          infinite: true,
+          dots: true,
         },
       },
       {
@@ -110,21 +114,23 @@ export default function TaskForce() {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 2,
+          infinite: true,
+          dots: true,
         },
       },
     ],
   };
   return (
-    <div className="slider-container">
+    <div className="slider-container ">
       <Slider {...settings}>
         {Cards.map((item, idx) => (
           <Link
             to={"/InProucation"}
-            className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35]  relative"
+            className="max-w-sm rounded h-[500px] ml-[5rem] overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35]  relative"
             key={idx}
           >
             <img
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full "
               src={item.img}
               alt="Sunset in the mountains"
             />

@@ -36,46 +36,66 @@ export default function AboutUs() {
       <div className="w-full lg:h-[80vh] md:h-[150vh] sm:h-[150vh] md:mt-11 sm:mt-8">
         <AboutUsHeader />
       </div>
-      <div className="lg:w-[98%] lg:min-h-[80vh] md:min-h-[80vh] md:pb-4 m-auto mb-16  lg:mt-16 sm:mt-40">
+      <div className="lg:w-[98%] lg:min-h-[80vh] md:min-h-[80vh] md:pb-4 m-auto mb-16  lg:mt-16 sm:mt-40 ">
         <OutMission />
       </div>
 
       <OurPortfolio />
 
       <VideoCourse
-        items={["https://www.youtube.com/watch?v=kdeL2LwWDC4", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE", "https://www.youtube.com/watch?v=AuLg79Th3xE"]}
+        items={[
+          "https://www.youtube.com/watch?v=kdeL2LwWDC4",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+          "https://www.youtube.com/watch?v=AuLg79Th3xE",
+        ]}
         itemsToShow={3}
       />
 
       {widthScreen.winWidth <= 980 ? (
-        <div className="w-full h-36 flex justify-start items-center ">
-          <div className="flex p-5">
-            <div
-              className={
-                dir === "ltr"
-                  ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "
-                  : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "
-              }
-            ></div>
-            <h1 className="text-3xl">{t("team-force")}</h1>
-          </div>
-        </div>
+        <>
+          {dir === "ltr" ? (
+            <div className="w-full h-36 flex justify-end items-center ">
+              <div className="flex p-5">
+                <h1 className="text-3xl">{t("team-force")}</h1>
+                <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+              </div>
+            </div>
+          ) : (
+            <div className="w-full h-36 flex justify-start items-center ">
+              <div className="flex p-5">
+                <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                <h1 className="text-3xl">{t("team-force")}</h1>
+              </div>
+            </div>
+          )}
+        </>
       ) : (
-        <div className="w-full h-36 flex justify-start items-center ">
-          <div className="flex p-5">
-            <div
-              className={
-                dir === "ltr"
-                  ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "
-                  : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "
-              }
-            ></div>
-            <h1 className="text-3xl">{t("team-force")}</h1>
-          </div>
-        </div>
+        <>
+          {dir === "ltr" ? (
+            <div className="w-full h-36 flex justify-end items-center ">
+              <div className="flex p-5">
+                <h1 className="text-3xl">{t("team-force")}</h1>
+                <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+              </div>
+            </div>
+          ) : (
+            <div className="w-full h-36 flex justify-start items-center ">
+              <div className="flex p-5">
+                <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                <h1 className="text-3xl">{t("team-force")}</h1>
+              </div>
+            </div>
+          )}
+        </>
       )}
 
-      <div className="w-full h-[80vh] p-2 overflow-hidden relative">
+      <div className="w-full lg:h-[80vh] sm:h-[100vh] p-2 overflow-hidden relative ">
         <TaskForce />
       </div>
       <footer className="min-h-[65vh] p-2 overflow-hidden relative bg-black mt-10">
