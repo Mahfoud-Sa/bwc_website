@@ -35,11 +35,12 @@ const Cards: publishesDataCard[] = [
   },
 ];
 export default function LastProject() {
+  const counter = Cards.length;
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: counter,
     slidesToScroll: 3,
     rtl: true,
     responsive: [

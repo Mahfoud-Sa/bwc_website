@@ -88,31 +88,49 @@ function App() {
       {/*  */}
       {/*  */}
       {widthScreen.winWidth <= 980 ? (
-        <div className="w-full h-36 flex justify-start items-center ">
-          <div className="flex p-5">
-            <div
-              className={
-                dir === "ltr"
-                  ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "
-                  : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "
-              }
-            ></div>
-            <h1 className="text-3xl">{t("homePage1")}</h1>
-          </div>
-        </div>
+        <>
+          {dir === "ltr" ? (
+            <>
+              <div className="w-full h-36 flex justify-start items-center ">
+                <div className="flex p-5 w-full justify-end ">
+                  <h1 className="text-3xl">{t("homePage1")}</h1>
+                  <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="w-full h-36 flex justify-start items-center ">
+                <div className="flex p-5 ">
+                  <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                  <h1 className="text-3xl">{t("homePage1")}</h1>
+                </div>
+              </div>
+            </>
+          )}
+        </>
       ) : (
-        <div className="w-full h-36 flex justify-start items-center ">
-          <div className="flex p-5">
-            <div
-              className={
-                dir === "ltr"
-                  ? "w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "
-                  : "w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "
-              }
-            ></div>
-            <h1 className="text-3xl">{t("homePage1")}</h1>
-          </div>
-        </div>
+        <>
+          {dir === "ltr" ? (
+            <>
+              <div className="w-full h-36 flex justify-start items-center ">
+                <div className="flex p-5 w-full justify-end ">
+                  <h1 className="text-3xl">{t("homePage1")}</h1>
+                  <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="w-full h-36 flex justify-start items-center ">
+                <div className="flex p-5 ">
+                  <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                  <h1 className="text-3xl">{t("homePage1")}</h1>
+                </div>
+              </div>
+            </>
+          )}
+        </>
       )}
       {/*  */}
       <div className="w-full h-screen p-2 overflow-hidden relative">
@@ -142,14 +160,14 @@ function App() {
           </>
         )}
       </div>
-      {/*  */}
+      {/* about us */}
       <div className=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 px-4 relative">
         {widthScreen.winWidth <= 980 ? (
           <>
             {dir === "ltr" ? (
-              <div className="flex items-start justify-start py-10">
-                <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+              <div className="flex items-start justify-end py-10">
                 <h1 className="text-3xl font-extrabold">{t("homePage2")}</h1>
+                <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
               </div>
             ) : (
               <div className="flex items-start justify-start py-10">
@@ -180,14 +198,14 @@ function App() {
                   الخبراء والاستشاريين المتعاقدين.
                 </p>
               </div>
-              <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md p-7 bg-white/30 border border-black mt-8 ">
-                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between">
+              <div className="w-[100%] h-[50vh] rounded-[2rem] backdrop-blur-md p-10 bg-white/30 border border-black mt-8">
+                <div className="flex items-center h-[30%] m-auto mt-2 rounded-[2rem] justify-between ">
                   {" "}
                   <Link to={"InProucation"} className="translate-y-4">
                     <div
                       className={
                         dir === "ltr"
-                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-8"
+                          ? "h-[60px] w-[58px] -translate-y-4 -translate-x-8"
                           : "h-[60px] w-[58px] -translate-y-4 -translate-x-2"
                       }
                     >
@@ -200,7 +218,7 @@ function App() {
                     <div
                       className={
                         dir === "ltr"
-                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                          ? "h-[60px] w-[58px] -translate-y-4 -translate-x-10"
                           : "h-[60px] w-[58px] -translate-y-4 -translate-x-4"
                       }
                     >
@@ -234,7 +252,7 @@ function App() {
                     <div
                       className={
                         dir === "ltr"
-                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                          ? "h-[60px] w-[58px] -translate-y-4 -translate-x-10"
                           : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"
                       }
                     >
@@ -252,7 +270,7 @@ function App() {
                     <div
                       className={
                         dir === "ltr"
-                          ? "h-[60px] w-[58px] -translate-y-4 translate-x-12"
+                          ? "h-[60px] w-[58px] -translate-y-4 -translate-x-12"
                           : "h-[60px] w-[58px] -translate-y-4 -translate-x-6"
                       }
                     >
@@ -283,26 +301,19 @@ function App() {
                   <FullCircle />
                 </div>
                 <div className=" px-4">
-                  <img
-                    src={Image1}
-                    className=" object-cover rounded-lg relative z-[1] w-[90%] h-[90%]"
-                    alt=""
-                  />
-                </div>
-                <div className=" px-4">
-                  <div className="flex items-start justify-start py-16">
-                    <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+                  <div className="flex items-start justify-end py-16 ">
                     <h1 className="text-3xl font-extrabold">
                       {t("homePage2")}
                     </h1>
+                    <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                   </div>
                   <div>
-                    <p className="text-start  text-[#5B5B5B] leading-7">
+                    <p className="text-end  text-[#5B5B5B] leading-7">
                       شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة.أسسها
                       الدكتور ربيع بن علي العوبثاني في مدينة المكلا و حضرموت في
                       مارس 2021م تحمل سجل تجاري رقم(21/2831).
                     </p>
-                    <p className="text-start  mt-6 text-[#5B5B5B] leading-8">
+                    <p className="text-end  mt-6 text-[#5B5B5B] leading-8">
                       تعمل على إدارة وتشغيل المشاريع الاستثمارية وتقديم الدراسات
                       الاقتصادية والاستشارات الادارية والمالية والتسويقية وحلول
                       تكنولوجيا المعلومات وتقدم خدماتها من خلال مجموعة من
@@ -310,7 +321,7 @@ function App() {
                       ومجموعة اخرى من الخبراء والاستشاريين المتعاقدين.
                     </p>
                   </div>
-                  <div className="flex justify-start mt-10">
+                  <div className="flex justify-end mt-10">
                     <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[9rem] h-[3.8rem] flex justify-center items-center">
                       <Link
                         to={"InProucation"}
@@ -321,14 +332,21 @@ function App() {
                     </div>
                   </div>
                 </div>
+                <div className=" px-4">
+                  <img
+                    src={Image1}
+                    className=" object-cover rounded-lg relative z-[1] w-[90%] h-[90%]"
+                    alt=""
+                  />
+                </div>
 
                 <div className="w-full grid grid-cols-12 px-2 ">
                   <div className=" flex justify-around items-center flex-row-reverse backdrop-blur-md bg-white/30 border border-black w-[90%]  h-36 text-white absolute p-4 text-center transform -translate-x-1/2 rounded-[2rem] bottom-[-10px] z-10 left-1/2">
-                    <Link to={"InProucation"} className="translate-y-3">
+                    <Link to={"InProucation"} className="translate-y-3 ">
                       <div
                         className={
                           dir === "ltr"
-                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                            ? "h-[60px] w-[58px] -translate-y-4 -translate-x-10"
                             : "h-[60px] w-[58px] -translate-y-4 translate-x-4"
                         }
                       >
@@ -360,7 +378,7 @@ function App() {
                       <div
                         className={
                           dir === "ltr"
-                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-7"
+                            ? "h-[60px] w-[58px] -translate-y-4 -translate-x-7"
                             : "h-[60px] w-[58px] -translate-y-4 translate-x-1"
                         }
                       >
@@ -378,7 +396,7 @@ function App() {
                       <div
                         className={
                           dir === "ltr"
-                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-10"
+                            ? "h-[60px] w-[58px] -translate-y-4 -translate-x-10"
                             : "h-[60px] w-[58px] -translate-y-4 translate-x-3"
                         }
                       >
@@ -396,7 +414,7 @@ function App() {
                       <div
                         className={
                           dir === "ltr"
-                            ? "h-[60px] w-[58px] -translate-y-4 translate-x-12"
+                            ? "h-[60px] w-[58px] -translate-y-4 -translate-x-12"
                             : "h-[60px] w-[58px] -translate-y-4 translate-x-5"
                         }
                       >
@@ -716,12 +734,12 @@ function App() {
           </>
         )}
       </div> */}
-
-      <div className="w-full h-[80vh] sm:mt-5 relative">
+      {/* lastest Projects */}
+      <div className="w-full lg:h-[80vh] sm:h-[100vh] sm:mt-5 relative">
         {dir === "ltr" ? (
-          <div className="flex justify-start p-5">
-            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+          <div className="flex justify-end p-5">
             <h1 className="text-3xl">{t("homePage4")}</h1>
+            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
           </div>
         ) : (
           <div className="flex justify-start p-5">
@@ -730,7 +748,7 @@ function App() {
           </div>
         )}
 
-        <div className="w-full h-screen p-2  overflow-hidden relative">
+        <div className="w-full h-screen p-2  sm:h-[100vh]  overflow-hidden relative">
           <LastProject />
           <div className="w-full h-8 mt-16 flex justify-center items-center ">
             <h1 className="text-3xl text-[#CCA972]">
@@ -740,11 +758,11 @@ function App() {
         </div>
       </div>
       {/*  */}
-      <div className="w-full h-[60vh] relative">
+      <div className="w-full lg:h-[55vh] sm:h-[80vh] relative mt-5">
         {dir === "ltr" ? (
-          <div className="flex justify-start p-5 sm:mt-20">
-            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+          <div className="flex justify-end p-5 sm:mt-20">
             <h1 className="text-3xl">{t("homePage5")}</h1>
+            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
           </div>
         ) : (
           <div className="flex justify-start p-5 sm:mt-20">
@@ -770,7 +788,6 @@ function App() {
           <SecondOurPartners />
         </div>
       </div>
-
       {/*  */}
 
       <div className="w-full h-[50vh] relative mt-5">
@@ -785,9 +802,9 @@ function App() {
       {/*  */}
       <div className="w-full lg:h-[110vh] sm:h[300vh] relative">
         {dir === "ltr" ? (
-          <div className="flex justify-start p-5">
-            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+          <div className="flex justify-end p-5">
             <h1 className="text-3xl">{t("homePage8")}</h1>
+            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
           </div>
         ) : (
           <div className="flex justify-start p-5">
