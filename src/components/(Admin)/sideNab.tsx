@@ -13,6 +13,7 @@ import Orgnaztion from "../../assets/icons/orgnaztion";
 import Massage from "../../assets/icons/massage";
 import OurFiles from "../../assets/icons/files";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 export default function SideNab() {
   const [publishes, setPublishes] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
@@ -24,32 +25,35 @@ export default function SideNab() {
           <ul
             className={`w-full mb-5 px-3 duration-500 ease-in-out ${"min-h-[30%]"} `}
           >
-            <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
-            <p className="text-[12px] text-start text-[#9E9E9E]">Publications</p>
-            <li className="mt-1 p-2 rounded-md flex justify-start items-center">
-              <i className="mr-2">
-                <Refernce />
-              </i>
-              References
-            </li>
-            <li className="mt-1 py-2 px-1 rounded-md flex justify-start items-center">
+            <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
+            <p className="text-[12px] text-end text-[#9E9E9E]">Publications</p>
+            <NavLink to="/admin-dashboard/publications">
+              <li className="mt-1 p-2 rounded-md flex justify-end items-center">
+                References
+                <i className="mr-2">
+                  <Refernce />
+                </i>
+              </li>
+            </NavLink>
+
+            <li className="mt-1 py-2 px-1 rounded-md flex justify-end items-center">
+              Reports
               <i className="mr-2">
                 <Reports />
               </i>
-              Reports
             </li>
             <h1
               className="hover:bg-[rgb(213,174,120)]/[.20] rounded-md p-2  hover:text-[#D5AE78] cursor-pointer flex justify-between items-center"
               onClick={() => setPublishes((open) => !open)}
             >
+              <div>
+                {publishes === false ? <IoIosArrowUp /> : <IoIosArrowDown />}
+              </div>
               <div className="flex">
+                Publications
                 <i className="mr-2">
                   <PublichesIcon />
                 </i>
-                Publications
-              </div>
-              <div>
-                {publishes === false ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </div>
             </h1>
             {publishes && (
@@ -58,77 +62,79 @@ export default function SideNab() {
                   publishes ? "max-height-[200px]" : "max-height-0"
                 }`}
               >
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
+                <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
+                  Publications
                   <i className="mr-2">
                     <img src={NewsIcon} alt="" />
                   </i>
-                  Publications
                 </li>
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
+                <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
+                  News
                   <i className="mr-2">
                     <img src={NewsIcon2} alt="" />
                   </i>
-                  News
                 </li>
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
+                <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
+                  Analysis
                   <i className="mr-2">
                     <StudiesIcon />
                   </i>
-                  Analysis
                 </li>
               </ul>
             )}
           </ul>
 
           <ul className="w-full min-h-[25%]  mb-5 px-3">
-            <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
-            <p className="text-[12px] text-start text-[#9E9E9E]">Organizations and Employees</p>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
+            <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
+            <p className="text-[12px] text-end text-[#9E9E9E]">
+              Organizations and Employees
+            </p>
+            <li className="px-3 mt-1 p-2 flex justify-end items-center">
+              Task Force
               <i className="mr-2">
                 <img src={Teams} alt="" />
               </i>
-              Task Force
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
+            <li className="px-3 mt-1 p-2 flex justify-end items-center">
+              Institutions We Manage
               <i className="mr-2">
                 <Orgnaztion />
               </i>
-              Institutions We Manage
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="mr-2">
-                <Massage />
-              </i>
+            <li className="px-3 mt-1 p-2 flex justify-end items-center">
               Our Partners
-            </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
               <i className="mr-2">
                 <Massage />
               </i>
+            </li>
+            <li className="px-3 mt-1 p-2 flex justify-end items-center">
               Writers
+              <i className="mr-2">
+                <Massage />
+              </i>
             </li>
           </ul>
 
           <ul className="w-full min-h-[30%] px-3">
-            <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
-            <p className="text-[12px] text-start text-[#9E9E9E]">Features</p>
-            <li className="px-3 mt-1 p-2 rounded-md flex justify-start items-center">
+            <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
+            <p className="text-[12px] text-end text-[#9E9E9E]">Features</p>
+            <li className="px-3 mt-1 p-2 rounded-md flex justify-end items-center">
+              Job
               <i className="mr-2">
                 <img src={Busniess} alt="" />
               </i>
-              Job
             </li>
-            <li className="px-3 mt-1 p-2 rounded-md flex justify-start items-center">
+            <li className="px-3 mt-1 p-2 rounded-md flex justify-end items-center">
+              Our Services
               <i className="mr-2">
                 <img src={Service} alt="" />
               </i>
-              Our Services
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
+            <li className="px-3 mt-1 p-2 flex justify-end items-center">
+              Portfolio
               <i className="mr-2">
                 <OurFiles />
               </i>
-              Portfolio
             </li>
           </ul>
         </>
@@ -195,7 +201,9 @@ export default function SideNab() {
 
           <ul className="w-full min-h-[25%]  mb-5 px-3">
             <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
-            <p className="text-[12px] text-start text-[#9E9E9E]">المؤسسات و الموزفين</p>
+            <p className="text-[12px] text-start text-[#9E9E9E]">
+              المؤسسات و الموزفين
+            </p>
             <li className="px-3 mt-1 p-2 flex justify-start items-center">
               <i className="ml-2">
                 <img src={Teams} alt="" />

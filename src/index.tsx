@@ -15,6 +15,7 @@ import NoAccess from "./page/(Admin)/noaccess";
 import InProucation from "./page/(User)/in-proucation";
 import AboutUs from "./page/(User)/aboutUs";
 import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
+import Publications from "./page/(Admin)/publications";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,12 @@ const router = createBrowserRouter([
   {
     path: "/admin-dashboard",
     element: <DashboardPage />,
+    children: [
+      {
+        path: "/admin-dashboard/publications",
+        element: <Publications />,
+      },
+    ],
   },
   {
     path: "/NoAccess",
