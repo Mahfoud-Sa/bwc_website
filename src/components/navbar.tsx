@@ -237,7 +237,7 @@ export default function Navbar() {
 
             <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
               <Link
-                to={"/about-us"}
+                // to={"/about-us"}
                 className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
               >
                 {t("About_us")}
