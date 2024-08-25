@@ -27,7 +27,7 @@ export default function SideNab() {
           >
             <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-end text-[#9E9E9E]">Publications</p>
-            <NavLink to="/admin-dashboard/publications">
+            <NavLink to="/admin-dashboard/references">
               <li className="mt-1 p-2 rounded-md flex justify-end items-center">
                 References
                 <i className="mr-2">
@@ -145,12 +145,14 @@ export default function SideNab() {
           >
             <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-right text-[#9E9E9E]">المنشورات</p>
-            <li className="mt-1 p-2 rounded-md flex justify-start items-center">
-              <i className="ml-2">
-                <Refernce />
-              </i>
-              المراجع
-            </li>
+            <NavLink to="/admin-dashboard/references">
+              <li className="mt-1 p-2 rounded-md flex justify-start items-center">
+                <i className="ml-2">
+                  <Refernce />
+                </i>
+                المراجع
+              </li>
+            </NavLink>
             <li className="mt-1 py-2 px-1 rounded-md flex justify-start items-center">
               <i className="ml-2">
                 <Reports />
