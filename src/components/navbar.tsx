@@ -132,7 +132,7 @@ export default function Navbar() {
               }
             >
               <Link
-                to={"/about-us"}
+                // to={"/about-us"}
                 className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
               >
                 {t("About_us")}
