@@ -67,12 +67,12 @@ export default function DashboardPage() {
           <Toaster />
 
           {/* Navbar */}
-          <div className="col-span-12 fixed top-0 w-full z-10 flex h-[10%]">
+          <div className="col-span-12 fixed top-0 w-full z-10 flex h-[10%] shadow-md">
             <NavBar />
           </div>
 
           {/* Sidebar */}
-          <aside className=" right-0 col-span-2 fixed top-[10vh] min-w-[16%]  bottom-0 h-[calc(100vh-10vh)] z-10">
+          <aside className=" right-0 col-span-2 fixed top-[10.5vh] min-w-[16.4%]  bottom-0 h-[calc(100vh-10vh)] z-10 shadow-md ">
             <SideNab />
           </aside>
 
