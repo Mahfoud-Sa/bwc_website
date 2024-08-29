@@ -15,7 +15,8 @@ import NoAccess from "./page/(Admin)/noaccess";
 import InProucation from "./page/(User)/in-proucation";
 import AboutUs from "./page/(User)/aboutUs";
 import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
-import References from "./page/(Admin)/References";
+import References from "./page/(Admin)/ReferncesPage/References";
+import AddRefernces from "./page/(Admin)/ReferncesPage/add-refernces";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/references",
         element: <References />,
+      },
+      {
+        path: "/admin-dashboard/references/add",
+        element: <AddRefernces />,
       },
     ],
   },

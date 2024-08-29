@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
+import { SquarePen, Trash2 } from "lucide-react";
 import { Checkbox } from "../../ui/checkbox";
 
 import { type z } from "zod";
@@ -68,53 +69,17 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
       //   const { data: session } = useSession();
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>الإعدادات</DropdownMenuLabel>
-
-            <DropdownMenuSeparator />
-
-            {/* // <DropdownMenuItem>تعديل</DropdownMenuItem> */}
-            <Sheet>
-              <SheetTrigger className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-[#450A0A] hover:text-white focus:bg-[#450A0A] focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-                تعديل
-              </SheetTrigger>
-              <SheetContent side="bottom">
-                <SheetHeader>
-                  <SheetTitle> تعديل طلب إضافة موظف</SheetTitle>
-                  {/* <AddEmployeeForm
-                          data={row.original.data}
-                          id={row.original.id}
-                        /> */}
-                </SheetHeader>
-              </SheetContent>
-            </Sheet>
-
-            <Sheet>
-              <SheetTrigger className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-[#450A0A] hover:text-white focus:bg-[#450A0A] focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
-                عرض
-              </SheetTrigger>
-              <SheetContent side="bottom">
-                <SheetHeader>
-                  <SheetTitle> طلب إضافة موظف</SheetTitle>
-                  {/* <OrderView
-                      data={row.original.data}
-                      id={row.original.id}
-                      isFinal={row.original.status == OrderStatus.firstApproved}
-                      username={row.original.CreatedBy?.fullName ?? ""}
-                      orderDate={row.original.date}
-                    /> */}
-                </SheetHeader>
-              </SheetContent>
-            </Sheet>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex justify-center ">
+          <Button
+            className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+            size={"sm"}
+          >
+            <SquarePen className="" />
+          </Button>
+          <Button size={"sm"}>
+            <Trash2 />
+          </Button>
+        </div>
       );
     },
   },
