@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Button } from "src/ui/button";
+import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import {
   useReactTable,
@@ -22,7 +23,22 @@ import {
   AddReferenceColumns,
   type AddReferenceOrder,
 } from "../../components/column/add-refernce-column";
+
 import { OrderDataTable } from "src/ui/order-data-table";
+
+export interface refernceProp {
+  title: string;
+  link: string;
+}
+
+const reference: refernceProp[] = [
+  { title: "sss1", link: "asdasdasd1" },
+  { title: "sss2", link: "asdasdasd2" },
+  { title: "sss3", link: "asdasdasd3" },
+  { title: "sss4", link: "asdasdasd4" },
+  { title: "sss5", link: "asdasdasd5" },
+];
+
 export default function ReferencesTable() {
   const columnsMemo = useMemo(() => AddReferenceColumns, []);
   const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
@@ -30,7 +46,7 @@ export default function ReferencesTable() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data: defaultData,
+    data: reference ?? defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {
@@ -74,36 +90,28 @@ export default function ReferencesTable() {
           </div>
           <div className="col-span-3">
             <div className="flex flex-row-reverse gap-4 ">
-              <Sheet>
-                <SheetTrigger
-                  className={` text-md  inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#450A0A] px-4 py-2 text-sm font-bold text-white  ring-offset-background transition-colors hover:bg-[#711F1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50`}
-                  //   disabled={!accessRejectedOrders()}
-                >
-                  {/* طلبات مرفوضة : {rejectedOrders?.length} */}
-                </SheetTrigger>
-                <SheetContent side="bottom">
-                  <SheetHeader>
-                    <SheetTitle> الطلبات المرفوضة</SheetTitle>
-                    {/* <AddEmployeeRejectedTable /> */}
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
-              <Button className="mr-2" type="submit" form="searchEmployee">
+              <Button
+                className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                type="submit"
+                form="searchEmployee"
+              >
                 {" "}
-                بحث{" "}
+                فلتر بعدد{" "}
               </Button>
-              <Sheet>
-                <SheetTrigger className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                  <Plus className="ml-1" />
-                  اضافة كاتب
-                </SheetTrigger>
-                <SheetContent side="bottom">
-                  <SheetHeader>
-                    <SheetTitle>طلب إضافة موظف</SheetTitle>
-                    {/* <AddEmployeeForm refetch={refetch} /> */}
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
+              <Button
+                className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                type="submit"
+                form="searchEmployee"
+              >
+                {" "}
+                بحث سريع{" "}
+              </Button>
+              <Link to={"/admin-dashboard/references/add"}>
+                <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                  <Plus className="ml-2" />
+                  إضافة مرجع
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
