@@ -24,7 +24,7 @@ import {
 export type AddReferenceOrder = {
   isSelected: boolean;
   id: string;
-  title: string;
+  ar_title: string;
   link: string;
 };
 
@@ -54,8 +54,8 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
     ),
   },
   {
-    id: "title",
-    accessorKey: "title",
+    id: "ar_title",
+    accessorKey: "ar_title",
     header: "العنوان",
   },
   {

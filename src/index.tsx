@@ -17,6 +17,11 @@ import AboutUs from "./page/(User)/aboutUs";
 import RefreshTokenPage from "./page/(Admin)/refreshTokenPage";
 import References from "./page/(Admin)/ReferncesPage/References";
 import AddRefernces from "./page/(Admin)/ReferncesPage/add-refernces";
+import Page from "./page/(Admin)/organizations-under-bwc/page";
+import Index from "./page/(Admin)/Reports";
+import PublicationIndex from "./page/(Admin)/Publications/Publication";
+import NewsIndex from "./page/(Admin)/Publications/News";
+import AnalysisIndex from "./page/(Admin)/Publications/Analysis";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +55,26 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/references/add",
         element: <AddRefernces />,
+      },
+      {
+        path: "/admin-dashboard/organization",
+        element: <Page />,
+      },
+      {
+        path: "/admin-dashboard/reports",
+        element: <Index />,
+      },
+      {
+        path: "/admin-dashboard/publications",
+        element: <PublicationIndex />,
+      },
+      {
+        path: "/admin-dashboard/news",
+        element: <NewsIndex />,
+      },
+      {
+        path: "/admin-dashboard/analysis",
+        element: <AnalysisIndex />,
       },
     ],
   },

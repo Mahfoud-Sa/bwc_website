@@ -49,7 +49,7 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
-export default function ReferencesTable() {
+export default function OrganizationsUnderBwcTable() {
   const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddReferenceColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
@@ -98,9 +98,9 @@ export default function ReferencesTable() {
           <div className="grid grid-cols-4 gap-2 text-right">
             {/* Start : input Text */}
             <div className=" col-span-1 h-auto">
-              <Label text="اسم المرجع" />
+              <Label text="اسم المؤسسه" />
               <Input
-                placeholder="اسم المرجع"
+                placeholder="اسم المؤسسه"
                 value={
                   (table
                     .getColumn("data.militaryNumber")
@@ -141,7 +141,7 @@ export default function ReferencesTable() {
               <Link to={"/admin-dashboard/references/add"}>
                 <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                   <Plus className="ml-2" />
-                  إضافة مرجع
+                  إضافة مؤسسة
                 </Button>
               </Link>
             </div>
