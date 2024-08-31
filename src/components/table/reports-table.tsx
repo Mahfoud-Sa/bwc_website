@@ -49,7 +49,7 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
-export default function ReferencesTable() {
+export default function ReportTable() {
   const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddReferenceColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
@@ -98,9 +98,9 @@ export default function ReferencesTable() {
           <div className="grid grid-cols-4 gap-2 text-right">
             {/* Start : input Text */}
             <div className=" col-span-1 h-auto">
-              <Label text="اسم المرجع" />
+              <Label text="عنوان التقرير" />
               <Input
-                placeholder="اسم المرجع"
+                placeholder="عنوان التقرير"
                 value={
                   (table
                     .getColumn("data.militaryNumber")
