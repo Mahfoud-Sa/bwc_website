@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Form,
   FormControl,
@@ -14,36 +14,59 @@ import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 import { Button } from "../../ui/button";
-import { useMutation } from "@tanstack/react-query";
-import { postApi } from "src/lib/http";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { axiosInstance, postApi, putApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { ReferenceResp } from "../table/referencesTable";
 
 type ReferenceFormValue = z.infer<typeof addReferenceSchema>;
 
-export default function AddReferenceForm() {
+export default function UpdateReferenceForm() {
   // const { toast } = useToast();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof addReferenceSchema>>({
     resolver: zodResolver(addReferenceSchema),
   });
 
+  const fetchData = async () => {
+    const response = await axiosInstance.get<ReferenceResp>(
+      `/api/References/${id}`,
+      {}
+    );
+    return response.data;
+  };
+  const {
+    data: complaintData,
+    error: complaintError,
+    isLoading: complaintIsLoading,
+  } = useQuery({
+    queryKey: ["complaint", id],
+    queryFn: fetchData,
+    enabled: !!id,
+  });
+
+  useEffect(() => {
+    if (complaintData) {
+      form.reset({
+        ar_title: complaintData.ar_title,
+        en_title: complaintData.en_title,
+        link: complaintData.link,
+      });
+    }
+  }, [complaintData]);
   const { mutate } = useMutation({
-    mutationKey: ["AddReferences"],
+    mutationKey: ["UpdateReferences"],
     mutationFn: (datas: ReferenceFormValue) =>
-      postApi("/api/References", {
+      putApi(`/api/References/${id}`, {
         ar_title: datas.ar_title,
         en_title: datas.en_title,
         link: datas.link,
       }),
     onSuccess: () => {
-      // toast({
-      //   title: "اشعار",
-      //   variant: "success",
-      //   description: "تمت الاضافة بنجاح",
-      // });
-      toast.success("تمت الاضافة بنجاح.", {
+      toast.success("تمت التعديل بنجاح.", {
         style: {
           border: "1px solid #4FFFB0",
           padding: "16px",
@@ -57,11 +80,17 @@ export default function AddReferenceForm() {
       navigate("/admin-dashboard/references");
     },
     onError: (error) => {
-      // toast({
-      //   title: "لم تتم العملية",
-      //   description: error.message,
-      //   variant: "destructive",
-      // });
+      toast.success("لم تتم العميله.", {
+        style: {
+          border: "1px solid  #FF5733 ",
+          padding: "16px",
+          color: " #FF5733 ",
+        },
+        iconTheme: {
+          primary: " #FF5733 ",
+          secondary: "#FFFAEE",
+        },
+      });
     },
   });
 
@@ -133,7 +162,7 @@ export default function AddReferenceForm() {
         </div>
         <div className="w-full translate-x-10 flex justify-end">
           <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            إضافة مرجع
+            تعديل مرجع
           </Button>
         </div>
       </form>

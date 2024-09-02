@@ -20,6 +20,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../../ui/sheet";
+import DeleteDialog from "../dailog/delete-dialog";
+import { Link } from "react-router-dom";
 
 export type AddReferenceOrder = {
   isSelected: boolean;
@@ -53,6 +55,7 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
       />
     ),
   },
+
   {
     id: "ar_title",
     accessorKey: "ar_title",
@@ -70,15 +73,18 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Button
-            className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-            size={"sm"}
-          >
-            <SquarePen className="" />
-          </Button>
-          <Button size={"sm"}>
-            <Trash2 />
-          </Button>
+          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+            <Button
+              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+              size={"sm"}
+            >
+              <SquarePen className="" />
+            </Button>
+          </Link>
+          <DeleteDialog
+            url={`/api/References/${row.original?.id}`}
+            path={"/admin-dashboard/references"}
+          />
         </div>
       );
     },

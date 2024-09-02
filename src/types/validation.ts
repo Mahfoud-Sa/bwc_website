@@ -1,7 +1,8 @@
 import { z } from "zod";
 
 export const addReferenceSchema = z.object({
-  title: z.string(),
+  ar_title: z.string(),
+  en_title: z.string(),
   link: z.string(),
 });
 
