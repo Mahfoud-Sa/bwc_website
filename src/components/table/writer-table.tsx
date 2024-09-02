@@ -49,30 +49,30 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
-export default function ReportTable() {
+export default function WriterTable() {
   const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddReferenceColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
-  const fetchIssueById = async () => {
-    try {
-      const response = await axiosInstance.get<ReferenceResp>(
-        `/api/References`
-      );
-      return [response.data];
-    } catch (error) {
-      console.error("Error fetching issue:", error);
-      throw error;
-    }
-  };
+  // const fetchIssueById = async () => {
+  //   try {
+  //     const response = await axiosInstance.get<ReferenceResp>(
+  //       `/api/References`
+  //     );
+  //     return [response.data];
+  //   } catch (error) {
+  //     console.error("Error fetching issue:", error);
+  //     throw error;
+  //   }
+  // };
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetchIssueById();
-      setData(data);
-    };
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await fetchIssueById();
+  //     setData(data);
+  //   };
 
-    getData();
-  }, []);
+  //   getData();
+  // }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -130,23 +130,7 @@ export default function ReportTable() {
                 form="searchEmployee"
               >
                 {" "}
-                فلتر بالتاريخ{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                فلتر الحالة{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                فلتر التحميل{" "}
+                فلتر بعدد{" "}
               </Button>
               <Button
                 className="mr-2 bg-[#d4d4d4] hover:bg-white"
@@ -159,7 +143,7 @@ export default function ReportTable() {
               <Link to={"/admin-dashboard/references/add"}>
                 <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                   <Plus className="ml-2" />
-                  إضافة تقرير
+                  إضافة كاتب
                 </Button>
               </Link>
             </div>

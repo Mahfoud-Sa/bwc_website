@@ -92,12 +92,14 @@ export default function SideNab() {
             <p className="text-[12px] text-end text-[#9E9E9E]">
               Organizations and Employees
             </p>
-            <li className="px-3 mt-1 p-2 flex justify-end items-center">
-              Task Force
-              <i className="mr-2">
-                <img src={Teams} alt="" />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/taskforce"}>
+              <li className="px-3 mt-1 p-2 flex justify-end items-center">
+                Task Force
+                <i className="mr-2">
+                  <img src={Teams} alt="" />
+                </i>
+              </li>
+            </NavLink>
             <NavLink to={"/admin-dashboard/organization"}>
               <li className="px-3 mt-1 p-2 flex justify-end items-center">
                 Institutions We Manage
@@ -112,12 +114,14 @@ export default function SideNab() {
                 <Massage />
               </i>
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-end items-center">
-              Writers
-              <i className="mr-2">
-                <Massage />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/writer"}>
+              <li className="px-3 mt-1 p-2 flex justify-end items-center">
+                Writers
+                <i className="mr-2">
+                  <Massage />
+                </i>
+              </li>
+            </NavLink>
           </ul>
 
           <ul className="w-full min-h-[30%] px-3">
@@ -213,12 +217,14 @@ export default function SideNab() {
             <p className="text-[12px] text-start text-[#9E9E9E]">
               المؤسسات و الموظفين
             </p>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="ml-2">
-                <img src={Teams} alt="" />
-              </i>
-              فريق العمل
-            </li>
+            <NavLink to={"/admin-dashboard/taskforce"}>
+              <li className="px-3 mt-1 p-2 flex justify-start items-center">
+                <i className="ml-2">
+                  <img src={Teams} alt="" />
+                </i>
+                فريق العمل
+              </li>
+            </NavLink>
             <NavLink to={"/admin-dashboard/organization"}>
               <li className="px-3 mt-1 p-2 flex justify-start items-center">
                 <i className="ml-2">
@@ -233,12 +239,14 @@ export default function SideNab() {
               </i>
               شركائنا
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="ml-2">
-                <Massage />
-              </i>
-              الكُتَّاب
-            </li>
+            <NavLink to={"/admin-dashboard/writer"}>
+              <li className="px-3 mt-1 p-2 flex justify-start items-center">
+                <i className="ml-2">
+                  <Massage />
+                </i>
+                الكُتَّاب
+              </li>
+            </NavLink>
           </ul>
 
           <ul className="w-full min-h-[30%] px-3">

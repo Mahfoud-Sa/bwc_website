@@ -13,6 +13,7 @@ import { addReferenceSchema } from "src/types/validation";
 import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
+import Button from "../button";
 export default function AddReferenceForm() {
   const form = useForm<z.infer<typeof addReferenceSchema>>({
     resolver: zodResolver(addReferenceSchema),
@@ -21,7 +22,7 @@ export default function AddReferenceForm() {
     <Form {...form}>
       <form
         //   onSubmit={form.handleSubmit(onSubmit)}
-        className="min-h-[90vh] "
+        className="min-h-[90vh]  w-[100%] "
       >
         <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
@@ -74,6 +75,11 @@ export default function AddReferenceForm() {
               )}
             />
           </div>
+        </div>
+        <div className="w-full translate-x-10 flex justify-end">
+          <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+            حفظ
+          </Button>
         </div>
       </form>
     </Form>
