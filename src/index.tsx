@@ -22,6 +22,10 @@ import Index from "./page/(Admin)/Reports";
 import PublicationIndex from "./page/(Admin)/Publications/Publication";
 import NewsIndex from "./page/(Admin)/Publications/News";
 import AnalysisIndex from "./page/(Admin)/Publications/Analysis";
+import WriterIndex from "./page/(Admin)/writer";
+import TaskForceIndex from "./page/(Admin)/task-force";
+import Loading from "./components/loading";
+import NotFoundPage from "./components/notfoundpage";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +80,14 @@ const router = createBrowserRouter([
         path: "/admin-dashboard/analysis",
         element: <AnalysisIndex />,
       },
+      {
+        path: "/admin-dashboard/writer",
+        element: <WriterIndex />,
+      },
+      {
+        path: "/admin-dashboard/taskforce",
+        element: <TaskForceIndex />,
+      },
     ],
   },
   {
@@ -94,13 +106,17 @@ const router = createBrowserRouter([
     path: "/try",
     element: <Try />,
   },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
 ]);
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <React.Suspense fallback="loading...">
+    <React.Suspense fallback={<Loading />}>
       <RouterProvider router={router} />
     </React.Suspense>
   </React.StrictMode>

@@ -53,32 +53,34 @@ export default function OrganizationsUnderBwcTable() {
   const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddReferenceColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
-  const fetchIssueById = async () => {
-    try {
-      const response = await axiosInstance.get<ReferenceResp>(
-        `/api/References`
-      );
-      return [response.data];
-    } catch (error) {
-      console.error("Error fetching issue:", error);
-      throw error;
-    }
-  };
+  // const fetchIssueById = async () => {
+  //   try {
+  //     const response = await axiosInstance.get<ReferenceResp>(
+  //       `/api/References`
+  //     );
+  //     return [response.data];
+  //   } catch (error) {
+  //     console.error("Error fetching issue:", error);
+  //     throw error;
+  //   }
+  // };
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetchIssueById();
-      setData(data);
-    };
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await fetchIssueById();
+  //     setData(data);
+  //   };
 
-    getData();
-  }, []);
+  //   getData();
+  // }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data: data.length ? data[0] : defaultData,
+    data:
+      // data.length ? data[0] :
+      defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {
