@@ -26,6 +26,8 @@ import WriterIndex from "./page/(Admin)/writer";
 import TaskForceIndex from "./page/(Admin)/task-force";
 import Loading from "./components/loading";
 import NotFoundPage from "./components/notfoundpage";
+import { ReactQueryClientProvider } from "./provider/ReactQueryClientProvider";
+import UpdateReferenceForm from "./components/form/update-refernce-form";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/references/add",
         element: <AddRefernces />,
+      },
+      {
+        path: "/admin-dashboard/references/update/:id",
+        element: <UpdateReferenceForm />,
       },
       {
         path: "/admin-dashboard/organization",
@@ -115,10 +121,12 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <React.Suspense fallback={<Loading />}>
-      <RouterProvider router={router} />
-    </React.Suspense>
-  </React.StrictMode>
+  <ReactQueryClientProvider>
+    <React.StrictMode>
+      <React.Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </React.Suspense>
+    </React.StrictMode>
+  </ReactQueryClientProvider>
 );
 reportWebVitals();
