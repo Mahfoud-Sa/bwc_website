@@ -28,6 +28,7 @@ import Loading from "./components/loading";
 import NotFoundPage from "./components/notfoundpage";
 import { ReactQueryClientProvider } from "./provider/ReactQueryClientProvider";
 import UpdateReferenceForm from "./components/form/update-refernce-form";
+import AddEmployee from "./page/(Admin)/task-force/add-employee";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/taskforce",
         element: <TaskForceIndex />,
+      },
+      {
+        path: "/admin-dashboard/taskforce/add-employee",
+        element: <AddEmployee />,
       },
     ],
   },

@@ -20,9 +20,9 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 import {
-  AddReferenceColumns,
-  type AddReferenceOrder,
-} from "../../components/column/add-refernce-column";
+  AddReportColumns,
+  type AddReportOrder,
+} from "../../components/column/add-report-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -50,8 +50,8 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
 export default function ReportTable() {
-  const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddReferenceColumns, []);
+  const defaultData = useMemo<AddReportOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddReportColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
   const fetchIssueById = async () => {
     try {
@@ -102,7 +102,7 @@ export default function ReportTable() {
             <div className=" col-span-1 h-auto">
               <Label text="عنوان التقرير" />
               <Input
-                placeholder="عنوان التقرير"
+                placeholder="بحث بعنوان التقرير ..."
                 value={
                   (table
                     .getColumn("data.militaryNumber")
