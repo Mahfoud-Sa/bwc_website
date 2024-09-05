@@ -29,6 +29,7 @@ import NotFoundPage from "./components/notfoundpage";
 import { ReactQueryClientProvider } from "./provider/ReactQueryClientProvider";
 import UpdateReferenceForm from "./components/form/update-refernce-form";
 import AddEmployee from "./page/(Admin)/task-force/add-employee";
+import AddOrg from "./page/(Admin)/organizations-under-bwc/add-org";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/organization",
         element: <Page />,
+      },
+      {
+        path: "/admin-dashboard/organization/add-org",
+        element: <AddOrg />,
       },
       {
         path: "/admin-dashboard/reports",
