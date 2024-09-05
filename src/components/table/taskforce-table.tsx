@@ -12,17 +12,11 @@ import {
 } from "@tanstack/react-table";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
+
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../ui/sheet";
-import {
-  AddReferenceColumns,
-  type AddReferenceOrder,
-} from "../../components/column/add-refernce-column";
+  AddTaskForceColumns,
+  type AddTaskForceOrder,
+} from "../../components/column/add-task-force-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -50,37 +44,35 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
 export default function TaskForceTable() {
-  const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddReferenceColumns, []);
+  const defaultData = useMemo<AddTaskForceOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddTaskForceColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
-  // const fetchIssueById = async () => {
-  //   try {
-  //     const response = await axiosInstance.get<ReferenceResp>(
-  //       `/api/References`
-  //     );
-  //     return [response.data];
-  //   } catch (error) {
-  //     console.error("Error fetching issue:", error);
-  //     throw error;
-  //   }
-  // };
+  const fetchIssueById = async () => {
+    try {
+      const response = await axiosInstance.get<ReferenceResp>(
+        `/api/References`
+      );
+      return [response.data];
+    } catch (error) {
+      console.error("Error fetching issue:", error);
+      throw error;
+    }
+  };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const data = await fetchIssueById();
-  //     setData(data);
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchIssueById();
+      setData(data);
+    };
 
-  //   getData();
-  // }, []);
+    getData();
+  }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data:
-      // data.length ? data[0] :
-      defaultData,
+    data: data.length ? data[0] : defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {
@@ -100,9 +92,9 @@ export default function TaskForceTable() {
           <div className="grid grid-cols-4 gap-2 text-right">
             {/* Start : input Text */}
             <div className=" col-span-1 h-auto">
-              <Label text="عنوان التقرير" />
+              <Label text="اسم الموظف" />
               <Input
-                placeholder="عنوان التقرير"
+                placeholder="بحث باسم الموظف"
                 value={
                   (table
                     .getColumn("data.militaryNumber")
@@ -132,7 +124,7 @@ export default function TaskForceTable() {
                 {" "}
                 بحث سريع{" "}
               </Button>
-              <Link to={"/admin-dashboard/references/add"}>
+              <Link to={"/admin-dashboard/taskforce/add-employee"}>
                 <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                   <Plus className="ml-2" />
                   إضافة موظف

@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "./table";
+import NoResult from "src/assets/icons/no-result";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,15 +32,15 @@ export function OrderDataTable<TData, TValue>({
   return (
     <div>
       <div className="rounded-lg border border-gray-200">
-        <div className=" rounded-t-lg">
-          <Table className="min-w-full divide-y-2 divide-gray-200 text-xs">
+        <div className=" rounded-t-lg ">
+          <Table className="min-w-full divide-y-2 divide-gray-200 text-xs ">
             <TableHeader className="bg-[#D4D4D4] text-right">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     return (
                       <TableHead
-                        className="whitespace-nowrap px-4 py-2 text-right font-bold text-gray-900 "
+                        className="whitespace-nowrap px-4 py-2 text-right font-bold text-gray-900  "
                         key={header.id}
                       >
                         {header.isPlaceholder
@@ -54,7 +55,8 @@ export function OrderDataTable<TData, TValue>({
                 </TableRow>
               ))}
             </TableHeader>
-            <TableBody className="text-gray-900 [&>*:nth-child(even)]:bg-white [&>*:nth-child(odd)]:bg-gray-100  ">
+            <div className="max-h-72 overflow-y-auto"></div>
+            <TableBody className="text-gray-900  [&>*:nth-child(even)]:bg-white [&>*:nth-child(odd)]:bg-gray-100  ">
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow
@@ -63,7 +65,7 @@ export function OrderDataTable<TData, TValue>({
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
-                        className="text-md whitespace-nowrap px-4 py-2 font-bold  "
+                        className="text-md whitespace-nowrap px-4 py-2 font-bold over "
                         key={cell.id}
                       >
                         {flexRender(
@@ -78,9 +80,12 @@ export function OrderDataTable<TData, TValue>({
                 <TableRow>
                   <TableCell
                     colSpan={columns.length}
-                    className="h-24 text-center"
+                    className=" h-24 text-center"
                   >
-                    لا توجد بيانات
+                    <div className=" w-full h-72 flex justify-center">
+                      <NoResult />
+                    </div>
+                    <h1>لا توجد بيانات</h1>
                   </TableCell>
                 </TableRow>
               )}

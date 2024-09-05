@@ -9,6 +9,7 @@ import {
 import { Pagination, PaginationContent, PaginationItem } from "./pagination";
 import { Button } from "./button";
 import { cn } from "../lib/utils";
+import { useEffect } from "react";
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
@@ -174,16 +175,18 @@ export function DataTablePagination<TData>({
         <div className="flex items-center">
           <p className="px-1 text-sm font-medium">الاسطر </p>
           <Select
-            value={`${table.getState().pagination.pageSize}`}
+            value={`${table.getState().pagination.pageSize}`} // Default to 5 if no value is set
             onValueChange={(value) => {
-              table.setPageSize(Number(value));
+              table.setPageSize(Number(value)); // Set the page size based on user selection
             }}
           >
-            <SelectTrigger className=" m-1 h-8 w-[60px]">
-              <SelectValue placeholder={table.getState().pagination.pageSize} />
+            <SelectTrigger className="m-1 h-8 w-[60px]">
+              <SelectValue
+                placeholder={`${table.getState().pagination.pageSize}`}
+              />
             </SelectTrigger>
-            <SelectContent side="top">
-              {[10, 20, 30, 40, 50, 100].map((pageSize) => (
+            <SelectContent defaultValue={5} side="top">
+              {[5, 10, 15, 20].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>

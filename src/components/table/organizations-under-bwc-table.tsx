@@ -19,10 +19,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../../ui/sheet";
+import image4 from "../../assets/img/1724086550980.jpg";
 import {
-  AddReferenceColumns,
-  type AddReferenceOrder,
-} from "../../components/column/add-refernce-column";
+  AddOrganizationsColumns,
+  type AddOrganizationsOrder,
+} from "../../components/column/orgnazizations-bwc-coulumn";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -30,28 +31,53 @@ import { axiosInstance } from "src/lib/http";
 
 export interface ReferenceProp {
   id: number;
-  ar_title: string;
-  en_title: string;
+  img: string;
+  name: string;
   link: string;
 }
 
 export type ReferenceResp = {
   id: number;
-  ar_title: string;
-  en_title: string;
+  img: string;
+  name: string;
   link: string;
 };
 
 const reference: ReferenceProp[] = [
-  { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
-  { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
-  { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
-  { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
-  { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
 ];
 export default function OrganizationsUnderBwcTable() {
-  const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddReferenceColumns, []);
+  const defaultData = useMemo<AddOrganizationsOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddOrganizationsColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
   // const fetchIssueById = async () => {
   //   try {
@@ -80,12 +106,17 @@ export default function OrganizationsUnderBwcTable() {
     // @ts-ignore
     data:
       // data.length ? data[0] :
-      defaultData,
+      reference,
     // @ts-ignore
     columns: columnsMemo,
     state: {
       rowSelection,
       columnFilters,
+    },
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
     },
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
@@ -104,14 +135,10 @@ export default function OrganizationsUnderBwcTable() {
               <Input
                 placeholder="اسم المؤسسه"
                 value={
-                  (table
-                    .getColumn("data.militaryNumber")
-                    ?.getFilterValue() as string) ?? ""
+                  (table.getColumn("name")?.getFilterValue() as string) ?? ""
                 }
                 onChange={(event) =>
-                  table
-                    .getColumn("data.militaryNumber")
-                    ?.setFilterValue(event.target.value)
+                  table.getColumn("name")?.setFilterValue(event.target.value)
                 }
               />
             </div>
