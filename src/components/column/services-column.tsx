@@ -1,5 +1,5 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { Eye, MoreHorizontal } from "lucide-react";
 import { Button } from "../../ui/button";
 
 import { SquarePen, Trash2 } from "lucide-react";
@@ -64,6 +64,14 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
               size={"sm"}
             >
               <SquarePen className="" />
+            </Button>
+          </Link>
+          <Link to={`/admin-dashboard/services/info`}>
+            <Button
+              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+              size={"sm"}
+            >
+              <Eye className="" />
             </Button>
           </Link>
           <DeleteDialog

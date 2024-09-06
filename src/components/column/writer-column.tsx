@@ -23,14 +23,14 @@ import {
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 
-export type AddReferenceOrder = {
+export type AddWriterOrder = {
   isSelected: boolean;
   id: string;
   ar_title: string;
   link: string;
 };
 
-export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
+export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
   {
     accessorKey: "isSelected",
     header: ({ table }) => (
@@ -81,7 +81,7 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/references/info`}>
+          <Link to={`/ "/admin-dashboard/writer/info`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}

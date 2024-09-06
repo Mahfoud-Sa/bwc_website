@@ -21,9 +21,9 @@ import {
 } from "../../ui/sheet";
 import image4 from "../../assets/img/1724086550980.jpg";
 import {
-  AddOrganizationsColumns,
-  type AddOrganizationsOrder,
-} from "../../components/column/orgnazizations-bwc-coulumn";
+  AddJobColumns,
+  type AddJobOrder,
+} from "../../components/column/job-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -76,8 +76,8 @@ const reference: ReferenceProp[] = [
   { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
 ];
 export default function JobsTable() {
-  const defaultData = useMemo<AddOrganizationsOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddOrganizationsColumns, []);
+  const defaultData = useMemo<AddJobOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddJobColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
   // const fetchIssueById = async () => {
   //   try {

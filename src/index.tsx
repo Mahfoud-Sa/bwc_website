@@ -33,10 +33,16 @@ import AddOrg from "./page/(Admin)/organizations-under-bwc/add-org";
 import ServicesIndex from "./page/(Admin)/services";
 import AddServicesIndex from "./page/(Admin)/services/add-services";
 import JobsIndex from "./page/(Admin)/jobs";
-import AddJobs from "./page/(Admin)/jobs/add-job";
 import AddJob from "./page/(Admin)/jobs/add-job";
 import AddReport from "./page/(Admin)/Reports/add-report";
 import AddWriter from "./page/(Admin)/writer/add-writer";
+import ReferenceInfo from "./components/view/refernce-info";
+import ReportsInfo from "./components/view/reports-info";
+import TaskForceInfo from "./components/view/task-force-info";
+import OrganizationInfo from "./components/view/organization-info";
+import ServicesInfo from "./components/view/services-info";
+import WriterInfo from "./components/view/writer-info";
+import JobInfo from "./components/view/job-info";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +82,10 @@ const router = createBrowserRouter([
         element: <UpdateReferenceForm />,
       },
       {
+        path: "/admin-dashboard/references/info",
+        element: <ReferenceInfo />,
+      },
+      {
         path: "/admin-dashboard/organization",
         element: <Page />,
       },
@@ -84,12 +94,20 @@ const router = createBrowserRouter([
         element: <AddOrg />,
       },
       {
+        path: "/admin-dashboard/organization/info",
+        element: <OrganizationInfo />,
+      },
+      {
         path: "/admin-dashboard/reports",
         element: <Index />,
       },
       {
         path: "/admin-dashboard/reports/add-report",
         element: <AddReport />,
+      },
+      {
+        path: "/admin-dashboard/reports/info",
+        element: <ReportsInfo />,
       },
       {
         path: "/admin-dashboard/publications",
@@ -112,12 +130,20 @@ const router = createBrowserRouter([
         element: <AddWriter />,
       },
       {
+        path: "/admin-dashboard/writer/info",
+        element: <WriterInfo />,
+      },
+      {
         path: "/admin-dashboard/taskforce",
         element: <TaskForceIndex />,
       },
       {
         path: "/admin-dashboard/taskforce/add-employee",
         element: <AddEmployee />,
+      },
+      {
+        path: "/admin-dashboard/taskforce/info",
+        element: <TaskForceInfo />,
       },
       {
         path: "/admin-dashboard/services",
@@ -128,12 +154,20 @@ const router = createBrowserRouter([
         element: <AddServicesIndex />,
       },
       {
+        path: "/admin-dashboard/services/info",
+        element: <ServicesInfo />,
+      },
+      {
         path: "/admin-dashboard/jobs",
         element: <JobsIndex />,
       },
       {
         path: "/admin-dashboard/jobs/add-job",
         element: <AddJob />,
+      },
+      {
+        path: "/admin-dashboard/jobs/info",
+        element: <JobInfo />,
       },
     ],
   },

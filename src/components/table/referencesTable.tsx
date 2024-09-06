@@ -78,7 +78,11 @@ export default function ReferencesTable() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data: data.length ? data[0] : defaultData,
+    data:
+      // data.length
+      // ? // data[0]
+      reference,
+    // : defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {

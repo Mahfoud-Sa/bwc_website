@@ -1,5 +1,5 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { Eye, MoreHorizontal } from "lucide-react";
 import { Button } from "../../ui/button";
 import {
   DropdownMenu,
@@ -95,6 +95,14 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
               size={"sm"}
             >
               <SquarePen className="" />
+            </Button>
+          </Link>
+          <Link to={`/admin-dashboard/organization/info`}>
+            <Button
+              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+              size={"sm"}
+            >
+              <Eye className="" />
             </Button>
           </Link>
           <DeleteDialog

@@ -14,9 +14,9 @@ import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 
 import {
-  AddTaskForceColumns,
-  type AddTaskForceOrder,
-} from "../../components/column/add-task-force-column";
+  AddWriterColumns,
+  type AddWriterOrder,
+} from "../../components/column/writer-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -44,8 +44,8 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
 export default function TaskForceTable() {
-  const defaultData = useMemo<AddTaskForceOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddTaskForceColumns, []);
+  const defaultData = useMemo<AddWriterOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddWriterColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
   const fetchIssueById = async () => {
     try {
