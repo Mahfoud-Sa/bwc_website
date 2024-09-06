@@ -23,14 +23,15 @@ import {
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 
-export type AddReferenceOrder = {
+export type AddJobOrder = {
   isSelected: boolean;
   id: string;
-  ar_title: string;
+  img: string;
+  name: string;
   link: string;
 };
 
-export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
+export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
   {
     accessorKey: "isSelected",
     header: ({ table }) => (
@@ -57,13 +58,28 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
   },
 
   {
-    id: "ar_title",
-    accessorKey: "ar_title",
-    header: "العنوان",
+    id: "img",
+    accessorKey: "img",
+    header: "صورة المؤسسة",
+    cell: ({ row }) => {
+      return (
+        <div className=" w-[50px] h-[50px] rounded-full">
+          <img
+            src={row.original.img}
+            className="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "name",
+    header: "اسم المؤسسة",
   },
   {
     accessorKey: "link",
-    header: "الرابط",
+    header: "رابط موقع المؤسسة",
   },
 
   {
@@ -81,7 +97,7 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/references/info`}>
+          <Link to={`/admin-dashboard/jobs/info`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
