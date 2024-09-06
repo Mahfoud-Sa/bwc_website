@@ -19,10 +19,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../../ui/sheet";
+import image4 from "../../assets/img/1724086550980.jpg";
 import {
-  AddReportColumns,
-  type AddReportOrder,
-} from "../../components/column/add-report-column";
+  AddOrganizationsColumns,
+  type AddOrganizationsOrder,
+} from "../../components/column/orgnazizations-bwc-coulumn";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -30,49 +31,74 @@ import { axiosInstance } from "src/lib/http";
 
 export interface ReferenceProp {
   id: number;
-  ar_title: string;
-  en_title: string;
+  img: string;
+  name: string;
   link: string;
 }
 
 export type ReferenceResp = {
   id: number;
-  ar_title: string;
-  en_title: string;
+  img: string;
+  name: string;
   link: string;
 };
 
 const reference: ReferenceProp[] = [
-  { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
-  { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
-  { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
-  { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
-  { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "xx", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
 ];
-export default function ReportTable() {
-  const defaultData = useMemo<AddReportOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddReportColumns, []);
+export default function JobsTable() {
+  const defaultData = useMemo<AddOrganizationsOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddOrganizationsColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
-  const fetchIssueById = async () => {
-    try {
-      const response = await axiosInstance.get<ReferenceResp>(
-        `/api/References`
-      );
-      return [response.data];
-    } catch (error) {
-      console.error("Error fetching issue:", error);
-      throw error;
-    }
-  };
+  // const fetchIssueById = async () => {
+  //   try {
+  //     const response = await axiosInstance.get<ReferenceResp>(
+  //       `/api/References`
+  //     );
+  //     return [response.data];
+  //   } catch (error) {
+  //     console.error("Error fetching issue:", error);
+  //     throw error;
+  //   }
+  // };
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetchIssueById();
-      setData(data);
-    };
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await fetchIssueById();
+  //     setData(data);
+  //   };
 
-    getData();
-  }, []);
+  //   getData();
+  // }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -80,12 +106,17 @@ export default function ReportTable() {
     // @ts-ignore
     data:
       // data.length ? data[0] :
-      defaultData,
+      reference,
     // @ts-ignore
     columns: columnsMemo,
     state: {
       rowSelection,
       columnFilters,
+    },
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
     },
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
@@ -100,18 +131,14 @@ export default function ReportTable() {
           <div className="grid grid-cols-4 gap-2 text-right">
             {/* Start : input Text */}
             <div className=" col-span-1 h-auto">
-              <Label text="عنوان التقرير" />
+              <Label text="اسم الوظيفة " />
               <Input
-                placeholder="بحث بعنوان التقرير ..."
+                placeholder="بحث باسم الوظيفة ..."
                 value={
-                  (table
-                    .getColumn("data.militaryNumber")
-                    ?.getFilterValue() as string) ?? ""
+                  (table.getColumn("name")?.getFilterValue() as string) ?? ""
                 }
                 onChange={(event) =>
-                  table
-                    .getColumn("data.militaryNumber")
-                    ?.setFilterValue(event.target.value)
+                  table.getColumn("name")?.setFilterValue(event.target.value)
                 }
               />
             </div>
@@ -146,20 +173,12 @@ export default function ReportTable() {
                 form="searchEmployee"
               >
                 {" "}
-                فلتر التحميل{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
                 بحث سريع{" "}
               </Button>
-              <Link to={"/admin-dashboard/reports/add-report"}>
+              <Link to={"/admin-dashboard/jobs/add-job"}>
                 <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                   <Plus className="ml-2" />
-                  إضافة تقرير
+                  اضافة وظيفة
                 </Button>
               </Link>
             </div>

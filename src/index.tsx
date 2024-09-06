@@ -30,6 +30,13 @@ import { ReactQueryClientProvider } from "./provider/ReactQueryClientProvider";
 import UpdateReferenceForm from "./components/form/update-refernce-form";
 import AddEmployee from "./page/(Admin)/task-force/add-employee";
 import AddOrg from "./page/(Admin)/organizations-under-bwc/add-org";
+import ServicesIndex from "./page/(Admin)/services";
+import AddServicesIndex from "./page/(Admin)/services/add-services";
+import JobsIndex from "./page/(Admin)/jobs";
+import AddJobs from "./page/(Admin)/jobs/add-job";
+import AddJob from "./page/(Admin)/jobs/add-job";
+import AddReport from "./page/(Admin)/Reports/add-report";
+import AddWriter from "./page/(Admin)/writer/add-writer";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +88,10 @@ const router = createBrowserRouter([
         element: <Index />,
       },
       {
+        path: "/admin-dashboard/reports/add-report",
+        element: <AddReport />,
+      },
+      {
         path: "/admin-dashboard/publications",
         element: <PublicationIndex />,
       },
@@ -97,12 +108,32 @@ const router = createBrowserRouter([
         element: <WriterIndex />,
       },
       {
+        path: "/admin-dashboard/writer/add-writer",
+        element: <AddWriter />,
+      },
+      {
         path: "/admin-dashboard/taskforce",
         element: <TaskForceIndex />,
       },
       {
         path: "/admin-dashboard/taskforce/add-employee",
         element: <AddEmployee />,
+      },
+      {
+        path: "/admin-dashboard/services",
+        element: <ServicesIndex />,
+      },
+      {
+        path: "/admin-dashboard/services/add-services",
+        element: <AddServicesIndex />,
+      },
+      {
+        path: "/admin-dashboard/jobs",
+        element: <JobsIndex />,
+      },
+      {
+        path: "/admin-dashboard/jobs/add-job",
+        element: <AddJob />,
       },
     ],
   },
