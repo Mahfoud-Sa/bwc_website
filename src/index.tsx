@@ -44,6 +44,7 @@ import ServicesInfo from "./components/view/services-info";
 import WriterInfo from "./components/view/writer-info";
 import JobInfo from "./components/view/job-info";
 import UpdateWriterForm from "./components/form/update-writer";
+import UpdateTaskForce from "./components/form/update-taskforce-form";
 
 const router = createBrowserRouter([
   {
@@ -135,7 +136,7 @@ const router = createBrowserRouter([
         element: <UpdateWriterForm />,
       },
       {
-        path: "/admin-dashboard/writer/info",
+        path: "/admin-dashboard/writer/info/:id",
         element: <WriterInfo />,
       },
       {
@@ -147,7 +148,11 @@ const router = createBrowserRouter([
         element: <AddEmployee />,
       },
       {
-        path: "/admin-dashboard/taskforce/info",
+        path: "/admin-dashboard/taskforce/update-employee/:id",
+        element: <UpdateTaskForce />,
+      },
+      {
+        path: "/admin-dashboard/taskforce/info/:id",
         element: <TaskForceInfo />,
       },
       {
