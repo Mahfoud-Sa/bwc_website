@@ -14,6 +14,7 @@ import { useToast } from "../../ui/use-toast";
 // import { useAuthHeader } from "react-auth-kit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -33,7 +34,7 @@ export default function DeleteDialog({
   //   const authToken = useAuthHeader();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const { mutate, isPending, isSuccess, isError, error } = useMutation({
     mutationFn: () => deleteApi(`${url}`),
@@ -46,20 +47,32 @@ export default function DeleteDialog({
 
   useEffect(() => {
     if (isPending) {
-      toast({
-        title: "جاري الحدف",
-        description: "يرجئ الانتظار قليل",
-        variant: "default",
+      toast.success("تمت الاضافة بنجاح.", {
+        style: {
+          border: "1px solid #4FFFB0",
+          padding: "16px",
+          color: "#4FFFB0",
+        },
+        iconTheme: {
+          primary: "#4FFFB0",
+          secondary: "#FFFAEE",
+        },
       });
     }
   }, [isPending, toast]);
 
   useEffect(() => {
     if (isSuccess) {
-      toast({
-        title: "تمت العملية بنجاح",
-        description: "تم حذف البيانات بنجاح",
-        variant: "success",
+      toast.success("تمت الحذف بنجاح.", {
+        style: {
+          border: "1px solid #4FFFB0",
+          padding: "16px",
+          color: "#4FFFB0",
+        },
+        iconTheme: {
+          primary: "#4FFFB0",
+          secondary: "#FFFAEE",
+        },
       });
       window.location.reload();
     }
@@ -67,10 +80,16 @@ export default function DeleteDialog({
 
   useEffect(() => {
     if (isError) {
-      toast({
-        title: "فشلت العملية",
-        description: error?.toString(),
-        variant: "destructive",
+      toast.error("لم تتم العميله.", {
+        style: {
+          border: "1px solid  #FF5733 ",
+          padding: "16px",
+          color: " #FF5733 ",
+        },
+        iconTheme: {
+          primary: " #FF5733 ",
+          secondary: "#FFFAEE",
+        },
       });
     }
   }, [isError, error, toast]);
@@ -86,7 +105,7 @@ export default function DeleteDialog({
         <Trash fill="#ef4444" size={15} />
         حذف
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-[#f2f2f2]">
         <AlertDialogHeader className="*:text-right">
           <AlertDialogTitle>{"هل أنت متأكد؟"}</AlertDialogTitle>
           <AlertDialogDescription>
