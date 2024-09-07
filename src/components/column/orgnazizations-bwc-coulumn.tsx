@@ -25,9 +25,9 @@ import { Link } from "react-router-dom";
 
 export type AddOrganizationsOrder = {
   isSelected: boolean;
-  id: string;
-  img: string;
+  id: number;
   name: string;
+  img: string;
   link: string;
 };
 
@@ -89,7 +89,7 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/organization/update/${row.original?.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -97,7 +97,7 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/organization/info`}>
+          <Link to={`/admin-dashboard/organization/info/${row.original.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -106,8 +106,8 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
             </Button>
           </Link>
           <DeleteDialog
-            url={`/api/References/${row.original?.id}`}
-            path={"/admin-dashboard/references"}
+            url={`/api/OrgUndBWC/${row.original?.id}`}
+            path={"/admin-dashboard/organization"}
           />
         </div>
       );

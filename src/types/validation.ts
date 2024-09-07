@@ -32,7 +32,17 @@ export const addTaskForceSchema = z.object({
 export const addOrgSchema = z.object({
   name: z.string(),
   link: z.string(),
-  imageFile: z.string().optional(),
+  imageFile: z
+    .instanceof(FileList)
+    .refine((files) => files.length === 1, {
+      message: "You must upload one file.",
+    })
+    .refine((files) => files[0].size <= MAX_FILE_SIZE, {
+      message: `File size must be less than ${MAX_FILE_SIZE / 1024 / 1024}MB.`,
+    })
+    .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files[0].type), {
+      message: "Only JPEG, JPG, PNG, and WEBP files are accepted.",
+    }),
 });
 
 export const addWriterSchema = z.object({
@@ -77,4 +87,10 @@ export type TaskForceResp = {
   degree: string;
   role: string;
   image: string;
+};
+export type OgResp = {
+  id: number;
+  name: string;
+  img: string;
+  link: string;
 };
