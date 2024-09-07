@@ -29,76 +29,73 @@ import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 // import { ReferenceResp } from "src/types/validation";
 
-export interface ReferenceProp {
+export interface OrgProp {
   id: number;
-  img: string;
   name: string;
   link: string;
+  imageFile: string;
 }
 
-export type ReferenceResp = {
+export type OrgResp = {
   id: number;
-  img: string;
   name: string;
   link: string;
+  imageFile: string;
 };
 
-const reference: ReferenceProp[] = [
-  { id: 1, img: image4, name: "xx", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
+const reference: OrgProp[] = [
+  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
+  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
 ];
 export default function OrganizationsUnderBwcTable() {
   const defaultData = useMemo<AddOrganizationsOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddOrganizationsColumns, []);
-  const [data, setData] = useState<ReferenceProp[]>([]);
-  // const fetchIssueById = async () => {
-  //   try {
-  //     const response = await axiosInstance.get<ReferenceResp>(
-  //       `/api/References`
-  //     );
-  //     return [response.data];
-  //   } catch (error) {
-  //     console.error("Error fetching issue:", error);
-  //     throw error;
-  //   }
-  // };
+  const [data, setData] = useState<OrgProp[]>([]);
+  const fetchIssueById = async () => {
+    try {
+      const response = await axiosInstance.get<OrgResp>(`/api/OrgUndBWC`);
+      return [response.data];
+    } catch (error) {
+      console.error("Error fetching issue:", error);
+      throw error;
+    }
+  };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const data = await fetchIssueById();
-  //     setData(data);
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchIssueById();
+      setData(data);
+    };
 
-  //   getData();
-  // }, []);
+    getData();
+  }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);

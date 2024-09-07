@@ -9,7 +9,7 @@ import {
 } from "../../ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { addReferenceSchema } from "src/types/validation";
+import { addOrgSchema } from "src/types/validation";
 import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
@@ -21,22 +21,22 @@ import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import AddPersonalImageDialog from "../dailog/add-personal-image-dialog";
 
-type ReferenceFormValue = z.infer<typeof addReferenceSchema>;
+type ReferenceFormValue = z.infer<typeof addOrgSchema>;
 
 export default function AddOrgForm() {
   // const { toast } = useToast();
   const navigate = useNavigate();
-  const form = useForm<z.infer<typeof addReferenceSchema>>({
-    resolver: zodResolver(addReferenceSchema),
+  const form = useForm<z.infer<typeof addOrgSchema>>({
+    resolver: zodResolver(addOrgSchema),
   });
 
   const { mutate } = useMutation({
-    mutationKey: ["AddReferences"],
+    mutationKey: ["AddOrg"],
     mutationFn: (datas: ReferenceFormValue) =>
-      postApi("/api/References", {
-        ar_title: datas.ar_title,
-        en_title: datas.en_title,
+      postApi("/api/OrgUndBWC", {
+        name: datas.name,
         link: datas.link,
+        imageFile: datas.imageFile,
       }),
     onSuccess: () => {
       // toast({
@@ -89,7 +89,7 @@ export default function AddOrgForm() {
               />
               <FormField
                 control={form.control}
-                name="ar_title"
+                name="imageFile"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -114,7 +114,7 @@ export default function AddOrgForm() {
             <Label text="اسم المؤسسة" />
             <FormField
               control={form.control}
-              name="ar_title"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">
@@ -132,7 +132,7 @@ export default function AddOrgForm() {
             <Label text="Organization name" />
             <FormField
               control={form.control}
-              name="en_title"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">

@@ -20,67 +20,71 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 import {
-  AddReferenceColumns,
-  type AddReferenceOrder,
-} from "../../components/column/add-refernce-column";
+  AddWriterColumns,
+  type AddWriterOrder,
+} from "../../components/column/writer-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 // import { ReferenceResp } from "src/types/validation";
 
-export interface ReferenceProp {
+export interface WriterProp {
   id: number;
-  ar_title: string;
-  en_title: string;
-  link: string;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
 }
 
-export type ReferenceResp = {
+export type WriterResp = {
   id: number;
-  ar_title: string;
-  en_title: string;
-  link: string;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
 };
 
-const reference: ReferenceProp[] = [
-  { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
-  { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
-  { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
-  { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
-  { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
-];
+// const reference: ReferenceProp[] = [
+//   { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
+//   { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
+//   { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
+//   { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
+//   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
+// ];
 export default function WriterTable() {
-  const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddReferenceColumns, []);
-  const [data, setData] = useState<ReferenceProp[]>([]);
-  // const fetchIssueById = async () => {
-  //   try {
-  //     const response = await axiosInstance.get<ReferenceResp>(
-  //       `/api/References`
-  //     );
-  //     return [response.data];
-  //   } catch (error) {
-  //     console.error("Error fetching issue:", error);
-  //     throw error;
-  //   }
-  // };
+  const defaultData = useMemo<AddWriterOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddWriterColumns, []);
+  const [data, setData] = useState<WriterProp[]>([]);
+  const fetchIssueById = async () => {
+    try {
+      const response = await axiosInstance.get<WriterResp>(`/api/Writers`);
+      return [response.data];
+    } catch (error) {
+      console.error("Error fetching issue:", error);
+      throw error;
+    }
+  };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const data = await fetchIssueById();
-  //     setData(data);
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchIssueById();
+      setData(data);
+    };
 
-  //   getData();
-  // }, []);
+    getData();
+  }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data:
-      // data.length ? data[0] :
-      defaultData,
+    data: data.length ? data[0] : defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {

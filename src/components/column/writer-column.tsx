@@ -25,9 +25,14 @@ import { Link } from "react-router-dom";
 
 export type AddWriterOrder = {
   isSelected: boolean;
-  id: string;
-  ar_title: string;
-  link: string;
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
 };
 
 export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
@@ -57,13 +62,13 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
   },
 
   {
-    id: "ar_title",
-    accessorKey: "ar_title",
-    header: "العنوان",
+    id: "ar_fullName",
+    accessorKey: "ar_fullName",
+    header: "الاسم الكامل",
   },
   {
-    accessorKey: "link",
-    header: "الرابط",
+    accessorKey: "ar_role",
+    header: "المسمى الوظيفي",
   },
 
   {
@@ -73,7 +78,9 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+          <Link
+            to={`/admin-dashboard/writer/update-writer/${row.original?.id}`}
+          >
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -81,7 +88,7 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/ "/admin-dashboard/writer/info`}>
+          <Link to={`/admin-dashboard/writer/info`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -90,8 +97,8 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
             </Button>
           </Link>
           <DeleteDialog
-            url={`/api/References/${row.original?.id}`}
-            path={"/admin-dashboard/references"}
+            url={`/api/Writers/${row.original?.id}`}
+            path={"/admin-dashboard/writer"}
           />
         </div>
       );

@@ -43,6 +43,7 @@ import OrganizationInfo from "./components/view/organization-info";
 import ServicesInfo from "./components/view/services-info";
 import WriterInfo from "./components/view/writer-info";
 import JobInfo from "./components/view/job-info";
+import UpdateWriterForm from "./components/form/update-writer";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/writer/add-writer",
         element: <AddWriter />,
+      },
+      {
+        path: "/admin-dashboard/writer/update-writer/:id",
+        element: <UpdateWriterForm />,
       },
       {
         path: "/admin-dashboard/writer/info",

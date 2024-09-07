@@ -19,8 +19,8 @@ interface AddPersonalImageDialogProps {
   setPersonalPhoto: (name: string) => void;
   personalPhoto: string | undefined;
 }
-// const serverUrl = env.NEXT_PUBLIC_MAIN_SERVER_URL;
-const filesApiUrl = "/api/files";
+const serverUrl = "https://mahfoudsabbah-001-site1.jtempurl.com";
+const filesApiUrl = "/api/Writers";
 
 export default function AddPersonalImageDialog({
   setPersonalPhoto,
@@ -32,30 +32,30 @@ export default function AddPersonalImageDialog({
   );
   const [isUploaded, setIsUploaded] = useState<boolean>(false);
   const [imagePrev, setImagePrev] = useState<string | null>(null);
-  // const handleRemoveClick = async () => {
-  //   if (files) {
-  //     const response = await axios.post(serverUrl + filesApiUrl + "/remove", {
-  //       paths: [savedImageName && savedImageName],
-  //     });
+  const handleRemoveClick = async () => {
+    if (files) {
+      const response = await axios.post(serverUrl + filesApiUrl, {
+        paths: [savedImageName && savedImageName],
+      });
 
-  //     if (response.status === 201) {
-  //       setImagePrev(null);
-  //       setFiles(undefined);
-  //       setPersonalPhoto("");
+      if (response.status === 201) {
+        setImagePrev(null);
+        setFiles(undefined);
+        setPersonalPhoto("");
 
-  //       toast({
-  //         title: "اشعار",
-  //         variant: "success",
-  //         description: "تم الحذف بنجاح...",
-  //       });
-  //     } else
-  //       toast({
-  //         title: "اشعار",
-  //         variant: "destructive",
-  //         description: "لم يتم الحذف...",
-  //       });
-  //   }
-  // };
+        toast({
+          title: "اشعار",
+          variant: "success",
+          description: "تم الحذف بنجاح...",
+        });
+      } else
+        toast({
+          title: "اشعار",
+          variant: "destructive",
+          description: "لم يتم الحذف...",
+        });
+    }
+  };
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputFiles = e.target.files;
     inputFiles && setFiles(inputFiles);
@@ -68,32 +68,36 @@ export default function AddPersonalImageDialog({
     };
     reader.readAsDataURL(file);
   };
-  // const uploadImage = async () => {
-  //   const headers = { "Content-Type": "multipart/form-data" };
-  //   const form = new FormData();
-  //   if (files) {
-  //     form.append("file", files[0] as Blob);
+  const uploadImage = async () => {
+    const headers = { "Content-Type": "multipart/form-data" };
+    const form = new FormData();
+    if (files) {
+      form.append("file", files[0] as Blob);
 
-  //     const { data, status }: { data: { path: string }; status: number } =
-  //       await axios.post(serverUrl + filesApiUrl + "/upload/one", form, {
-  //         headers,
-  //       });
+      const { data, status }: { data: { path: string }; status: number } =
+        await axios.post(
+          serverUrl + filesApiUrl + "uploads\\profileImages\\",
+          form,
+          {
+            headers,
+          }
+        );
 
-  //     if (status === 201) {
-  //       setPersonalPhoto(data.path);
-  //       setSavedImageName(data.path);
-  //       toast({
-  //         title: "اشعار",
-  //         variant: "success",
-  //         description: "تم الرفع بنجاح...",
-  //       });
+      if (status === 201) {
+        setPersonalPhoto(data.path);
+        setSavedImageName(data.path);
+        toast({
+          title: "اشعار",
+          variant: "success",
+          description: "تم الرفع بنجاح...",
+        });
 
-  //       setIsUploaded(true);
-  //       const file = files[0];
-  //       if (file) renderImage(file);
-  //     }
-  //   }
-  // };
+        setIsUploaded(true);
+        const file = files[0];
+        if (file) renderImage(file);
+      }
+    }
+  };
 
   return (
     <div className="col-span-1  ">
@@ -101,14 +105,13 @@ export default function AddPersonalImageDialog({
         <Dialog>
           <DialogTrigger className=" rounded bg-white  text-red-900 hover:border hover:bg-[rgb(250,250,250)] disabled:pointer-events-none disabled:opacity-50">
             {personalPhoto ? (
-              // <img
-              //   src={serverUrl + "/" + personalPhoto}
-              //   alt={"employee image"}
-              //   width={100}
-              //   height={100}
-              //   className="max-h-[100px]"
-              // />
-              <></>
+              <img
+                src={serverUrl + "/" + personalPhoto}
+                alt={"employee image"}
+                width={100}
+                height={100}
+                className="max-h-[100px]"
+              />
             ) : (
               <User size={120} />
             )}
@@ -168,9 +171,9 @@ export default function AddPersonalImageDialog({
                   <Button
                     className="w-full bg-black text-white"
                     form="personalForm"
-                    // onClick={async () => {
-                    //   files && (await uploadImage());
-                    // }}
+                    onClick={async () => {
+                      files && (await uploadImage());
+                    }}
                   >
                     حفظ الإضافات
                   </Button>
