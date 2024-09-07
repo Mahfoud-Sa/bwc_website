@@ -30,6 +30,7 @@ export default function UpdateWriterForm() {
   // const { toast } = useToast();
   const { id } = useParams<{ id: string }>();
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof addWriterSchema>>({
     resolver: zodResolver(addWriterSchema),
@@ -74,13 +75,18 @@ export default function UpdateWriterForm() {
       const formData = new FormData();
       formData.append("ar_fullName", datas.ar_fullName); // Corrected this from decisionDate to decisionName
       formData.append("En_fullName", datas.En_fullName);
-      formData.append("image", datas.image[0]);
       formData.append("ar_description", datas.ar_description);
       formData.append("en_description", datas.en_description);
       formData.append("ar_role", datas.ar_role);
       formData.append("en_role", datas.en_role);
-
-      return postApi("/api/Writers", formData);
+      if (datas.ImageFile) {
+        formData.append("ImageFile", datas.ImageFile[0]); // Add the file to formData
+      }
+      return postApi(`/api/Writers/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     },
     onSuccess: () => {
       toast.success("تمت الاضافة بنجاح.", {
@@ -124,8 +130,25 @@ export default function UpdateWriterForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="min-h-[90vh]   w-[100%] "
+        className="min-h-[90vh]   w-[100%] bg-[#f2f2f2] "
       >
+        <div>
+          {preview ? (
+            <img
+              src={preview}
+              alt="Preview"
+              className="w-32 h-32 object-cover"
+            />
+          ) : existingImageUrl ? (
+            <img
+              src={existingImageUrl}
+              alt="Existing Image"
+              className="w-32 h-32 object-cover"
+            />
+          ) : (
+            <p>No image uploaded</p>
+          )}
+        </div>
         <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]">
           {/* <label className="text-md mb-2 block font-bold text-gray-950">
             صورة الكاتب
@@ -134,7 +157,7 @@ export default function UpdateWriterForm() {
           <div className=" col-span-1 h-auto translate-y-10">
             <FormField
               control={form.control}
-              name="image"
+              name="ImageFile"
               render={() => (
                 <FormItem>
                   <FormLabel>Upload Image</FormLabel>
@@ -311,7 +334,7 @@ export default function UpdateWriterForm() {
 
         <div className="w-full translate-x-10 flex justify-end mt-20">
           <Button className="text-md mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            إضافة
+            تعديل
           </Button>
         </div>
       </form>

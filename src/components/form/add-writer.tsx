@@ -45,11 +45,15 @@ export default function AddWriterForm() {
       formData.append("ar_role", datas.ar_role);
       formData.append("en_role", datas.en_role);
 
-      if (imagePreview) {
-        formData.append("image", imagePreview.name);
+      if (datas.ImageFile) {
+        formData.append("ImageFile", datas.ImageFile[0]);
       }
 
-      return postApi("/api/Writers", formData);
+      return postApi("/api/Writers", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     },
     onSuccess: () => {
       toast.success("تمت الاضافة بنجاح.", {
@@ -83,14 +87,13 @@ export default function AddWriterForm() {
   //   data?.file.personalPhoto ?? "",
   const onSubmit = (datas: ReferenceFormValue) => {
     mutate(datas);
-    console.log(datas.image[0].name);
   };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="min-h-[90vh]   w-[100%] "
+        className="min-h-[90vh]   w-[100%] bg-[#f2f2f2] "
       >
         <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]">
           {/* <label className="text-md mb-2 block font-bold text-gray-950">
@@ -100,7 +103,7 @@ export default function AddWriterForm() {
           <div className=" col-span-1 h-auto translate-y-10">
             <FormField
               control={form.control}
-              name="image"
+              name="ImageFile"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Upload Image</FormLabel>

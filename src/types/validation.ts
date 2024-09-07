@@ -48,7 +48,7 @@ export const addOrgSchema = z.object({
 export const addWriterSchema = z.object({
   ar_fullName: z.string().nonempty("Arabic full name is required"),
   En_fullName: z.string().nonempty("English full name is required"),
-  image: z
+  ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {
       message: "You must upload one file.",
