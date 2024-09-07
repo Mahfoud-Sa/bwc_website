@@ -101,9 +101,7 @@ export default function OrganizationsUnderBwcTable() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data:
-      // data.length ? data[0] :
-      reference,
+    data: data.length ? data[0] : defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {

@@ -45,6 +45,7 @@ import WriterInfo from "./components/view/writer-info";
 import JobInfo from "./components/view/job-info";
 import UpdateWriterForm from "./components/form/update-writer";
 import UpdateTaskForce from "./components/form/update-taskforce-form";
+import UpdateOrg from "./components/form/update-org";
 
 const router = createBrowserRouter([
   {
@@ -96,8 +97,12 @@ const router = createBrowserRouter([
         element: <AddOrg />,
       },
       {
-        path: "/admin-dashboard/organization/info",
+        path: "/admin-dashboard/organization/info/:id",
         element: <OrganizationInfo />,
+      },
+      {
+        path: "/admin-dashboard/organization/update/:id",
+        element: <UpdateOrg />,
       },
       {
         path: "/admin-dashboard/reports",
