@@ -14,9 +14,9 @@ import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 
 import {
-  AddWriterColumns,
-  type AddWriterOrder,
-} from "../../components/column/writer-column";
+  AddTaskForceColumns,
+  type AddTaskForceOrder,
+} from "../../components/column/add-task-force-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -44,14 +44,12 @@ const reference: ReferenceProp[] = [
   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 ];
 export default function TaskForceTable() {
-  const defaultData = useMemo<AddWriterOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddWriterColumns, []);
+  const defaultData = useMemo<AddTaskForceOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddTaskForceColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
   const fetchIssueById = async () => {
     try {
-      const response = await axiosInstance.get<ReferenceResp>(
-        `/api/References`
-      );
+      const response = await axiosInstance.get<ReferenceResp>(`/api/Taskforce`);
       return [response.data];
     } catch (error) {
       console.error("Error fetching issue:", error);

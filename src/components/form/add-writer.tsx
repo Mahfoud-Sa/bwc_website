@@ -29,7 +29,7 @@ type ReferenceFormValue = z.infer<typeof addWriterSchema>;
 export default function AddWriterForm() {
   // const { toast } = useToast();
   const navigate = useNavigate();
-  const [newImageFile, setNewImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<File | null>(null);
   const form = useForm<z.infer<typeof addWriterSchema>>({
     resolver: zodResolver(addWriterSchema),
   });
@@ -45,8 +45,8 @@ export default function AddWriterForm() {
       formData.append("ar_role", datas.ar_role);
       formData.append("en_role", datas.en_role);
 
-      if (newImageFile) {
-        formData.append("image", newImageFile);
+      if (imagePreview) {
+        formData.append("image", imagePreview.name);
       }
 
       return postApi("/api/Writers", formData);
@@ -83,6 +83,7 @@ export default function AddWriterForm() {
   //   data?.file.personalPhoto ?? "",
   const onSubmit = (datas: ReferenceFormValue) => {
     mutate(datas);
+    console.log(datas.image[0].name);
   };
 
   return (

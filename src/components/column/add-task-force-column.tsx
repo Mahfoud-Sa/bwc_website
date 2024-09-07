@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 
 export type AddTaskForceOrder = {
   isSelected: boolean;
-  id: string;
-  ar_title: string;
-  link: string;
+  id: number;
+  name: string;
+  degree: string;
+  role: string;
+  image: string;
 };
 
 export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
@@ -42,20 +44,31 @@ export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
   },
 
   {
-    id: "ar_title",
-    accessorKey: "ar_title",
-    header: "ص",
+    id: "image",
+    accessorKey: "image",
+    header: "صورة الموظف",
+    cell: ({ row }) => {
+      return (
+        <div className=" w-[50px] h-[50px] rounded-full">
+          <img
+            src={row.original.image}
+            className="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+      );
+    },
   },
   {
-    accessorKey: "link",
+    accessorKey: "name",
     header: "الاسم الكامل ",
   },
   {
-    accessorKey: "link",
+    accessorKey: "degree",
     header: "الدرجة ",
   },
   {
-    accessorKey: "link",
+    accessorKey: "role",
     header: "المسمى الوظيفي ",
   },
 
@@ -66,7 +79,9 @@ export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+          <Link
+            to={`/admin-dashboard/taskforce/update-employee/${row.original?.id}`}
+          >
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -74,7 +89,7 @@ export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/taskforce/info`}>
+          <Link to={`/admin-dashboard/taskforce/info/${row.original?.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -83,8 +98,8 @@ export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
             </Button>
           </Link>
           <DeleteDialog
-            url={`/api/References/${row.original?.id}`}
-            path={"/admin-dashboard/references"}
+            url={`/api/Taskforce/${row.original?.id}`}
+            path={"/admin-dashboard/taskforce"}
           />
         </div>
       );

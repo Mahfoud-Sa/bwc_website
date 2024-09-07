@@ -5,7 +5,7 @@ import Breadcrumb from "src/ui/breadcrumb";
 export default function References() {
   return (
     <main>
-      <div className="fixed h-screen  w-[83.5%] text-right bg-[#f2f2f2]">
+      <div className="min-h-screen  w-[100%] text-right bg-[#f2f2f2]">
         <div className="grid grid-cols-1">
           <div className="col-span-1 mb-2 mt-4 h-auto  rounded-lg">
             <Breadcrumb
