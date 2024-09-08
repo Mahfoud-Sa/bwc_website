@@ -20,6 +20,7 @@ import { useToast } from "src/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import AddPersonalImageDialog from "../dailog/add-personal-image-dialog";
+import { Textarea } from "src/ui/textarea";
 
 type ReferenceFormValue = z.infer<typeof addReferenceSchema>;
 
@@ -184,7 +185,7 @@ export default function AddJobForm() {
         </div>
 
         {/* TODO:Textarea */}
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="المقدمة" />
             <FormField
@@ -194,7 +195,12 @@ export default function AddJobForm() {
                 <FormItem>
                   <FormLabel className="text-red-900">{"المقدمة"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="ادخل المقدمة..." {...field} />
+                    <Textarea
+                      placeholder="ادخل المقدمة..."
+                      className="bg-white"
+                      {...field}
+                      rows={5}
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -203,7 +209,7 @@ export default function AddJobForm() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="advance" />
             <FormField
@@ -213,7 +219,12 @@ export default function AddJobForm() {
                 <FormItem>
                   <FormLabel className="text-red-900">{"advance"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="enter advance ..." {...field} />
+                    <Textarea
+                      placeholder="enter advance ..."
+                      {...field}
+                      rows={5}
+                      className="bg-white"
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -222,7 +233,7 @@ export default function AddJobForm() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="وصف الوظيفة" />
             <FormField
@@ -234,7 +245,12 @@ export default function AddJobForm() {
                     {"وصف الوظيفة"}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="ادخل وصف الوظيفة ..." {...field} />
+                    <Textarea
+                      placeholder="ادخل وصف الوظيفة ..."
+                      {...field}
+                      className="bg-white"
+                      rows={5}
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -242,7 +258,7 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="basic description" />
             <FormField
@@ -254,10 +270,12 @@ export default function AddJobForm() {
                     {"basic description"}
                   </FormLabel>
                   <FormControl>
-                    <Input
+                    <Textarea
+                      className="bg-white"
                       placeholder="enter basic description ..."
+                      rows={5}
                       {...field}
-                    />
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -265,7 +283,7 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="المؤهلات" />
             <FormField
@@ -275,7 +293,12 @@ export default function AddJobForm() {
                 <FormItem>
                   <FormLabel className="text-red-900">{"المؤهلات"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="ادخل المؤهلات ..." {...field} />
+                    <Textarea
+                      className="bg-white"
+                      rows={5}
+                      placeholder="ادخل المؤهلات ..."
+                      {...field}
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -283,7 +306,7 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="skills" />
             <FormField
@@ -293,7 +316,12 @@ export default function AddJobForm() {
                 <FormItem>
                   <FormLabel className="text-red-900">{"skills"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="enter skills ..." {...field} />
+                    <Textarea
+                      className="bg-white"
+                      rows={5}
+                      placeholder="enter skills ..."
+                      {...field}
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -301,7 +329,7 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="المهام الوظيفيه" />
             <FormField
@@ -313,7 +341,12 @@ export default function AddJobForm() {
                     {"المهام الوظيفيه"}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="ادخل المهام الوظيفية ..." {...field} />
+                    <Textarea
+                      className="bg-white"
+                      rows={5}
+                      placeholder="ادخل المهام الوظيفية ..."
+                      {...field}
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -321,7 +354,7 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+        <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="basic tasks" />
             <FormField
@@ -333,7 +366,12 @@ export default function AddJobForm() {
                     {"basic tasks"}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="enter the basic tasks ..." {...field} />
+                    <Textarea
+                      rows={5}
+                      className="bg-white"
+                      placeholder="enter the basic tasks ..."
+                      {...field}
+                    ></Textarea>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -341,7 +379,7 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="w-full translate-x-10 flex justify-end">
+        <div className="w-full translate-x-10 flex justify-end mt-20">
           <Button className="text-md mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
             إضافة
           </Button>

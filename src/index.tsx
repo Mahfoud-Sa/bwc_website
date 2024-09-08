@@ -46,6 +46,7 @@ import JobInfo from "./components/view/job-info";
 import UpdateWriterForm from "./components/form/update-writer";
 import UpdateTaskForce from "./components/form/update-taskforce-form";
 import UpdateOrg from "./components/form/update-org";
+import JoinUs from "./page/(User)/join-us";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "/about-us",
     element: <AboutUs />,
+  },
+  {
+    path: "/join-us",
+    element: <JoinUs />,
   },
   {
     path: "/login",

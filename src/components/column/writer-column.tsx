@@ -60,12 +60,27 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
       />
     ),
   },
-
+  {
+    accessorKey: "image",
+    header: "ص",
+    cell: ({ row }) => {
+      return (
+        <div className=" w-[50px] h-[50px] rounded-full">
+          <img
+            src="https://mahfoudsabbah-001-site2.jtempurl.com/uploads/profileImages/c7a39e56-0386-458c-801b-528904db9191.png"
+            className="w-full h-full object-cover"
+            alt=""
+          />
+        </div>
+      );
+    },
+  },
   {
     id: "ar_fullName",
     accessorKey: "ar_fullName",
     header: "الاسم الكامل",
   },
+
   {
     accessorKey: "ar_role",
     header: "المسمى الوظيفي",
