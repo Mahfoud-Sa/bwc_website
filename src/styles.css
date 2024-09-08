@@ -558,10 +558,14 @@ opacity: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.publishesProject {
+.publishesProject,
+.job {
   text-align: end;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.job {
+  text-align: start;
 }
