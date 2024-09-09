@@ -47,7 +47,9 @@ import UpdateWriterForm from "./components/form/update-writer";
 import UpdateTaskForce from "./components/form/update-taskforce-form";
 import UpdateOrg from "./components/form/update-org";
 import JoinUs from "./page/(User)/join-us";
+
 import JobDetails from "./page/(User)/job-details";
+
 
 const router = createBrowserRouter([
   {
@@ -73,6 +75,7 @@ const router = createBrowserRouter([
   {
     path: "/job-details",
     element: <JobDetails />,
+
   },
   {
     path: "/login",
