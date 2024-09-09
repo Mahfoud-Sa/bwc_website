@@ -7,6 +7,7 @@ import {
   Search,
 } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Jobs() {
   // Generate a sample array of 30 divs
@@ -110,44 +111,46 @@ export default function Jobs() {
           <div className="">
             {currentItems.map((item) => (
               <div className="w-[100%] h-[100%] mt-8 bg-white border-2 border-gray-300 px-3 py-2 rounded-lg ">
-                <div className=" w-full  flex items-center">
-                  <h1 className="text-2xl">محاسب مالي</h1>
+                <Link to={"/job-details"}>
+                  <div className=" w-full  flex items-center">
+                    <h1 className="text-2xl">محاسب مالي</h1>
 
-                  <div className=" pb-2 text-end translate-y-3">
-                    <span className="inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2">
-                      متاحة{item}
-                    </span>
+                    <div className=" pb-2 text-end translate-y-3">
+                      <span className="inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2">
+                        متاحة{item}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                {/*  */}
-                <div className="flex items-center mt-2 h-6">
-                  <div className="flex">
-                    <FileArchive className="ml-2" />
-                    <h6>96533025</h6>
+                  {/*  */}
+                  <div className="flex items-center mt-2 h-6">
+                    <div className="flex">
+                      <FileArchive className="ml-2" />
+                      <h6>96533025</h6>
+                    </div>
+                    <div className="flex mr-2">
+                      <Clock10 className="ml-2" />
+                      <h6>96533025</h6>
+                    </div>
+                    <div className="flex mr-2">
+                      <Calendar className="ml-2" />
+                      <h6>96533025</h6>
+                    </div>
                   </div>
-                  <div className="flex mr-2">
-                    <Clock10 className="ml-2" />
-                    <h6>96533025</h6>
-                  </div>
-                  <div className="flex mr-2">
-                    <Calendar className="ml-2" />
-                    <h6>96533025</h6>
-                  </div>
-                </div>
 
-                {/*  */}
-                <div className="flex items-center mt-5">
-                  <div className="w-[95%]">
-                    <p className="text-[#5B5B5B] job">
-                      أن تكون شركة عالم الاعمال للاستثمار والدراسات المحدودة
-                      الشركة المتخصصة والرائد في إدارة وتشغيل المشاريع
-                      الاستثمارية وتقديم الدراسات والاستشارات الإدارية دات
-                      الجودة الشركة المتخصصة والرائد في إدارة وتشغيل المشاريع
-                      الاستثمارية وتقديم الدراسات والاستشارات الإدارية دات
-                      الجودة
-                    </p>
+                  {/*  */}
+                  <div className="flex items-center mt-5">
+                    <div className="w-[95%]">
+                      <p className="text-[#5B5B5B] job">
+                        أن تكون شركة عالم الاعمال للاستثمار والدراسات المحدودة
+                        الشركة المتخصصة والرائد في إدارة وتشغيل المشاريع
+                        الاستثمارية وتقديم الدراسات والاستشارات الإدارية دات
+                        الجودة الشركة المتخصصة والرائد في إدارة وتشغيل المشاريع
+                        الاستثمارية وتقديم الدراسات والاستشارات الإدارية دات
+                        الجودة
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
