@@ -10,7 +10,7 @@ export default function JoinUs() {
         <Navbar />
       </div>
       <div className="w-full lg:h-[25vh] flex justify-center items-center md:mt-11 sm:mt-8">
-        <div className="w-[50%] h-[100%] bg-[#D5AE78]/[.5] rounded-lg px-2 py-1">
+        <div className="md:w-[50%] md:h-[100%] sm:w-[80%] sm:h-[100%] bg-[#D5AE78]/[.5] rounded-lg px-2 py-1">
           <h1>لتعزيز فريق العمل في شركة عالم الاعمال للاستثمار والدراسات</h1>
           {/*  */}
           <div className="flex items-center mt-5">
