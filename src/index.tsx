@@ -47,6 +47,7 @@ import UpdateWriterForm from "./components/form/update-writer";
 import UpdateTaskForce from "./components/form/update-taskforce-form";
 import UpdateOrg from "./components/form/update-org";
 import JoinUs from "./page/(User)/join-us";
+import ReportDetials from "./page/(User)/report-detials";
 
 const router = createBrowserRouter([
   {
@@ -211,6 +212,10 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFoundPage />,
   },
+  {
+    path: "/report-detials",
+    element: <ReportDetials />,
+  },
 ]);
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -218,7 +223,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <ReactQueryClientProvider>
     <React.StrictMode>
-      <React.Suspense fallback={<Loading />}>
+      <React.Suspense fallback={<Loading/>}>
         <RouterProvider router={router} />
       </React.Suspense>
     </React.StrictMode>
