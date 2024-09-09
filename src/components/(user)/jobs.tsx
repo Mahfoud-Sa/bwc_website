@@ -8,27 +8,60 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import NotFoundSearch from "src/assets/icons/not-found-search";
 
 export default function Jobs() {
-  // Generate a sample array of 30 divs
   const totalItems = Array.from({ length: 30 }, (_, i) => i + 1);
-
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Updated to show 3 divs per page
+  const itemsPerPage = 3;
   const totalPages = Math.ceil(totalItems.length / itemsPerPage);
 
-  // Calculate the items to display for the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = totalItems.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  // Function to generate the pagination numbers with ellipses
+  const getPaginationNumbers = () => {
+    const pages = [];
+    const maxPageButtons = 3; // Show 3 pages at a time
+
+    if (totalPages <= maxPageButtons + 2) {
+      // If total pages are less than the threshold, show all pages
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      // Handle showing pages with ellipsis
+      if (currentPage <= 2) {
+        // When current page is close to the start
+        pages.push(1, 2, 3, "...", totalPages);
+      } else if (currentPage >= totalPages - 1) {
+        // When current page is close to the end
+        pages.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        // When current page is in the middle
+        pages.push(
+          1,
+          "...",
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          "...",
+          totalPages
+        );
+      }
+    }
+    return pages;
+  };
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="w-full lg:h-[100vh] flex px-4 mt-5">
-      <div className="w-[30%] h-full ">
+      {/* Sidebar */}
+      <div className="md:block sm:hidden w-[30%] h-full ">
         <div className="w-[95%] h-full border border-gray-200 px-4 rounded-lg shadow-md">
           {/*  */}
           <div className="flex items-center max-w-sm mx-auto mt-6">
@@ -105,9 +138,12 @@ export default function Jobs() {
           </div>
         </div>
       </div>
-      <div className=" w-[70%] h-full ">
+
+      {/* Main content */}
+      <div className=" md:w-[70%] sm:w-[100%] h-full ">
         <div className=" h-full w-full ">
-          {/* Displaying the divs */}
+          {/* this is working */}
+          {/* Displaying the jobs */}
           <div className="">
             {currentItems.map((item) => (
               <div className="w-[100%] h-[100%] mt-8 bg-white border-2 border-gray-300 px-3 py-2 rounded-lg ">
@@ -121,7 +157,7 @@ export default function Jobs() {
                       </span>
                     </div>
                   </div>
-                  {/*  */}
+
                   <div className="flex items-center mt-2 h-6">
                     <div className="flex">
                       <FileArchive className="ml-2" />
@@ -137,7 +173,6 @@ export default function Jobs() {
                     </div>
                   </div>
 
-                  {/*  */}
                   <div className="flex items-center mt-5">
                     <div className="w-[95%]">
                       <p className="text-[#5B5B5B] job">
@@ -158,7 +193,7 @@ export default function Jobs() {
           {/* Pagination controls */}
           <div className="mt-4 flex justify-between space-x-2 ">
             <button
-              className="px-4 py-2 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+              className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
             >
@@ -166,24 +201,25 @@ export default function Jobs() {
               <h6>السابق</h6>
             </button>
 
-            <div>
-              {[...Array(totalPages)].map((_, index) => (
+            <div className="  md:pr-0 sm:pr-5">
+              {getPaginationNumbers().map((page, index) => (
                 <button
                   key={index}
                   className={`px-4 py-2 rounded ml-1 ${
-                    currentPage === index + 1
+                    currentPage === page
                       ? "bg-[#d5ae78] rounded-md  text-white"
                       : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
                   }`}
-                  onClick={() => paginate(index + 1)}
+                  onClick={() => typeof page === "number" && paginate(page)}
+                  disabled={typeof page !== "number"}
                 >
-                  {index + 1}
+                  {page}
                 </button>
               ))}
             </div>
 
             <button
-              className="px-4 py-2 border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+              className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10  border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
@@ -192,6 +228,16 @@ export default function Jobs() {
             </button>
           </div>
         </div>
+
+        {/* ----------------------------------- */}
+        {/* <div className=" h-full w-full flex justify-center items-center">
+          <div>
+            <NotFoundSearch />
+            <h1 className="text-center mt-8 text-shadow">
+              لا توجد نتيجة لبحثك , جرب البحث عن وظيفة اخرى
+            </h1>
+          </div>
+        </div> */}
       </div>
     </div>
   );
