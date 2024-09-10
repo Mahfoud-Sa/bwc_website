@@ -12,6 +12,23 @@ export const addReferenceSchema = z.object({
   en_title: z.string().max(19),
   link: z.string().max(1000),
 });
+export const addReportSchema = z.object({
+  Ar_Title: z.string().max(19),
+  En_Title: z.string().max(19),
+  Img: z.string().max(1000),
+  Ar_description: z.string().max(1000),
+  En_description: z.string().max(1000),
+  Ar_executive_summary: z.string().max(1000),
+  En_executive_summary: z.string().max(1000),
+  Ar_table_of_content: z.string().max(1000),
+  Er_table_of_content: z.string().max(1000),
+  date_of_report: z.string().max(1000),
+  date_of_publish: z.string().max(1000),
+  PdfImg: z.string().max(1000),
+  pdf_link: z.string().max(1000),
+  An_note: z.string().max(1000),
+  En_note: z.string().max(1000),
+});
 export const addJobSchema = z.object({
   ar_title: z.string().max(19),
   en_title: z.string().max(19),
