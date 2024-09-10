@@ -12,6 +12,14 @@ export default function OurPortfolio() {
     query: "(min-width: 768px) and (max-width: 979px)",
   });
   const isMonitorScreen = useMediaQuery({ query: "(min-width: 980px)" });
+
+  const handleDownload = () => {
+    // The file needs to be in the `public` folder of your project
+    const link = document.createElement("a");
+    link.href = "../../assets/Business World Company Profile 2024.pdf"; // Path to your PDF file
+    link.download = "Business World Company Profile 2024.pdf"; // Filename when the user downloads the file
+    link.click();
+  };
   return (
     <>
       {isMobileScreen && (
@@ -45,6 +53,7 @@ export default function OurPortfolio() {
                   <div className="flex justify-center items-start">
                     <button
                       type="button"
+                      onClick={handleDownload}
                       className="py-2.5 px-5 me-2 mb-2 text-xl w-[60%] h-[40%] font-medium text-[#CCA972] focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-[#CCA972] dark:border-gray-600 dark:hover:text-[#fff] dark:hover:bg-[#CCA972]"
                     >
                       Download The File
@@ -82,6 +91,7 @@ export default function OurPortfolio() {
                   <div className="flex justify-center items-start">
                     <button
                       type="button"
+                      onClick={handleDownload}
                       className="py-2.5 px-5 me-2 mb-2 text-xl w-[50%] h-[40%] font-medium text-[#CCA972] focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-[#CCA972] dark:border-gray-600 dark:hover:text-[#fff] dark:hover:bg-[#CCA972]"
                     >
                       تحميل الملف
@@ -124,6 +134,7 @@ export default function OurPortfolio() {
                   <div className="flex justify-center items-start">
                     <button
                       type="button"
+                      onClick={handleDownload}
                       className="py-2.5 px-5 me-2 mb-2 text-xl w-[30%] h-[40%] font-medium text-[#CCA972] focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-[#CCA972] dark:border-gray-600 dark:hover:text-[#fff] dark:hover:bg-[#CCA972]"
                     >
                       Download The File
@@ -161,6 +172,7 @@ export default function OurPortfolio() {
                   <div className="flex justify-center items-start">
                     <button
                       type="button"
+                      onClick={handleDownload}
                       className="py-2.5 px-5 me-2 mb-2 text-xl w-[30%] h-[40%] font-medium text-[#CCA972] focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-[#CCA972] dark:border-gray-600 dark:hover:text-[#fff] dark:hover:bg-[#CCA972]"
                     >
                       تحميل الملف
@@ -203,6 +215,7 @@ export default function OurPortfolio() {
                   <div className="flex justify-center items-start">
                     <button
                       type="button"
+                      onClick={handleDownload}
                       className="py-2.5 px-5 me-2 mb-2 text-xl w-[15%] h-[40%] font-medium text-[#CCA972] focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-[#CCA972] dark:border-gray-600 dark:hover:text-[#fff] dark:hover:bg-[#CCA972]"
                     >
                       Download The File
@@ -240,6 +253,7 @@ export default function OurPortfolio() {
                   <div className="flex justify-center items-start">
                     <button
                       type="button"
+                      onClick={handleDownload}
                       className="py-2.5 px-5 me-2 mb-2 text-xl w-[15%] h-[40%] font-medium text-[#CCA972] focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-[#CCA972] dark:border-gray-600 dark:hover:text-[#fff] dark:hover:bg-[#CCA972]"
                     >
                       تحميل الملف
