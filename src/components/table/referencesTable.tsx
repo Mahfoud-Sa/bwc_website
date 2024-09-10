@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Button } from "src/ui/button";
+import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import {
   useReactTable,
@@ -22,15 +23,62 @@ import {
   AddReferenceColumns,
   type AddReferenceOrder,
 } from "../../components/column/add-refernce-column";
+
 import { OrderDataTable } from "src/ui/order-data-table";
+import { axiosInstance } from "src/lib/http";
+// import { ReferenceResp } from "src/types/validation";
+
+export interface ReferenceProp {
+  id: number;
+  ar_title: string;
+  en_title: string;
+  link: string;
+}
+
+export type ReferenceResp = {
+  id: number;
+  ar_title: string;
+  en_title: string;
+  link: string;
+};
+
+const reference: ReferenceProp[] = [
+  { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
+  { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
+  { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
+  { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
+  { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
+];
 export default function ReferencesTable() {
-  const columnsMemo = useMemo(() => AddReferenceColumns, []);
   const defaultData = useMemo<AddReferenceOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddReferenceColumns, []);
+  const [data, setData] = useState<ReferenceProp[]>([]);
+  const fetchIssueById = async () => {
+    try {
+      const response = await axiosInstance.get<ReferenceResp>(
+        `/api/References`
+      );
+      return [response.data];
+    } catch (error) {
+      console.error("Error fetching issue:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchIssueById();
+      setData(data);
+    };
+
+    getData();
+  }, []);
+
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data: defaultData,
+    data: data.length ? data[0] : defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {
@@ -50,9 +98,9 @@ export default function ReferencesTable() {
           <div className="grid grid-cols-4 gap-2 text-right">
             {/* Start : input Text */}
             <div className=" col-span-1 h-auto">
-              <Label text="الرقم العسكري" />
+              <Label text="اسم المرجع" />
               <Input
-                placeholder="الرقم العسكري"
+                placeholder="اسم المرجع"
                 value={
                   (table
                     .getColumn("data.militaryNumber")
@@ -74,36 +122,28 @@ export default function ReferencesTable() {
           </div>
           <div className="col-span-3">
             <div className="flex flex-row-reverse gap-4 ">
-              <Sheet>
-                <SheetTrigger
-                  className={` text-md  inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#450A0A] px-4 py-2 text-sm font-bold text-white  ring-offset-background transition-colors hover:bg-[#711F1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50`}
-                  //   disabled={!accessRejectedOrders()}
-                >
-                  {/* طلبات مرفوضة : {rejectedOrders?.length} */}
-                </SheetTrigger>
-                <SheetContent side="bottom">
-                  <SheetHeader>
-                    <SheetTitle> الطلبات المرفوضة</SheetTitle>
-                    {/* <AddEmployeeRejectedTable /> */}
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
-              <Button className="mr-2" type="submit" form="searchEmployee">
+              <Button
+                className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                type="submit"
+                form="searchEmployee"
+              >
                 {" "}
-                بحث{" "}
+                فلتر بعدد{" "}
               </Button>
-              <Sheet>
-                <SheetTrigger className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                  <Plus className="ml-1" />
-                  اضافة كاتب
-                </SheetTrigger>
-                <SheetContent side="bottom">
-                  <SheetHeader>
-                    <SheetTitle>طلب إضافة موظف</SheetTitle>
-                    {/* <AddEmployeeForm refetch={refetch} /> */}
-                  </SheetHeader>
-                </SheetContent>
-              </Sheet>
+              <Button
+                className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                type="submit"
+                form="searchEmployee"
+              >
+                {" "}
+                بحث سريع{" "}
+              </Button>
+              <Link to={"/admin-dashboard/references/add"}>
+                <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                  <Plus className="ml-2" />
+                  إضافة مرجع
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

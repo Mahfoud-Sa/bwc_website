@@ -36,12 +36,15 @@ export default function SideNab() {
               </li>
             </NavLink>
 
-            <li className="mt-1 py-2 px-1 rounded-md flex justify-end items-center">
-              Reports
-              <i className="mr-2">
-                <Reports />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/reports"}>
+              <li className="mt-1 py-2 px-1 rounded-md flex justify-end items-center">
+                Reports
+                <i className="mr-2">
+                  <Reports />
+                </i>
+              </li>
+            </NavLink>
+
             <h1
               className="hover:bg-[rgb(213,174,120)]/[.20] rounded-md p-2  hover:text-[#D5AE78] cursor-pointer flex justify-between items-center"
               onClick={() => setPublishes((open) => !open)}
@@ -89,47 +92,58 @@ export default function SideNab() {
             <p className="text-[12px] text-end text-[#9E9E9E]">
               Organizations and Employees
             </p>
-            <li className="px-3 mt-1 p-2 flex justify-end items-center">
-              Task Force
-              <i className="mr-2">
-                <img src={Teams} alt="" />
-              </i>
-            </li>
-            <li className="px-3 mt-1 p-2 flex justify-end items-center">
-              Institutions We Manage
-              <i className="mr-2">
-                <Orgnaztion />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/taskforce"}>
+              <li className="px-3 mt-1 p-2 flex justify-end items-center">
+                Task Force
+                <i className="mr-2">
+                  <img src={Teams} alt="" />
+                </i>
+              </li>
+            </NavLink>
+            <NavLink to={"/admin-dashboard/organization"}>
+              <li className="px-3 mt-1 p-2 flex justify-end items-center">
+                Institutions We Manage
+                <i className="mr-2">
+                  <Orgnaztion />
+                </i>
+              </li>
+            </NavLink>
             <li className="px-3 mt-1 p-2 flex justify-end items-center">
               Our Partners
               <i className="mr-2">
                 <Massage />
               </i>
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-end items-center">
-              Writers
-              <i className="mr-2">
-                <Massage />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/writer"}>
+              <li className="px-3 mt-1 p-2 flex justify-end items-center">
+                Writers
+                <i className="mr-2">
+                  <Massage />
+                </i>
+              </li>
+            </NavLink>
           </ul>
 
           <ul className="w-full min-h-[30%] px-3">
             <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-end text-[#9E9E9E]">Features</p>
-            <li className="px-3 mt-1 p-2 rounded-md flex justify-end items-center">
-              Job
-              <i className="mr-2">
-                <img src={Busniess} alt="" />
-              </i>
-            </li>
-            <li className="px-3 mt-1 p-2 rounded-md flex justify-end items-center">
-              Our Services
-              <i className="mr-2">
-                <img src={Service} alt="" />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/jobs"}>
+              <li className="px-3 mt-1 p-2 rounded-md flex justify-end items-center">
+                Job
+                <i className="mr-2">
+                  <img src={Busniess} alt="" />
+                </i>
+              </li>
+            </NavLink>
+            <NavLink to={"/admin-dashboard/services"}>
+              <li className="px-3 mt-1 p-2 rounded-md flex justify-end items-center">
+                Our Services
+                <i className="mr-2">
+                  <img src={Service} alt="" />
+                </i>
+              </li>
+            </NavLink>
+
             <li className="px-3 mt-1 p-2 flex justify-end items-center">
               Portfolio
               <i className="mr-2">
@@ -153,12 +167,14 @@ export default function SideNab() {
                 المراجع
               </li>
             </NavLink>
-            <li className="mt-1 py-2 px-1 rounded-md flex justify-start items-center">
-              <i className="ml-2">
-                <Reports />
-              </i>
-              التقارير
-            </li>
+            <NavLink to={"/admin-dashboard/reports"}>
+              <li className="mt-1 py-2 px-1 rounded-md flex justify-start items-center">
+                <i className="ml-2">
+                  <Reports />
+                </i>
+                التقارير
+              </li>
+            </NavLink>
             <h1
               className="hover:bg-[rgb(213,174,120)]/[.20] rounded-md p-2  hover:text-[#D5AE78] cursor-pointer flex justify-between items-center"
               onClick={() => setPublishes((open) => !open)}
@@ -204,49 +220,60 @@ export default function SideNab() {
           <ul className="w-full min-h-[25%]  mb-5 px-3">
             <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-start text-[#9E9E9E]">
-              المؤسسات و الموزفين
+              المؤسسات و الموظفين
             </p>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="ml-2">
-                <img src={Teams} alt="" />
-              </i>
-              فريق العمل
-            </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="ml-2">
-                <Orgnaztion />
-              </i>
-              المؤسسات التي نديرها
-            </li>
+            <NavLink to={"/admin-dashboard/taskforce"}>
+              <li className="px-3 mt-1 p-2 flex justify-start items-center">
+                <i className="ml-2">
+                  <img src={Teams} alt="" />
+                </i>
+                فريق العمل
+              </li>
+            </NavLink>
+            <NavLink to={"/admin-dashboard/organization"}>
+              <li className="px-3 mt-1 p-2 flex justify-start items-center">
+                <i className="ml-2">
+                  <Orgnaztion />
+                </i>
+                المؤسسات التي نديرها
+              </li>
+            </NavLink>
             <li className="px-3 mt-1 p-2 flex justify-start items-center">
               <i className="ml-2">
                 <Massage />
               </i>
               شركائنا
             </li>
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="ml-2">
-                <Massage />
-              </i>
-              الكُتَّاب
-            </li>
+            <NavLink to={"/admin-dashboard/writer"}>
+              <li className="px-3 mt-1 p-2 flex justify-start items-center">
+                <i className="ml-2">
+                  <Massage />
+                </i>
+                الكُتَّاب
+              </li>
+            </NavLink>
           </ul>
 
           <ul className="w-full min-h-[30%] px-3">
             <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-start text-[#9E9E9E]">المزايا</p>
-            <li className="px-3 mt-1 p-2 rounded-md flex justify-start items-center">
-              <i className="ml-2">
-                <img src={Busniess} alt="" />
-              </i>
-              الوظائف
-            </li>
-            <li className="px-3 mt-1 p-2 rounded-md flex justify-start items-center">
-              <i className="ml-2">
-                <img src={Service} alt="" />
-              </i>
-              خدماتنا
-            </li>
+            <NavLink to={"/admin-dashboard/jobs"}>
+              <li className="px-3 mt-1 p-2 rounded-md flex justify-start items-center">
+                <i className="ml-2">
+                  <img src={Busniess} alt="" />
+                </i>
+                الوظائف
+              </li>
+            </NavLink>
+            <NavLink to={"/admin-dashboard/services"}>
+              <li className="px-3 mt-1 p-2 rounded-md flex justify-start items-center">
+                <i className="ml-2">
+                  <img src={Service} alt="" />
+                </i>
+                خدماتنا
+              </li>
+            </NavLink>
+
             <li className="px-3 mt-1 p-2 flex justify-start items-center">
               <i className="ml-2">
                 <OurFiles />
