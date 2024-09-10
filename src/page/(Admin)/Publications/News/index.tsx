@@ -1,5 +1,4 @@
-import React from "react";
-import OrganizationsUnderBwcTable from "src/components/table/organizations-under-bwc-table";
+import NewsTable from "src/components/table/new-table";
 import Breadcrumb from "src/ui/breadcrumb";
 
 export default function NewsIndex() {
@@ -9,17 +8,17 @@ export default function NewsIndex() {
         <div className="grid grid-cols-1">
           <div className="col-span-1 mb-2 mt-4 h-auto  rounded-lg">
             <Breadcrumb
-              tilte1="المؤسسات و الموظفين"
+              tilte1="المنشورات"
               path1="/attendance"
-              tilte2=" المؤسسات التي نديرها"
+              tilte2=" منشورات"
               path2="/attendance/add-Attendance"
-              tilte3=""
+              tilte3="الاخبار"
               path3=""
             />
           </div>
         </div>
 
-        <OrganizationsUnderBwcTable />
+        <NewsTable />
       </div>
     </main>
   );

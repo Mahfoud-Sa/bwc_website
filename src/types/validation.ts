@@ -12,6 +12,12 @@ export const addReferenceSchema = z.object({
   en_title: z.string().max(19),
   link: z.string().max(1000),
 });
+export const addJobSchema = z.object({
+  ar_title: z.string().max(19),
+  en_title: z.string().max(19),
+  link: z.string().max(1000),
+  type: z.boolean(),
+});
 export const addTaskForceSchema = z.object({
   Name: z.string().max(19),
   Degree: z.string().max(19),

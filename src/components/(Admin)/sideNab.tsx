@@ -65,24 +65,30 @@ export default function SideNab() {
                   publishes ? "max-height-[200px]" : "max-height-0"
                 }`}
               >
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
-                  Publications
-                  <i className="mr-2">
-                    <img src={NewsIcon} alt="" />
-                  </i>
-                </li>
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
-                  News
-                  <i className="mr-2">
-                    <img src={NewsIcon2} alt="" />
-                  </i>
-                </li>
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
-                  Analysis
-                  <i className="mr-2">
-                    <StudiesIcon />
-                  </i>
-                </li>
+                <NavLink to={"/admin-dashboard/publications"}>
+                  <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
+                    Publications
+                    <i className="mr-2">
+                      <img src={NewsIcon} alt="" />
+                    </i>
+                  </li>
+                </NavLink>
+                <NavLink to={"/admin-dashboard/news"}>
+                  <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
+                    News
+                    <i className="mr-2">
+                      <img src={NewsIcon2} alt="" />
+                    </i>
+                  </li>
+                </NavLink>
+                <NavLink to={"/admin-dashboard/analysis"}>
+                  <li className="px-5 mt-1 p-2 rounded-md flex justify-end items-center">
+                    Analysis
+                    <i className="mr-2">
+                      <StudiesIcon />
+                    </i>
+                  </li>
+                </NavLink>
               </ul>
             )}
           </ul>
@@ -195,24 +201,30 @@ export default function SideNab() {
                   publishes ? "max-height-[200px]" : "max-height-0"
                 }`}
               >
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
-                  <i className="ml-2">
-                    <img src={NewsIcon} alt="" />
-                  </i>
-                  المنشورات
-                </li>
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
-                  <i className="ml-2">
-                    <img src={NewsIcon2} alt="" />
-                  </i>
-                  الاخبار
-                </li>
-                <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
-                  <i className="ml-2">
-                    <StudiesIcon />
-                  </i>
-                  التحاليل
-                </li>
+                <NavLink to={"/admin-dashboard/publications"}>
+                  <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
+                    <i className="ml-2">
+                      <img src={NewsIcon} alt="" />
+                    </i>
+                    المنشورات
+                  </li>
+                </NavLink>
+                <NavLink to={"/admin-dashboard/news"}>
+                  <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
+                    <i className="ml-2">
+                      <img src={NewsIcon2} alt="" />
+                    </i>
+                    الاخبار
+                  </li>
+                </NavLink>
+                <NavLink to={"/admin-dashboard/analysis"}>
+                  <li className="px-5 mt-1 p-2 rounded-md flex justify-start items-center">
+                    <i className="ml-2">
+                      <StudiesIcon />
+                    </i>
+                    التحاليل
+                  </li>
+                </NavLink>
               </ul>
             )}
           </ul>
