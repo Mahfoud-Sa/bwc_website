@@ -51,6 +51,7 @@ import Reports from "./page/(User)/reports";
 import JobDetails from "./page/(User)/job-details";
 import AddPublications from "./components/form/add-publications";
 import ReportDetials from "./page/(User)/report-detials";
+import ViewPublications from "./components/view/view-publishes";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,7 @@ const router = createBrowserRouter([
     path: "/reports",
     element: <Reports />,
   },
+
   {
     path: "/report-detials",
     element: <ReportDetials />,
@@ -148,6 +150,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/analysis",
         element: <AnalysisIndex />,
+      },
+      {
+        path: "/admin-dashboard/view-publishes/:id",
+        element: <ViewPublications />,
       },
       {
         path: "/admin-dashboard/add-publications/:id",

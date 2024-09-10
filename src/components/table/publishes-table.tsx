@@ -21,9 +21,9 @@ import {
 } from "../../ui/sheet";
 import image4 from "../../assets/img/1724086550980.jpg";
 import {
-  AddOrganizationsColumns,
-  type AddOrganizationsOrder,
-} from "../column/orgnazizations-bwc-coulumn";
+  AddOPublishesColumns,
+  type AddPublishesOrder,
+} from "../column/publishes-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
@@ -75,8 +75,8 @@ const reference: OrgProp[] = [
   { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
 ];
 export default function PublishesTable() {
-  const defaultData = useMemo<AddOrganizationsOrder[]>(() => [], []);
-  const columnsMemo = useMemo(() => AddOrganizationsColumns, []);
+  const defaultData = useMemo<AddPublishesOrder[]>(() => [], []);
+  const columnsMemo = useMemo(() => AddOPublishesColumns, []);
   const [data, setData] = useState<OrgProp[]>([]);
   const fetchIssueById = async () => {
     try {
