@@ -22,36 +22,36 @@ import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 // import { ReferenceResp } from "src/types/validation";
 
-export interface ReferenceProp {
+export interface ServicesProp {
   id: number;
-  ar_title: string;
-  en_title: string;
-  link: string;
+  ar_name: string;
+  en_name: string;
+  ar_Description: string;
+  en_Description: string;
 }
 
-export type ReferenceResp = {
+export type ServicesResp = {
   id: number;
-  ar_title: string;
-  en_title: string;
-  link: string;
+  ar_name: string;
+  en_name: string;
+  ar_Description: string;
+  en_Description: string;
 };
 
-const reference: ReferenceProp[] = [
-  { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
-  { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
-  { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
-  { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
-  { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
-];
+// const reference: ServicesProp[] = [
+//   { id: 1, ar_title: "sss1", en_title: "dfgdf", link: "asdasdasd1" },
+//   { id: 1, ar_title: "sss2", en_title: "dfgdf", link: "asdasdasd2" },
+//   { id: 1, ar_title: "sss3", en_title: "dfgdf", link: "asdasdasd3" },
+//   { id: 1, ar_title: "sss4", en_title: "dfgdf", link: "asdasdasd4" },
+//   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
+// ];
 export default function ServicesTable() {
   const defaultData = useMemo<AddServicesOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddServicesColumns, []);
-  const [data, setData] = useState<ReferenceProp[]>([]);
+  const [data, setData] = useState<ServicesProp[]>([]);
   const fetchIssueById = async () => {
     try {
-      const response = await axiosInstance.get<ReferenceResp>(
-        `/api/References`
-      );
+      const response = await axiosInstance.get<ServicesResp>(`/api/Services`);
       return [response.data];
     } catch (error) {
       console.error("Error fetching issue:", error);

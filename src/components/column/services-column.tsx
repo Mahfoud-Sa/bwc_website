@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 
 export type AddServicesOrder = {
   isSelected: boolean;
-  id: string;
-  ar_title: string;
-  link: string;
+  id: number;
+  ar_name: string;
+  en_name: string;
+  ar_Description: string;
+  en_Description: string;
 };
 
 export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
@@ -42,12 +44,12 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
   },
 
   {
-    id: "ar_title",
-    accessorKey: "ar_title",
+    id: "ar_name",
+    accessorKey: "ar_name",
     header: "عنوان الخدمة",
   },
   {
-    accessorKey: "link",
+    accessorKey: "ar_Description",
     header: "وصف الخدمة ",
   },
 
@@ -58,7 +60,9 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+          <Link
+            to={`/admin-dashboard/services/update-services/${row.original?.id}`}
+          >
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -66,7 +70,7 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/services/info`}>
+          <Link to={`/admin-dashboard/services/info/${row.original.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -75,8 +79,8 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
             </Button>
           </Link>
           <DeleteDialog
-            url={`/api/References/${row.original?.id}`}
-            path={"/admin-dashboard/references"}
+            url={`/api/Services/${row.original?.id}`}
+            path={"/admin-dashboard/services"}
           />
         </div>
       );
