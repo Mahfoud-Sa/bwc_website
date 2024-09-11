@@ -12,6 +12,12 @@ export const addReferenceSchema = z.object({
   en_title: z.string().max(19),
   link: z.string().max(1000),
 });
+export const addServicesSchema = z.object({
+  ar_name: z.string().max(19),
+  en_name: z.string().max(19),
+  ar_Description: z.string().max(1000),
+  en_Description: z.string().max(1000),
+});
 export const addReportSchema = z.object({
   Ar_Title: z.string().max(19),
   En_Title: z.string().max(19),
@@ -117,3 +123,12 @@ export type OgResp = {
   img: string;
   link: string;
 };
+
+export interface ServicesHomeProp {
+  ar_name: string;
+  en_name: string;
+  ar_Description: string;
+  en_Description: string;
+}
+
+export type ServicesHomeResp = ServicesHomeProp[];

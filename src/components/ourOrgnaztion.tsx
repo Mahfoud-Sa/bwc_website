@@ -85,7 +85,9 @@ export default function OurOrgnaztion() {
   const [data, setData] = useState<OrgProp[]>([]);
   const fetchIssueById = async () => {
     try {
-      const response = await axiosInstance.get<OgResp>(`/api/Home/OrgUndBWC`);
+      const response = await axiosInstance.get<OgResp>(
+        `/api/website/Home/OrgUndBWC`
+      );
       return [response.data];
     } catch (error) {
       console.error("Error fetching issue:", error);

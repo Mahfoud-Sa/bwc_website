@@ -52,6 +52,8 @@ import JobDetails from "./page/(User)/job-details";
 import AddPublications from "./components/form/add-publications";
 import ReportDetials from "./page/(User)/report-detials";
 import ViewPublications from "./components/view/view-publishes";
+import PublishDetails from "./page/(User)/publish-details";
+import UpdateServicesIndex from "./components/form/update-services";
 
 const router = createBrowserRouter([
   {
@@ -82,10 +84,13 @@ const router = createBrowserRouter([
     path: "/reports",
     element: <Reports />,
   },
-
   {
     path: "/report-detials",
     element: <ReportDetials />,
+  },
+  {
+    path: "/publish-details",
+    element: <PublishDetails />,
   },
   {
     path: "/login",
@@ -201,7 +206,11 @@ const router = createBrowserRouter([
         element: <AddServicesIndex />,
       },
       {
-        path: "/admin-dashboard/services/info",
+        path: "/admin-dashboard/services/update-services/:id",
+        element: <UpdateServicesIndex />,
+      },
+      {
+        path: "/admin-dashboard/services/info/:id",
         element: <ServicesInfo />,
       },
       {

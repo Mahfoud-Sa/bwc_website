@@ -23,12 +23,33 @@ import { useTranslation } from "react-i18next";
 import SecondOurPartners from "./components/secoundPartner";
 import Services from "./components/(user)/Services";
 import ServicesArb from "./components/(user)/ServicesArb";
+import { ServicesHomeProp, ServicesHomeResp } from "./types/validation";
+import { axiosInstance } from "./lib/http";
+import { useQuery } from "@tanstack/react-query";
+
 function App() {
   const serversRef = useRef<HTMLDivElement>(null);
   const [scrolls, setScrolls] = useState(false);
   const [topPosition, setTopPosition] = useState<number>(0);
   const [bottomPosition, setBottomPosition] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState(window.scrollY);
+  // const [data, setData] = useState<ServicesHomeProp[]>([]); // To store the services data
+  const {
+    data: services, // Renamed to `services` for clarity
+    isLoading,
+    error,
+  } = useQuery<ServicesHomeProp[]>({
+    queryFn: () =>
+      fetch(
+        "https://mahfoudsabbah-001-site1.jtempurl.com/api/website/Home/Services"
+      ).then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch services");
+        }
+        return res.json();
+      }),
+    queryKey: ["services"], // Unique key for this query
+  });
 
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
@@ -66,16 +87,20 @@ function App() {
       window.removeEventListener("resize", detectSize);
     };
   }, [widthScreen, serversRef]);
-  // const isWithinRange =
-  //   scrollPosition >= topPos &&
-  //   scrollPosition <= bottomPos - window.innerHeight;
-  // function setScrollDiv() {
-  //   if (window.scrollY >= topPos && window.scrollY <= bottomPos) {
-  //     setScrolls(true);
-  //   } else {
-  //     setScrolls(false);
-  //   }
-  // }
+
+  const bottomY = bottomPosition - window.innerHeight;
+
+  const isWithinRange =
+    scrollPosition >= topPosition &&
+    scrollPosition <= bottomPosition - window.innerHeight;
+
+  function setScrollDiv() {
+    if (window.scrollY >= topPosition && window.scrollY <= bottomPosition) {
+      setScrolls(true);
+    } else {
+      setScrolls(false);
+    }
+  }
 
   return (
     <div className="App">
@@ -548,7 +573,7 @@ function App() {
       </div>
 
       {/*  */}
-      {/* <div className="w-full h-[10vh] p-2 overflow-hidde relative">
+      <div className="w-full h-[10vh] p-2 overflow-hidde relative">
         {dir === "ltr" ? (
           <div className="flex justify-start p-5">
             <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
@@ -560,9 +585,9 @@ function App() {
             <h1 className="text-3xl">{t("homePage3")}</h1>
           </div>
         )}
-      </div> */}
+      </div>
       {/* خدماتنا  */}
-      {/* <div
+      <div
         ref={serversRef}
         className="w-full min-h-[150vh] mt-10 px-2  relative"
       >
@@ -580,82 +605,117 @@ function App() {
         ) : (
           <>
             {dir === "ltr" ? (
-              <>
-                <div className=" w-full h-full  p-4 overflow-hidden ">
-                  <div className=" w-full h-full grid gap-20 ">
-                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
-                        <p className="text-xl text-[#525252]">
-                          إدارة وتشغيل المشاريع التجارية في اليمن
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
-                        <p className="text-xl text-[#525252]">
-                          عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع
-                          الاستثمارية.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تصميم الاستراتيجيات</h1>
-                        <p className="text-xl text-[#525252]">
-                          تصميم الاستراتيجيات الفعالة وتطوير خطط العمل للشركات
-                          والمؤسسات التجارية.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="services h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                      <div className=" text-start w-[100%] h-[50%] p-4">
-                        <h1 className="text-3xl mb-6">تقديم الاستشارات</h1>
-                        <p className="text-xl text-[#525252]">
-                          تقديم الاستشارات الإدارية والمالية والتسويقية
-                          والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة
-                          للشركات والمؤسسات الخاصة والعامة.
-                        </p>
-                      </div>
-                    </div>
+              <div className="w-full min-h-full bg-black flex overflow-x-hidden">
+                <div className="w-[55%] mx-auto relative">
+                  {/* {isWithinRange ? (
+                  <div className="w-[50%]  h-[40rem] fixed top-80">
+                    <img
+                      src={services2}
+                      alt=""
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full  h-[40rem] absolute bottom-0  overflow-hidden">
+                    <img
+                      src={services2}
+                      alt=""
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  </div>
+                )} */}
+                  {/*  */}
+                  <div
+                    className={`
+                  ${
+                    isWithinRange
+                      ? "w-[55%]  h-[40rem] fixed top-20"
+                      : "w-[90%]   h-[40rem] absolute top-0   overflow-hidden"
+                  }
+                  
+                `}
+                  >
+                    <img
+                      src={services2}
+                      alt=""
+                      className={`${
+                        scrolls
+                          ? "w-full h-full object-cover rounded-md"
+                          : "w-full h-full object-cover rounded-md"
+                      }`}
+                    />
                   </div>
                 </div>
-                <div
-                  className={`
-                    ${
-                      isWithinRange
-                        ? "w-full h-full fixed top-[6%] left-[51%] "
-                        : "w-[100%] h-full p-4 absolute bottom-0 left-[50%]"
-                    }
-                  `}
-                >
-                  <img
-                    src={services2}
-                    alt=""
-                    className={`${scrolls ? "absolute bottom-0 w-full" : ""}`}
-                  />
-                </div>
-              </>
-            ) : (
-              <div className="w-full h-full flex overflow-x-hidden">
                 <div className=" w-[40%]">
                   <div className="w-full h-full  p-4">
                     <div className="">
                       <div className=" w-full h-full grid gap-20">
-                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                          <div className=" text-start w-[100%] h-[50%] p-4">
-                            <h1 className="text-3xl mb-6">تشغيل المشاريع</h1>
-                            <p className="text-xl text-[#525252]">
-                              إدارة وتشغيل المشاريع التجارية في اليمن
-                            </p>
+                        {services?.map((item) => (
+                          <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                            <div className=" text-start w-[100%] h-[50%] p-4">
+                              <h1 className="text-3xl mb-6">{item.ar_name}</h1>
+                              <p className="text-xl text-[#525252]">
+                                {item.ar_Description}
+                              </p>
+                            </div>
                           </div>
-                        </div>
+                        ))}
 
-                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                        <div className=" text-start w-[100%] h-[50%] p-4">
+                          <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
+                          <p className="text-xl text-[#525252]">
+                            عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع
+                            الاستثمارية.
+                          </p>
+                        </div>
+                      </div> */}
+
+                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                        <div className=" text-start w-[100%] h-[50%] p-4">
+                          <h1 className="text-3xl mb-6">
+                            تصميم الاستراتيجيات
+                          </h1>
+                          <p className="text-xl text-[#525252]">
+                            تصميم الاستراتيجيات الفعالة وتطوير خطط العمل
+                            للشركات والمؤسسات التجارية.
+                          </p>
+                        </div>
+                      </div> */}
+
+                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                        <div className=" text-start w-[100%] h-[50%] p-4">
+                          <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
+                          <p className="text-xl text-[#525252]">
+                            تقديم الاستشارات الإدارية والمالية والتسويقية
+                            والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة
+                            للشركات والمؤسسات الخاصة والعامة.
+                          </p>
+                        </div>
+                      </div> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="w-full min-h-full bg-black flex overflow-x-hidden">
+                <div className=" w-[40%]">
+                  <div className="w-full h-full  p-4">
+                    <div className="">
+                      <div className=" w-full h-full grid gap-20">
+                        {services?.map((item) => (
+                          <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                            <div className=" text-start w-[100%] h-[50%] p-4">
+                              <h1 className="text-3xl mb-6">{item.ar_name}</h1>
+                              <p className="text-xl text-[#525252]">
+                                {item.ar_Description}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                           <div className=" text-start w-[100%] h-[50%] p-4">
                             <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
                             <p className="text-xl text-[#525252]">
@@ -663,9 +723,9 @@ function App() {
                               الاستثمارية.
                             </p>
                           </div>
-                        </div>
+                        </div> */}
 
-                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                           <div className=" text-start w-[100%] h-[50%] p-4">
                             <h1 className="text-3xl mb-6">
                               تصميم الاستراتيجيات
@@ -675,9 +735,9 @@ function App() {
                               للشركات والمؤسسات التجارية.
                             </p>
                           </div>
-                        </div>
+                        </div> */}
 
-                        <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                           <div className=" text-start w-[100%] h-[50%] p-4">
                             <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
                             <p className="text-xl text-[#525252]">
@@ -686,13 +746,13 @@ function App() {
                               للشركات والمؤسسات الخاصة والعامة.
                             </p>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="w-[55%] mx-auto relative">
-                  {isWithinRange ? (
+                  {/* {isWithinRange ? (
                     <div className="w-[50%]  h-[40rem] fixed top-80">
                       <img
                         src={services2}
@@ -708,14 +768,16 @@ function App() {
                         className="w-full h-full object-cover rounded-md"
                       />
                     </div>
-                  )}
+                  )} */}
+                  {/*  */}
                   <div
                     className={`
                     ${
                       isWithinRange
-                        ? "w-[50%]  h-[40rem] fixed top-10"
-                        : "w-full  h-[40rem] absolute bottom-0  overflow-hidden"
+                        ? "w-[55%]  h-[40rem] fixed top-20"
+                        : "w-[90%]   h-[40rem] absolute top-0   overflow-hidden"
                     }
+                    
                   `}
                   >
                     <img
@@ -733,7 +795,7 @@ function App() {
             )}
           </>
         )}
-      </div> */}
+      </div>
       {/* lastest Projects */}
       <div className="w-full lg:h-[80vh] sm:h-[100vh] sm:mt-5 relative">
         {dir === "ltr" ? (
