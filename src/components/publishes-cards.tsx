@@ -16,7 +16,7 @@ interface publishesDataCard {
   type: string;
   title: string;
   date: Date;
-  link:string;
+  link: string;
   writer?:
     | {
         img: string;
@@ -29,43 +29,42 @@ const Cards: publishesDataCard[] = [
   {
     img: PublishesImage1,
     type: "الاخبار",
-    link:"https://www.facebook.com/share/p/VzeHNxT5exEnUjuD/ ",
+    link: "https://www.facebook.com/share/p/VzeHNxT5exEnUjuD/ ",
     title:
-    "مدير عام شركة عالم الأعمال للاستثمار والدراسات ورئيس مؤسسة حاضنة بناء لريادة الأعمال يزور الغرفة التجارية والصناعية في مدينة عدن",
-    date: new  Date("2024-11-9"),
+      "مدير عام شركة عالم الأعمال للاستثمار والدراسات ورئيس مؤسسة حاضنة بناء لريادة الأعمال يزور الغرفة التجارية والصناعية في مدينة عدن",
+    date: new Date("2024-11-9"),
     writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
- 
+
   {
     img: PublishesImage2,
     type: "الاخبار",
-    link:"https://www.facebook.com/share/p/EMDAez298MYM8kR4/",
+    link: "https://www.facebook.com/share/p/EMDAez298MYM8kR4/",
     title:
-    "مدير الصندوق الاجتماعي للتنمية -- حضرموت يزور شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة",
-    date: new  Date("2024-12-5"),
+      "مدير الصندوق الاجتماعي للتنمية -- حضرموت يزور شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة",
+    date: new Date("2024-12-5"),
     writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
- 
+
   {
     img: PublishesImage3,
     type: "منشور",
-    link:"https://www.facebook.com/share/p/eookDQbmwzhNWGY7/",
+    link: "https://www.facebook.com/share/p/eookDQbmwzhNWGY7/",
     title:
-    "زيارة مؤسسة صنائع المعروف الإنسانية إلى شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة ومؤسسة حاضنة بناء لريادة الأعمال.",
-    date: new  Date("2024-2-20"),
+      "زيارة مؤسسة صنائع المعروف الإنسانية إلى شركة عالم الأعمال للاستثمار والدراسات وأكاديمية بريميوم للقيادة والإدارة ومؤسسة حاضنة بناء لريادة الأعمال.",
+    date: new Date("2024-2-20"),
     writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
- 
+
   {
     img: PublishesImage4,
     type: "منشور",
-    link:"https://www.facebook.com/share/p/7YwHJFty8vKTYuq7/",
+    link: "https://www.facebook.com/share/p/7YwHJFty8vKTYuq7/",
     title:
-    "توقيع مذكرة تعاون مشترك بين شركة عالم الأعمال للاستثمار والدراسات المحدودة ومنتدى طلاب المشقاص ",
-    date: new  Date("2024-2-22"),
+      "توقيع مذكرة تعاون مشترك بين شركة عالم الأعمال للاستثمار والدراسات المحدودة ومنتدى طلاب المشقاص ",
+    date: new Date("2024-2-22"),
     writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
- 
 ];
 export default function PublishesCards() {
   const settings = {
@@ -113,7 +112,9 @@ export default function PublishesCards() {
     <div className="slider-container">
       <Slider {...settings}>
         {Cards.map((item, idx) => (
-          <Link target="_blank" to={item.link}
+          <Link
+            target="_blank"
+            to={item.link}
             className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
             key={idx}
           >
@@ -140,7 +141,9 @@ export default function PublishesCards() {
               </span>
             </div>
             <div className="px-6 py-4 text-end">
-              <p dir="rtl" className="publishesTitle">{item.title}</p>
+              <p dir="rtl" className="publishesTitle">
+                {item.title}
+              </p>
               <div className="font-bold text-sm mb-2 mt-2">
                 {formattedDate(item.date)}
               </div>
