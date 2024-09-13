@@ -40,9 +40,7 @@ function App() {
     error,
   } = useQuery<ServicesHomeProp[]>({
     queryFn: () =>
-      fetch(
-        "https://mahfoudsabbah-001-site1.jtempurl.com/api/website/Home/Services"
-      ).then((res) => {
+      fetch("https://localhost:7157/api/website/Home/Services").then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch services");
         }
@@ -575,227 +573,78 @@ function App() {
       {/*  */}
       <div className="w-full h-[10vh] p-2 overflow-hidde relative">
         {dir === "ltr" ? (
-          <div className="flex justify-start p-5">
-            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+          <div className="flex justify-end p-5">
             <h1 className="text-3xl">{t("homePage3")}</h1>
+            <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+
+            <div className=" absolute top-24 right-0 ">
+              <FullCircle />
+            </div>
           </div>
         ) : (
           <div className="flex justify-start p-5">
             <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
             <h1 className="text-3xl">{t("homePage3")}</h1>
+            <div className=" absolute top-24 left-0 ">
+              <FullCircle />
+            </div>
           </div>
         )}
       </div>
+
       {/* خدماتنا  */}
-      <div
-        ref={serversRef}
-        className="w-full min-h-[150vh] mt-10 px-2  relative"
-      >
-        {dir === "ltr" ? (
-          <div className=" absolute top-24 left-0">
-            <FullCircle />
-          </div>
-        ) : (
-          <div className=" absolute top-24 right-0">
-            <FullCircle />
-          </div>
-        )}
-        {widthScreen.winWidth <= 980 ? (
-          <>{dir === "ltr" ? <Services /> : <ServicesArb />}</>
-        ) : (
-          <>
-            {dir === "ltr" ? (
-              <div className="w-full min-h-full bg-black flex overflow-x-hidden">
-                <div className="w-[55%] mx-auto relative">
-                  {/* {isWithinRange ? (
-                  <div className="w-[50%]  h-[40rem] fixed top-80">
-                    <img
-                      src={services2}
-                      alt=""
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full  h-[40rem] absolute bottom-0  overflow-hidden">
-                    <img
-                      src={services2}
-                      alt=""
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                )} */}
-                  {/*  */}
-                  <div
-                    className={`
-                  ${
-                    isWithinRange
-                      ? "w-[55%]  h-[40rem] fixed top-20"
-                      : "w-[90%]   h-[40rem] absolute top-0   overflow-hidden"
-                  }
-                  
-                `}
-                  >
-                    <img
-                      src={services2}
-                      alt=""
-                      className={`${
-                        scrolls
-                          ? "w-full h-full object-cover rounded-md"
-                          : "w-full h-full object-cover rounded-md"
-                      }`}
-                    />
-                  </div>
-                </div>
-                <div className=" w-[40%]">
-                  <div className="w-full h-full  p-4">
-                    <div className="">
-                      <div className=" w-full h-full grid gap-20">
-                        {services?.map((item) => (
-                          <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                            <div className=" text-start w-[100%] h-[50%] p-4">
-                              <h1 className="text-3xl mb-6">{item.ar_name}</h1>
-                              <p className="text-xl text-[#525252]">
-                                {item.ar_Description}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-
-                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                        <div className=" text-start w-[100%] h-[50%] p-4">
-                          <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
-                          <p className="text-xl text-[#525252]">
-                            عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع
-                            الاستثمارية.
-                          </p>
-                        </div>
-                      </div> */}
-
-                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                        <div className=" text-start w-[100%] h-[50%] p-4">
-                          <h1 className="text-3xl mb-6">
-                            تصميم الاستراتيجيات
-                          </h1>
-                          <p className="text-xl text-[#525252]">
-                            تصميم الاستراتيجيات الفعالة وتطوير خطط العمل
-                            للشركات والمؤسسات التجارية.
-                          </p>
-                        </div>
-                      </div> */}
-
-                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                        <div className=" text-start w-[100%] h-[50%] p-4">
-                          <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
-                          <p className="text-xl text-[#525252]">
-                            تقديم الاستشارات الإدارية والمالية والتسويقية
-                            والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة
-                            للشركات والمؤسسات الخاصة والعامة.
-                          </p>
-                        </div>
-                      </div> */}
-                      </div>
+      {widthScreen.winWidth <= 980 ? (
+        <>{dir === "ltr" ? <Services /> : <ServicesArb />}</>
+      ) : (
+        <>
+          {dir === "ltr" ? (
+            <div className="overflow-scroll flex">
+              <div className="max-h-[100vh] mb-4 w-[55%] ">
+                {services?.map((item) => (
+                  <div className="services-ar mx-auto mt-3 mb-10 min-h-60 w-[60%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                    <div className=" text-start w-[100%] h-[50%] p-4">
+                      <h1 className="text-3xl mb-6">{item.ar_name}</h1>
+                      <p className="text-xl text-[#525252]">
+                        {item.ar_Description}
+                      </p>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ) : (
-              <div className="w-full min-h-full bg-black flex overflow-x-hidden">
-                <div className=" w-[40%]">
-                  <div className="w-full h-full  p-4">
-                    <div className="">
-                      <div className=" w-full h-full grid gap-20">
-                        {services?.map((item) => (
-                          <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                            <div className=" text-start w-[100%] h-[50%] p-4">
-                              <h1 className="text-3xl mb-6">{item.ar_name}</h1>
-                              <p className="text-xl text-[#525252]">
-                                {item.ar_Description}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-
-                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                          <div className=" text-start w-[100%] h-[50%] p-4">
-                            <h1 className="text-3xl mb-6">دراسات الجدوى</h1>
-                            <p className="text-xl text-[#525252]">
-                              عمل دراسات الجدوى الاقتصادية المتكاملة للمشاريع
-                              الاستثمارية.
-                            </p>
-                          </div>
-                        </div> */}
-
-                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                          <div className=" text-start w-[100%] h-[50%] p-4">
-                            <h1 className="text-3xl mb-6">
-                              تصميم الاستراتيجيات
-                            </h1>
-                            <p className="text-xl text-[#525252]">
-                              تصميم الاستراتيجيات الفعالة وتطوير خطط العمل
-                              للشركات والمؤسسات التجارية.
-                            </p>
-                          </div>
-                        </div> */}
-
-                        {/* <div className="services-ar h-80 w-[100%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                          <div className=" text-start w-[100%] h-[50%] p-4">
-                            <h1 className="text-3xl mb-6"> تقديم الاستشارات</h1>
-                            <p className="text-xl text-[#525252]">
-                              تقديم الاستشارات الإدارية والمالية والتسويقية
-                              والتشغيلية والإنتاج وسلاسل الإمداد وأنظمة الجودة
-                              للشركات والمؤسسات الخاصة والعامة.
-                            </p>
-                          </div>
-                        </div> */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[55%] mx-auto relative">
-                  {/* {isWithinRange ? (
-                    <div className="w-[50%]  h-[40rem] fixed top-80">
-                      <img
-                        src={services2}
-                        alt=""
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full  h-[40rem] absolute bottom-0  overflow-hidden">
-                      <img
-                        src={services2}
-                        alt=""
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
-                  )} */}
-                  {/*  */}
-                  <div
-                    className={`
-                    ${
-                      isWithinRange
-                        ? "w-[55%]  h-[40rem] fixed top-20"
-                        : "w-[90%]   h-[40rem] absolute top-0   overflow-hidden"
-                    }
-                    
-                  `}
-                  >
-                    <img
-                      src={services2}
-                      alt=""
-                      className={`${
-                        scrolls
-                          ? "w-full h-full object-cover rounded-md"
-                          : "w-full h-full object-cover rounded-md"
-                      }`}
-                    />
-                  </div>
-                </div>
+              <div className="sticky top-6  w-[45%] ">
+                <img
+                  src={services2}
+                  alt=""
+                  className="w-[95%] h-[80%] object-cover rounded-lg"
+                />
               </div>
-            )}
-          </>
-        )}
-      </div>
+            </div>
+          ) : (
+            <div className="overflow-scroll flex">
+              <div className="sticky top-6  w-[45%] ">
+                <img
+                  src={services2}
+                  alt=""
+                  className="w-[95%] h-[80%] object-cover rounded-lg"
+                />
+              </div>
+              <div className="max-h-[100vh] mb-4 w-[55%] ">
+                {services?.map((item) => (
+                  <div className="services-ar mx-auto mt-3 mb-10 min-h-60 w-[60%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                    <div className=" text-start w-[100%] h-[50%] p-4">
+                      <h1 className="text-3xl mb-6">{item.ar_name}</h1>
+                      <p className="text-xl text-[#525252]">
+                        {item.ar_Description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
       {/* lastest Projects */}
       <div className="w-full lg:h-[80vh] sm:h-[100vh] sm:mt-5 relative">
         {dir === "ltr" ? (
@@ -819,7 +668,7 @@ function App() {
           </div>
         </div>
       </div>
-      {/*  */}
+
       <div className="w-full lg:h-[55vh] sm:h-[80vh] relative mt-5">
         {dir === "ltr" ? (
           <div className="flex justify-end p-5 sm:mt-20">
@@ -837,7 +686,7 @@ function App() {
           <LeariningAndTraning />
         </div>
       </div>
-      {/*  */}
+
       <div className="w-full h-[70vh] relative bg-[#CBA871]">
         <div className="flex justify-center p-5">
           <h1 className="text-xl text-white">{t("homePage6")}</h1>
@@ -850,7 +699,6 @@ function App() {
           <SecondOurPartners />
         </div>
       </div>
-      {/*  */}
 
       <div className="w-full h-[50vh] relative mt-5">
         <div className="flex justify-center p-5">
@@ -861,7 +709,7 @@ function App() {
           <OurOrgnaztion />
         </div>
       </div>
-      {/*  */}
+
       <div className="w-full lg:h-[110vh] sm:h[300vh] relative">
         {dir === "ltr" ? (
           <div className="flex justify-end p-5">

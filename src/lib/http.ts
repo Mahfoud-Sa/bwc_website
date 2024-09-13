@@ -3,7 +3,8 @@ import axios, { AxiosRequestConfig } from "axios";
 // import { redirect } from 'react-router-dom';
 
 export const axiosInstance = axios.create({
-  baseURL: "https://mahfoudsabbah-001-site1.jtempurl.com",
+  // baseURL: "https://mahfoudsabbah-001-site1.jtempurl.com",
+  baseURL: "https://localhost:7157",
 });
 
 type Config = AxiosRequestConfig<unknown> | undefined;

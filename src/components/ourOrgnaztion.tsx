@@ -104,7 +104,6 @@ export default function OurOrgnaztion() {
     getData();
   }, []);
 
-  console.log(data);
   const settings = {
     dots: true,
     infinite: true,
@@ -116,7 +115,7 @@ export default function OurOrgnaztion() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
@@ -125,7 +124,7 @@ export default function OurOrgnaztion() {
       {
         breakpoint: 980,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -149,21 +148,21 @@ export default function OurOrgnaztion() {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {data.map((item, idx) => (
+        {Cards.map((item, idx) => (
           <div className="whitespace-nowrap  ">
             <Link
               to={``}
-              className=" inline-block  rounded-xl w-[25%] h-[200px] bg-black mx-10 overflow-hidden mt-2  shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer hover:scale-105"
+              className=" inline-block  rounded-xl w-[55%] h-[200px] bg-black mx-10 overflow-hidden mt-2  shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer hover:scale-105"
             >
               <div className=" flex-row-reverse w-[100%] h-[100%] ">
                 <div
-                  key={item.id}
+                  // key={item.id}
                   className="flex justify-center items-center w-[100%] h-full p-2 "
                 >
                   <img
-                    src={item.img}
+                    src="https://mahfoudsabbah-001-site2.jtempurl.com/uploads/profileImages/c7a39e56-0386-458c-801b-528904db9191.png"
                     className="object-contain w-[100%] h-[100%]"
-                    alt={item.name}
+                    // alt={item.name}
                   />
                 </div>
               </div>
