@@ -599,10 +599,10 @@ function App() {
         <>
           {dir === "ltr" ? (
             <div className="overflow-scroll flex">
-              <div className="max-h-[100vh] mb-4 w-[55%] ">
+              <div className="max-h-[100vh] mb-4 w-[45%] ">
                 {services?.map((item) => (
-                  <div className="services-ar mx-auto mt-3 mb-10 min-h-60 w-[60%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
-                    <div className=" text-start w-[100%] h-[50%] p-4">
+                  <div className="services mx-auto mt-3 mb-10 min-h-60 w-[70%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                    <div className=" text-end w-[100%] h-[50%] p-4">
                       <h1 className="text-3xl mb-6">{item.ar_name}</h1>
                       <p className="text-xl text-[#525252]">
                         {item.ar_Description}
@@ -611,26 +611,26 @@ function App() {
                   </div>
                 ))}
               </div>
-              <div className="sticky top-6  w-[45%] ">
+              <div className="sticky top-6  w-[55%] ">
                 <img
                   src={services2}
                   alt=""
-                  className="w-[95%] h-[80%] object-cover rounded-lg"
+                  className="w-[95%] h-[70%] object-cover rounded-lg"
                 />
               </div>
             </div>
           ) : (
             <div className="overflow-scroll flex">
-              <div className="sticky top-6  w-[45%] ">
+              <div className="sticky top-6  w-[55%] ">
                 <img
                   src={services2}
                   alt=""
-                  className="w-[95%] h-[80%] object-cover rounded-lg"
+                  className="w-[95%] h-[70%] object-cover float-end rounded-lg"
                 />
               </div>
-              <div className="max-h-[100vh] mb-4 w-[55%] ">
+              <div className="max-h-[100vh] mb-4 w-[45%] ">
                 {services?.map((item) => (
-                  <div className="services-ar mx-auto mt-3 mb-10 min-h-60 w-[60%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
+                  <div className="services-ar mx-auto mt-3 mb-10 min-h-60 w-[70%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                     <div className=" text-start w-[100%] h-[50%] p-4">
                       <h1 className="text-3xl mb-6">{item.ar_name}</h1>
                       <p className="text-xl text-[#525252]">
