@@ -130,5 +130,9 @@ export interface ServicesHomeProp {
   ar_Description: string;
   en_Description: string;
 }
+export interface ProfileResp {
+  FormFile: File;
+  name: string;
+}
 
 export type ServicesHomeResp = ServicesHomeProp[];

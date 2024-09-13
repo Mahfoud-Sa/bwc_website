@@ -149,13 +149,14 @@ export default function SideNab() {
                 </i>
               </li>
             </NavLink>
-
-            <li className="px-3 mt-1 p-2 flex justify-end items-center">
-              Portfolio
-              <i className="mr-2">
-                <OurFiles />
-              </i>
-            </li>
+            <NavLink to={"/admin-dashboard/profile"}>
+              <li className="px-3 mt-1 p-2 flex justify-end items-center">
+                Portfolio
+                <i className="mr-2">
+                  <OurFiles />
+                </i>
+              </li>
+            </NavLink>
           </ul>
         </>
       ) : (
@@ -285,13 +286,14 @@ export default function SideNab() {
                 خدماتنا
               </li>
             </NavLink>
-
-            <li className="px-3 mt-1 p-2 flex justify-start items-center">
-              <i className="ml-2">
-                <OurFiles />
-              </i>
-              ملف تعريقي لاعمالنا
-            </li>
+            <NavLink to={"/admin-dashboard/profile"}>
+              <li className="px-3 mt-1 p-2 flex justify-start items-center">
+                <i className="ml-2">
+                  <OurFiles />
+                </i>
+                ملف تعريقي لاعمالنا
+              </li>
+            </NavLink>
           </ul>
         </>
       )}
