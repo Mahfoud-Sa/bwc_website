@@ -88,7 +88,7 @@ export default function OurOrgnaztion() {
       const response = await axiosInstance.get<OgResp>(
         `/api/website/Home/OrgUndBWC`
       );
-      return [response.data];
+      return response.data; // Ensure this returns OrgProp[]
     } catch (error) {
       console.error("Error fetching issue:", error);
       throw error;
@@ -97,8 +97,12 @@ export default function OurOrgnaztion() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchIssueById();
-      setData(data);
+      const result = await fetchIssueById();
+      if (Array.isArray(result)) {
+        setData(result as OrgProp[]); // Explicit type assertion
+      } else {
+        console.error("Data is not an array", result);
+      }
     };
 
     getData();
@@ -148,11 +152,11 @@ export default function OurOrgnaztion() {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {Cards.map((item, idx) => (
+        {data.map((item, idx) => (
           <div className="whitespace-nowrap  ">
             <Link
               to={``}
-              className=" inline-block  rounded-xl w-[55%] h-[200px] bg-black mx-10 overflow-hidden mt-2  shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer hover:scale-105"
+              className=" inline-block  rounded-xl w-[55%] h-[200px]  mx-10 overflow-hidden mt-2  shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] hover:bg-[#FFDAA0]/[.35] hover:cursor-pointer hover:scale-105"
             >
               <div className=" flex-row-reverse w-[100%] h-[100%] ">
                 <div
