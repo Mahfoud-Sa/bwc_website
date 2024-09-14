@@ -598,7 +598,7 @@ function App() {
       ) : (
         <>
           {dir === "ltr" ? (
-            <div className="overflow-scroll flex">
+            <div className="overflow-scroll flex hide-scrollbar">
               <div className="max-h-[100vh] mb-4 w-[45%] ">
                 {services?.map((item) => (
                   <div className="services mx-auto mt-3 mb-10 min-h-60 w-[70%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
@@ -620,7 +620,7 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="overflow-scroll flex">
+            <div className="overflow-scroll flex hide-scrollbar">
               <div className="sticky top-6  w-[55%] ">
                 <img
                   src={services2}
