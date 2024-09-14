@@ -27,7 +27,7 @@ export default function SideNab() {
           >
             <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-end text-[#9E9E9E]">Publications</p>
-            <NavLink to="/admin-dashboard/references">
+            <NavLink to="/admin-dashboard/en-references">
               <li className="mt-1 p-2 rounded-md flex justify-end items-center">
                 References
                 <i className="mr-2">
