@@ -82,7 +82,7 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/references/info`}>
+          <Link to={`/admin-dashboard/references/info/${row.original.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -150,7 +150,7 @@ export const EnAddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/references/info`}>
+          <Link to={`/admin-dashboard/references/info/${row.original.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
