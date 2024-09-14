@@ -17,6 +17,7 @@ import { Trash } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface DeleteDialogProps {
   url: string;
@@ -34,6 +35,8 @@ export default function DeleteDialog({
   //   const authToken = useAuthHeader();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   // const { toast } = useToast();
 
   const { mutate, isPending, isSuccess, isError, error } = useMutation({
@@ -103,18 +106,22 @@ export default function DeleteDialog({
         disabled={disabled}
       >
         <Trash fill="#ef4444" size={15} />
-        حذف
+        {dir === "ltr" ? "delete" : "حذف"}
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-[#f2f2f2]">
         <AlertDialogHeader className="*:text-right">
-          <AlertDialogTitle>{"هل أنت متأكد؟"}</AlertDialogTitle>
+          <AlertDialogTitle>
+            {dir === "ltr" ? "are you sure?" : "هل أنت متأكد؟"}
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            {"لا يمكنك التراجع فيما بعد. سوف يتم حذف البيانات بشكل نهائي."}
+            {dir === "ltr"
+              ? "You can't back down later. Data will be deleted once and for all"
+              : "لا يمكنك التراجع فيما بعد. سوف يتم حذف البيانات بشكل نهائي."}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="!justify-between gap-3">
           <AlertDialogCancel className="text-muted-foregrounds">
-            إلغاء
+            {dir === "ltr" ? "cancel" : "الغاء"}
           </AlertDialogCancel>
           <AlertDialogAction
             className="bg-red-600 text-white hover:bg-red-500"
@@ -122,7 +129,7 @@ export default function DeleteDialog({
               mutate();
             }}
           >
-            حذف
+            {dir === "ltr" ? "delete" : "حذف"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
