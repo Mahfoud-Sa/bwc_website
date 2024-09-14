@@ -58,7 +58,6 @@ import ViewPublications from "./components/view/view-publishes";
 import PublishDetails from "./page/(User)/publish-details";
 import UpdateServicesIndex from "./components/form/update-services";
 import Profile from "./page/(Admin)/profile";
-import EnReferences from "./page/(Admin)/ReferncesPage/EnReferences";
 
 const router = createBrowserRouter([
   {
@@ -109,10 +108,7 @@ const router = createBrowserRouter([
         path: "/admin-dashboard/references",
         element: <References />,
       },
-      {
-        path: "/admin-dashboard/en-references",
-        element: <EnReferences />,
-      },
+
       {
         path: "/admin-dashboard/references/add",
         element: <AddRefernces />,
@@ -122,7 +118,7 @@ const router = createBrowserRouter([
         element: <UpdateReferenceForm />,
       },
       {
-        path: "/admin-dashboard/references/info",
+        path: "/admin-dashboard/references/info/:id",
         element: <ReferenceInfo />,
       },
       {
