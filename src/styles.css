@@ -572,3 +572,11 @@ opacity: 1;
 .text-shadow {
   text-shadow: 1px 1px 2px black, 0 0 1em #d5ae78, 0 0 0.2em #cca972;
 }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
