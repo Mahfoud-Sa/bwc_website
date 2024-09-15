@@ -19,12 +19,13 @@ import { postApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import AddPersonalImageDialog from "../dailog/add-personal-image-dialog";
+import { useTranslation } from "react-i18next";
 
 type OrgFormValue = z.infer<typeof addOrgSchema>;
 
 export default function AddOrgForm() {
-  // const { toast } = useToast();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const navigate = useNavigate();
   const [preview, setPreview] = useState<string | null>(null);
   const form = useForm<z.infer<typeof addOrgSchema>>({
@@ -35,14 +36,15 @@ export default function AddOrgForm() {
     mutationKey: ["AddOrg"],
     mutationFn: (datas: OrgFormValue) => {
       const formData = new FormData();
-      formData.append("name", datas.name); // Corrected this from decisionDate to decisionName
-      formData.append("link", datas.link);
+      formData.append("Ar_name", datas.Ar_name);
+      formData.append("En_name", datas.En_name);
+      formData.append("Link", datas.Link);
 
-      if (datas.imageFile) {
-        formData.append("imageFile", datas.imageFile[0]); // Add the file to formData
+      if (datas.ImageFile) {
+        formData.append("imageFile", datas.ImageFile[0]);
       }
 
-      return postApi("/api/orgundbwc", formData, {
+      return postApi("/api/OrgUndBWC", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -66,6 +68,7 @@ export default function AddOrgForm() {
         },
       });
       navigate("/admin-dashboard/organization");
+      window.location.reload();
     },
     onError: (error) => {
       // toast({
@@ -97,87 +100,228 @@ export default function AddOrgForm() {
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="min-h-[90vh]  w-[100%] "
-      >
-        {
-          <>
-            <div className=" items-right col-span-1 flex h-[140px] flex-col mr-10">
-              <label className="text-md mb-2 block font-bold text-gray-950">
-                صورة المؤسسة
-              </label>
-              <FormField
-                control={form.control}
-                name="imageFile"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Upload Image</FormLabel>
-                    <FormControl>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                          field.onChange(e.target.files);
-                          handleFileChange(e); // Set the preview and form data
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+    <>
+      {dir === "ltr" ? (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]"
+          >
+            {
+              <>
+                <div className=" float-start col-span-1  flex h-[140px] flex-col ml-10">
+                  <label className="text-md text-left mb-2 block font-bold text-gray-950">
+                    Organization Image
+                  </label>
+                  <FormField
+                    control={form.control}
+                    name="ImageFile"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Upload Image</FormLabel>
+                        <FormControl>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                              handleFileChange(e); // Set the preview and form data
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="col-span-3"></div>
+              </>
+            }
+            <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <label className="float-start">organization name</label>
+                <FormField
+                  control={form.control}
+                  name="En_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"organization name"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="enter organization name..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="اسم المؤسسة" />
+                <FormField
+                  control={form.control}
+                  name="Ar_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"اسم المؤسسة"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="ادخل اسم المؤسسة..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
-            <div className="col-span-3"></div>
-          </>
-        }
-        <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="اسم المؤسسة" />
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"اسم المؤسسة"}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل اسم المؤسسة..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-        <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="رابط موقع المؤسسة" />
-            <FormField
-              control={form.control}
-              name="link"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"رابط موقع المؤسسة"}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل رابط موقع المؤسسة..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-        <div className="w-full translate-x-10 flex justify-end">
-          <Button className="text-md inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            إضافة
-          </Button>
-        </div>
-      </form>
-    </Form>
+            <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <label htmlFor="" className="float-start">
+                  Organization link
+                </label>
+                <FormField
+                  control={form.control}
+                  name="Link"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"Organization link"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter Organization link"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="w-full -translate-x-10 flex justify-end">
+              <Button className="text-lg inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2  font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Add
+              </Button>
+            </div>
+          </form>
+        </Form>
+      ) : (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]"
+          >
+            {
+              <>
+                <div className=" items-right col-span-1 flex h-[140px] flex-col mr-10">
+                  <label className="text-md mb-2 block font-bold text-gray-950">
+                    صورة المؤسسة
+                  </label>
+                  <FormField
+                    control={form.control}
+                    name="ImageFile"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Upload Image</FormLabel>
+                        <FormControl>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                              handleFileChange(e); // Set the preview and form data
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="col-span-3"></div>
+              </>
+            }
+            <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="اسم المؤسسة" />
+                <FormField
+                  control={form.control}
+                  name="Ar_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"اسم المؤسسة"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input placeholder="ادخل اسم المؤسسة..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="organization name" />
+                <FormField
+                  control={form.control}
+                  name="En_name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"organization name"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="enter organization name..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="رابط موقع المؤسسة" />
+                <FormField
+                  control={form.control}
+                  name="Link"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"رابط موقع المؤسسة"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="ادخل رابط موقع المؤسسة..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="w-full translate-x-10 flex justify-end">
+              <Button className="text-md inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                إضافة
+              </Button>
+            </div>
+          </form>
+        </Form>
+      )}
+    </>
   );
 }
