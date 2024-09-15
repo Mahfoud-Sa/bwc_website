@@ -59,9 +59,10 @@ export const addTaskForceSchema = z.object({
 });
 
 export const addOrgSchema = z.object({
-  name: z.string(),
-  link: z.string(),
-  imageFile: z
+  Ar_name: z.string(),
+  En_name: z.string(),
+  Link: z.string(),
+  ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {
       message: "You must upload one file.",
