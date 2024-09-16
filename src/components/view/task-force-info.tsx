@@ -34,9 +34,9 @@ export default function TaskForceInfo() {
   useEffect(() => {
     if (TaskForceData) {
       form.reset({
-        Name: TaskForceData.name,
-        Role: TaskForceData.role,
-        Degree: TaskForceData.degree,
+        // Name: TaskForceData.name,
+        // Role: TaskForceData.role,
+        // Degree: TaskForceData.degree,
       });
 
       // Set the existing image URL for preview

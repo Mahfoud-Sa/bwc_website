@@ -9,7 +9,7 @@ import {
 } from "../../ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { addOrgSchema } from "src/types/validation";
+import { updateOrgSchema } from "src/types/validation";
 import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
@@ -28,7 +28,7 @@ export type OrgResp = {
   img: string;
   link: string;
 };
-type OrgFormValue = z.infer<typeof addOrgSchema>;
+type OrgFormValue = z.infer<typeof updateOrgSchema>;
 
 export default function UpdateOrg() {
   const { t, i18n } = useTranslation();
@@ -37,8 +37,8 @@ export default function UpdateOrg() {
   const navigate = useNavigate();
   const [preview, setPreview] = useState<string | null>(null);
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
-  const form = useForm<z.infer<typeof addOrgSchema>>({
-    resolver: zodResolver(addOrgSchema),
+  const form = useForm<z.infer<typeof updateOrgSchema>>({
+    resolver: zodResolver(updateOrgSchema),
   });
 
   const fetchData = async () => {
