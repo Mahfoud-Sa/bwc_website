@@ -106,7 +106,7 @@ export default function UpdateOrg() {
       if (isNewFileSelected && datas.ImageFile && datas.ImageFile.length > 0) {
         formData.append("imageFile", datas.ImageFile[0]); // Send the first file in the FileList
       } else {
-        formData.append("imageFileUrl", existingImageUrl || ""); // Send the existing image URL
+        formData.append("imageFile", existingImageUrl || ""); // Send the existing image URL
       }
 
       return putApi(`/api/OrgUndBWC/${id}`, formData, {

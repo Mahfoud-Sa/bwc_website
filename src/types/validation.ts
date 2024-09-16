@@ -58,7 +58,8 @@ export const addTaskForceSchema = z.object({
     })
     .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files[0].type), {
       message: "Only JPEG, JPG, PNG, and WEBP files are accepted.",
-    }),
+    })
+    .optional(),
 });
 
 export const addOrgSchema = z.object({
@@ -132,10 +133,13 @@ export type WriterResp = {
 };
 export type TaskForceResp = {
   id: number;
-  name: string;
-  degree: string;
-  role: string;
-  image: string;
+  ar_name: string;
+  en_name: string;
+  ar_degree: string;
+  en_degree: string;
+  ar_role: string;
+  en_role: string;
+  img: string;
 };
 export type OgResp = {
   id: number;
