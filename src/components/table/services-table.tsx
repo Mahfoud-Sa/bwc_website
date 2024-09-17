@@ -15,9 +15,10 @@ import { Input } from "src/ui/input";
 
 import {
   AddServicesColumns,
+  AddEnServicesColumns,
   type AddServicesOrder,
 } from "../column/services-column";
-
+import { useTranslation } from "react-i18next";
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 // import { ReferenceResp } from "src/types/validation";
@@ -46,8 +47,11 @@ export type ServicesResp = {
 //   { id: 1, ar_title: "sss5", en_title: "dfgdf", link: "asdasdasd5" },
 // ];
 export default function ServicesTable() {
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const defaultData = useMemo<AddServicesOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddServicesColumns, []);
+  const columnsMemos = useMemo(() => AddEnServicesColumns, []);
   const [data, setData] = useState<ServicesProp[]>([]);
   const fetchIssueById = async () => {
     try {
@@ -74,7 +78,7 @@ export default function ServicesTable() {
     // @ts-ignore
     data: data.length ? data[0] : defaultData,
     // @ts-ignore
-    columns: columnsMemo,
+    columns: dir === "ltr" ? columnsMemos : columnsMemo,
     state: {
       rowSelection,
       columnFilters,
@@ -86,29 +90,58 @@ export default function ServicesTable() {
     getPaginationRowModel: getPaginationRowModel(),
   });
   return (
-    <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
-      <div className="col-span-4 mt-5 h-auto">
-        <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
-          <div className="col-span-1 ">
-            {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
-          </div>
-          <div className="col-span-3">
-            <div className="flex flex-row-reverse gap-4 ">
-              <Link to={"/admin-dashboard/services/add-services"}>
-                <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                  <Plus className="ml-2" />
-                  اضافة خدمة
-                </Button>
-              </Link>
+    <>
+      {dir === "ltr" ? (
+        <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
+          <div className="col-span-4 mt-5 h-auto">
+            <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
+              <div className="col-span-1 ">
+                {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
+              </div>
+              <div className="col-span-3">
+                <div className="flex flex-row-reverse gap-4 ">
+                  <Link to={"/admin-dashboard/services/add-services"}>
+                    <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Plus className="mr-2" />
+                      add services
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="col-span-4 rounded-md">
-        {/* @ts-ignore */}
-        <OrderDataTable columns={columnsMemo} table={table} />
-      </div>
-    </div>
+          <div className="col-span-4 rounded-md">
+            {/* @ts-ignore */}
+            <OrderDataTable columns={columnsMemo} table={table} />
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
+          <div className="col-span-4 mt-5 h-auto">
+            <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
+              <div className="col-span-1 ">
+                {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
+              </div>
+              <div className="col-span-3">
+                <div className="flex flex-row-reverse gap-4 ">
+                  <Link to={"/admin-dashboard/services/add-services"}>
+                    <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Plus className="ml-2" />
+                      اضافة خدمة
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-4 rounded-md">
+            {/* @ts-ignore */}
+            <OrderDataTable columns={columnsMemo} table={table} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

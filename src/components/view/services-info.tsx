@@ -21,12 +21,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { ReferenceResp } from "../table/referencesTable";
 import { ServicesProp } from "../table/services-table";
-import { Textarea } from "src/ui/textarea";
-
+import { useTranslation } from "react-i18next";
 type ReferenceFormValue = z.infer<typeof addServicesSchema>;
 
 export default function ServicesInfo() {
-  // const { toast } = useToast();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof addServicesSchema>>({
@@ -62,33 +62,72 @@ export default function ServicesInfo() {
   }, [ServicesData]);
 
   return (
-    <div className="min-h-[90vh]   w-[100%] bg-[#f2f2f2]">
-      <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
-      <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-        <div className=" col-span-1 h-auto translate-y-10">
-          <Label text="عنوان الخدمة" />
-          <p>{ServicesData?.ar_name}</p>
-        </div>
-        <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
-          <Label text="Title" />
-          {ServicesData?.en_name}
-        </div>
-      </div>
-      {/* TODO:REplace with textarea */}
-      <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-        <div className=" col-span-1 h-auto translate-y-10">
-          <Label text="وصف الخدمة" />
-          <p>{ServicesData?.ar_Description}</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-        <div className=" col-span-1 text-end h-auto translate-y-10">
-          <Label text="Service Description" />
-          <p>{ServicesData?.en_Description}</p>
-        </div>
-      </div>
+    <>
+      {dir === "ltr" ? (
+        <div className="min-h-[90vh]   w-[100%] bg-[#f2f2f2]">
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
+          <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div
+              dir="ltr"
+              className="col-span-1 h-auto translate-y-10 text-start"
+            >
+              <Label text="Title" />
+              {ServicesData?.en_name}
+            </div>
+            <div className=" col-span-1 h-auto translate-y-10 ">
+              <Label text="عنوان الخدمة" />
+              <p>{ServicesData?.ar_name}</p>
+            </div>
+          </div>
+          {/* TODO:REplace with textarea */}
+          <div className="grid grid-cols-1 min-w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className=" col-span-1 h-auto translate-y-10">
+              <Label text="وصف الخدمة" />
+              <p>{ServicesData?.ar_Description}</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 min-w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className=" col-span-1 h-auto translate-y-10 text-start">
+              <Label text="Service Description" />
+              <p>{ServicesData?.en_Description}</p>
+            </div>
+          </div>
 
-      <div className="h-[2px] mt-3 mb-3 w-[95%] mx-auto bg-black"></div>
-    </div>
+          <div className="h-[2px] mt-3 mb-3 w-[95%] mx-auto bg-black"></div>
+        </div>
+      ) : (
+        <div className="min-h-[90vh]   w-[100%] bg-[#f2f2f2]">
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
+          <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className=" col-span-1 h-auto translate-y-10">
+              <Label text="عنوان الخدمة" />
+              <p>{ServicesData?.ar_name}</p>
+            </div>
+            <div
+              dir="ltr"
+              className="text-end col-span-1 h-auto translate-y-10"
+            >
+              <Label text="Title" />
+              {ServicesData?.en_name}
+            </div>
+          </div>
+          {/* TODO:REplace with textarea */}
+          <div className="grid grid-cols-1 min-w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className=" col-span-1 h-auto translate-y-10">
+              <Label text="وصف الخدمة" />
+              <p>{ServicesData?.ar_Description}</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 min-w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className=" col-span-1 text-end h-auto translate-y-10">
+              <Label text="Service Description" />
+              <p>{ServicesData?.en_Description}</p>
+            </div>
+          </div>
+
+          <div className="h-[2px] mt-3 mb-3 w-[95%] mx-auto bg-black"></div>
+        </div>
+      )}
+    </>
   );
 }

@@ -603,9 +603,9 @@ function App() {
                 {services?.map((item) => (
                   <div className="services mx-auto mt-3 mb-10 min-h-60 w-[70%] rounded-lg flex justify-center items-center shadow-[0_05px_20px_0px_rgba(0,0,0,0.3)] relative z-10  bg-white">
                     <div className=" text-end w-[100%] h-[50%] p-4">
-                      <h1 className="text-3xl mb-6">{item.ar_name}</h1>
+                      <h1 className="text-3xl mb-6">{item.en_name}</h1>
                       <p className="text-xl text-[#525252]">
-                        {item.ar_Description}
+                        {item.en_Description}
                       </p>
                     </div>
                   </div>
