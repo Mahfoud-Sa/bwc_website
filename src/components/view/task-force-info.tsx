@@ -53,6 +53,7 @@ export default function TaskForceInfo() {
     <>
       {dir === "ltr" ? (
         <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]">
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
           <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[40vh]">
             {/* <label className="text-md mb-2 block font-bold text-gray-950">
             الموظف
@@ -65,6 +66,7 @@ export default function TaskForceInfo() {
               <img src={TaskForceData?.img} alt="" />
             </div>
           </div>
+
           <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
             <div className=" col-span-1 h-auto translate-y-10 text-start">
               <Label text="الاسم بالكامل" />
@@ -95,9 +97,11 @@ export default function TaskForceInfo() {
               {TaskForceData?.en_role}
             </div>
           </div>
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
         </div>
       ) : (
         <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]">
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
           <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[40vh]">
             {/* <label className="text-md mb-2 block font-bold text-gray-950">
           الموظف
@@ -138,6 +142,7 @@ export default function TaskForceInfo() {
               {TaskForceData?.en_role}
             </div>
           </div>
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
         </div>
       )}
     </>
