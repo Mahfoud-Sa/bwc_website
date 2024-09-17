@@ -56,6 +56,7 @@ export default function OrganizationInfo() {
     <>
       {dir === "ltr" ? (
         <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]">
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
           <div className=" grid grid-cols-1   w-[100%] px-10 items-start gap-4 text-right h-[40vh] ">
             <div className=" col-span-3   translate-y-10">
               <label htmlFor="" className="float-start">
@@ -89,9 +90,11 @@ export default function OrganizationInfo() {
               {OrgnaztioneData?.ar_name}
             </div>
           </div>
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
         </div>
       ) : (
         <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]">
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
           <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[40vh] ">
             <div className=" col-span-1   translate-y-10">
               <Label text="صورة المؤسسه" />
@@ -122,6 +125,7 @@ export default function OrganizationInfo() {
               </a>
             </div>
           </div>
+          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
         </div>
       )}
     </>
