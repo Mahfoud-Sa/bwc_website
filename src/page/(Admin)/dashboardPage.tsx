@@ -57,7 +57,7 @@ export default function DashboardPage() {
           {/* Main content area */}
           <div
             dir="ltr"
-            className=" col-span-10 w-full h-[calc(100vh-10vh)] overflow-y-auto ml-auto mt-[10vh]"
+            className=" col-span-10 w-full h-[calc(100vh-10vh)] overflow-y-auto ml-auto mt-[10vh] bg-[#f2f2f2]"
           >
             <Outlet />
           </div>
@@ -79,7 +79,7 @@ export default function DashboardPage() {
           {/* Main content area */}
           <div
             dir="rtl"
-            className="col-start-3 col-span-10 w-full h-[calc(100vh-10vh)] overflow-y-auto ml-auto mt-[10vh]"
+            className="col-start-3 col-span-10 w-full h-[calc(100vh-10vh)] overflow-y-auto ml-auto mt-[10vh] bg-[#f2f2f2]"
           >
             <Outlet />
           </div>
