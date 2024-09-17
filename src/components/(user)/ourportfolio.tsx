@@ -3,8 +3,6 @@ import { useMediaQuery } from "react-responsive";
 import PatternCircl from "../../assets/icons/patterncircl";
 import protfolio from "../../assets/img/8H4A0856 copy.jpg";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
-import { ProfileResp } from "src/types/validation";
 
 export default function OurPortfolio() {
   const { t, i18n } = useTranslation();
@@ -16,10 +14,9 @@ export default function OurPortfolio() {
   const isMonitorScreen = useMediaQuery({ query: "(min-width: 980px)" });
 
   const handleDownload = () => {
-    // The file needs to be in the `public` folder of your project
     const link = document.createElement("a");
-    link.href = "https://localhost:7157/api/ProfileFile"; // Path to your PDF file
-    link.download = "Business World Company Profile 2024.pdf"; // Filename when the user downloads the file
+    link.href = "https://localhost:7157/api/ProfileFile";
+    link.download = "Business World Company Profile 2024.pdf";
     link.click();
   };
   return (

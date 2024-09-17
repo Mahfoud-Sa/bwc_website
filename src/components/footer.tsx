@@ -152,11 +152,11 @@ export default function Footer() {
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-[#BA8D30] lg:my-8" />
           <div className=" text-sm text-gray-500 sm:text-start dark:text-gray-400 sm:mt-10">
             <div className=" w-[100%] sm:mb-5  text-end">
-              <Link to={`/privacy-policy`} className=" sm:block sm:mb-5">
+              <a href={`/privacy-policy`} className=" sm:block sm:mb-5">
                 {t("policy_privacy")}
-              </Link>
-              <Link
-                to={`/terms-of-use`}
+              </a>
+              <a
+                href={`/terms-of-use`}
                 className={
                   dir === "ltr"
                     ? "ml-2 sm:ml-0 sm:block sm:mt-5"
@@ -164,7 +164,7 @@ export default function Footer() {
                 }
               >
                 {t("terms_of_use")}
-              </Link>
+              </a>
             </div>
 
             <div className="w-[100%] sm:mb-5 text-end sm:mt-2">
@@ -303,15 +303,15 @@ export default function Footer() {
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-[#BA8D30] lg:my-8" />
           <div className="flex items-center justify-between text-sm text-gray-500 sm:text-center dark:text-gray-400">
             <div className=" w-[35%] text-start">
-              <Link to={`/privacy-policy`} className="">
+              <a href={`/privacy-policy`} className="">
                 {t("policy_privacy")}
-              </Link>
-              <Link
-                to={`/terms-of-use`}
+              </a>
+              <a
+                href={`/terms-of-use`}
                 className={dir === "ltr" ? "ml-2" : "mr-2"}
               >
                 {t("terms_of_use")}
-              </Link>
+              </a>
             </div>
             <div className="w-[30%] ">
               <img src={LogoWhite} alt="" className="m-auto" />

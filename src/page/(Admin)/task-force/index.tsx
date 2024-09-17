@@ -3,10 +3,18 @@ import TaskForceTable from "src/components/table/taskforce-table";
 import Breadcrumb from "src/ui/breadcrumb";
 import { useTranslation } from "react-i18next";
 import EnBreadcrumb from "src/ui/en-breadcrumb";
+import { useQuery } from "@tanstack/react-query";
+import { TaskForceRespTable } from "src/types/validation";
+import { getApi } from "src/lib/http";
 
 export default function TaskForceIndex() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["Taskforce"],
+    queryFn: () => getApi<TaskForceRespTable[]>("/api/Taskforce"),
+  });
+
   return (
     <main>
       <div className="fixed h-screen  w-[83.5%] text-right bg-[#f2f2f2]">
@@ -34,7 +42,7 @@ export default function TaskForceIndex() {
           </div>
         </div>
 
-        <TaskForceTable />
+        <TaskForceTable data={data?.data || []} />
       </div>
     </main>
   );

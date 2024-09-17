@@ -20,7 +20,8 @@ import {
 } from "../../components/column/add-task-force-column";
 import { useTranslation } from "react-i18next";
 import { OrderDataTable } from "src/ui/order-data-table";
-import { axiosInstance } from "src/lib/http";
+import { axiosInstance, getApi } from "src/lib/http";
+import { useQuery } from "@tanstack/react-query";
 // import { ReferenceResp } from "src/types/validation";
 
 export interface ReferenceProp {
@@ -45,37 +46,44 @@ export type ReferenceResp = {
   img: string;
 };
 
-export default function TaskForceTable() {
+type Taskforce = {
+  data?: ReferenceResp[];
+};
+
+export default function TaskForceTable({ data }: Taskforce) {
+  console.log("Adsasd", data);
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const defaultData = useMemo<AddTaskForceOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddTaskForceColumns, []);
   const columnsMemos = useMemo(() => AddEnTaskForceColumns, []);
-  const [data, setData] = useState<ReferenceProp[]>([]);
-  const fetchIssueById = async () => {
-    try {
-      const response = await axiosInstance.get<ReferenceResp>(`/api/Taskforce`);
-      return [response.data];
-    } catch (error) {
-      console.error("Error fetching issue:", error);
-      throw error;
-    }
-  };
+  // const [data, setData] = useState<ReferenceProp[]>([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetchIssueById();
-      setData(data);
-    };
+  // const fetchIssueById = async () => {
+  //   try {
+  //     const response = await axiosInstance.get<ReferenceResp>(`/api/Taskforce`);
+  //     return [response.data];
+  //   } catch (error) {
+  //     console.error("Error fetching issue:", error);
+  //     throw error;
+  //   }
+  // };
 
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await fetchIssueById();
+  //     setData(data);
+  //   };
+
+  //   getData();
+  // }, []);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
   const table = useReactTable({
     // @ts-ignore
-    data: data.length ? data[0] : defaultData,
+    data: data ?? defaultData,
     // @ts-ignore
     columns: dir === "ltr" ? columnsMemos : columnsMemo,
     state: {
@@ -88,6 +96,7 @@ export default function TaskForceTable() {
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+
   return (
     <>
       {dir === "ltr" ? (
