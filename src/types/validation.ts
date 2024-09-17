@@ -121,6 +121,16 @@ export type ReferenceResp = {
   en_title: string;
   link: string;
 };
+export type TaskForceRespTable = {
+  id: number;
+  ar_name: string;
+  en_name: string;
+  ar_degree: string;
+  en_degree: string;
+  ar_role: string;
+  en_role: string;
+  img: string;
+};
 export type WriterResp = {
   id: number;
   ar_fullName: string;

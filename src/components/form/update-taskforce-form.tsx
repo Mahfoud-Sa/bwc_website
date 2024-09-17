@@ -68,7 +68,7 @@ export default function UpdateTaskForce() {
   }, [taskForceData]);
 
   const { mutate } = useMutation({
-    mutationKey: ["AddTaskForce"],
+    mutationKey: ["UpdateTaskForce"],
     mutationFn: (datas: TaskForceFormValue) => {
       const formData = new FormData();
       formData.append("Ar_name", datas.Ar_name); // Corrected this from decisionDate to decisionName
@@ -103,6 +103,7 @@ export default function UpdateTaskForce() {
         },
       });
       navigate("/admin-dashboard/taskforce");
+      window.location.reload();
     },
     onError: (error) => {
       toast.success("لم تتم العميله.", {

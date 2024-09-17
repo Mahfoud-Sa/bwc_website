@@ -14,7 +14,7 @@ import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 import { Button } from "../../ui/button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,7 @@ type TaskForceFormValue = z.infer<typeof addTaskForceSchema>;
 
 export default function AddTaskForce() {
   const { t, i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const dir = i18n.dir();
   const navigate = useNavigate();
   const [preview, setPreview] = useState<string | null>(null);
@@ -64,6 +65,7 @@ export default function AddTaskForce() {
           secondary: "#FFFAEE",
         },
       });
+      queryClient.invalidateQueries({ queryKey: ["Taskforce"] });
       navigate("/admin-dashboard/taskforce");
     },
     onError: (error) => {
