@@ -128,14 +128,6 @@ export default function OrganizationsUnderBwcTable() {
                     form="searchEmployee"
                   >
                     {" "}
-                    Filter Number{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
-                  >
-                    {" "}
                     search{" "}
                   </Button>
                   <Link to={"/admin-dashboard/organization/add-org"}>
@@ -185,14 +177,6 @@ export default function OrganizationsUnderBwcTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
-                  >
-                    {" "}
-                    فلتر بعدد{" "}
-                  </Button>
                   <Button
                     className="mr-2 bg-[#d4d4d4] hover:bg-white"
                     type="submit"

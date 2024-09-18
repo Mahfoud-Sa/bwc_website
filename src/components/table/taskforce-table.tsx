@@ -51,7 +51,6 @@ type Taskforce = {
 };
 
 export default function TaskForceTable({ data }: Taskforce) {
-  console.log("Adsasd", data);
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const defaultData = useMemo<AddTaskForceOrder[]>(() => [], []);

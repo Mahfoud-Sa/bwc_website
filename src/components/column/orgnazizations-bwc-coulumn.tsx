@@ -81,6 +81,11 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
   {
     accessorKey: "link",
     header: "رابط موقع المؤسسة",
+    cell: ({ row }) => (
+      <a href={row.original.link} target="_blank">
+        {row.original.link}
+      </a>
+    ),
   },
 
   {
@@ -164,6 +169,11 @@ export const AddEnOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
   {
     accessorKey: "link",
     header: "Link",
+    cell: ({ row }) => (
+      <a href={row.original.link} target="_blank">
+        {row.original.link}
+      </a>
+    ),
   },
 
   {

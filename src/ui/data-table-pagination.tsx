@@ -35,7 +35,7 @@ export function DataTablePagination<TData>({
 
   return (
     <div className="my-2 flex flex-row items-center justify-between px-2 ">
-      <div className=" basis-1/4  text-sm text-muted-foreground">
+      <div className=" basis-[30%]  text-sm text-muted-foreground">
         {table.getFilteredSelectedRowModel().rows.length} من{" "}
         {table.getFilteredRowModel().rows.length} سطر (s) المحددة.
       </div>
@@ -171,7 +171,7 @@ export function DataTablePagination<TData>({
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-      <div className="flex basis-1/4 items-center gap-2 ">
+      <div className="flex basis-[30%] items-center gap-2 ">
         <div className="flex items-center">
           <p className="px-1 text-sm font-medium">الاسطر </p>
           <Select
@@ -196,8 +196,10 @@ export function DataTablePagination<TData>({
         </div>
 
         <div className="w-full text-left text-sm font-medium">
-          الصفحة {table.getState().pagination.pageIndex + 1} من{" "}
-          {table.getPageCount()}
+          <p>
+            الصفحة {table.getState().pagination.pageIndex + 1} من{" "}
+            {table.getPageCount()}
+          </p>
         </div>
       </div>
     </div>
