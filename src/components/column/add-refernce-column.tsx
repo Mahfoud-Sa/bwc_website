@@ -65,6 +65,11 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
   {
     accessorKey: "link",
     header: "الرابط",
+    cell: ({ row }) => (
+      <a href={row.original.link} target="_blank">
+        {row.original.link}
+      </a>
+    ),
   },
 
   {
@@ -133,6 +138,11 @@ export const EnAddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
   {
     accessorKey: "link",
     header: "link",
+    cell: ({ row }) => (
+      <a href={row.original.link} target="_blank">
+        {row.original.link}
+      </a>
+    ),
   },
 
   {

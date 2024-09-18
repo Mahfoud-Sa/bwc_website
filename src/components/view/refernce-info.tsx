@@ -110,6 +110,7 @@ export default function ReferenceInfo() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] "
           >
+            <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
             <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10 ">
                 <label htmlFor="">Title in English</label>
@@ -130,6 +131,7 @@ export default function ReferenceInfo() {
                 </a>
               </div>
             </div>
+            <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
           </form>
         </Form>
       ) : (
@@ -138,6 +140,7 @@ export default function ReferenceInfo() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]"
           >
+            <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
             <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
                 <Label text="العنوان بالعربية" />
@@ -159,6 +162,7 @@ export default function ReferenceInfo() {
                 </a>
               </div>
             </div>
+            <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
           </form>
         </Form>
       )}
