@@ -101,9 +101,9 @@ export default function Profile() {
             <div className="grid grid-cols-1 ">
               <div className="col-span-1 h-0 mt-4 rounded-lg">
                 <EnBreadcrumb
-                  tilte1="المزايا"
+                  tilte1="Features"
                   path1="/attendance"
-                  tilte2="الملف الشخصي"
+                  tilte2="Profile"
                   path2="/admin-dashboard/profile"
                   tilte3=""
                   path3=""
