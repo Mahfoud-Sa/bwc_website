@@ -23,12 +23,25 @@ import {
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 
+// export type AddWriterOrder = {
+//   isSelected: boolean;
+//   id: number;
+//   ar_fullName: string;
+//   en_fullName: string;
+//   image: string;
+//   ar_description: string;
+//   en_description: string;
+//   ar_role: string;
+//   en_role: string;
+// };
 export type AddWriterOrder = {
   isSelected: boolean;
   id: number;
   ar_fullName: string;
   en_fullName: string;
   image: string;
+  Nopub: number;
+  dob: string;
   ar_description: string;
   en_description: string;
   ar_role: string;
@@ -80,7 +93,16 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
     accessorKey: "ar_fullName",
     header: "الاسم الكامل",
   },
-
+  {
+    id: "Nopub",
+    accessorKey: "Nopub",
+    sortingFn: "basic",
+  },
+  {
+    header: "dob", // New Date of Birth column
+    accessorKey: "dob",
+    sortingFn: "datetime", // Built-in datetime sorting function
+  },
   {
     accessorKey: "ar_role",
     header: "المسمى الوظيفي",
@@ -165,7 +187,16 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
     accessorKey: "en_fullName",
     header: "full name",
   },
-
+  {
+    id: "Nopub",
+    accessorKey: "Nopub",
+    sortingFn: "basic",
+  },
+  {
+    header: "dob", // New Date of Birth column
+    accessorKey: "dob",
+    sortingFn: "datetime", // Built-in datetime sorting function
+  },
   {
     accessorKey: "en_role",
     header: "role",
