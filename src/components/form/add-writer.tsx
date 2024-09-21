@@ -20,16 +20,16 @@ import { postApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import AddPersonalImageDialog from "../dailog/add-personal-image-dialog";
 import { Textarea } from "src/ui/textarea";
-import { FileInput } from "src/ui/file-upload";
+import { useTranslation } from "react-i18next";
 
 type ReferenceFormValue = z.infer<typeof addWriterSchema>;
 
 export default function AddWriterForm() {
-  // const { toast } = useToast();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const navigate = useNavigate();
-  const [imagePreview, setImagePreview] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const form = useForm<z.infer<typeof addWriterSchema>>({
     resolver: zodResolver(addWriterSchema),
   });
@@ -83,83 +83,114 @@ export default function AddWriterForm() {
       });
     },
   });
-  const [personalPhoto, setPersonalPhoto] = useState<string>();
-  //   data?.file.personalPhoto ?? "",
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      setPreview(null);
+    }
+  };
+
   const onSubmit = (datas: ReferenceFormValue) => {
     mutate(datas);
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="min-h-[90vh]   w-[100%] bg-[#f2f2f2] "
-      >
-        <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]">
-          {/* <label className="text-md mb-2 block font-bold text-gray-950">
-            صورة الكاتب
-          </label> */}
-
-          <div className=" col-span-1 h-auto translate-y-10">
-            <FormField
-              control={form.control}
-              name="ImageFile"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Upload Image</FormLabel>
-                  <FormControl>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        field.onChange(e.target.files);
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="الاسم الكامل " />
-            <FormField
-              control={form.control}
-              name="ar_fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"الاسم الكامل "}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل الاسم الكامل ..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
-            <Label text="المسمئ الوظيفي" />
-            <FormField
-              control={form.control}
-              name="ar_role"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"المسمئ الوظيفي"}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل المسمئ الوظيفي" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
+    <>
+      {dir === "ltr" ? (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="min-h-[90vh]   w-[100%] bg-[#f2f2f2] "
+          >
+            {
+              <>
+                <div className=" float-start col-span-1  flex h-[70px] flex-col ml-10">
+                  <label className="text-md text-left mb-2 block font-bold text-gray-950">
+                    Writer Photo
+                  </label>
+                  <FormField
+                    control={form.control}
+                    name="ImageFile"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Upload Image</FormLabel>
+                        <FormControl>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                              handleFileChange(e); // Set the preview and form data
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="col-span-3"></div>
+              </>
+            }
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="الاسم الكامل " />
+                <FormField
+                  control={form.control}
+                  name="ar_fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"الاسم الكامل "}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="ادخل الاسم الكامل ..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div
+                dir="ltr"
+                className="text-end col-span-1 h-auto translate-y-10"
+              >
+                <Label text="المسمئ الوظيفي" />
+                <FormField
+                  control={form.control}
+                  name="ar_role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"المسمئ الوظيفي"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="ادخل المسمئ الوظيفي"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
             <Label text="وسائل التواصل " />
             <FormField
               control={form.control}
@@ -177,41 +208,48 @@ export default function AddWriterForm() {
               )}
             />
           </div> */}
-        </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="role" />
-            <FormField
-              control={form.control}
-              name="en_role"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">{"role"}</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter role..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="full name" />
-            <FormField
-              control={form.control}
-              name="En_fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">{"full name"}</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter full name..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          {/* <div className=" col-span-1 h-auto translate-y-10">
+            </div>
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <label htmlFor="" className="float-start">
+                  full name
+                </label>
+                <FormField
+                  control={form.control}
+                  name="En_fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"full name"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter full name..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className=" col-span-1 h-auto translate-y-10">
+                <label htmlFor="" className="float-start">
+                  role
+                </label>
+                <FormField
+                  control={form.control}
+                  name="en_role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">{"role"}</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter role..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              {/* <div className=" col-span-1 h-auto translate-y-10">
             <Label text="instgram" />
             <FormField
               control={form.control}
@@ -230,65 +268,286 @@ export default function AddWriterForm() {
               )}
             />
           </div> */}
-        </div>
+            </div>
 
-        {/* TODO:Textarea */}
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-3 h-auto translate-y-10">
-            <Label text="عن الكتاب" />
+            {/* TODO:Textarea */}
+            <div className="grid grid-cols-3  w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-3 h-auto translate-y-10">
+                <Label text="عن الكتاب" />
+                <FormField
+                  control={form.control}
+                  name="ar_description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"عن الكتاب"}
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          dir="rtl"
+                          className="bg-white border-2 border-[#d1d5db] rounded-xl"
+                          rows={5}
+                          {...field}
+                          placeholder="ادخل عن الكتاب..."
+                        ></Textarea>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 w-[100%] mt-10 px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-3 h-auto translate-y-10">
+                <label htmlFor="" className="float-start">
+                  about writer
+                </label>
+                <FormField
+                  control={form.control}
+                  name="en_description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"about writer"}
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="bg-white border-2 border-[#d1d5db] rounded-xl"
+                          rows={5}
+                          {...field}
+                          placeholder="Enter about writer ..."
+                        ></Textarea>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+
+            <div className="w-full -translate-x-10 flex justify-end mt-20">
+              <Button className=" mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-lg font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Add
+              </Button>
+            </div>
+          </form>
+        </Form>
+      ) : (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="min-h-[90vh]   w-[100%] bg-[#f2f2f2] "
+          >
+            <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]">
+              {/* <label className="text-md mb-2 block font-bold text-gray-950">
+            صورة الكاتب
+          </label> */}
+
+              <div className=" col-span-1 h-auto translate-y-10">
+                <FormField
+                  control={form.control}
+                  name="ImageFile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Upload Image</FormLabel>
+                      <FormControl>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => {
+                            field.onChange(e.target.files);
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="الاسم الكامل " />
+                <FormField
+                  control={form.control}
+                  name="ar_fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"الاسم الكامل "}
+                      </FormLabel>
+                      <FormControl>
+                        <Input placeholder="ادخل الاسم الكامل ..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="المسمئ الوظيفي" />
+                <FormField
+                  control={form.control}
+                  name="ar_role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"المسمئ الوظيفي"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input placeholder="ادخل المسمئ الوظيفي" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
+            <Label text="وسائل التواصل " />
             <FormField
               control={form.control}
-              name="ar_description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">{"عن الكتاب"}</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      className="bg-white border-2 border-[#d1d5db] rounded-xl"
-                      rows={5}
-                      {...field}
-                      placeholder="ادخل عن الكتاب..."
-                    ></Textarea>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-3 h-auto translate-y-10">
-            <Label text="about writer" />
-            <FormField
-              control={form.control}
-              name="en_description"
+              name="en_title"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">
-                    {"about writer"}
+                    {"وسائل التواصل "}
                   </FormLabel>
                   <FormControl>
-                    <Textarea
-                      className="bg-white border-2 border-[#d1d5db] rounded-xl"
-                      rows={5}
-                      {...field}
-                      placeholder="Enter about writer ..."
-                    ></Textarea>
+                    <Input placeholder="ادخل وسائل التواصل " {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </div>
-        </div>
+          </div> */}
+            </div>
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className="text-end col-span-1 h-auto translate-y-10">
+                <Label text="role" />
+                <FormField
+                  control={form.control}
+                  name="en_role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">{"role"}</FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="ltr"
+                          placeholder="Enter role..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="text-end col-span-1 h-auto translate-y-10">
+                <Label text="full name" />
+                <FormField
+                  control={form.control}
+                  name="En_fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"full name"}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="ltr"
+                          placeholder="Enter full name..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              {/* <div className=" col-span-1 h-auto translate-y-10">
+            <Label text="instgram" />
+            <FormField
+              control={form.control}
+              name="link"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-red-900">{"full name"}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://www.instagram.com/"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div> */}
+            </div>
 
-        <div className="w-full translate-x-10 flex justify-end mt-20">
-          <Button className="text-md mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            إضافة
-          </Button>
-        </div>
-      </form>
-    </Form>
+            {/* TODO:Textarea */}
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-3 h-auto translate-y-10">
+                <Label text="عن الكتاب" />
+                <FormField
+                  control={form.control}
+                  name="ar_description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"عن الكتاب"}
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="bg-white border-2 border-[#d1d5db] rounded-xl"
+                          rows={5}
+                          {...field}
+                          placeholder="ادخل عن الكتاب..."
+                        ></Textarea>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 mt-10 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className="text-end col-span-3 h-auto translate-y-10">
+                <Label text="about writer" />
+                <FormField
+                  control={form.control}
+                  name="en_description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-red-900">
+                        {"about writer"}
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          dir="ltr"
+                          className="bg-white border-2 border-[#d1d5db] rounded-xl"
+                          rows={5}
+                          {...field}
+                          placeholder="Enter about writer ..."
+                        ></Textarea>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+
+            <div className="w-full translate-x-10 flex justify-end mt-20">
+              <Button className="text-md mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                إضافة
+              </Button>
+            </div>
+          </form>
+        </Form>
+      )}
+    </>
   );
 }
