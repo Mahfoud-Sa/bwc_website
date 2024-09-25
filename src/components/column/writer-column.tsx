@@ -181,7 +181,7 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src="https://mahfoudsabbah-001-site2.jtempurl.com/uploads/profileImages/c7a39e56-0386-458c-801b-528904db9191.png"
+            src={row.original.image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -212,8 +212,6 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      //   const { data: session } = useSession();
-
       return (
         <div className="flex justify-center ">
           <Link
