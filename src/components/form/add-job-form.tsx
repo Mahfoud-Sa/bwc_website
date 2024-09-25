@@ -34,7 +34,7 @@ import { cn } from "src/lib/utils";
 import { Badge } from "src/ui/badge";
 import { ChevronsUpDown } from "lucide-react";
 
-type ReferenceFormValue = z.infer<typeof addJobSchema>;
+type AddJobFormValue = z.infer<typeof addJobSchema>;
 
 export default function AddJobForm() {
   // const { toast } = useToast();
@@ -48,11 +48,38 @@ export default function AddJobForm() {
   ]);
   const [texts, setTexts] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
+  //
+  const [skillsEn, setSkillsEn] = useState<string[]>([]);
+  const [inputValueSkillsEn, setInputValueSkillsEn] = useState<string>("");
+  //
+  const [advancesAr, setAdvancesAr] = useState<string[]>([]);
+  const [inputValueAdvancesAr, setInputValueAdvancesAr] = useState<string>("");
+  //
+  const [advancesEn, setAdvancesEn] = useState<string[]>([]);
+  const [inputValueAdvancesEn, setInputValueAdvancesEn] = useState<string>("");
 
-  const handleDelete = (index: number) => {
+  const handleDelete = (index: number, field: any) => {
     const updatedTexts = texts.filter((_, i) => i !== index);
     setTexts(updatedTexts);
+    field.onChange(updatedTexts);
   };
+  const handleSkillsEnDelete = (index: number, field: any) => {
+    const updatedTexts = skillsEn.filter((_, i) => i !== index);
+    setSkillsEn(updatedTexts);
+    field.onChange(updatedTexts);
+  };
+  const handleAdvancesAr = (index: number, field: any) => {
+    const updatedTexts = advancesAr.filter((_, i) => i !== index);
+    setAdvancesAr(updatedTexts);
+    field.onChange(updatedTexts);
+  };
+  const handleAdvancesEn = (index: number, field: any) => {
+    const updatedTexts = advancesEn.filter((_, i) => i !== index);
+    setAdvancesEn(updatedTexts);
+    field.onChange(updatedTexts);
+  };
+
+  console.log("fsdfsdfsd", texts);
   const [preview, setPreview] = useState<string | null>(null);
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof addJobSchema>>({
@@ -61,12 +88,31 @@ export default function AddJobForm() {
 
   const { mutate } = useMutation({
     mutationKey: ["AddReferences"],
-    mutationFn: (datas: ReferenceFormValue) =>
-      postApi("/api/References", {
-        // ar_title: datas.ar_title,
-        // en_title: datas.en_title,
-        // link: datas.link,
-      }),
+    mutationFn: (datas: AddJobFormValue) => {
+      const formData = new FormData();
+      formData.append("Ar_jobTitle", datas.Ar_jobTitle);
+      formData.append("En_jobTitle", datas.En_jobTitle);
+      // formData.append("avaliable", datas.avaliable);
+      // formData.append("publish", datas.publish);
+      formData.append("Ar_basicDescription", datas.Ar_basicDescription);
+      formData.append("En_basicDescription", datas.En_basicDescription);
+      // formData.append("Ar_skiles", datas.Ar_skiles);
+      // formData.append("En_skiles", datas.En_skiles);
+      // formData.append("Ar_advances", datas.Ar_advances);
+      // formData.append("En_advances", datas.En_advances);
+      formData.append("formLink", datas.formLink);
+      formData.append("endDate", String(new Date(datas.endDate).toISOString()));
+
+      if (datas.ImageFile) {
+        formData.append("ImageFile", datas.ImageFile[0]);
+      }
+
+      return postApi("/api/OrgUndBWC", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    },
     onSuccess: () => {
       // toast({
       //   title: "اشعار",
@@ -109,7 +155,7 @@ export default function AddJobForm() {
       setPreview(null);
     }
   };
-  const onSubmit = (datas: ReferenceFormValue) => {
+  const onSubmit = (datas: AddJobFormValue) => {
     mutate(datas);
   };
 
@@ -236,7 +282,10 @@ export default function AddJobForm() {
                   <FormControl>
                     <Select
                       dir="rtl"
-                      onValueChange={field.onChange}
+                      // Convert the string value to boolean
+                      onValueChange={(value) =>
+                        field.onChange(value === "true")
+                      }
                       defaultValue={String(field.value)}
                     >
                       <SelectTrigger className="">
@@ -295,45 +344,189 @@ export default function AddJobForm() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-          <div className=" col-span-1 h-auto translate-y-10">
+        <div className="grid grid-cols-3 w-[100%]  px-10 items-start gap-4 text-right min-h-[20vh]  ">
+          <div className="col-span-1 h-auto translate-y-10  ">
+            <Label text="المهارات" />
             <FormField
               control={form.control}
               name="Ar_skiles"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"عنوان الوظيفة"}
-                  </FormLabel>
+                  <FormLabel className="text-red-900"></FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Input
-                        placeholder="ادخل عنوان الوظيفة..."
-                        value={inputValue} // Use inputValue to manage the current input
+                        placeholder="ادخل المهارات..."
+                        value={inputValue}
                         onChange={(e) => {
-                          setInputValue(e.target.value); // Update local state
+                          setInputValue(e.target.value);
                         }}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" && inputValue.trim()) {
                             const newValues = Array.isArray(field.value)
                               ? [...field.value, inputValue]
-                              : [inputValue]; // Ensure it's an array
-                            field.onChange(newValues); // Update form field with new array
+                              : [inputValue];
+                            field.onChange(newValues);
                             setTexts(newValues);
-                            setInputValue(""); // Clear the input after adding
-                            e.preventDefault(); // Prevent form submission
+                            setInputValue("");
+                            e.preventDefault();
                           }
                         }}
                         name={field.name}
                         ref={field.ref}
                         onBlur={field.onBlur}
-                        className="pr-20" // Add padding to the right for the badge
+                        className="pr-20"
                       />
+
                       {Array.isArray(field.value) && field.value.length > 0 && (
                         <Badge className="absolute right-2 top-2">
                           {`تم تحديد ${field.value.length}`}
                         </Badge>
                       )}
+
+                      {/* Display the list of texts with delete option */}
+
+                      {Array.isArray(field.value) &&
+                        field.value.length > 0 &&
+                        field.value.map((item: string, index: number) => (
+                          <div key={index} className="flex items-center  ">
+                            <span>{item}</span>
+                            <button
+                              type="button"
+                              className="ml-2 text-red-500"
+                              onClick={() => handleDelete(index, field)} // Call delete function
+                            >
+                              حذف
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="text-end col-span-1 h-auto translate-y-10  ">
+            <Label text="Skills" />
+            <FormField
+              control={form.control}
+              name="En_skiles"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-red-900"></FormLabel>
+                  <FormControl dir="ltr">
+                    <div className="relative">
+                      <Input
+                        placeholder="Enter Skills ..."
+                        value={inputValueSkillsEn}
+                        onChange={(e) => {
+                          setInputValueSkillsEn(e.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && inputValueSkillsEn.trim()) {
+                            const newValues = Array.isArray(field.value)
+                              ? [...field.value, inputValueSkillsEn]
+                              : [inputValueSkillsEn];
+                            field.onChange(newValues);
+                            setSkillsEn(newValues);
+                            setInputValueSkillsEn("");
+                            e.preventDefault();
+                          }
+                        }}
+                        name={field.name}
+                        ref={field.ref}
+                        onBlur={field.onBlur}
+                        className="pr-20"
+                      />
+
+                      {Array.isArray(field.value) && field.value.length > 0 && (
+                        <Badge className="absolute right-2 top-2">
+                          {`تم تحديد ${field.value.length}`}
+                        </Badge>
+                      )}
+
+                      {/* Display the list of texts with delete option */}
+
+                      {Array.isArray(field.value) &&
+                        field.value.length > 0 &&
+                        field.value.map((item: string, index: number) => (
+                          <div key={index} className="flex items-center  ">
+                            <span>{item}</span>
+                            <button
+                              type="button"
+                              className="ml-2 text-red-500"
+                              onClick={() => handleSkillsEnDelete(index, field)} // Call delete function
+                            >
+                              حذف
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="col-span-1 h-auto translate-y-10  ">
+            <Label text="المهام الوظيفيه" />
+            <FormField
+              control={form.control}
+              name="Ar_advances"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-red-900"></FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Input
+                        placeholder="ادخل المهام الوظيفيه..."
+                        value={inputValueAdvancesAr}
+                        onChange={(e) => {
+                          setInputValueAdvancesAr(e.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (
+                            e.key === "Enter" &&
+                            inputValueAdvancesAr.trim()
+                          ) {
+                            const newValues = Array.isArray(field.value)
+                              ? [...field.value, inputValueAdvancesAr]
+                              : [inputValueAdvancesAr];
+                            field.onChange(newValues);
+                            setAdvancesAr(newValues);
+                            setInputValueAdvancesAr("");
+                            e.preventDefault();
+                          }
+                        }}
+                        name={field.name}
+                        ref={field.ref}
+                        onBlur={field.onBlur}
+                        className="pr-20"
+                      />
+
+                      {Array.isArray(field.value) && field.value.length > 0 && (
+                        <Badge className="absolute right-2 top-2">
+                          {`تم تحديد ${field.value.length}`}
+                        </Badge>
+                      )}
+
+                      {Array.isArray(field.value) &&
+                        field.value.length > 0 &&
+                        field.value.map((item: string, index: number) => (
+                          <div key={index} className="flex items-center  ">
+                            <span>{item}</span>
+                            <button
+                              type="button"
+                              className="ml-2 text-red-500"
+                              onClick={() => handleAdvancesAr(index, field)}
+                            >
+                              حذف
+                            </button>
+                          </div>
+                        ))}
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -343,20 +536,74 @@ export default function AddJobForm() {
           </div>
         </div>
 
-        <div>
-          {texts.map((text, index) => (
-            <div key={index} className="flex items-center mb-2">
-              <p className="mr-2">{text}</p>
-              <button
-                className="text-red-500 hover:text-red-700"
-                onClick={() => handleDelete(index)} // Attach delete handler
-              >
-                X
-              </button>
-            </div>
-          ))}
-        </div>
+        {/*  */}
+        <div className="grid grid-cols-3 w-[100%]  px-10 items-start gap-4 text-right min-h-[20vh]  ">
+          <div className="col-span-1 h-auto translate-y-10  ">
+            <Label text="Advances" />
+            <FormField
+              control={form.control}
+              name="En_advances"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-red-900"></FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Input
+                        placeholder="Enter Advances"
+                        value={inputValueAdvancesEn}
+                        onChange={(e) => {
+                          setInputValueAdvancesEn(e.target.value);
+                        }}
+                        onKeyDown={(e) => {
+                          if (
+                            e.key === "Enter" &&
+                            inputValueAdvancesEn.trim()
+                          ) {
+                            const newValues = Array.isArray(field.value)
+                              ? [...field.value, inputValueAdvancesEn]
+                              : [inputValueAdvancesEn];
+                            field.onChange(newValues);
+                            setAdvancesEn(newValues);
+                            setInputValueAdvancesEn("");
+                            e.preventDefault();
+                          }
+                        }}
+                        name={field.name}
+                        ref={field.ref}
+                        onBlur={field.onBlur}
+                        className="pr-20"
+                      />
 
+                      {Array.isArray(field.value) && field.value.length > 0 && (
+                        <Badge className="absolute right-2 top-2">
+                          {`تم تحديد ${field.value.length}`}
+                        </Badge>
+                      )}
+
+                      {/* Display the list of texts with delete option */}
+
+                      {Array.isArray(field.value) &&
+                        field.value.length > 0 &&
+                        field.value.map((item: string, index: number) => (
+                          <div key={index} className="flex items-center  ">
+                            <span>{item}</span>
+                            <button
+                              type="button"
+                              className="ml-2 text-red-500"
+                              onClick={() => handleAdvancesEn(index, field)} // Call delete function
+                            >
+                              حذف
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
         <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
           <div className=" col-span-1 h-auto translate-y-10">
             <Label text="التفاصيل" />

@@ -8,6 +8,9 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
+
+import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { addWriterSchema } from "src/types/validation";
@@ -16,61 +19,114 @@ import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 import { Button } from "../../ui/button";
 import { useMutation } from "@tanstack/react-query";
-import { postApi } from "src/lib/http";
+import { patchApi, postApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Textarea } from "src/ui/textarea";
 import { useTranslation } from "react-i18next";
 
-type ReferenceFormValue = z.infer<typeof addWriterSchema>;
+import { MultiSelect } from "primereact/multiselect";
 
+type WriterFormValue = z.infer<typeof addWriterSchema>;
+
+interface WriterResponse {
+  data: {
+    id: number; // Define the type of the id
+    ar_fullName: string;
+    en_fullName: string;
+    ar_description: string;
+    en_description: string;
+    ar_role: string;
+    en_role: string;
+    soicalmedia: { id: number; name: string; url: string; writerId: number }[];
+  };
+}
+interface City {
+  name: string;
+  code: string;
+}
 export default function AddWriterForm() {
+  const [selectedCities, setSelectedCities] = useState<City[]>([]);
+
+  const cities: City[] = [
+    { name: "Instagram", code: "instagram" },
+    { name: "WhatsApp", code: "whatsapp" },
+    { name: "X (Twitter)", code: "X" },
+    { name: "LinkedIn", code: "linkedin" },
+    { name: "Facebook", code: "facebook" },
+  ];
+
+  const isSelected = (code: string): boolean => {
+    return selectedCities.some((city) => city.code === code);
+  };
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const navigate = useNavigate();
   const [preview, setPreview] = useState<string | null>(null);
+
+  const [socialMediaFields, setSocialMediaFields] = useState<
+    { name: string; url: string }[]
+  >([]);
+
+  const handleSocialMediaChange = (name: string, url: string) => {
+    setSocialMediaFields((prev) => {
+      const updatedFields = prev.map((item) =>
+        item.name === name ? { name, url } : item
+      );
+      return updatedFields.some((item) => item.name === name)
+        ? updatedFields
+        : [...updatedFields, { name, url }];
+    });
+  };
+
   const form = useForm<z.infer<typeof addWriterSchema>>({
     resolver: zodResolver(addWriterSchema),
   });
 
-  const { mutate } = useMutation({
-    mutationKey: ["Writer"],
-    mutationFn: (datas: ReferenceFormValue) => {
+  const {
+    mutate: firstMutate,
+    isError: firstIsError,
+    isSuccess: firstIsSuccess,
+    isPending: firstIsPending,
+  } = useMutation<WriterResponse, Error, WriterFormValue>({
+    mutationKey: ["AddWriter"],
+    mutationFn: async (datas: WriterFormValue) => {
       const formData = new FormData();
-      formData.append("ar_fullName", datas.ar_fullName); // Corrected this from decisionDate to decisionName
+      formData.append("Ar_fullName", datas.Ar_fullName);
       formData.append("En_fullName", datas.En_fullName);
-      formData.append("ar_description", datas.ar_description);
-      formData.append("en_description", datas.en_description);
-      formData.append("ar_role", datas.ar_role);
-      formData.append("en_role", datas.en_role);
+      formData.append("Ar_description", datas.Ar_description);
+      formData.append("En_description", datas.En_description);
+      formData.append("Ar_role", datas.Ar_role);
+      formData.append("En_role", datas.En_role);
 
       if (datas.ImageFile) {
         formData.append("ImageFile", datas.ImageFile[0]);
       }
 
+      // First API call to create a writer
       return postApi("/api/Writers", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
     },
-    onSuccess: () => {
-      toast.success("تمت الاضافة بنجاح.", {
-        style: {
-          border: "1px solid #4FFFB0",
-          padding: "16px",
-          color: "#4FFFB0",
-        },
-        iconTheme: {
-          primary: "#4FFFB0",
-          secondary: "#FFFAEE",
-        },
-      });
-      navigate("/admin-dashboard/writer");
+    onSuccess: (data) => {
+      const writerId = data.data.id;
+      console.log("Writer ID:", writerId);
+
+      if (writerId && socialMediaFields.length > 0) {
+        console.log("socialMediaFields:", socialMediaFields);
+        secondMutate({
+          id: writerId,
+          Soicalmedia: socialMediaFields,
+        });
+      } else {
+        console.warn("Writer ID or socialMediaFields is missing.");
+      }
     },
     onError: (error) => {
-      toast.success("لم تتم العميله.", {
+      toast.error("لم تتم العميله.", {
         style: {
           border: "1px solid  #FF5733 ",
           padding: "16px",
@@ -84,6 +140,58 @@ export default function AddWriterForm() {
     },
   });
 
+  const {
+    mutate: secondMutate,
+    isError: secondIsError,
+    isSuccess: secondIsSuccess,
+    isPending: secondIsPending,
+  } = useMutation({
+    mutationKey: ["SocialMedia"],
+    mutationFn: (datas: {
+      id: number;
+      Soicalmedia: { name: string; url: string }[];
+    }) => {
+      console.log("Sending PATCH request to:", `/api/Writers/${datas.id}`);
+      console.log("Request body:", datas.Soicalmedia);
+
+      // Send the array of social media objects directly as the body
+      return patchApi(`/api/Writers/${datas.id}`, datas.Soicalmedia);
+    },
+    onSuccess: (data) => {
+      console.log("Second mutation success:", data);
+      toast.success("تمت الاضافة بنجاح.", {
+        style: {
+          border: "1px solid #4FFFB0",
+          padding: "16px",
+          color: "#4FFFB0",
+        },
+        iconTheme: {
+          primary: "#4FFFB0",
+          secondary: "#FFFAEE",
+        },
+      });
+      navigate("/admin-dashboard/writer");
+      window.location.reload();
+    },
+    onError: (error) => {
+      console.log("Second mutation error:", error);
+      toast.error("لم تتم العميله.", {
+        style: {
+          border: "1px solid  #FF5733 ",
+          padding: "16px",
+          color: " #FF5733 ",
+        },
+        iconTheme: {
+          primary: " #FF5733 ",
+          secondary: "#FFFAEE",
+        },
+      });
+    },
+  });
+
+  const onSubmit = (datas: WriterFormValue) => {
+    firstMutate(datas);
+  };
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
@@ -98,10 +206,6 @@ export default function AddWriterForm() {
     } else {
       setPreview(null);
     }
-  };
-
-  const onSubmit = (datas: ReferenceFormValue) => {
-    mutate(datas);
   };
 
   return (
@@ -147,7 +251,7 @@ export default function AddWriterForm() {
                 <Label text="الاسم الكامل " />
                 <FormField
                   control={form.control}
-                  name="ar_fullName"
+                  name="Ar_fullName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -172,7 +276,7 @@ export default function AddWriterForm() {
                 <Label text="المسمئ الوظيفي" />
                 <FormField
                   control={form.control}
-                  name="ar_role"
+                  name="Ar_role"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -190,25 +294,99 @@ export default function AddWriterForm() {
                   )}
                 />
               </div>
-              {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
-            <Label text="وسائل التواصل " />
-            <FormField
-              control={form.control}
-              name="en_title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"وسائل التواصل "}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل وسائل التواصل " {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div> */}
+              <div
+                dir="ltr"
+                className="text-Start col-span-1 h-auto translate-y-10"
+              >
+                <Label text="social media" />
+                <div className="card flex justify-center items-center py-6">
+                  <div className="w-full p-2 -translate-y-6 max-w-md  bg-white border border-gray-300 rounded-lg shadow-lg">
+                    <MultiSelect
+                      dir="rtl"
+                      value={selectedCities}
+                      onChange={(e) => setSelectedCities(e.value)}
+                      options={cities}
+                      optionLabel="name"
+                      placeholder="Select social media"
+                      maxSelectedLabels={3}
+                      className="w-full"
+                      panelClassName="rounded-md bg-white px-2 shadow-lg"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+            {selectedCities.length === 0 ? (
+              <></>
+            ) : (
+              <div className="grid grid-cols-5 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+                {/* Instagram Input Field */}
+                {isSelected("instagram") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>Instagram</label>
+                    <Input
+                      placeholder="Enter Instagram URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("Instagram", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* WhatsApp Input Field */}
+                {isSelected("whatsapp") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>WhatsApp</label>
+                    <Input
+                      placeholder="Enter WhatsApp URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("WhatsApp", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* X (Twitter) Input Field */}
+                {isSelected("X") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>X (Twitter)</label>
+                    <Input
+                      placeholder="Enter X (Twitter) URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("X", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* LinkedIn Input Field */}
+                {isSelected("linkedin") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>LinkedIn</label>
+                    <Input
+                      placeholder="Enter LinkedIn URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("LinkedIn", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* Facebook Input Field */}
+                {isSelected("facebook") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>Facebook</label>
+                    <Input
+                      placeholder="Enter Facebook URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("Facebook", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
                 <label htmlFor="" className="float-start">
@@ -236,7 +414,7 @@ export default function AddWriterForm() {
                 </label>
                 <FormField
                   control={form.control}
-                  name="en_role"
+                  name="En_role"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">{"role"}</FormLabel>
@@ -248,26 +426,6 @@ export default function AddWriterForm() {
                   )}
                 />
               </div>
-
-              {/* <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="instgram" />
-            <FormField
-              control={form.control}
-              name="link"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">{"full name"}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="https://www.instagram.com/"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div> */}
             </div>
 
             {/* TODO:Textarea */}
@@ -276,7 +434,7 @@ export default function AddWriterForm() {
                 <Label text="عن الكتاب" />
                 <FormField
                   control={form.control}
-                  name="ar_description"
+                  name="Ar_description"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -305,7 +463,7 @@ export default function AddWriterForm() {
                 </label>
                 <FormField
                   control={form.control}
-                  name="en_description"
+                  name="En_description"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -371,7 +529,7 @@ export default function AddWriterForm() {
                 <Label text="الاسم الكامل " />
                 <FormField
                   control={form.control}
-                  name="ar_fullName"
+                  name="Ar_fullName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -389,7 +547,7 @@ export default function AddWriterForm() {
                 <Label text="المسمئ الوظيفي" />
                 <FormField
                   control={form.control}
-                  name="ar_role"
+                  name="Ar_role"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -403,31 +561,109 @@ export default function AddWriterForm() {
                   )}
                 />
               </div>
-              {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
-            <Label text="وسائل التواصل " />
-            <FormField
-              control={form.control}
-              name="en_title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"وسائل التواصل "}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل وسائل التواصل " {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div> */}
+              <div
+                dir="ltr"
+                className="text-Start col-span-1 h-auto translate-y-10"
+              >
+                <Label text="الحسابات الشخصية" />
+                <div className="card flex justify-center items-center py-6">
+                  <div className="w-full p-2 -translate-y-6 max-w-md  bg-white border border-gray-300 rounded-lg shadow-lg">
+                    <MultiSelect
+                      dir="rtl"
+                      value={selectedCities}
+                      onChange={(e) => setSelectedCities(e.value)}
+                      options={cities}
+                      optionLabel="name"
+                      placeholder="Select social media"
+                      maxSelectedLabels={3}
+                      className="w-full"
+                      panelClassName="rounded-md bg-white px-2 shadow-lg"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+            {selectedCities.length === 0 ? (
+              <></>
+            ) : (
+              <div className="grid grid-cols-5 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+                {/* Instagram Input Field */}
+                {isSelected("instagram") && (
+                  <div className=" text-end col-span-1 h-auto translate-y-10">
+                    <label>Instagram</label>
+                    <Input
+                      dir="ltr"
+                      placeholder="Enter Instagram URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("Instagram", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* WhatsApp Input Field */}
+                {isSelected("whatsapp") && (
+                  <div className="text-end col-span-1 h-auto translate-y-10">
+                    <label>WhatsApp</label>
+                    <Input
+                      dir="ltr"
+                      placeholder="Enter WhatsApp URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("WhatsApp", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* X (Twitter) Input Field */}
+                {isSelected("X") && (
+                  <div className="text-end col-span-1 h-auto translate-y-10">
+                    <label>X (Twitter)</label>
+                    <Input
+                      dir="ltr"
+                      placeholder="Enter X (Twitter) URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("X", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* LinkedIn Input Field */}
+                {isSelected("linkedin") && (
+                  <div className="text-end col-span-1 h-auto translate-y-10">
+                    <label>LinkedIn</label>
+                    <Input
+                      dir="ltr"
+                      placeholder="Enter LinkedIn URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("LinkedIn", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+
+                {/* Facebook Input Field */}
+                {isSelected("facebook") && (
+                  <div className="text-end col-span-1 h-auto translate-y-10">
+                    <label>Facebook</label>
+                    <Input
+                      dir="ltr"
+                      placeholder="Enter Facebook URL"
+                      onChange={(e) =>
+                        handleSocialMediaChange("Facebook", e.target.value)
+                      }
+                    />
+                  </div>
+                )}
+              </div>
+            )}
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className="text-end col-span-1 h-auto translate-y-10">
                 <Label text="role" />
                 <FormField
                   control={form.control}
-                  name="en_role"
+                  name="En_role"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">{"role"}</FormLabel>
@@ -492,7 +728,7 @@ export default function AddWriterForm() {
                 <Label text="عن الكتاب" />
                 <FormField
                   control={form.control}
-                  name="ar_description"
+                  name="Ar_description"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
@@ -518,7 +754,7 @@ export default function AddWriterForm() {
                 <Label text="about writer" />
                 <FormField
                   control={form.control}
-                  name="en_description"
+                  name="En_description"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">

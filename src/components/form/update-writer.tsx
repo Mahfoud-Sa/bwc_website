@@ -55,30 +55,29 @@ export default function UpdateWriterForm() {
 
   console.log("WriterData?.en_fullName", WriterData);
   useEffect(() => {
-    if (WriterData && addWriterSchema) {
-      form.reset({
-        ar_fullName: WriterData.ar_fullName,
-        En_fullName: WriterData.en_fullName,
-        ar_description: WriterData.ar_description,
-        en_description: WriterData.en_description,
-        ar_role: WriterData.ar_role,
-        en_role: WriterData.en_role,
-      });
-
-      // Set the existing image URL for preview
-      setExistingImageUrl(WriterData.image); // This should be the image URL string
-    }
+    // if (WriterData && addWriterSchema) {
+    //   form.reset({
+    //     ar_fullName: WriterData.ar_fullName,
+    //     En_fullName: WriterData.en_fullName,
+    //     ar_description: WriterData.ar_description,
+    //     en_description: WriterData.en_description,
+    //     ar_role: WriterData.ar_role,
+    //     en_role: WriterData.en_role,
+    //   });
+    //   // Set the existing image URL for preview
+    //   setExistingImageUrl(WriterData.image); // This should be the image URL string
+    // }
   }, [WriterData]);
   const { mutate } = useMutation({
     mutationKey: ["Writer"],
     mutationFn: (datas: ReferenceFormValue) => {
       const formData = new FormData();
-      formData.append("ar_fullName", datas.ar_fullName); // Corrected this from decisionDate to decisionName
-      formData.append("En_fullName", datas.En_fullName);
-      formData.append("ar_description", datas.ar_description);
-      formData.append("en_description", datas.en_description);
-      formData.append("ar_role", datas.ar_role);
-      formData.append("en_role", datas.en_role);
+      // formData.append("ar_fullName", datas.ar_fullName); // Corrected this from decisionDate to decisionName
+      // formData.append("En_fullName", datas.En_fullName);
+      // formData.append("ar_description", datas.ar_description);
+      // formData.append("en_description", datas.en_description);
+      // formData.append("ar_role", datas.ar_role);
+      // formData.append("en_role", datas.en_role);
       if (datas.ImageFile) {
         formData.append("ImageFile", datas.ImageFile[0]); // Add the file to formData
       }
@@ -176,7 +175,7 @@ export default function UpdateWriterForm() {
             <Label text="الاسم الكامل " />
             <FormField
               control={form.control}
-              name="ar_fullName"
+              name="Ar_fullName"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">
@@ -194,7 +193,7 @@ export default function UpdateWriterForm() {
             <Label text="المسمئ الوظيفي" />
             <FormField
               control={form.control}
-              name="ar_role"
+              name="Ar_role"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">
@@ -232,7 +231,7 @@ export default function UpdateWriterForm() {
             <Label text="role" />
             <FormField
               control={form.control}
-              name="en_role"
+              name="En_role"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">{"role"}</FormLabel>
@@ -287,7 +286,7 @@ export default function UpdateWriterForm() {
             <Label text="عن الكتاب" />
             <FormField
               control={form.control}
-              name="ar_description"
+              name="Ar_description"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">{"عن الكتاب"}</FormLabel>
@@ -311,7 +310,7 @@ export default function UpdateWriterForm() {
             <Label text="about writer" />
             <FormField
               control={form.control}
-              name="en_description"
+              name="En_description"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-red-900">

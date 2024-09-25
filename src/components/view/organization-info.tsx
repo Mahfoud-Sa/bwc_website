@@ -65,7 +65,7 @@ export default function OrganizationInfo() {
               <img
                 src={OrgnaztioneData?.img}
                 alt=""
-                className="w-[200px] h-[200px] clear-both float-start"
+                className="col-span-3   translate-y-10"
               />
             </div>
           </div>
