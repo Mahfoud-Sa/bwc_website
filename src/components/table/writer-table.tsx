@@ -45,89 +45,121 @@ export interface WriterProp {
   ar_fullName: string;
   en_fullName: string;
   image: string;
-  Nopub: number;
-  dob: string;
   ar_description: string;
   en_description: string;
   ar_role: string;
   en_role: string;
+  publication: any[];
+  soicalmedia: Soicalmedia[];
 }
-
-export type WriterResp = {
+export interface WriterResp {
   id: number;
   ar_fullName: string;
   en_fullName: string;
   image: string;
-  Nopub: number;
-  dob: string;
   ar_description: string;
   en_description: string;
   ar_role: string;
   en_role: string;
-};
+  publication: any[];
+  soicalmedia: Soicalmedia[];
+}
 
-const writers: WriterResp[] = [
-  {
-    id: 1,
-    ar_fullName: "أحمد علي",
-    en_fullName: "Ahmed Ali",
-    image: "https://example.com/images/ahmed.png",
-    Nopub: 25,
-    ar_description: "كاتب متخصص في الأدب العربي.",
-    en_description: "A writer specializing in Arabic literature.",
-    ar_role: "كاتب",
-    en_role: "Writer",
-    dob: "1980-05-12", // Date of Birth added
-  },
-  {
-    id: 2,
-    ar_fullName: "ليلى سعيد",
-    en_fullName: "Laila Saeed",
-    image: "https://example.com/images/laila.png",
-    Nopub: 10,
-    ar_description: "متخصصة في كتابة المقالات الصحفية.",
-    en_description: "Specializes in writing journalistic articles.",
-    ar_role: "صحفية",
-    en_role: "Journalist",
-    dob: "1990-09-22",
-  },
-  {
-    id: 3,
-    ar_fullName: "محمد يوسف",
-    en_fullName: "Mohammed Youssef",
-    image: "https://example.com/images/mohammed.png",
-    Nopub: 30,
-    ar_description: "باحث وكاتب في العلوم الاجتماعية.",
-    en_description: "Researcher and writer in social sciences.",
-    ar_role: "باحث",
-    en_role: "Researcher",
-    dob: "1985-02-17",
-  },
-  {
-    id: 4,
-    ar_fullName: "سارة عبد الله",
-    en_fullName: "Sara Abdullah",
-    image: "https://example.com/images/sara.png",
-    Nopub: 15,
-    ar_description: "كاتبة وشاعرة متخصصة في الأدب الحديث.",
-    en_description: "Writer and poet specializing in modern literature.",
-    ar_role: "كاتبة",
-    en_role: "Writer",
-    dob: "1995-11-30",
-  },
-  {
-    id: 5,
-    ar_fullName: "خالد حسن",
-    en_fullName: "Khalid Hassan",
-    image: "https://example.com/images/khalid.png",
-    Nopub: 8,
-    ar_description: "كاتب متخصص في المقالات العلمية.",
-    en_description: "Writer specializing in scientific articles.",
-    ar_role: "كاتب",
-    en_role: "Writer",
-    dob: "2000-04-10",
-  },
-];
+export interface Soicalmedia {
+  id: number;
+  name: string;
+  url: string;
+  writerId: number;
+  writer: null;
+}
+// export interface WriterProp {
+//   id: number;
+//   ar_fullName: string;
+//   en_fullName: string;
+//   image: string;
+//   Nopub: number;
+//   dob: string;
+//   ar_description: string;
+//   en_description: string;
+//   ar_role: string;
+//   en_role: string;
+// }
+
+// export type WriterResp = {
+//   id: number;
+//   ar_fullName: string;
+//   en_fullName: string;
+//   image: string;
+//   Nopub: number;
+//   dob: string;
+//   ar_description: string;
+//   en_description: string;
+//   ar_role: string;
+//   en_role: string;
+// };
+
+// const writers: WriterResp[] = [
+//   {
+//     id: 1,
+//     ar_fullName: "أحمد علي",
+//     en_fullName: "Ahmed Ali",
+//     image: "https://example.com/images/ahmed.png",
+//     Nopub: 25,
+//     ar_description: "كاتب متخصص في الأدب العربي.",
+//     en_description: "A writer specializing in Arabic literature.",
+//     ar_role: "كاتب",
+//     en_role: "Writer",
+//     dob: "1980-05-12", // Date of Birth added
+//   },
+//   {
+//     id: 2,
+//     ar_fullName: "ليلى سعيد",
+//     en_fullName: "Laila Saeed",
+//     image: "https://example.com/images/laila.png",
+//     Nopub: 10,
+//     ar_description: "متخصصة في كتابة المقالات الصحفية.",
+//     en_description: "Specializes in writing journalistic articles.",
+//     ar_role: "صحفية",
+//     en_role: "Journalist",
+//     dob: "1990-09-22",
+//   },
+//   {
+//     id: 3,
+//     ar_fullName: "محمد يوسف",
+//     en_fullName: "Mohammed Youssef",
+//     image: "https://example.com/images/mohammed.png",
+//     Nopub: 30,
+//     ar_description: "باحث وكاتب في العلوم الاجتماعية.",
+//     en_description: "Researcher and writer in social sciences.",
+//     ar_role: "باحث",
+//     en_role: "Researcher",
+//     dob: "1985-02-17",
+//   },
+//   {
+//     id: 4,
+//     ar_fullName: "سارة عبد الله",
+//     en_fullName: "Sara Abdullah",
+//     image: "https://example.com/images/sara.png",
+//     Nopub: 15,
+//     ar_description: "كاتبة وشاعرة متخصصة في الأدب الحديث.",
+//     en_description: "Writer and poet specializing in modern literature.",
+//     ar_role: "كاتبة",
+//     en_role: "Writer",
+//     dob: "1995-11-30",
+//   },
+//   {
+//     id: 5,
+//     ar_fullName: "خالد حسن",
+//     en_fullName: "Khalid Hassan",
+//     image: "https://example.com/images/khalid.png",
+//     Nopub: 8,
+//     ar_description: "كاتب متخصص في المقالات العلمية.",
+//     en_description: "Writer specializing in scientific articles.",
+//     ar_role: "كاتب",
+//     en_role: "Writer",
+//     dob: "2000-04-10",
+//   },
+// ];
 
 export default function WriterTable() {
   const { t, i18n } = useTranslation();
@@ -155,17 +187,24 @@ export default function WriterTable() {
     getData();
   }, []);
 
+  console.log("data", data[0]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data: writers ?? defaultData,
+    data: data[0] ?? defaultData,
+    // writers ?? defaultData,
     // data.length ? data[0]
     // @ts-ignore
     columns: dir === "ltr" ? columnsMemos : columnsMemo,
     state: {
       rowSelection,
       columnFilters,
+    },
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
     },
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
@@ -214,14 +253,14 @@ export default function WriterTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
+                  {/* <Button
                     className="mr-2 bg-[#d4d4d4] hover:bg-white"
                     type="submit"
                     form="searchEmployee"
                   >
                     {" "}
                     Filter Number{" "}
-                  </Button>
+                  </Button> */}
 
                   <Link to={"/admin-dashboard/writer/add-writer"}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
@@ -270,7 +309,7 @@ export default function WriterTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Select
+                  {/* <Select
                     dir="rtl"
                     onValueChange={(value) => {
                       table.setSorting([
@@ -291,8 +330,8 @@ export default function WriterTable() {
                         <SelectItem value="الاقل">الاقل</SelectItem>
                       </SelectGroup>
                     </SelectContent>
-                  </Select>
-                  <Select
+                  </Select> */}
+                  {/* <Select
                     dir="rtl"
                     onValueChange={(value) => {
                       table.setSorting([
@@ -313,7 +352,7 @@ export default function WriterTable() {
                         <SelectItem value="الاحدث">الاحدث</SelectItem>
                       </SelectGroup>
                     </SelectContent>
-                  </Select>
+                  </Select> */}
 
                   <Link to={"/admin-dashboard/writer/add-writer"}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">

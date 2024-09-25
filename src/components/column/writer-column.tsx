@@ -40,14 +40,21 @@ export type AddWriterOrder = {
   ar_fullName: string;
   en_fullName: string;
   image: string;
-  Nopub: number;
-  dob: string;
   ar_description: string;
   en_description: string;
   ar_role: string;
   en_role: string;
+  publication: any[];
+  soicalmedia: Soicalmedia[];
 };
 
+export interface Soicalmedia {
+  id: number;
+  name: string;
+  url: string;
+  writerId: number;
+  writer: null;
+}
 export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
   {
     accessorKey: "isSelected",
@@ -80,7 +87,7 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src="https://mahfoudsabbah-001-site2.jtempurl.com/uploads/profileImages/c7a39e56-0386-458c-801b-528904db9191.png"
+            src={row.original.image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -93,18 +100,18 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
     accessorKey: "ar_fullName",
     header: "الاسم الكامل",
   },
+  // {
+  //   id: "Nopub",
+  //   accessorKey: "Nopub",
+  //   sortingFn: "basic",
+  // },
+  // {
+  //   header: "dob", // New Date of Birth column
+  //   accessorKey: "dob",
+  //   sortingFn: "datetime", // Built-in datetime sorting function
+  // },
   {
-    id: "Nopub",
-    accessorKey: "Nopub",
-    sortingFn: "basic",
-  },
-  {
-    header: "dob", // New Date of Birth column
-    accessorKey: "dob",
-    sortingFn: "datetime", // Built-in datetime sorting function
-  },
-  {
-    accessorKey: "ar_role",
+    accessorKey: "ar_fullName",
     header: "المسمى الوظيفي",
   },
 
@@ -187,16 +194,16 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
     accessorKey: "en_fullName",
     header: "full name",
   },
-  {
-    id: "Nopub",
-    accessorKey: "Nopub",
-    sortingFn: "basic",
-  },
-  {
-    header: "dob", // New Date of Birth column
-    accessorKey: "dob",
-    sortingFn: "datetime", // Built-in datetime sorting function
-  },
+  // {
+  //   id: "Nopub",
+  //   accessorKey: "Nopub",
+  //   sortingFn: "basic",
+  // },
+  // {
+  //   header: "dob", // New Date of Birth column
+  //   accessorKey: "dob",
+  //   sortingFn: "datetime", // Built-in datetime sorting function
+  // },
   {
     accessorKey: "en_role",
     header: "role",

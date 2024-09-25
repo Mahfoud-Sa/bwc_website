@@ -118,7 +118,7 @@ export const updateOrgSchema = z.object({
     .optional(),
 });
 export const addWriterSchema = z.object({
-  ar_fullName: z
+  Ar_fullName: z
     .string({ message: "مطلوب " })
     .nonempty("Arabic full name is required"),
   En_fullName: z
@@ -135,14 +135,22 @@ export const addWriterSchema = z.object({
     .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files[0].type), {
       message: "Only JPEG, JPG, PNG, and WEBP files are accepted.",
     }),
-  ar_description: z
+  Ar_description: z
     .string({ message: "مطلوب " })
     .nonempty("Arabic description is required"),
-  en_description: z
+  En_description: z
     .string({ message: "مطلوب " })
     .nonempty("English description is required"),
-  ar_role: z.string({ message: "مطلوب " }).nonempty("Arabic role is required"),
-  en_role: z.string({ message: "مطلوب " }).nonempty("English role is required"),
+  Ar_role: z.string({ message: "مطلوب " }).nonempty("Arabic role is required"),
+  En_role: z.string({ message: "مطلوب " }).nonempty("English role is required"),
+  Soicalmedia: z
+    .array(
+      z.object({
+        name: z.string(),
+        url: z.string().min(10, "URL should be at least 10 characters long"),
+      })
+    )
+    .optional(),
 });
 
 export type ReferenceResp = {
