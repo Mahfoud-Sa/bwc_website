@@ -27,6 +27,7 @@ import {
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
+import { useTranslation } from "react-i18next";
 // import { ReferenceResp } from "src/types/validation";
 
 export interface ReferenceProp {
@@ -76,6 +77,8 @@ const reference: ReferenceProp[] = [
   { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
 ];
 export default function JobsTable() {
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const defaultData = useMemo<AddJobOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddJobColumns, []);
   const [data, setData] = useState<ReferenceProp[]>([]);
@@ -125,71 +128,148 @@ export default function JobsTable() {
     getPaginationRowModel: getPaginationRowModel(),
   });
   return (
-    <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
-      <div className="col-span-4 mt-5 h-auto">
-        <div className="">
-          <div className="grid grid-cols-4 gap-2 text-right">
-            {/* Start : input Text */}
-            <div className=" col-span-1 h-auto">
-              <Label text="اسم الوظيفة " />
-              <Input
-                placeholder="بحث باسم الوظيفة ..."
-                value={
-                  (table.getColumn("name")?.getFilterValue() as string) ?? ""
-                }
-                onChange={(event) =>
-                  table.getColumn("name")?.setFilterValue(event.target.value)
-                }
-              />
+    <>
+      {dir === "ltr" ? (
+        <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
+          <div className="col-span-4 mt-5 h-auto">
+            <div className="">
+              <div className="text-start grid grid-cols-4 gap-2">
+                {/* Start : input Text */}
+                <div className=" col-span-1 h-auto">
+                  <Label text="Job Name " />
+                  <Input
+                    placeholder="Enter Job Name ..."
+                    value={
+                      (table.getColumn("name")?.getFilterValue() as string) ??
+                      ""
+                    }
+                    onChange={(event) =>
+                      table
+                        .getColumn("name")
+                        ?.setFilterValue(event.target.value)
+                    }
+                  />
+                </div>
+                {/* End : input Text */}
+              </div>
             </div>
-            {/* End : input Text */}
-          </div>
-        </div>
-        <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
-          <div className="col-span-1 ">
-            {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
-          </div>
-          <div className="col-span-3">
-            <div className="flex flex-row-reverse gap-4 ">
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                فلتر بالتاريخ{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                فلتر الحالة{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                بحث سريع{" "}
-              </Button>
-              <Link to={"/admin-dashboard/jobs/add-job"}>
-                <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                  <Plus className="ml-2" />
-                  اضافة وظيفة
-                </Button>
-              </Link>
+            <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
+              <div className="col-span-1 ">
+                {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
+              </div>
+              <div className="col-span-3">
+                <div className="flex flex-row-reverse gap-4 ">
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    فلتر بالتاريخ{" "}
+                  </Button>
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    فلتر الحالة{" "}
+                  </Button>
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    بحث سريع{" "}
+                  </Button>
+                  <Link to={"/admin-dashboard/jobs/add-job"}>
+                    <Button className="text-lg inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Plus className="mr-2" />
+                      add job
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="col-span-4 rounded-md">
-        {/* @ts-ignore */}
-        <OrderDataTable columns={columnsMemo} table={table} />
-      </div>
-    </div>
+          <div className="col-span-4 rounded-md">
+            {/* @ts-ignore */}
+            <OrderDataTable columns={columnsMemo} table={table} />
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
+          <div className="col-span-4 mt-5 h-auto">
+            <div className="">
+              <div className="grid grid-cols-4 gap-2 text-right">
+                {/* Start : input Text */}
+                <div className=" col-span-1 h-auto">
+                  <Label text="اسم الوظيفة " />
+                  <Input
+                    placeholder="بحث باسم الوظيفة ..."
+                    value={
+                      (table.getColumn("name")?.getFilterValue() as string) ??
+                      ""
+                    }
+                    onChange={(event) =>
+                      table
+                        .getColumn("name")
+                        ?.setFilterValue(event.target.value)
+                    }
+                  />
+                </div>
+                {/* End : input Text */}
+              </div>
+            </div>
+            <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
+              <div className="col-span-1 ">
+                {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
+              </div>
+              <div className="col-span-3">
+                <div className="flex flex-row-reverse gap-4 ">
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    فلتر بالتاريخ{" "}
+                  </Button>
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    فلتر الحالة{" "}
+                  </Button>
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    بحث سريع{" "}
+                  </Button>
+                  <Link to={"/admin-dashboard/jobs/add-job"}>
+                    <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Plus className="ml-2" />
+                      اضافة وظيفة
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-4 rounded-md">
+            {/* @ts-ignore */}
+            <OrderDataTable columns={columnsMemo} table={table} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

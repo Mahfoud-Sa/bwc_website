@@ -11,7 +11,16 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { addWriterSchema, WriterResp } from "src/types/validation";
 import Label from "src/ui/label";
 import { z } from "zod";
+import { IconType } from "react-icons";
 type ReferenceFormValue = z.infer<typeof addWriterSchema>;
+
+const socialIcons: { [key: string]: IconType } = {
+  Instagram: CgInstagram,
+  WhatsApp: FaWhatsapp,
+  LinkedIn: FaLinkedinIn,
+  X: FaXTwitter,
+  Facebook: FaFacebookF, // Add Facebook if needed
+};
 export default function WriterInfo() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
@@ -37,6 +46,7 @@ export default function WriterInfo() {
   const form = useForm<z.infer<typeof addWriterSchema>>({
     resolver: zodResolver(addWriterSchema),
   });
+  console.log("WriterData", WriterData);
   useEffect(() => {}, [WriterData]);
   return (
     <>
@@ -68,36 +78,25 @@ export default function WriterInfo() {
           <div className="w-full h-[20vh]">
             <div className=" col-span-1 h-auto px-10 translate-y-8 ">
               <div className=" w-full gap-3  rounded-full mx-auto flex justify-center items-center">
-                <a
-                  href="/"
-                  className="w-14 h-14 border-2 border-black rounded-full flex justify-center items-center"
-                >
-                  <CgInstagram size={30} />
-                </a>
-                <a
-                  href="/"
-                  className="w-14 h-14 border-2 border-black rounded-full flex justify-center items-center"
-                >
-                  <FaWhatsapp size={30} />
-                </a>
-                <a
-                  href="/"
-                  className="w-14 h-14 border-2 border-black rounded-full flex justify-center items-center"
-                >
-                  <FaLinkedinIn size={30} />
-                </a>
-                <a
-                  href="/"
-                  className="w-14 h-14 border-2 border-black rounded-full flex justify-center items-center"
-                >
-                  <FaXTwitter size={30} />
-                </a>
-                <a
-                  href="/"
-                  className="w-14 h-14 border-2 border-black rounded-full flex justify-center items-center"
-                >
-                  <FaFacebookF size={30} />
-                </a>
+                <div className="flex space-x-4">
+                  {WriterData?.soicalmedia.map((social, index) => {
+                    // Get the appropriate icon based on the name
+                    const IconComponent = socialIcons[social.name];
+
+                    return (
+                      <a
+                        key={social.id}
+                        href={social.url}
+                        className="w-14 h-14 border-2 border-black rounded-full flex justify-center items-center"
+                        target="_blank" // Optional: Opens in a new tab
+                        rel="noopener noreferrer" // For security when opening new tabs
+                      >
+                        {IconComponent && <IconComponent size={30} />}{" "}
+                        {/* Render the icon if it exists */}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
