@@ -169,7 +169,7 @@ export type TaskForceRespTable = {
   en_role: string;
   img: string;
 };
-export type WriterResp = {
+export interface WriterResp {
   id: number;
   ar_fullName: string;
   en_fullName: string;
@@ -178,7 +178,30 @@ export type WriterResp = {
   en_description: string;
   ar_role: string;
   en_role: string;
-};
+  publication: any[];
+  soicalmedia: Soicalmedia[];
+}
+
+export interface Writer {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: any[];
+  soicalmedia: Array<Soicalmedia | null>;
+}
+
+export interface Soicalmedia {
+  id: number;
+  name: string;
+  url: string;
+  writerId: number;
+  writer: Writer | null;
+}
 export type TaskForceResp = {
   id: number;
   ar_name: string;

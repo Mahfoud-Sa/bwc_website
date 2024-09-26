@@ -187,7 +187,6 @@ export default function WriterTable() {
     getData();
   }, []);
 
-  console.log("data", data[0]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({

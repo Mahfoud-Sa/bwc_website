@@ -22,12 +22,27 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import AddPersonalImageDialog from "../dailog/add-personal-image-dialog";
 import { Textarea } from "src/ui/textarea";
-import { FileInput } from "src/ui/file-upload";
 import { useTranslation } from "react-i18next";
+import { MultiSelect } from "primereact/multiselect";
 
 type ReferenceFormValue = z.infer<typeof addWriterSchema>;
-
+interface City {
+  name: string;
+  code: string;
+}
 export default function UpdateWriterForm() {
+  const [selectedCities, setSelectedCities] = useState<City[]>([]);
+  const [selectedSocialMedia, setSelectedSocialMedia] = useState<any[]>([]);
+  const [socialMediaUrls, setSocialMediaUrls] = useState<{
+    [key: string]: string;
+  }>({});
+  const cities: City[] = [
+    { name: "Instagram", code: "instagram" },
+    { name: "WhatsApp", code: "whatsapp" },
+    { name: "X (Twitter)", code: "X" },
+    { name: "LinkedIn", code: "linkedin" },
+    { name: "Facebook", code: "facebook" },
+  ];
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const { id } = useParams<{ id: string }>();
@@ -56,7 +71,6 @@ export default function UpdateWriterForm() {
     enabled: !!id,
   });
 
-  console.log("WriterData?.en_fullName", WriterData);
   useEffect(() => {
     if (WriterData) {
       form.reset({
@@ -118,6 +132,45 @@ export default function UpdateWriterForm() {
       });
     },
   });
+  // Populate selected cities and URLs when WriterData is loaded
+  if (
+    WriterData &&
+    selectedCities.length === 0 &&
+    Object.keys(socialMediaUrls).length === 0
+  ) {
+    const preSelectedCities = WriterData.soicalmedia
+      .map((social: any) => {
+        return cities.find((city) => city.name === social.name);
+      })
+      .filter(Boolean) as City[]; // Make sure it's typed as City[]
+
+    setSelectedCities(preSelectedCities || []);
+
+    const prefilledUrls = WriterData.soicalmedia.reduce(
+      (acc: any, social: any) => {
+        acc[social.name] = social.url;
+        return acc;
+      },
+      {}
+    );
+
+    setSocialMediaUrls(prefilledUrls || {});
+  }
+
+  // Handle change in selected social media platforms
+  const handleSelectionChange = (e: any) => {
+    setSelectedCities(e.value);
+  };
+
+  // Handle input change for each social media URL
+  const handleSocialMediaChange = (code: string, value: string) => {
+    setSocialMediaUrls((prevUrls) => ({
+      ...prevUrls,
+      [code]: value,
+    }));
+  };
+
+  console.log("socialMediaUrls.instagram", socialMediaUrls);
   const [isNewFileSelected, setIsNewFileSelected] = useState(false);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -244,25 +297,101 @@ export default function UpdateWriterForm() {
                   )}
                 />
               </div>
-              {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
-              <Label text="وسائل التواصل " />
-              <FormField
-                control={form.control}
-                name="en_title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-red-900">
-                      {"وسائل التواصل "}
-                    </FormLabel>
-                    <FormControl>
-                      <Input placeholder="ادخل وسائل التواصل " {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div> */}
+              <div
+                dir="ltr"
+                className="text-Start col-span-1 h-auto translate-y-10"
+              >
+                <Label text="social media" />
+                <div className="card flex justify-center items-center py-6">
+                  <div className="w-full p-2 -translate-y-6 max-w-md  bg-white border border-gray-300 rounded-lg shadow-lg">
+                    <MultiSelect
+                      dir="rtl"
+                      value={selectedCities} // Use the selected cities
+                      onChange={handleSelectionChange} // Update state with full objects
+                      options={cities} // Options for all available social media platforms
+                      optionLabel="name" // Show the name property in the dropdown
+                      placeholder="Select social media"
+                      maxSelectedLabels={3}
+                      className="w-full"
+                      panelClassName="rounded-md bg-white px-2 shadow-lg"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+            {selectedCities.length > 0 && (
+              <div className="grid grid-cols-5 w-[100%] px-10 items-start gap-4 text-right h-[20vh]">
+                {/* Instagram Input Field */}
+                {selectedCities.some((city) => city.code === "instagram") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>Instagram</label>
+                    <Input
+                      placeholder="Enter Instagram URL"
+                      value={socialMediaUrls.Instagram || ""} // Bind the input value to the Instagram URL
+                      onChange={(e) =>
+                        handleSocialMediaChange("instagram", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* WhatsApp Input Field */}
+                {selectedCities.some((city) => city.code === "whatsapp") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>WhatsApp</label>
+                    <Input
+                      placeholder="Enter WhatsApp URL"
+                      value={socialMediaUrls.WhatsApp || ""} // Bind the input value to the WhatsApp URL
+                      onChange={(e) =>
+                        handleSocialMediaChange("whatsapp", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* X (Twitter) Input Field */}
+                {selectedCities.some((city) => city.code === "X") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>X (Twitter)</label>
+                    <Input
+                      placeholder="Enter X (Twitter) URL"
+                      value={socialMediaUrls.X || ""} // Bind the input value to the X (Twitter) URL
+                      onChange={(e) =>
+                        handleSocialMediaChange("X", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* LinkedIn Input Field */}
+                {selectedCities.some((city) => city.code === "linkedin") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>LinkedIn</label>
+                    <Input
+                      placeholder="Enter LinkedIn URL"
+                      value={socialMediaUrls.LinkedIn || ""} // Bind the input value to the LinkedIn URL
+                      onChange={(e) =>
+                        handleSocialMediaChange("linkedin", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* Facebook Input Field */}
+                {selectedCities.some((city) => city.code === "facebook") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>Facebook</label>
+                    <Input
+                      placeholder="Enter Facebook URL"
+                      value={socialMediaUrls.Facebook || ""} // Bind the input value to the Facebook URL
+                      onChange={(e) =>
+                        handleSocialMediaChange("facebook", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+              </div>
+            )}
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
                 <Label text="role" />
