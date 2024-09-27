@@ -79,7 +79,7 @@ const router = createBrowserRouter([
     element: <JoinUs />,
   },
   {
-    path: "/job-details",
+    path: "/job-details/:id",
     element: <JobDetails />,
   },
   {
