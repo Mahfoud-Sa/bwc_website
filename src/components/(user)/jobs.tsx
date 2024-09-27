@@ -23,7 +23,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "src/ui/drawer";
+} from "../../ui/drawer";
 type joinUsRespon = {
   id: number;
   ar_jobTitle: string;
@@ -124,7 +124,10 @@ export default function Jobs() {
           <div className="sm:h-10 md:h-0 sm:flex sm:px-5 sm:translate-y-4">
             <Drawer direction="left">
               <DrawerTrigger asChild>
-                <Button variant="outline" className="border-[#434749]">
+                <Button
+                  variant="outline"
+                  className="md:hidden sm:static border-[#434749]"
+                >
                   <SlidersHorizontal fill="#434749" stroke="#434749" />
                   <span className="px-1">Filter</span>
                 </Button>
@@ -456,7 +459,10 @@ export default function Jobs() {
           <div className="sm:h-10 md:h-0 sm:flex sm:justify-end sm:px-5 sm:translate-y-4">
             <Drawer direction="left">
               <DrawerTrigger asChild>
-                <Button variant="outline" className="border-[#434749] ">
+                <Button
+                  variant="outline"
+                  className="md:hidden sm:static border-[#434749] "
+                >
                   <SlidersHorizontal fill="#434749" stroke="#434749" />
                   <span className="px-1">فلترة</span>
                 </Button>
