@@ -9,8 +9,6 @@ import {
   FormMessage,
 } from "../../ui/form";
 
-import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { addWriterSchema } from "src/types/validation";
@@ -68,7 +66,7 @@ export default function AddWriterForm() {
   const [socialMediaFields, setSocialMediaFields] = useState<
     { name: string; url: string }[]
   >([]);
-
+  console.log("socialMediaFields", socialMediaFields);
   const handleSocialMediaChange = (name: string, url: string) => {
     setSocialMediaFields((prev) => {
       const updatedFields = prev.map((item) =>

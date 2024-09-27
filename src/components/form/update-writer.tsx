@@ -10,13 +10,13 @@ import {
 } from "../../ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { addWriterSchema, WriterResp } from "src/types/validation";
+import { UpdateWriterSchema, WriterResp } from "src/types/validation";
 import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 import { Button } from "../../ui/button";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { axiosInstance, postApi, putApi } from "src/lib/http";
+import { axiosInstance, patchApi, postApi, putApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -25,14 +25,32 @@ import { Textarea } from "src/ui/textarea";
 import { useTranslation } from "react-i18next";
 import { MultiSelect } from "primereact/multiselect";
 
-type ReferenceFormValue = z.infer<typeof addWriterSchema>;
+type WriterFormValue = z.infer<typeof UpdateWriterSchema>;
+
+interface WriterResponse {
+  data: {
+    id: number; // Define the type of the id
+    ar_fullName: string;
+    en_fullName: string;
+    ar_description: string;
+    en_description: string;
+    ar_role: string;
+    en_role: string;
+    soicalmedia: { id: number; name: string; url: string; writerId: number }[];
+  };
+}
 interface City {
   name: string;
   code: string;
 }
 export default function UpdateWriterForm() {
   const [selectedCities, setSelectedCities] = useState<City[]>([]);
+  console.log("selectedCities", selectedCities);
   const [selectedSocialMedia, setSelectedSocialMedia] = useState<any[]>([]);
+  const [socialMediaFields, setSocialMediaFields] = useState<
+    { name: string; url: string }[]
+  >([]);
+  console.log("socialMediaFields", socialMediaFields);
   const [socialMediaUrls, setSocialMediaUrls] = useState<{
     [key: string]: string;
   }>({});
@@ -50,8 +68,8 @@ export default function UpdateWriterForm() {
   const [preview, setPreview] = useState<string | null>(null);
 
   const navigate = useNavigate();
-  const form = useForm<z.infer<typeof addWriterSchema>>({
-    resolver: zodResolver(addWriterSchema),
+  const form = useForm<z.infer<typeof UpdateWriterSchema>>({
+    resolver: zodResolver(UpdateWriterSchema),
   });
 
   const fetchData = async () => {
@@ -85,9 +103,14 @@ export default function UpdateWriterForm() {
       setExistingImageUrl(WriterData.image);
     }
   }, [WriterData]);
-  const { mutate } = useMutation({
+  const {
+    mutate: firstMutate,
+    isError: firstIsError,
+    isSuccess: firstIsSuccess,
+    isPending: firstIsPending,
+  } = useMutation<WriterResponse, Error, WriterFormValue>({
     mutationKey: ["Writer"],
-    mutationFn: (datas: ReferenceFormValue) => {
+    mutationFn: (datas: WriterFormValue) => {
       const formData = new FormData();
       formData.append("Ar_fullName", datas.Ar_fullName);
       formData.append("En_fullName", datas.En_fullName);
@@ -104,19 +127,20 @@ export default function UpdateWriterForm() {
         },
       });
     },
-    onSuccess: () => {
-      toast.success("تمت الاضافة بنجاح.", {
-        style: {
-          border: "1px solid #4FFFB0",
-          padding: "16px",
-          color: "#4FFFB0",
-        },
-        iconTheme: {
-          primary: "#4FFFB0",
-          secondary: "#FFFAEE",
-        },
-      });
-      navigate("/admin-dashboard/writer");
+    onSuccess: (data) => {
+      console.log("data", data.data);
+      const writerId = Number(id);
+      console.log("Writer ID:", writerId);
+
+      if (writerId && socialMediaFields.length > 0) {
+        console.log("socialMediaFields:", socialMediaFields);
+        secondMutate({
+          id: writerId,
+          Soicalmedia: socialMediaFields,
+        });
+      } else {
+        console.warn("Writer ID or socialMediaFields is missing.");
+      }
     },
     onError: (error) => {
       toast.success("لم تتم العميله.", {
@@ -132,70 +156,130 @@ export default function UpdateWriterForm() {
       });
     },
   });
+
+  const {
+    mutate: secondMutate,
+    isError: secondIsError,
+    isSuccess: secondIsSuccess,
+    isPending: secondIsPending,
+  } = useMutation({
+    mutationKey: ["SocialMedia"],
+    mutationFn: (datas: {
+      id: number;
+      Soicalmedia: { name: string; url: string }[];
+    }) => {
+      console.log("Sending PATCH request to:", `/api/Writers/${datas.id}`);
+      console.log("Request body:", datas.Soicalmedia);
+
+      // Send the array of social media objects directly as the body
+      return patchApi(`/api/Writers/${datas.id}`, datas.Soicalmedia);
+    },
+    onSuccess: (data) => {
+      console.log("Second mutation success:", data);
+      toast.success("تمت الاضافة بنجاح.", {
+        style: {
+          border: "1px solid #4FFFB0",
+          padding: "16px",
+          color: "#4FFFB0",
+        },
+        iconTheme: {
+          primary: "#4FFFB0",
+          secondary: "#FFFAEE",
+        },
+      });
+      navigate("/admin-dashboard/writer");
+      window.location.reload();
+    },
+    onError: (error) => {
+      console.log("Second mutation error:", error);
+      toast.error("لم تتم العميله.", {
+        style: {
+          border: "1px solid  #FF5733 ",
+          padding: "16px",
+          color: " #FF5733 ",
+        },
+        iconTheme: {
+          primary: " #FF5733 ",
+          secondary: "#FFFAEE",
+        },
+      });
+    },
+  });
   // Populate selected cities and URLs when WriterData is loaded
-  if (
-    WriterData &&
-    selectedCities.length === 0 &&
-    Object.keys(socialMediaUrls).length === 0
-  ) {
-    const preSelectedCities = WriterData.soicalmedia
-      .map((social: any) => {
-        return cities.find((city) => city.name === social.name);
-      })
-      .filter(Boolean) as City[]; // Make sure it's typed as City[]
+  useEffect(() => {
+    if (
+      WriterData &&
+      selectedCities.length === 0 &&
+      Object.keys(socialMediaUrls).length === 0
+    ) {
+      const preSelectedCities = WriterData.soicalmedia
+        .map((social: any) => {
+          return cities.find((city) => city.name === social.name);
+        })
+        .filter(Boolean) as City[]; // Make sure it's typed as City[]
 
-    setSelectedCities(preSelectedCities || []);
+      setSelectedCities(preSelectedCities || []);
 
-    const prefilledUrls = WriterData.soicalmedia.reduce(
-      (acc: any, social: any) => {
-        acc[social.name] = social.url;
-        return acc;
-      },
-      {}
-    );
+      const prefilledUrls = WriterData.soicalmedia.reduce(
+        (acc: any, social: any) => {
+          acc[social.name] = social.url;
+          return acc;
+        },
+        {}
+      );
 
-    setSocialMediaUrls(prefilledUrls || {});
-  }
+      setSocialMediaUrls(prefilledUrls || {});
+    }
+
+    if (WriterData) {
+      const prefilledFields = WriterData.soicalmedia.map((social: any) => ({
+        name: social.name,
+        url: social.url,
+      }));
+      setSocialMediaFields(prefilledFields);
+    }
+  }, [WriterData]);
 
   // Handle change in selected social media platforms
   const handleSelectionChange = (e: any) => {
     setSelectedCities(e.value);
   };
 
-  // Handle input change for each social media URL
-  const handleSocialMediaChange = (code: string, value: string) => {
-    setSocialMediaUrls((prevUrls) => ({
-      ...prevUrls,
-      [code]: value,
-    }));
+  const handleSocialMediaChange = (name: string, url: string) => {
+    setSocialMediaFields((prev) => {
+      const updatedFields = prev.map((item) =>
+        item.name === name ? { name, url } : item
+      );
+      return updatedFields.some((item) => item.name === name)
+        ? updatedFields
+        : [...updatedFields, { name, url }];
+    });
   };
 
-  console.log("socialMediaUrls.instagram", socialMediaUrls);
   const [isNewFileSelected, setIsNewFileSelected] = useState(false);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
 
     if (files && files.length > 0) {
-      const file = files[0]; // Get the first file
+      const file = files[0];
 
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result as string); // Show the preview of the new image
+        setPreview(reader.result as string);
       };
       reader.readAsDataURL(file);
 
-      form.setValue("ImageFile", files); // Pass the FileList to the form
-      setIsNewFileSelected(true); // Mark that a new file is selected
+      form.setValue("ImageFile", files);
+      setIsNewFileSelected(true);
     } else {
       setPreview(null);
-      setIsNewFileSelected(false); // No new file selected
+      setIsNewFileSelected(false);
 
-      // Instead of setting "ImageFile" to null or undefined, skip updating it
-      form.setValue("ImageFile", undefined as unknown as FileList); // Optional: if you must reset, but be careful with this
+      form.setValue("ImageFile", undefined as unknown as FileList);
     }
   };
-  const onSubmit = (datas: ReferenceFormValue) => {
-    mutate(datas);
+  const onSubmit = (datas: WriterFormValue) => {
+    firstMutate(datas);
   };
 
   function setNewImageFile(file: File) {
@@ -327,9 +411,13 @@ export default function UpdateWriterForm() {
                     <label>Instagram</label>
                     <Input
                       placeholder="Enter Instagram URL"
-                      value={socialMediaUrls.Instagram || ""} // Bind the input value to the Instagram URL
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "Instagram"
+                        )?.url || ""
+                      } // Bind the input value to the Instagram URL
                       onChange={(e) =>
-                        handleSocialMediaChange("instagram", e.target.value)
+                        handleSocialMediaChange("Instagram", e.target.value)
                       } // Update the state on change
                     />
                   </div>
@@ -341,9 +429,13 @@ export default function UpdateWriterForm() {
                     <label>WhatsApp</label>
                     <Input
                       placeholder="Enter WhatsApp URL"
-                      value={socialMediaUrls.WhatsApp || ""} // Bind the input value to the WhatsApp URL
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "WhatsApp"
+                        )?.url || ""
+                      }
                       onChange={(e) =>
-                        handleSocialMediaChange("whatsapp", e.target.value)
+                        handleSocialMediaChange("WhatsApp", e.target.value)
                       } // Update the state on change
                     />
                   </div>
@@ -355,7 +447,10 @@ export default function UpdateWriterForm() {
                     <label>X (Twitter)</label>
                     <Input
                       placeholder="Enter X (Twitter) URL"
-                      value={socialMediaUrls.X || ""} // Bind the input value to the X (Twitter) URL
+                      value={
+                        socialMediaFields.find((field) => field.name === "X")
+                          ?.url || ""
+                      }
                       onChange={(e) =>
                         handleSocialMediaChange("X", e.target.value)
                       } // Update the state on change
@@ -369,9 +464,13 @@ export default function UpdateWriterForm() {
                     <label>LinkedIn</label>
                     <Input
                       placeholder="Enter LinkedIn URL"
-                      value={socialMediaUrls.LinkedIn || ""} // Bind the input value to the LinkedIn URL
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "LinkedIn"
+                        )?.url || ""
+                      }
                       onChange={(e) =>
-                        handleSocialMediaChange("linkedin", e.target.value)
+                        handleSocialMediaChange("LinkedIn", e.target.value)
                       } // Update the state on change
                     />
                   </div>
@@ -383,9 +482,13 @@ export default function UpdateWriterForm() {
                     <label>Facebook</label>
                     <Input
                       placeholder="Enter Facebook URL"
-                      value={socialMediaUrls.Facebook || ""} // Bind the input value to the Facebook URL
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "Facebook"
+                        )?.url || ""
+                      }
                       onChange={(e) =>
-                        handleSocialMediaChange("facebook", e.target.value)
+                        handleSocialMediaChange("Facebook", e.target.value)
                       } // Update the state on change
                     />
                   </div>
