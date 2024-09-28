@@ -79,15 +79,20 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
     header: "عنوان الوظيفة",
   },
   {
-    accessorKey: "ar_basicDescription",
-    header: "وصف الوظيفة",
+    accessorKey: "endDate",
+    header: "اخر تاريخ للتسجيل",
+    sortingFn: "datetime",
   },
   {
+    id: "avaliable",
     accessorKey: "avaliable",
     header: "حالة الوظيفة",
     cell: ({ row }) => {
       const avaliable = row.original.avaliable;
       return avaliable === true ? "متاحة" : "غير متاحة";
+    },
+    filterFn: (row, columnId, filterValue) => {
+      return row.getValue(columnId) === filterValue; // Filter directly based on true/false
     },
   },
   {
@@ -169,16 +174,18 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
     accessorKey: "en_jobTitle",
     header: "Job Title",
   },
+
   {
-    accessorKey: "en_basicDescription",
-    header: "Basic Description",
+    accessorKey: "endDate",
+    header: "Ending Date",
+    sortingFn: "datetime",
   },
   {
     accessorKey: "avaliable",
     header: "Available",
     cell: ({ row }) => {
       const avaliable = row.original.avaliable;
-      return avaliable === true ? "متاحة" : "غير متاحة";
+      return avaliable === true ? "available" : "unavailable";
     },
   },
   {
