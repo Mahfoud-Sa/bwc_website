@@ -22,6 +22,7 @@ import {
 import image4 from "../../assets/img/1724086550980.jpg";
 import {
   AddJobColumns,
+  AddEnJobColumns,
   type AddJobOrder,
 } from "../../components/column/job-column";
 
@@ -69,6 +70,7 @@ export default function JobsTable() {
   const dir = i18n.dir();
   const defaultData = useMemo<AddJobOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddJobColumns, []);
+  const columnsMemos = useMemo(() => AddEnJobColumns, []);
   const [data, setData] = useState<JobProp[]>([]);
   const fetchJob = async () => {
     try {
@@ -96,7 +98,7 @@ export default function JobsTable() {
     // @ts-ignore
     data: data[0] ?? defaultData,
     // @ts-ignore
-    columns: columnsMemo,
+    columns: dir === "ltr" ? columnsMemos : columnsMemo,
     state: {
       rowSelection,
       columnFilters,
@@ -125,12 +127,13 @@ export default function JobsTable() {
                   <Input
                     placeholder="Enter Job Name ..."
                     value={
-                      (table.getColumn("name")?.getFilterValue() as string) ??
-                      ""
+                      (table
+                        .getColumn("en_jobTitle")
+                        ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                       table
-                        .getColumn("name")
+                        .getColumn("en_jobTitle")
                         ?.setFilterValue(event.target.value)
                     }
                   />
@@ -195,12 +198,13 @@ export default function JobsTable() {
                   <Input
                     placeholder="بحث باسم الوظيفة ..."
                     value={
-                      (table.getColumn("name")?.getFilterValue() as string) ??
-                      ""
+                      (table
+                        .getColumn("ar_jobTitle")
+                        ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                       table
-                        .getColumn("name")
+                        .getColumn("ar_jobTitle")
                         ?.setFilterValue(event.target.value)
                     }
                   />

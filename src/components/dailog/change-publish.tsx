@@ -10,7 +10,7 @@ import { deleteApi, patchApi } from "../../lib/http";
 import { useToast } from "../../ui/use-toast";
 // import { useAuthHeader } from "react-auth-kit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Trash } from "lucide-react";
+import { Repeat2, Trash } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -27,14 +27,7 @@ import { Button } from "src/ui/button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "src/ui/select";
+import publishIcon from "../../assets/img/publishes-icon.png";
 
 interface DeleteDialogProps {
   id: number;
@@ -76,21 +69,11 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
 
   return (
     <div className="col-span-1 h-auto ">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#450A0A]">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg mr-2 border-2 border-[#000] bg-black">
         <Dialog>
           <DialogTrigger>
             <Button>
-              <svg
-                className="h-4 w-4 p-1"
-                viewBox="0 0 10 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9.33073 5.62035H5.61644V9.33464H4.37835V5.62035H0.664062V4.38225H4.37835V0.667969H5.61644V4.38225H9.33073V5.62035Z"
-                  fill="#450A0A"
-                />
-              </svg>
+              <Repeat2 size={20} className="text-white" />
             </Button>
           </DialogTrigger>
           <DraggableDialogContent>

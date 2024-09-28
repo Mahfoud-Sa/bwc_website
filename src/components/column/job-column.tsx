@@ -70,11 +70,11 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
   },
 
   {
-    id: "id",
     accessorKey: "id",
     header: "رقم الوظيفة",
   },
   {
+    id: "ar_jobTitle",
     accessorKey: "ar_jobTitle",
     header: "عنوان الوظيفة",
   },
@@ -122,12 +122,103 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
               <Eye className="" />
             </Button>
           </Link>
+          <ChangeAvailabilityDialog id={row.original.id} />
+          <ChangePublishesDialog id={row.original.id} />
           <DeleteDialog
             url={`/api/References/${row.original?.id}`}
             path={"/admin-dashboard/references"}
           />
+        </div>
+      );
+    },
+  },
+];
+
+export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
+  {
+    accessorKey: "isSelected",
+    header: ({ table }) => (
+      <Checkbox
+        className="m-2"
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        className="m-2"
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => {
+          row.toggleSelected(!!value);
+        }}
+        aria-label="Select row"
+      />
+    ),
+  },
+
+  {
+    accessorKey: "id",
+    header: "job num",
+  },
+  {
+    id: "en_jobTitle",
+    accessorKey: "en_jobTitle",
+    header: "Job Title",
+  },
+  {
+    accessorKey: "en_basicDescription",
+    header: "Basic Description",
+  },
+  {
+    accessorKey: "avaliable",
+    header: "Available",
+    cell: ({ row }) => {
+      const avaliable = row.original.avaliable;
+      return avaliable === true ? "متاحة" : "غير متاحة";
+    },
+  },
+  {
+    accessorKey: "publish",
+    header: "Publish",
+    cell: ({ row }) => {
+      const publish = row.original.publish;
+      return publish === true ? "نشر" : "غير منشور";
+    },
+  },
+
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      //   const { data: session } = useSession();
+
+      return (
+        <div className="flex justify-center ">
+          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+            <Button
+              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+              size={"sm"}
+            >
+              <SquarePen className="" />
+            </Button>
+          </Link>
+          <Link to={`/admin-dashboard/jobs/info`}>
+            <Button
+              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+              size={"sm"}
+            >
+              <Eye className="" />
+            </Button>
+          </Link>
           <ChangeAvailabilityDialog id={row.original.id} />
           <ChangePublishesDialog id={row.original.id} />
+          <DeleteDialog
+            url={`/api/References/${row.original?.id}`}
+            path={"/admin-dashboard/references"}
+          />
         </div>
       );
     },
