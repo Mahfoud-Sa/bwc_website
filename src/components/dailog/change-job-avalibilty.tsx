@@ -79,19 +79,22 @@ export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
 
   return (
     <div className="col-span-1 h-auto ">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#450A0A]">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1999E3] bg-[#1999E3]">
         <Dialog>
           <DialogTrigger>
             <Button>
               <svg
-                className="h-4 w-4 p-1"
-                viewBox="0 0 10 10"
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M9.33073 5.62035H5.61644V9.33464H4.37835V5.62035H0.664062V4.38225H4.37835V0.667969H5.61644V4.38225H9.33073V5.62035Z"
-                  fill="#450A0A"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M10.5 19.7647C5.39082 19.7647 1.23529 15.6092 1.23529 10.5C1.23529 5.39082 5.39082 1.23529 10.5 1.23529C15.6092 1.23529 19.7647 5.39082 19.7647 10.5C19.7647 15.6092 15.6092 19.7647 10.5 19.7647ZM10.5 0C4.71018 0 0 4.71018 0 10.5C0 16.2898 4.71018 21 10.5 21C16.2898 21 21 16.2898 21 10.5C21 4.71018 16.2898 0 10.5 0ZM9.34439 12.6654L6.37721 9.69817L5.50385 10.5715L9.34439 14.412L15.9075 7.84894L15.0341 6.97558L9.34439 12.6654Z"
+                  fill="white"
                 />
               </svg>
             </Button>
