@@ -22,13 +22,25 @@ import {
 } from "../../ui/sheet";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
+import ChangeAvailabilityDialog from "../dailog/change-job-avalibilty";
+import ChangePublishesDialog from "../dailog/change-publish";
 
 export type AddJobOrder = {
   isSelected: boolean;
-  id: string;
+  id: number;
+  ar_jobTitle: string;
+  en_jobTitle: string;
   img: string;
-  name: string;
-  link: string;
+  avaliable: boolean;
+  publish: boolean;
+  ar_basicDescription: string;
+  en_basicDescription: string;
+  ar_skiles: string[];
+  en_skiles: string[];
+  ar_advances: string[];
+  en_advances: string[];
+  formLink: string;
+  endDate: Date;
 };
 
 export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
@@ -58,28 +70,33 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
   },
 
   {
-    id: "img",
-    accessorKey: "img",
-    header: "صورة المؤسسة",
+    id: "id",
+    accessorKey: "id",
+    header: "رقم الوظيفة",
+  },
+  {
+    accessorKey: "ar_jobTitle",
+    header: "عنوان الوظيفة",
+  },
+  {
+    accessorKey: "ar_basicDescription",
+    header: "وصف الوظيفة",
+  },
+  {
+    accessorKey: "avaliable",
+    header: "حالة الوظيفة",
     cell: ({ row }) => {
-      return (
-        <div className=" w-[50px] h-[50px] rounded-full">
-          <img
-            src={row.original.img}
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-      );
+      const avaliable = row.original.avaliable;
+      return avaliable === true ? "متاحة" : "غير متاحة";
     },
   },
   {
-    accessorKey: "name",
-    header: "اسم المؤسسة",
-  },
-  {
-    accessorKey: "link",
-    header: "رابط موقع المؤسسة",
+    accessorKey: "publish",
+    header: "حالة الوظيفة",
+    cell: ({ row }) => {
+      const publish = row.original.publish;
+      return publish === true ? "نشر" : "غير منشور";
+    },
   },
 
   {
@@ -109,6 +126,8 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
             url={`/api/References/${row.original?.id}`}
             path={"/admin-dashboard/references"}
           />
+          <ChangeAvailabilityDialog id={row.original.id} />
+          <ChangePublishesDialog id={row.original.id} />
         </div>
       );
     },

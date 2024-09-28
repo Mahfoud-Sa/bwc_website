@@ -30,86 +30,71 @@ import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
 // import { ReferenceResp } from "src/types/validation";
 
-export interface ReferenceProp {
+export interface JobProp {
   id: number;
+  ar_jobTitle: string;
+  en_jobTitle: string;
   img: string;
-  name: string;
-  link: string;
+  avaliable: boolean;
+  publish: boolean;
+  ar_basicDescription: string;
+  en_basicDescription: string;
+  ar_skiles: string[];
+  en_skiles: string[];
+  ar_advances: string[];
+  en_advances: string[];
+  formLink: string;
+  endDate: Date;
 }
 
-export type ReferenceResp = {
+export type JobResp = {
   id: number;
+  ar_jobTitle: string;
+  en_jobTitle: string;
   img: string;
-  name: string;
-  link: string;
+  avaliable: boolean;
+  publish: boolean;
+  ar_basicDescription: string;
+  en_basicDescription: string;
+  ar_skiles: string[];
+  en_skiles: string[];
+  ar_advances: string[];
+  en_advances: string[];
+  formLink: string;
+  endDate: Date;
 };
 
-const reference: ReferenceProp[] = [
-  { id: 1, img: image4, name: "xx", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd1" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd2" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd3" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd4" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-  { id: 1, img: image4, name: "dfgdf", link: "asdasdasd5" },
-];
 export default function JobsTable() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const defaultData = useMemo<AddJobOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddJobColumns, []);
-  const [data, setData] = useState<ReferenceProp[]>([]);
-  // const fetchIssueById = async () => {
-  //   try {
-  //     const response = await axiosInstance.get<ReferenceResp>(
-  //       `/api/References`
-  //     );
-  //     return [response.data];
-  //   } catch (error) {
-  //     console.error("Error fetching issue:", error);
-  //     throw error;
-  //   }
-  // };
+  const [data, setData] = useState<JobProp[]>([]);
+  const fetchJob = async () => {
+    try {
+      const response = await axiosInstance.get<JobResp>(`/api/Jobs`);
+      return [response.data];
+    } catch (error) {
+      console.error("Error fetching issue:", error);
+      throw error;
+    }
+  };
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const data = await fetchIssueById();
-  //     setData(data);
-  //   };
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchJob();
+      setData(data);
+    };
 
-  //   getData();
-  // }, []);
+    getData();
+  }, []);
+  console.log("data[0]", data[0]);
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
     // @ts-ignore
-    data:
-      // data.length ? data[0] :
-      reference,
+    data: data[0] ?? defaultData,
     // @ts-ignore
     columns: columnsMemo,
     state: {
