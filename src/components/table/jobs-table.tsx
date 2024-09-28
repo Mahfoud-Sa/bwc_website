@@ -9,6 +9,7 @@ import {
   getFilteredRowModel,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
@@ -29,6 +30,15 @@ import {
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "src/ui/select";
 // import { ReferenceResp } from "src/types/validation";
 
 export interface JobProp {
@@ -113,6 +123,12 @@ export default function JobsTable() {
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    sortingFns: {
+      myCustomSortingFn: (rowA, rowB, columnId) => {
+        return rowA.original[columnId] > rowB.original[columnId] ? 1 : -1;
+      },
+    },
   });
   return (
     <>
@@ -147,30 +163,49 @@ export default function JobsTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                  <Select
+                    onValueChange={(value) => {
+                      table.setSorting([
+                        {
+                          id: "endDate",
+                          desc: value === "newest",
+                        },
+                      ]);
+                    }}
                   >
-                    {" "}
-                    فلتر بالتاريخ{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="Filter by date" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>Filter by date</SelectLabel>
+                        <SelectItem value="oldest">oldest</SelectItem>
+                        <SelectItem value="newest">newest</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    onValueChange={(value) => {
+                      table.setColumnFilters([
+                        {
+                          id: "avaliable", // This should match the column accessorKey
+                          value: value === "available" ? true : false, // Convert the selected string to a boolean
+                        },
+                      ]);
+                    }}
                   >
-                    {" "}
-                    فلتر الحالة{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
-                  >
-                    {" "}
-                    بحث سريع{" "}
-                  </Button>
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="Filter Status" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>Filter Status</SelectLabel>
+                        <SelectItem value="available">available</SelectItem>
+                        <SelectItem value="unavailable">unavailable</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+
                   <Link to={"/admin-dashboard/jobs/add-job"}>
                     <Button className="text-lg inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="mr-2" />
@@ -218,30 +253,50 @@ export default function JobsTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      table.setSorting([
+                        {
+                          id: "endDate",
+                          desc: value === "الاحدث",
+                        },
+                      ]);
+                    }}
                   >
-                    {" "}
-                    فلتر بالتاريخ{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="فلتر بالتاريخ" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>فلتر بالتاريخ</SelectLabel>
+                        <SelectItem value="الاقدم">الاقدم</SelectItem>
+                        <SelectItem value="الاحدث">الاحدث</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      table.setColumnFilters([
+                        {
+                          id: "avaliable", // This should match the column accessorKey
+                          value: value === "متاحة" ? true : false, // Convert the selected string to a boolean
+                        },
+                      ]);
+                    }}
                   >
-                    {" "}
-                    فلتر الحالة{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
-                  >
-                    {" "}
-                    بحث سريع{" "}
-                  </Button>
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="فلتر بالحالة" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>فلتر بالحالة</SelectLabel>
+                        <SelectItem value="متاحة">متاحة</SelectItem>
+                        <SelectItem value="غير متاحة">غير متاحة</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                   <Link to={"/admin-dashboard/jobs/add-job"}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />
