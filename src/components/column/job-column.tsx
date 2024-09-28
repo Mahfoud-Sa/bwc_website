@@ -193,7 +193,7 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
     header: "Publish",
     cell: ({ row }) => {
       const publish = row.original.publish;
-      return publish === true ? "نشر" : "غير منشور";
+      return publish === true ? "publish" : "unpublished";
     },
   },
 
