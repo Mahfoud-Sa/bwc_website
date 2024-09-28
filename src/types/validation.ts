@@ -50,16 +50,15 @@ export const addJobSchema = z.object({
     })
     .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files[0].type), {
       message: "Only JPEG, JPG, PNG, and WEBP files are accepted.",
-    })
-    .optional(),
+    }),
   avaliable: z.boolean(),
   publish: z.boolean(),
-  Ar_basicDescription: z.string({ message: "مطلوب " }).max(1000),
-  En_basicDescription: z.string({ message: "مطلوب " }).max(1000),
   Ar_skiles: z.array(z.string({ message: "مطلوب " })).optional(),
   En_skiles: z.array(z.string({ message: "مطلوب " })).optional(),
   Ar_advances: z.array(z.string({ message: "مطلوب " })).optional(),
   En_advances: z.array(z.string({ message: "مطلوب " })).optional(),
+  Ar_basicDescription: z.string({ message: "مطلوب " }).max(1000),
+  En_basicDescription: z.string({ message: "مطلوب " }).max(1000),
   formLink: z.string({ message: "مطلوب " }).max(1000),
   endDate: z.string(),
 });

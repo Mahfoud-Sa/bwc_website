@@ -13,7 +13,7 @@ export default function AddJob() {
         <div className="grid grid-cols-1">
           <div className="col-span-1 mb-2 mt-4 h-auto  rounded-lg">
             {dir === "ltr" ? (
-              <Breadcrumb
+              <EnBreadcrumb
                 tilte1="Features"
                 path1="/attendance"
                 tilte2=" Jobs"
