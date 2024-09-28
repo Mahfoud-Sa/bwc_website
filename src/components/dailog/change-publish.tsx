@@ -68,38 +68,76 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
   };
 
   return (
-    <div className="col-span-1 h-auto ">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg mr-2 border-2 border-[#000] bg-black">
-        <Dialog>
-          <DialogTrigger>
-            <Button>
-              <Repeat2 size={20} className="text-white" />
-            </Button>
-          </DialogTrigger>
-          <DraggableDialogContent>
-            <DialogHeader>
-              <DialogTitle>تعديل حالة النشر</DialogTitle>
-            </DialogHeader>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div>
-                <Label htmlFor="isAvailable" text="حالة النشر" />
-                <select
-                  name="isAvailable"
-                  className="itemAvailability form__input"
-                  value={form.watch("publish") ? "true" : "false"} // Convert boolean to string for display
-                  onChange={(e) =>
-                    form.setValue("publish", e.target.value === "true")
-                  } // Convert string back to boolean
-                >
-                  <option value="true">منشور</option>
-                  <option value="false">غير منشور</option>
-                </select>
-              </div>
-              <Button type="submit">تعديل</Button>
-            </form>
-          </DraggableDialogContent>
-        </Dialog>
-      </div>
-    </div>
+    <>
+      {dir === "ltr" ? (
+        <div className="col-span-1 h-auto ">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg ml-2 border-2 border-[#000] bg-black">
+            <Dialog>
+              <DialogTrigger>
+                <Button>
+                  <Repeat2 size={20} className="text-white" />
+                </Button>
+              </DialogTrigger>
+              <DraggableDialogContent>
+                <DialogHeader>
+                  <DialogTitle>تعديل حالة النشر</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <div>
+                    <Label htmlFor="isAvailable" text="حالة النشر" />
+                    <select
+                      name="isAvailable"
+                      className="itemAvailability form__input"
+                      value={form.watch("publish") ? "true" : "false"} // Convert boolean to string for display
+                      onChange={(e) =>
+                        form.setValue("publish", e.target.value === "true")
+                      } // Convert string back to boolean
+                    >
+                      <option value="true">منشور</option>
+                      <option value="false">غير منشور</option>
+                    </select>
+                  </div>
+                  <Button type="submit">تعديل</Button>
+                </form>
+              </DraggableDialogContent>
+            </Dialog>
+          </div>
+        </div>
+      ) : (
+        <div className="col-span-1 h-auto ">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg mr-2 border-2 border-[#000] bg-black">
+            <Dialog>
+              <DialogTrigger>
+                <Button>
+                  <Repeat2 size={20} className="text-white" />
+                </Button>
+              </DialogTrigger>
+              <DraggableDialogContent>
+                <DialogHeader>
+                  <DialogTitle>تعديل حالة النشر</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <div>
+                    <Label htmlFor="isAvailable" text="حالة النشر" />
+                    <select
+                      name="isAvailable"
+                      className="itemAvailability form__input"
+                      value={form.watch("publish") ? "true" : "false"} // Convert boolean to string for display
+                      onChange={(e) =>
+                        form.setValue("publish", e.target.value === "true")
+                      } // Convert string back to boolean
+                    >
+                      <option value="true">منشور</option>
+                      <option value="false">غير منشور</option>
+                    </select>
+                  </div>
+                  <Button type="submit">تعديل</Button>
+                </form>
+              </DraggableDialogContent>
+            </Dialog>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

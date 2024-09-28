@@ -125,8 +125,8 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
           <ChangeAvailabilityDialog id={row.original.id} />
           <ChangePublishesDialog id={row.original.id} />
           <DeleteDialog
-            url={`/api/References/${row.original?.id}`}
-            path={"/admin-dashboard/references"}
+            url={`/api/Jobs/${row.original?.id}`}
+            path={"/admin-dashboard/jobs"}
           />
         </div>
       );
@@ -216,8 +216,8 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
           <ChangeAvailabilityDialog id={row.original.id} />
           <ChangePublishesDialog id={row.original.id} />
           <DeleteDialog
-            url={`/api/References/${row.original?.id}`}
-            path={"/admin-dashboard/references"}
+            url={`/api/Jobs/${row.original?.id}`}
+            path={"/admin-dashboard/jobs"}
           />
         </div>
       );
