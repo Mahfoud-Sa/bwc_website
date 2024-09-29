@@ -56,6 +56,7 @@ import ViewPublications from "./components/view/view-publishes";
 import PublishDetails from "./page/(User)/publish-details";
 import UpdateServicesIndex from "./components/form/update-services";
 import Profile from "./page/(Admin)/profile";
+import UpdateJobForm from "./components/form/update-job";
 
 const router = createBrowserRouter([
   {
@@ -227,6 +228,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/jobs/info",
         element: <JobInfo />,
+      },
+      {
+        path: "/admin-dashboard/jobs/update-job/:id",
+        element: <UpdateJobForm />,
       },
       {
         path: "/admin-dashboard/profile",

@@ -111,7 +111,7 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -204,7 +204,7 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
