@@ -62,6 +62,32 @@ export const addJobSchema = z.object({
   formLink: z.string({ message: "مطلوب " }).max(1000),
   endDate: z.string(),
 });
+export const updateJobSchema = z.object({
+  Ar_jobTitle: z.string({ message: "مطلوب " }).max(20),
+  En_jobTitle: z.string({ message: "مطلوب " }).max(20),
+  ImageFile: z
+    .instanceof(FileList)
+    .refine((files) => files.length === 1, {
+      message: "You must upload one file.",
+    })
+    .refine((files) => files[0].size <= MAX_FILE_SIZE, {
+      message: `File size must be less than ${MAX_FILE_SIZE / 1024 / 1024}MB.`,
+    })
+    .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files[0].type), {
+      message: "Only JPEG, JPG, PNG, and WEBP files are accepted.",
+    })
+    .optional(),
+  avaliable: z.boolean(),
+  publish: z.boolean(),
+  Ar_skiles: z.array(z.string({ message: "مطلوب " })).optional(),
+  En_skiles: z.array(z.string({ message: "مطلوب " })).optional(),
+  Ar_advances: z.array(z.string({ message: "مطلوب " })).optional(),
+  En_advances: z.array(z.string({ message: "مطلوب " })).optional(),
+  Ar_basicDescription: z.string({ message: "مطلوب " }).max(1000),
+  En_basicDescription: z.string({ message: "مطلوب " }).max(1000),
+  formLink: z.string({ message: "مطلوب " }).max(1000),
+  endDate: z.string(),
+});
 export const addTaskForceSchema = z.object({
   Ar_name: z.string({ message: "مطلوب " }).max(20),
   En_name: z.string({ message: "مطلوب " }).max(20),
