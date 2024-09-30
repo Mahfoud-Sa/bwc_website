@@ -530,28 +530,8 @@ export default function UpdateWriterForm() {
                   )}
                 />
               </div>
-              {/* <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="instgram" />
-              <FormField
-                control={form.control}
-                name="link"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-red-900">{"full name"}</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="https://www.instagram.com/"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div> */}
             </div>
 
-            {/* TODO:Textarea */}
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-3 h-auto translate-y-10">
                 <Label text="عن الكتاب" />
@@ -705,25 +685,122 @@ export default function UpdateWriterForm() {
                   )}
                 />
               </div>
-              {/* <div dir="ltr" className="text-end col-span-1 h-auto translate-y-10">
-            <Label text="وسائل التواصل " />
-            <FormField
-              control={form.control}
-              name="en_title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">
-                    {"وسائل التواصل "}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="ادخل وسائل التواصل " {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div> */}
+              <div
+                dir="ltr"
+                className="text-Start col-span-1 h-auto translate-y-10"
+              >
+                <Label text="الحسابات الشخصية" />
+                <div className="card flex justify-center items-center py-6">
+                  <div className="w-full p-2 -translate-y-6 max-w-md  bg-white border border-gray-300 rounded-lg shadow-lg">
+                    <MultiSelect
+                      dir="rtl"
+                      value={selectedCities} // Use the selected cities
+                      onChange={handleSelectionChange} // Update state with full objects
+                      options={cities} // Options for all available social media platforms
+                      optionLabel="name" // Show the name property in the dropdown
+                      placeholder="اختار الحسابات الشخصية"
+                      maxSelectedLabels={3}
+                      className="w-full"
+                      panelClassName="rounded-md bg-white px-2 shadow-lg"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {selectedCities.length > 0 && (
+              <div className="grid grid-cols-5 w-[100%] px-10 items-start gap-4 text-right h-[20vh]">
+                {/* Instagram Input Field */}
+                {selectedCities.some((city) => city.code === "instagram") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>Instagram</label>
+                    <Input
+                      placeholder="Enter Instagram URL"
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "Instagram"
+                        )?.url || ""
+                      } // Bind the input value to the Instagram URL
+                      onChange={(e) =>
+                        handleSocialMediaChange("Instagram", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* WhatsApp Input Field */}
+                {selectedCities.some((city) => city.code === "whatsapp") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>WhatsApp</label>
+                    <Input
+                      placeholder="Enter WhatsApp URL"
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "WhatsApp"
+                        )?.url || ""
+                      }
+                      onChange={(e) =>
+                        handleSocialMediaChange("WhatsApp", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* X (Twitter) Input Field */}
+                {selectedCities.some((city) => city.code === "X") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>X (Twitter)</label>
+                    <Input
+                      placeholder="Enter X (Twitter) URL"
+                      value={
+                        socialMediaFields.find((field) => field.name === "X")
+                          ?.url || ""
+                      }
+                      onChange={(e) =>
+                        handleSocialMediaChange("X", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* LinkedIn Input Field */}
+                {selectedCities.some((city) => city.code === "linkedin") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>LinkedIn</label>
+                    <Input
+                      placeholder="Enter LinkedIn URL"
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "LinkedIn"
+                        )?.url || ""
+                      }
+                      onChange={(e) =>
+                        handleSocialMediaChange("LinkedIn", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+
+                {/* Facebook Input Field */}
+                {selectedCities.some((city) => city.code === "facebook") && (
+                  <div className="text-start col-span-1 h-auto translate-y-10">
+                    <label>Facebook</label>
+                    <Input
+                      placeholder="Enter Facebook URL"
+                      value={
+                        socialMediaFields.find(
+                          (field) => field.name === "Facebook"
+                        )?.url || ""
+                      }
+                      onChange={(e) =>
+                        handleSocialMediaChange("Facebook", e.target.value)
+                      } // Update the state on change
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
                 <Label text="role" />
@@ -759,28 +836,8 @@ export default function UpdateWriterForm() {
                   )}
                 />
               </div>
-              {/* <div className=" col-span-1 h-auto translate-y-10">
-            <Label text="instgram" />
-            <FormField
-              control={form.control}
-              name="link"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-red-900">{"full name"}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="https://www.instagram.com/"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div> */}
             </div>
 
-            {/* TODO:Textarea */}
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-3 h-auto translate-y-10">
                 <Label text="عن الكتاب" />

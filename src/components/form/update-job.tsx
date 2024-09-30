@@ -859,7 +859,7 @@ export default function UpdateJobForm() {
 
             <div className="w-full -translate-x-10 flex justify-end mt-20">
               <Button className="text-lg mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2  font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                Add
+                update
               </Button>
             </div>
           </form>
@@ -900,6 +900,23 @@ export default function UpdateJobForm() {
                 <div className="col-span-3"></div>
               </>
             }
+            <div className="mt-4 mr-10">
+              {preview ? (
+                <img
+                  src={preview}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover"
+                />
+              ) : existingImageUrl ? (
+                <img
+                  src={existingImageUrl}
+                  alt="Existing Image"
+                  className="w-32 h-32 object-cover"
+                />
+              ) : (
+                <p>No image uploaded</p>
+              )}
+            </div>
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
                 <Label text="عنوان الوظيفة" />
@@ -1390,7 +1407,7 @@ export default function UpdateJobForm() {
 
             <div className="w-full translate-x-10 flex justify-end mt-20">
               <Button className="text-md mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                إضافة
+                تعديل
               </Button>
             </div>
           </form>

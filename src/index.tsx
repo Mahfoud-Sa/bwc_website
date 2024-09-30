@@ -226,7 +226,7 @@ const router = createBrowserRouter([
         element: <AddJob />,
       },
       {
-        path: "/admin-dashboard/jobs/info",
+        path: "/admin-dashboard/jobs/info/:id",
         element: <JobInfo />,
       },
       {

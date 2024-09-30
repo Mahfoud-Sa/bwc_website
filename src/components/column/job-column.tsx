@@ -1,25 +1,10 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Button } from "../../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../../ui/dropdown-menu";
+
 import { SquarePen, Trash2 } from "lucide-react";
 import { Checkbox } from "../../ui/checkbox";
 
-import { type z } from "zod";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../ui/sheet";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import ChangeAvailabilityDialog from "../dailog/change-job-avalibilty";
@@ -119,7 +104,7 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/jobs/info`}>
+          <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
@@ -212,7 +197,7 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
               <SquarePen className="" />
             </Button>
           </Link>
-          <Link to={`/admin-dashboard/jobs/info`}>
+          <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}

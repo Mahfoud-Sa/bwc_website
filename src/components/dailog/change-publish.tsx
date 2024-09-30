@@ -6,10 +6,10 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
-import { deleteApi, patchApi } from "../../lib/http";
+import { axiosInstance, deleteApi, patchApi } from "../../lib/http";
 import { useToast } from "../../ui/use-toast";
 // import { useAuthHeader } from "react-auth-kit";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Repeat2, Trash } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +28,14 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import publishIcon from "../../assets/img/publishes-icon.png";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "src/ui/select";
 
 interface DeleteDialogProps {
   id: number;
@@ -35,12 +43,33 @@ interface DeleteDialogProps {
 const formSchema = z.object({
   publish: z.boolean(),
 });
+
+export type JobResp = {
+  id: number;
+  ar_jobTitle: string;
+  en_jobTitle: string;
+  img: string;
+  avaliable: boolean;
+  publish: boolean;
+  ar_basicDescription: string;
+  en_basicDescription: string;
+  ar_skiles: string[];
+  en_skiles: string[];
+  ar_advances: string[];
+  en_advances: string[];
+  formLink: string;
+  endDate: Date;
+};
 type UpdateAvailable = z.infer<typeof formSchema>;
 export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
   const availabilityOptions = [
     { label: "نشر", value: "true" },
     { label: "غير منشور", value: "false" },
   ];
+  const [publish, _setPublish] = useState([
+    { label: "مشنور", enLable: "publish", value: true },
+    { label: "غير منشور", enLable: "unpublished", value: false },
+  ]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -48,6 +77,22 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+
+  const fetchData = async () => {
+    const response = await axiosInstance.get<JobResp>(`/api/Jobs/${id}`, {});
+    return response.data;
+  };
+  const {
+    data: JobInfoData,
+    error: JobInfoError,
+    isLoading: JobInfoIsLoading,
+  } = useQuery({
+    queryKey: ["getByIdJob", id],
+    queryFn: fetchData,
+    enabled: !!id,
+  });
+
+  useEffect(() => {}, [JobInfoData]);
 
   const { mutate } = useMutation({
     mutationFn: (data: UpdateAvailable) => {
@@ -78,27 +123,63 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
                   <Repeat2 size={20} className="text-white" />
                 </Button>
               </DialogTrigger>
-              <DraggableDialogContent>
+              <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader>
-                  <DialogTitle>تعديل حالة النشر</DialogTitle>
+                  <DialogTitle className="text-start">
+                    Change publishing status
+                  </DialogTitle>
                 </DialogHeader>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <div>
-                    <Label htmlFor="isAvailable" text="حالة النشر" />
-                    <select
-                      name="isAvailable"
-                      className="itemAvailability form__input"
-                      value={form.watch("publish") ? "true" : "false"} // Convert boolean to string for display
-                      onChange={(e) =>
-                        form.setValue("publish", e.target.value === "true")
-                      } // Convert string back to boolean
-                    >
-                      <option value="true">منشور</option>
-                      <option value="false">غير منشور</option>
-                    </select>
-                  </div>
-                  <Button type="submit">تعديل</Button>
-                </form>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <div>
+                      <Label htmlFor="isAvailable" text="publishing status" />
+                      <FormField
+                        control={form.control}
+                        name="publish"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Select
+                                dir="ltr"
+                                // Convert the string value to boolean and log it
+                                onValueChange={(value) => {
+                                  const booleanValue = value === "true"; // Convert to boolean
+
+                                  field.onChange(booleanValue);
+                                }}
+                                value={
+                                  field.value !== undefined
+                                    ? String(field.value)
+                                    : String(JobInfoData?.publish)
+                                }
+                                defaultValue={String(field.value)} // Show boolean as string in select
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="اختر حالة" />
+                                </SelectTrigger>
+                                <SelectContent className="bg-white">
+                                  <SelectGroup>
+                                    {publish?.map((publishs) => (
+                                      <SelectItem
+                                        key={publishs.enLable}
+                                        value={String(publishs.value)} // Ensure the value is a string
+                                      >
+                                        {publishs.enLable}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <Button type="submit" className="bg-black text-white mt-3">
+                      تعديل
+                    </Button>
+                  </form>
+                </Form>
               </DraggableDialogContent>
             </Dialog>
           </div>
@@ -112,27 +193,63 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
                   <Repeat2 size={20} className="text-white" />
                 </Button>
               </DialogTrigger>
-              <DraggableDialogContent>
+              <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader>
-                  <DialogTitle>تعديل حالة النشر</DialogTitle>
+                  <DialogTitle className="text-start">
+                    تعديل حالة النشر
+                  </DialogTitle>
                 </DialogHeader>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <div>
-                    <Label htmlFor="isAvailable" text="حالة النشر" />
-                    <select
-                      name="isAvailable"
-                      className="itemAvailability form__input"
-                      value={form.watch("publish") ? "true" : "false"} // Convert boolean to string for display
-                      onChange={(e) =>
-                        form.setValue("publish", e.target.value === "true")
-                      } // Convert string back to boolean
-                    >
-                      <option value="true">منشور</option>
-                      <option value="false">غير منشور</option>
-                    </select>
-                  </div>
-                  <Button type="submit">تعديل</Button>
-                </form>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <div>
+                      <Label htmlFor="isAvailable" text="حالة النشر" />
+                      <FormField
+                        control={form.control}
+                        name="publish"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Select
+                                dir="rtl"
+                                // Convert the string value to boolean and log it
+                                onValueChange={(value) => {
+                                  const booleanValue = value === "true"; // Convert to boolean
+
+                                  field.onChange(booleanValue);
+                                }}
+                                value={
+                                  field.value !== undefined
+                                    ? String(field.value)
+                                    : String(JobInfoData?.publish)
+                                }
+                                defaultValue={String(field.value)} // Show boolean as string in select
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="اختر حالة" />
+                                </SelectTrigger>
+                                <SelectContent className="bg-white">
+                                  <SelectGroup>
+                                    {publish?.map((publishs) => (
+                                      <SelectItem
+                                        key={publishs.label}
+                                        value={String(publishs.value)} // Ensure the value is a string
+                                      >
+                                        {publishs.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <Button type="submit" className="bg-black text-white mt-3">
+                      تعديل
+                    </Button>
+                  </form>
+                </Form>
               </DraggableDialogContent>
             </Dialog>
           </div>
