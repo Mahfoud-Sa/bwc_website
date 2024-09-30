@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import login from "../../assets/img/8H4A08688.jpg(1).jpg";
 import login1 from "../../assets/img/عالم الأعمال خلفية أبيض 21.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 interface RefreshToken {
@@ -63,7 +63,7 @@ export default function LoginPage() {
       toast.error("An error occurred during login.");
     }
   };
-  
+
   return (
     <div className="h-[100vh] w-full flex">
       <div className="w-[60%] h-full flex justify-center items-center">
@@ -82,7 +82,11 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className={dir === "ltr" ? "block text-black text-start font-black text-lg  mt-1" : "block text-start text-black font-black text-lg  mt-1"}
+                  className={
+                    dir === "ltr"
+                      ? "block text-black text-start font-black text-lg  mt-1"
+                      : "block text-start text-black font-black text-lg  mt-1"
+                  }
                 >
                   كلمة المرور
                 </label>
@@ -102,10 +106,15 @@ export default function LoginPage() {
                 type="button"
                 className=" mt-10 w-full block shadow-[0_05px_20px_5px_rgba(204,169,114,0.3)] bg-black hover:bg-[#cca972] focus:bg-gray-100 text font-semibold rounded-lg px-4 py-3 outline-2 outline-gray-500"
               >
-                <div className="flex items-center justify-center">
-                  <button className="ml-4 text-white">تسجيل دخول</button>
+                <Link
+                  to={"/admin-dashboard"}
+                  className="flex items-center justify-center"
+                >
+                  <Link to={"/admin-dashboard"} className="ml-4 text-white">
+                    تسجيل دخول
+                  </Link>
                   <Toaster />
-                </div>
+                </Link>
               </button>
             </form>
           </div>
