@@ -25,14 +25,14 @@ const HorizontalScrollCarousel = () => {
     error,
   } = useQuery<ServicesHomeProp[]>({
     queryFn: () =>
-      fetch(
-        "https://mahfoudsabbah-001-site1.jtempurl.com/api/website/Home/Services"
-      ).then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch services");
+      fetch("http://bwc-api-testing.runasp.net/api/website/Home/Services").then(
+        (res) => {
+          if (!res.ok) {
+            throw new Error("Failed to fetch services");
+          }
+          return res.json();
         }
-        return res.json();
-      }),
+      ),
     queryKey: ["services"], // Unique key for this query
   });
   const { t, i18n } = useTranslation();

@@ -177,7 +177,7 @@ export default function Jobs() {
                         htmlFor="oldest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
-                        newest
+                        oldest
                       </label>
                     </div>
                     <div className="flex items-center mb-4 mt-4">
@@ -194,7 +194,7 @@ export default function Jobs() {
                         htmlFor="newest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
-                        oldest
+                        newest
                       </label>
                     </div>
                   </div>
@@ -387,7 +387,7 @@ export default function Jobs() {
                       htmlFor="oldest"
                       className="ms-2 text-sm font-medium text-gray-900"
                     >
-                      newest
+                      oldest
                     </label>
                   </div>
                   <div className="flex items-center mb-4 mt-4">
@@ -404,7 +404,7 @@ export default function Jobs() {
                       htmlFor="newest"
                       className="ms-2 text-sm font-medium text-gray-900"
                     >
-                      oldest
+                      newest
                     </label>
                   </div>
                 </div>
@@ -509,7 +509,7 @@ export default function Jobs() {
                         htmlFor="newest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
-                        الاقدم
+                        الاحدث
                       </label>
                     </div>
 
@@ -527,7 +527,7 @@ export default function Jobs() {
                         htmlFor="oldest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
-                        الاحدث
+                        الاقدم
                       </label>
                     </div>
                   </div>
@@ -617,7 +617,7 @@ export default function Jobs() {
                       htmlFor="oldest"
                       className="ms-2 text-sm font-medium text-gray-900"
                     >
-                      الاحدث
+                      الاقدم
                     </label>
                   </div>
 
@@ -635,7 +635,7 @@ export default function Jobs() {
                       htmlFor="newest"
                       className="ms-2 text-sm font-medium text-gray-900"
                     >
-                      الاقدم
+                      الاحدث
                     </label>
                   </div>
                 </div>

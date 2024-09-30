@@ -866,7 +866,7 @@ export default function UpdateWriterForm() {
             </div>
 
             <div className="grid grid-cols-3 mt-5 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-              <div className=" text-start col-span-3 h-auto translate-y-10">
+              <div className=" text-end col-span-3 h-auto translate-y-10">
                 <Label text="about writer" />
                 <FormField
                   control={form.control}
@@ -878,6 +878,7 @@ export default function UpdateWriterForm() {
                       </FormLabel>
                       <FormControl>
                         <Textarea
+                          dir="ltr"
                           className="bg-white border-2 border-[#d1d5db] rounded-xl"
                           rows={5}
                           {...field}
