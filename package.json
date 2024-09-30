@@ -91,6 +91,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-slick": "^0.23.13",
     "tailwindcss": "^3.4.4"
   }
