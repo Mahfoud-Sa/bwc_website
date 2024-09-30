@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 export const axiosInstance = axios.create({
   // baseURL: "https://mahfoudsabbah-001-site1.jtempurl.com",
-  baseURL: "http://bwc-api-testing.runasp.net",
+  baseURL: "https://bwc-api-testing.runasp.net",
 });
 
 type Config = AxiosRequestConfig<unknown> | undefined;
