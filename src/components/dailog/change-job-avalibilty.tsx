@@ -6,10 +6,10 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
-import { deleteApi, patchApi } from "../../lib/http";
+import { axiosInstance, deleteApi, patchApi } from "../../lib/http";
 import { useToast } from "../../ui/use-toast";
 // import { useAuthHeader } from "react-auth-kit";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -42,12 +42,34 @@ interface DeleteDialogProps {
 const formSchema = z.object({
   availabel: z.boolean(),
 });
+
+export type JobResp = {
+  id: number;
+  ar_jobTitle: string;
+  en_jobTitle: string;
+  img: string;
+  avaliable: boolean;
+  publish: boolean;
+  ar_basicDescription: string;
+  en_basicDescription: string;
+  ar_skiles: string[];
+  en_skiles: string[];
+  ar_advances: string[];
+  en_advances: string[];
+  formLink: string;
+  endDate: Date;
+};
 type UpdateAvailable = z.infer<typeof formSchema>;
 export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
   const availabilityOptions = [
     { label: "متاحة", value: "true" },
     { label: "غير متاحة", value: "false" },
   ];
+  const [states, _setStates] = useState([
+    { label: "متاحة", enLable: "available", value: true },
+    { label: "غير متاحة", enLable: "unavailable", value: false },
+  ]);
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -55,7 +77,21 @@ export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+  const fetchData = async () => {
+    const response = await axiosInstance.get<JobResp>(`/api/Jobs/${id}`, {});
+    return response.data;
+  };
+  const {
+    data: JobInfoData,
+    error: JobInfoError,
+    isLoading: JobInfoIsLoading,
+  } = useQuery({
+    queryKey: ["getByIdJob", id],
+    queryFn: fetchData,
+    enabled: !!id,
+  });
 
+  useEffect(() => {}, [JobInfoData]);
   const { mutate } = useMutation({
     mutationFn: (data: UpdateAvailable) => {
       return patchApi(
@@ -101,27 +137,63 @@ export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
                   </svg>
                 </Button>
               </DialogTrigger>
-              <DraggableDialogContent>
+              <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader>
-                  <DialogTitle>تعديل حالة الوظيفة</DialogTitle>
+                  <DialogTitle className="text-start">
+                    Change Job Status
+                  </DialogTitle>
                 </DialogHeader>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <div>
-                    <Label htmlFor="isAvailable" text="حالة الوظيفة" />
-                    <select
-                      name="isAvailable"
-                      className="itemAvailability form__input"
-                      value={form.watch("availabel") ? "true" : "false"} // Convert boolean to string for display
-                      onChange={(e) =>
-                        form.setValue("availabel", e.target.value === "true")
-                      } // Convert string back to boolean
-                    >
-                      <option value="true">Available</option>
-                      <option value="false">Not Available</option>
-                    </select>
-                  </div>
-                  <Button type="submit">تعديل</Button>
-                </form>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <div>
+                      <Label htmlFor="isAvailable" text="Job Status" />
+                      <FormField
+                        control={form.control}
+                        name="availabel"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Select
+                                dir="ltr"
+                                // Convert the string value to boolean and log it
+                                onValueChange={(value) => {
+                                  const booleanValue = value === "true"; // Convert to boolean
+                                  // Log the boolean conversion
+                                  field.onChange(booleanValue);
+                                }}
+                                value={
+                                  field.value !== undefined
+                                    ? String(field.value)
+                                    : String(JobInfoData?.avaliable)
+                                }
+                                defaultValue={String(field.value)}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="اختر حالة" />
+                                </SelectTrigger>
+                                <SelectContent className="bg-white">
+                                  <SelectGroup>
+                                    {states?.map((statuse) => (
+                                      <SelectItem
+                                        key={statuse.enLable}
+                                        value={String(statuse.value)} // Ensure the value is a string
+                                      >
+                                        {statuse.enLable}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <Button type="submit" className="bg-black text-white mt-3">
+                      update
+                    </Button>
+                  </form>
+                </Form>
               </DraggableDialogContent>
             </Dialog>
           </div>
@@ -148,27 +220,63 @@ export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
                   </svg>
                 </Button>
               </DialogTrigger>
-              <DraggableDialogContent>
-                <DialogHeader>
-                  <DialogTitle>تعديل حالة الوظيفة</DialogTitle>
+              <DraggableDialogContent className="bg-white w-96">
+                <DialogHeader className="">
+                  <DialogTitle className="text-start">
+                    تعديل حالة الوظيفة
+                  </DialogTitle>
                 </DialogHeader>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                  <div>
-                    <Label htmlFor="isAvailable" text="حالة الوظيفة" />
-                    <select
-                      name="isAvailable"
-                      className="itemAvailability form__input"
-                      value={form.watch("availabel") ? "true" : "false"} // Convert boolean to string for display
-                      onChange={(e) =>
-                        form.setValue("availabel", e.target.value === "true")
-                      } // Convert string back to boolean
-                    >
-                      <option value="true">Available</option>
-                      <option value="false">Not Available</option>
-                    </select>
-                  </div>
-                  <Button type="submit">تعديل</Button>
-                </form>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <div>
+                      <Label htmlFor="isAvailable" text="حالة الوظيفة" />
+                      <FormField
+                        control={form.control}
+                        name="availabel"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Select
+                                dir="rtl"
+                                // Convert the string value to boolean and log it
+                                onValueChange={(value) => {
+                                  const booleanValue = value === "true"; // Convert to boolean
+                                  // Log the boolean conversion
+                                  field.onChange(booleanValue);
+                                }}
+                                value={
+                                  field.value !== undefined
+                                    ? String(field.value)
+                                    : String(JobInfoData?.avaliable)
+                                }
+                                defaultValue={String(field.value)} // Show boolean as string in select
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="اختر حالة" />
+                                </SelectTrigger>
+                                <SelectContent className="bg-white">
+                                  <SelectGroup>
+                                    {states?.map((statuse) => (
+                                      <SelectItem
+                                        key={statuse.label}
+                                        value={String(statuse.value)} // Ensure the value is a string
+                                      >
+                                        {statuse.label}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <Button type="submit" className="bg-black text-white mt-3">
+                      تعديل
+                    </Button>
+                  </form>
+                </Form>
               </DraggableDialogContent>
             </Dialog>
           </div>

@@ -165,24 +165,6 @@ export default function Jobs() {
                     <h3>Publication</h3>
                     <div className="flex items-center mb-4 mt-4">
                       <input
-                        id="newest"
-                        type="radio"
-                        name="sort"
-                        value="newest"
-                        checked={isAscending} // Bind to state
-                        onChange={handleSortChange} // Update sorting state
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
-                      />
-                      <label
-                        htmlFor="newest"
-                        className="ms-2 text-sm font-medium text-gray-900"
-                      >
-                        newest
-                      </label>
-                    </div>
-
-                    <div className="flex items-center mb-4 mt-4">
-                      <input
                         id="oldest"
                         type="radio"
                         name="sort"
@@ -193,6 +175,23 @@ export default function Jobs() {
                       />
                       <label
                         htmlFor="oldest"
+                        className="ms-2 text-sm font-medium text-gray-900"
+                      >
+                        newest
+                      </label>
+                    </div>
+                    <div className="flex items-center mb-4 mt-4">
+                      <input
+                        id="newest"
+                        type="radio"
+                        name="sort"
+                        value="newest"
+                        checked={isAscending} // Bind to state
+                        onChange={handleSortChange} // Update sorting state
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                      />
+                      <label
+                        htmlFor="newest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
                         oldest
@@ -373,23 +372,6 @@ export default function Jobs() {
 
                 <div dir="ltr" className="px-4 mt-4">
                   <h3>Publication</h3>
-                  <div className="flex items-center mb-4 mt-4">
-                    <input
-                      id="newest"
-                      type="radio"
-                      name="sort"
-                      value="newest"
-                      checked={isAscending} // Bind to state
-                      onChange={handleSortChange} // Update sorting state
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
-                    />
-                    <label
-                      htmlFor="newest"
-                      className="ms-2 text-sm font-medium text-gray-900"
-                    >
-                      newest
-                    </label>
-                  </div>
 
                   <div className="flex items-center mb-4 mt-4">
                     <input
@@ -403,6 +385,23 @@ export default function Jobs() {
                     />
                     <label
                       htmlFor="oldest"
+                      className="ms-2 text-sm font-medium text-gray-900"
+                    >
+                      newest
+                    </label>
+                  </div>
+                  <div className="flex items-center mb-4 mt-4">
+                    <input
+                      id="newest"
+                      type="radio"
+                      name="sort"
+                      value="newest"
+                      checked={isAscending} // Bind to state
+                      onChange={handleSortChange} // Update sorting state
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                    />
+                    <label
+                      htmlFor="newest"
                       className="ms-2 text-sm font-medium text-gray-900"
                     >
                       oldest
@@ -510,7 +509,7 @@ export default function Jobs() {
                         htmlFor="newest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
-                        الاحدث
+                        الاقدم
                       </label>
                     </div>
 
@@ -528,7 +527,7 @@ export default function Jobs() {
                         htmlFor="oldest"
                         className="ms-2 text-sm font-medium text-gray-900"
                       >
-                        الاقدم
+                        الاحدث
                       </label>
                     </div>
                   </div>
@@ -603,23 +602,6 @@ export default function Jobs() {
 
                 <div className="px-4 mt-4">
                   <h3>تاريخ النشر</h3>
-                  <div className="flex items-center mb-4 mt-4">
-                    <input
-                      id="newest"
-                      type="radio"
-                      name="sort"
-                      value="newest"
-                      checked={isAscending} // Bind to state
-                      onChange={handleSortChange} // Update sorting state
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
-                    />
-                    <label
-                      htmlFor="newest"
-                      className="ms-2 text-sm font-medium text-gray-900"
-                    >
-                      الاحدث
-                    </label>
-                  </div>
 
                   <div className="flex items-center mb-4 mt-4">
                     <input
@@ -633,6 +615,24 @@ export default function Jobs() {
                     />
                     <label
                       htmlFor="oldest"
+                      className="ms-2 text-sm font-medium text-gray-900"
+                    >
+                      الاحدث
+                    </label>
+                  </div>
+
+                  <div className="flex items-center mb-4 mt-4">
+                    <input
+                      id="newest"
+                      type="radio"
+                      name="sort"
+                      value="newest"
+                      checked={isAscending} // Bind to state
+                      onChange={handleSortChange} // Update sorting state
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                    />
+                    <label
+                      htmlFor="newest"
                       className="ms-2 text-sm font-medium text-gray-900"
                     >
                       الاقدم
