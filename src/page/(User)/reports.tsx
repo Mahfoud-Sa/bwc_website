@@ -19,7 +19,7 @@ import Button from "src/components/button";
 import { format } from "date-fns";
 import { cn } from "src/lib/utils";
 import { Link } from "react-router-dom";
-import { InputDatePicker } from "src/ui/date-picker";
+
 import { Controller, useForm } from "react-hook-form";
 
 interface publish {
@@ -166,13 +166,7 @@ const Reports = () => {
             </Select>
           </div>
           <div className=" col-span-4 md:col-span-1">
-            <Controller
-              name="dateField"
-              control={control}
-              render={({ field }) => (
-                <InputDatePicker field={field} dateFormat="yyyy-MM-dd" />
-              )}
-            />
+            <Input type="date" />
           </div>
         </div>
 
