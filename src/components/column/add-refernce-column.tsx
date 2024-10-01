@@ -32,30 +32,7 @@ export type AddReferenceOrder = {
 };
 
 export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
+  
 
   {
     id: "ar_title",
@@ -105,30 +82,7 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
   },
 ];
 export const EnAddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
+ 
 
   {
     id: "en_title",

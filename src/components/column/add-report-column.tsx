@@ -31,30 +31,7 @@ export type AddReportOrder = {
 };
 
 export const AddReportColumns: ColumnDef<AddReportOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
+ 
 
   {
     id: "ar_title",

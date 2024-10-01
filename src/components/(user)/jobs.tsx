@@ -24,6 +24,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../../ui/drawer";
+import JobNotFound from "src/assets/icons/job-not-found";
 type joinUsRespon = {
   id: number;
   ar_jobTitle: string;
@@ -72,7 +73,6 @@ export default function Jobs() {
       ),
   });
 
-  console.log("joinUs", joinUs?.data);
   const itemsPerPage = 3;
   const totalItems = joinUs?.data.length || 0;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -85,7 +85,6 @@ export default function Jobs() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = joinUs?.data.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Function to paginate
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   // Pagination button logic
@@ -246,95 +245,106 @@ export default function Jobs() {
           <div className="w-full lg:h-[100vh] flex px-4 mt-5">
             {/* Main content */}
             <div dir="ltr" className=" md:w-[70%] sm:w-[100%] h-full  ">
-              <div className=" h-full w-full ">
-                {/* this is working */}
-                {/* Displaying the jobs */}
-                <div className="">
-                  {currentItems?.map((item) => (
-                    <div
-                      className="w-[100%] h-[100%] mt-8 bg-white border-2 border-gray-300 px-3 py-2 rounded-lg "
-                      key={item.id}
-                    >
-                      <a href={`/job-details/${item.id}`}>
-                        <div className=" w-full  flex items-center ">
-                          <h1 className="text-2xl">{item.en_jobTitle}</h1>
-
-                          <div className=" pb-2 text-end translate-y-3">
-                            {item.avaliable === true ? (
-                              <span className="inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] ml-2 mb-2">
-                                available
-                              </span>
-                            ) : (
-                              <span className="inline-block bg-[#FFEDED] rounded-[5px] px-5  text-sm font-semibold text-[#E05151] ml-2 mb-2">
-                                notAvailable
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex items-center mt-2 h-6">
-                          <div className="flex">
-                            <FileArchive className="mr-2" />
-                            <h6>{item.id}</h6>
-                          </div>
-                          <div className="flex ml-2">
-                            <Clock10 className="mr-2" />
-                            <h6>full time</h6>
-                          </div>
-                          <div className="flex ml-2">
-                            <Calendar className="mr-2" />
-                            <h6>{String(item.endDate)}</h6>
-                          </div>
-                        </div>
-                        <div className="flex items-center mt-5">
-                          <p className="text-[#5B5B5B] job">
-                            {item.en_basicDescription}
-                          </p>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Pagination controls */}
-                <div className="mt-4 flex justify-between space-x-2 ">
-                  <button
-                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                    onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    <MoveLeft className="mr-2" />
-                    <h6>prev</h6>
-                  </button>
-
-                  <div className="  md:pr-0 sm:pr-5">
-                    {getPaginationNumbers().map((page, index) => (
-                      <button
-                        key={index}
-                        className={`px-4 py-2 rounded ml-1 ${
-                          currentPage === page
-                            ? "bg-[#d5ae78] rounded-md  text-white"
-                            : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
-                        }`}
-                        onClick={() =>
-                          typeof page === "number" && paginate(page)
-                        }
-                        disabled={typeof page !== "number"}
+              {currentItems && currentItems.length > 0 ? (
+                <div className=" h-full w-full ">
+                  {/* this is working */}
+                  {/* Displaying the jobs */}
+                  <div className="">
+                    {currentItems?.map((item) => (
+                      <div
+                        className="w-[100%] h-[100%] mt-8 bg-white border-2 border-gray-300 px-3 py-2 rounded-lg "
+                        key={item.id}
                       >
-                        {page}
-                      </button>
+                        <a href={`/job-details/${item.id}`}>
+                          <div className=" w-full  flex items-center ">
+                            <h1 className="text-2xl">{item.en_jobTitle}</h1>
+
+                            <div className=" pb-2 text-end translate-y-3">
+                              {item.avaliable === true ? (
+                                <span className="inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] ml-2 mb-2">
+                                  available
+                                </span>
+                              ) : (
+                                <span className="inline-block bg-[#FFEDED] rounded-[5px] px-5  text-sm font-semibold text-[#E05151] ml-2 mb-2">
+                                  notAvailable
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center mt-2 h-6">
+                            <div className="flex">
+                              <FileArchive className="mr-2" />
+                              <h6>{item.id}</h6>
+                            </div>
+                            <div className="flex ml-2">
+                              <Clock10 className="mr-2" />
+                              <h6>full time</h6>
+                            </div>
+                            <div className="flex ml-2">
+                              <Calendar className="mr-2" />
+                              <h6>{String(item.endDate)}</h6>
+                            </div>
+                          </div>
+                          <div className="flex items-center mt-5">
+                            <p className="text-[#5B5B5B] job">
+                              {item.en_basicDescription}
+                            </p>
+                          </div>
+                        </a>
+                      </div>
                     ))}
                   </div>
 
-                  <button
-                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10  border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                    onClick={() => paginate(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
-                    <h6>next</h6>
-                    <MoveRight size={20} className="ml-2" />
-                  </button>
+                  {/* Pagination controls */}
+                  <div className="mt-4 flex justify-between space-x-2 ">
+                    <button
+                      className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                      onClick={() => paginate(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      <MoveLeft className="mr-2" />
+                      <h6>prev</h6>
+                    </button>
+
+                    <div className="  md:pr-0 sm:pr-5">
+                      {getPaginationNumbers().map((page, index) => (
+                        <button
+                          key={index}
+                          className={`px-4 py-2 rounded ml-1 ${
+                            currentPage === page
+                              ? "bg-[#d5ae78] rounded-md  text-white"
+                              : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
+                          }`}
+                          onClick={() =>
+                            typeof page === "number" && paginate(page)
+                          }
+                          disabled={typeof page !== "number"}
+                        >
+                          {page}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10  border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                      onClick={() => paginate(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      <h6>next</h6>
+                      <MoveRight size={20} className="ml-2" />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className=" h-full w-full flex justify-center items-center">
+                  <div className=" text-center">
+                    <JobNotFound />
+                    <p>
+                      There is no result of your search, try another job search
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* ----------------------------------- */}
               {/* <div className=" h-full w-full flex justify-center items-center">
@@ -684,96 +694,105 @@ export default function Jobs() {
             </div>
 
             {/* Main content */}
-            <div className=" md:w-[70%] sm:w-[100%] h-full ">
-              <div className=" h-full w-full ">
-                {/* this is working */}
-                {/* Displaying the jobs */}
-                <div className="">
-                  {currentItems?.map((item) => (
-                    <div
-                      className="w-[100%] h-[100%] mt-8 bg-white border-2 border-gray-300 px-3 py-2 rounded-lg "
-                      key={item.id}
-                    >
-                      <a href={`/job-details/${item.id}`}>
-                        <div className=" w-full  flex items-center ">
-                          <h1 className="text-2xl">{item.ar_jobTitle}</h1>
-
-                          <div className=" pb-2 text-end translate-y-3">
-                            {item.avaliable === true ? (
-                              <span className="inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2">
-                                متاحة
-                              </span>
-                            ) : (
-                              <span className="inline-block bg-[#FFEDED] rounded-[5px] px-5  text-sm font-semibold text-[#E05151] mr-2 mb-2">
-                                غير متاحة
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex items-center mt-2 h-6">
-                          <div className="flex">
-                            <FileArchive className="ml-2" />
-                            <h6>{item.id}</h6>
-                          </div>
-                          <div className="flex mr-2">
-                            <Clock10 className="ml-2" />
-                            <h6>دوام كامل</h6>
-                          </div>
-                          <div className="flex mr-2">
-                            <Calendar className="ml-2" />
-                            <h6>{String(item.endDate)}</h6>
-                          </div>
-                        </div>
-                        <div className="flex items-center mt-5">
-                          <p className="text-[#5B5B5B] job">
-                            {item.ar_basicDescription}
-                          </p>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Pagination controls */}
-                <div className="mt-4 flex justify-between space-x-2 ">
-                  <button
-                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                    onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    <MoveRight size={20} className="ml-2" />
-                    <h6>السابق</h6>
-                  </button>
-
-                  <div className="  md:pr-0 sm:pr-5">
-                    {getPaginationNumbers().map((page, index) => (
-                      <button
-                        key={index}
-                        className={`px-4 py-2 rounded ml-1 ${
-                          currentPage === page
-                            ? "bg-[#d5ae78] rounded-md  text-white"
-                            : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
-                        }`}
-                        onClick={() =>
-                          typeof page === "number" && paginate(page)
-                        }
-                        disabled={typeof page !== "number"}
+            <div className=" md:w-[70%] sm:w-[100%] h-full  ">
+              {currentItems && currentItems.length > 0 ? (
+                <div className=" h-full w-full ">
+                  {/* this is working */}
+                  {/* Displaying the jobs */}
+                  <div className="">
+                    {currentItems?.map((item) => (
+                      <div
+                        className="w-[100%] h-[100%] mt-8 bg-white border-2 border-gray-300 px-3 py-2 rounded-lg "
+                        key={item.id}
                       >
-                        {page}
-                      </button>
+                        <a href={`/job-details/${item.id}`}>
+                          <div className=" w-full  flex items-center ">
+                            <h1 className="text-2xl">{item.ar_jobTitle}</h1>
+
+                            <div className=" pb-2 text-end translate-y-3">
+                              {item.avaliable === true ? (
+                                <span className="inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2">
+                                  متاحة
+                                </span>
+                              ) : (
+                                <span className="inline-block bg-[#FFEDED] rounded-[5px] px-5  text-sm font-semibold text-[#E05151] mr-2 mb-2">
+                                  غير متاحة
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center mt-2 h-6">
+                            <div className="flex">
+                              <FileArchive className="ml-2" />
+                              <h6>{item.id}</h6>
+                            </div>
+                            <div className="flex mr-2">
+                              <Clock10 className="ml-2" />
+                              <h6>دوام كامل</h6>
+                            </div>
+                            <div className="flex mr-2">
+                              <Calendar className="ml-2" />
+                              <h6>{String(item.endDate)}</h6>
+                            </div>
+                          </div>
+                          <div className="flex items-center mt-5">
+                            <p className="text-[#5B5B5B] job">
+                              {item.ar_basicDescription}
+                            </p>
+                          </div>
+                        </a>
+                      </div>
                     ))}
                   </div>
 
-                  <button
-                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10  border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                    onClick={() => paginate(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
-                    <h6>التالي</h6>
-                    <MoveLeft className="mr-2" />
-                  </button>
+                  {/* Pagination controls */}
+                  <div className="mt-4 flex justify-between space-x-2 ">
+                    <button
+                      className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                      onClick={() => paginate(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      <MoveRight size={20} className="ml-2" />
+                      <h6>السابق</h6>
+                    </button>
+
+                    <div className="  md:pr-0 sm:pr-5">
+                      {getPaginationNumbers().map((page, index) => (
+                        <button
+                          key={index}
+                          className={`px-4 py-2 rounded ml-1 ${
+                            currentPage === page
+                              ? "bg-[#d5ae78] rounded-md  text-white"
+                              : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
+                          }`}
+                          onClick={() =>
+                            typeof page === "number" && paginate(page)
+                          }
+                          disabled={typeof page !== "number"}
+                        >
+                          {page}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10  border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                      onClick={() => paginate(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      <h6>التالي</h6>
+                      <MoveLeft className="mr-2" />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className=" h-full w-full flex justify-center items-center">
+                  <div className=" text-center">
+                    <JobNotFound />
+                    <p>لا توجد نتيجة لبحثك , جرب البحث عن وظيفة اخرى</p>
+                  </div>
+                </div>
+              )}
 
               {/* ----------------------------------- */}
               {/* <div className=" h-full w-full flex justify-center items-center">

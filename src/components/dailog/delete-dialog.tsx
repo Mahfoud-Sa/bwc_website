@@ -105,8 +105,7 @@ export default function DeleteDialog({
         }`}
         disabled={disabled}
       >
-        <Trash fill="#ef4444" size={15} />
-        {dir === "ltr" ? "delete" : "حذف"}
+        <Trash fill="#ef4444" size={25} />
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-[#f2f2f2]">
         <AlertDialogHeader className="*:text-right">

@@ -89,6 +89,11 @@ export default function TaskForceTable({ data }: Taskforce) {
       rowSelection,
       columnFilters,
     },
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
+    },
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onRowSelectionChange: setRowSelection,

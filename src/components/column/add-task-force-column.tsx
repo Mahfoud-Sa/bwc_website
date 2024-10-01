@@ -21,30 +21,7 @@ export type AddTaskForceOrder = {
 };
 
 export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
+
 
   {
     accessorKey: "image",
@@ -110,30 +87,7 @@ export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
   },
 ];
 export const AddEnTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
+ 
 
   {
     accessorKey: "image",
