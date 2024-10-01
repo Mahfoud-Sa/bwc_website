@@ -40,7 +40,7 @@ export function OrderDataTable<TData, TValue>({
                   {headerGroup.headers.map((header) => {
                     return (
                       <TableHead
-                        className="whitespace-nowrap px-4 py-2 text-right font-bold text-gray-900  "
+                        className="whitespace-nowrap px-4 py-2 text-right  font-bold text-gray-900  "
                         key={header.id}
                       >
                         {header.isPlaceholder
@@ -65,7 +65,7 @@ export function OrderDataTable<TData, TValue>({
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
-                        className="text-md whitespace-nowrap px-4 py-2 font-bold over "
+                        className="text-md whitespace-nowrap  px-4 py-2 font-bold over "
                         key={cell.id}
                       >
                         {flexRender(

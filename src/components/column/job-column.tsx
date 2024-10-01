@@ -29,31 +29,7 @@ export type AddJobOrder = {
 };
 
 export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
-
+  
   {
     accessorKey: "id",
     header: "رقم الوظيفة",
@@ -77,12 +53,17 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
       return avaliable === true ? "متاحة" : "غير متاحة";
     },
     filterFn: (row, columnId, filterValue) => {
-      return row.getValue(columnId) === filterValue; // Filter directly based on true/false
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
     },
   },
+
   {
     accessorKey: "publish",
-    header: "حالة الوظيفة",
+    header: "نشر/إلغاء النشر",
     cell: ({ row }) => {
       const publish = row.original.publish;
       return publish === true ? "نشر" : "غير منشور";
@@ -125,30 +106,7 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
 ];
 
 export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
-  {
-    accessorKey: "isSelected",
-    header: ({ table }) => (
-      <Checkbox
-        className="m-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="m-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          row.toggleSelected(!!value);
-        }}
-        aria-label="Select row"
-      />
-    ),
-  },
+ 
 
   {
     accessorKey: "id",
@@ -172,10 +130,18 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
       const avaliable = row.original.avaliable;
       return avaliable === true ? "available" : "unavailable";
     },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, include all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
+    },
   },
+
   {
     accessorKey: "publish",
-    header: "Publish",
+    header: "publish/unpublished",
     cell: ({ row }) => {
       const publish = row.original.publish;
       return publish === true ? "publish" : "unpublished";
