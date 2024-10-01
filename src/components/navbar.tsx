@@ -206,10 +206,13 @@ export default function Navbar() {
             ) : (
               <>
                 <li className="lg:hidden md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%]  sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
-                  <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex">
+                  <Link
+                    to={"/join-us"}
+                    className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex"
+                  >
                     <img src={job1} className={"sm:ml-2"} alt="" />
                     {t("jobs")}
-                  </a>
+                  </Link>
                 </li>
 
                 <li
@@ -286,13 +289,16 @@ export default function Navbar() {
           </ul>
         )}
 
-        <Link to={"/join-us"} className="flex items-center lg:flex sm:hidden">
+        <div className="flex items-center lg:flex sm:hidden">
           <div className="flex justify-center mx-2">
-            <div className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[7.1rem] h-[2.8rem] flex justify-center items-center">
+            <Link
+              to={"/join-us"}
+              className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[7.1rem] h-[2.8rem] flex justify-center items-center"
+            >
               <button className="inline-flex w-[7rem] h-[2.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                 {t("jobs")}
               </button>
-            </div>
+            </Link>
           </div>
 
           <div
@@ -314,7 +320,7 @@ export default function Navbar() {
               {isdropDownOpen && <DropDownLang />}
             </div>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   );

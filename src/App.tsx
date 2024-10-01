@@ -40,14 +40,14 @@ function App() {
     error,
   } = useQuery<ServicesHomeProp[]>({
     queryFn: () =>
-      fetch("http://bwc-api-testing.runasp.net/api/website/Home/Services").then(
-        (res) => {
-          if (!res.ok) {
-            throw new Error("Failed to fetch services");
-          }
-          return res.json();
+      fetch(
+        "https://bwc-api-testing.runasp.net/api/website/Home/Services"
+      ).then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch services");
         }
-      ),
+        return res.json();
+      }),
     queryKey: ["services"], // Unique key for this query
   });
 
