@@ -5,10 +5,10 @@ import { Button } from "../../ui/button";
 import { SquarePen, Trash2 } from "lucide-react";
 import { Checkbox } from "../../ui/checkbox";
 
-
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
+import Tooltip from "src/ui/tooltap";
 
 export type AddOrganizationsOrder = {
   isSelected: boolean;
@@ -20,8 +20,6 @@ export type AddOrganizationsOrder = {
 };
 
 export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
- 
-
   {
     accessorKey: "img",
     header: "صورة المؤسسة",
@@ -60,33 +58,37 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
       return (
         <div className="flex justify-center ">
           <Link to={`/admin-dashboard/organization/update/${row.original?.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+            <Tooltip text="تعديل">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/organization/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="عرض">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <DeleteDialog
-            url={`/api/OrgUndBWC/${row.original?.id}`}
-            path={"/admin-dashboard/organization"}
-          />
+          <Tooltip text="حذف">
+            <DeleteDialog
+              url={`/api/OrgUndBWC/${row.original?.id}`}
+              path={"/admin-dashboard/organization"}
+            />
+          </Tooltip>
         </div>
       );
     },
   },
 ];
 export const AddEnOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
- 
-
   {
     accessorKey: "img",
     header: "Organization Image",
@@ -125,25 +127,32 @@ export const AddEnOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
       return (
         <div className="flex justify-center ">
           <Link to={`/admin-dashboard/organization/update/${row.original?.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+            <Tooltip text="Edit">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
+
           <Link to={`/admin-dashboard/organization/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="view">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <DeleteDialog
-            url={`/api/OrgUndBWC/${row.original?.id}`}
-            path={"/admin-dashboard/organization"}
-          />
+          <Tooltip text="delete">
+            <DeleteDialog
+              url={`/api/OrgUndBWC/${row.original?.id}`}
+              path={"/admin-dashboard/organization"}
+            />
+          </Tooltip>
         </div>
       );
     },

@@ -115,13 +115,11 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
   return (
     <>
       {dir === "ltr" ? (
-        <div className="col-span-1 h-auto ">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg ml-2 border-2 border-[#000] bg-black">
+        <div className="col-span-1 h-auto -translate-y-[5px] ">
+          <div className="flex h-9 w-10 items-center justify-center rounded-lg ml-2 border-2 border-[#000] bg-black">
             <Dialog>
               <DialogTrigger>
-                <Button>
-                  <Repeat2 size={20} className="text-white" />
-                </Button>
+                <Repeat2 size={20} className="text-white" />
               </DialogTrigger>
               <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader>
@@ -185,13 +183,11 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
           </div>
         </div>
       ) : (
-        <div className="col-span-1 h-auto ">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg mr-2 border-2 border-[#000] bg-black">
+        <div className="col-span-1 h-auto -translate-y-[5px] ml-2">
+          <div className="flex h-9 w-10 items-center justify-center rounded-lg mr-2 border-2 border-[#000] bg-black">
             <Dialog>
               <DialogTrigger>
-                <Button>
-                  <Repeat2 size={20} className="text-white" />
-                </Button>
+                <Repeat2 size={20} className="text-white" />
               </DialogTrigger>
               <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader>

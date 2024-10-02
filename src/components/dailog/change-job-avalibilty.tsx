@@ -116,26 +116,24 @@ export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
   return (
     <>
       {dir === "ltr" ? (
-        <div className="col-span-1 h-auto ">
-          <div className="flex h-10 w-10 items-center ml-2 justify-center rounded-lg border-2 border-[#1999E3] bg-[#1999E3]">
+        <div className="col-span-1 h-auto  -translate-y-[5px] ">
+          <div className="flex h-9 w-10  items-center ml-2 justify-center rounded-lg border-2 border-[#1999E3] bg-[#1999E3]">
             <Dialog>
               <DialogTrigger>
-                <Button>
-                  <svg
-                    width="21"
-                    height="21"
-                    viewBox="0 0 21 21"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M10.5 19.7647C5.39082 19.7647 1.23529 15.6092 1.23529 10.5C1.23529 5.39082 5.39082 1.23529 10.5 1.23529C15.6092 1.23529 19.7647 5.39082 19.7647 10.5C19.7647 15.6092 15.6092 19.7647 10.5 19.7647ZM10.5 0C4.71018 0 0 4.71018 0 10.5C0 16.2898 4.71018 21 10.5 21C16.2898 21 21 16.2898 21 10.5C21 4.71018 16.2898 0 10.5 0ZM9.34439 12.6654L6.37721 9.69817L5.50385 10.5715L9.34439 14.412L15.9075 7.84894L15.0341 6.97558L9.34439 12.6654Z"
-                      fill="white"
-                    />
-                  </svg>
-                </Button>
+                <svg
+                  width="21"
+                  height="21"
+                  viewBox="0 0 21 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.5 19.7647C5.39082 19.7647 1.23529 15.6092 1.23529 10.5C1.23529 5.39082 5.39082 1.23529 10.5 1.23529C15.6092 1.23529 19.7647 5.39082 19.7647 10.5C19.7647 15.6092 15.6092 19.7647 10.5 19.7647ZM10.5 0C4.71018 0 0 4.71018 0 10.5C0 16.2898 4.71018 21 10.5 21C16.2898 21 21 16.2898 21 10.5C21 4.71018 16.2898 0 10.5 0ZM9.34439 12.6654L6.37721 9.69817L5.50385 10.5715L9.34439 14.412L15.9075 7.84894L15.0341 6.97558L9.34439 12.6654Z"
+                    fill="white"
+                  />
+                </svg>
               </DialogTrigger>
               <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader>
@@ -199,26 +197,24 @@ export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
           </div>
         </div>
       ) : (
-        <div className="col-span-1 h-auto ">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#1999E3] bg-[#1999E3]">
+        <div className="col-span-1 h-auto translate-x-1 -translate-y-[5px]">
+          <div className="flex h-9 w-10 items-center justify-center rounded-lg border-2 border-[#1999E3] bg-[#1999E3]">
             <Dialog>
               <DialogTrigger>
-                <Button>
-                  <svg
-                    width="21"
-                    height="21"
-                    viewBox="0 0 21 21"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M10.5 19.7647C5.39082 19.7647 1.23529 15.6092 1.23529 10.5C1.23529 5.39082 5.39082 1.23529 10.5 1.23529C15.6092 1.23529 19.7647 5.39082 19.7647 10.5C19.7647 15.6092 15.6092 19.7647 10.5 19.7647ZM10.5 0C4.71018 0 0 4.71018 0 10.5C0 16.2898 4.71018 21 10.5 21C16.2898 21 21 16.2898 21 10.5C21 4.71018 16.2898 0 10.5 0ZM9.34439 12.6654L6.37721 9.69817L5.50385 10.5715L9.34439 14.412L15.9075 7.84894L15.0341 6.97558L9.34439 12.6654Z"
-                      fill="white"
-                    />
-                  </svg>
-                </Button>
+                <svg
+                  width="21"
+                  height="21"
+                  viewBox="0 0 21 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.5 19.7647C5.39082 19.7647 1.23529 15.6092 1.23529 10.5C1.23529 5.39082 5.39082 1.23529 10.5 1.23529C15.6092 1.23529 19.7647 5.39082 19.7647 10.5C19.7647 15.6092 15.6092 19.7647 10.5 19.7647ZM10.5 0C4.71018 0 0 4.71018 0 10.5C0 16.2898 4.71018 21 10.5 21C16.2898 21 21 16.2898 21 10.5C21 4.71018 16.2898 0 10.5 0ZM9.34439 12.6654L6.37721 9.69817L5.50385 10.5715L9.34439 14.412L15.9075 7.84894L15.0341 6.97558L9.34439 12.6654Z"
+                    fill="white"
+                  />
+                </svg>
               </DialogTrigger>
               <DraggableDialogContent className="bg-white w-96">
                 <DialogHeader className="">
