@@ -22,6 +22,7 @@ import {
 } from "../../ui/sheet";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
+import EditIcon from "src/assets/icons/edit-icon";
 
 export type AddReportOrder = {
   isSelected: boolean;
@@ -67,7 +68,7 @@ export const AddReportColumns: ColumnDef<AddReportOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/reports/info`}>

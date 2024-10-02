@@ -7,6 +7,7 @@ import { Checkbox } from "../../ui/checkbox";
 
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
+import EditIcon from "src/assets/icons/edit-icon";
 
 export type AddServicesOrder = {
   isSelected: boolean;
@@ -43,7 +44,7 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/services/info/${row.original.id}`}>
@@ -89,7 +90,7 @@ export const AddEnServicesColumns: ColumnDef<AddServicesOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/services/info/${row.original.id}`}>

@@ -8,6 +8,7 @@ import { Checkbox } from "../../ui/checkbox";
 
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
+import EditIcon from "src/assets/icons/edit-icon";
 
 export type AddOrganizationsOrder = {
   isSelected: boolean;
@@ -63,7 +64,7 @@ export const AddOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/organization/info/${row.original.id}`}>
@@ -128,7 +129,7 @@ export const AddEnOrganizationsColumns: ColumnDef<AddOrganizationsOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/organization/info/${row.original.id}`}>
