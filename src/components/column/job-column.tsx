@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import ChangeAvailabilityDialog from "../dailog/change-job-avalibilty";
 import ChangePublishesDialog from "../dailog/change-publish";
 import EditIcon from "src/assets/icons/edit-icon";
+import Tooltip from "src/ui/tooltap";
 
 export type AddJobOrder = {
   isSelected: boolean;
@@ -30,7 +31,6 @@ export type AddJobOrder = {
 };
 
 export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
-  
   {
     accessorKey: "id",
     header: "رقم الوظيفة",
@@ -79,27 +79,37 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
       return (
         <div className="flex justify-center ">
           <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+            <Tooltip text="تعديل">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="عرض">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <ChangeAvailabilityDialog id={row.original.id} />
-          <ChangePublishesDialog id={row.original.id} />
-          <DeleteDialog
-            url={`/api/Jobs/${row.original?.id}`}
-            path={"/admin-dashboard/jobs"}
-          />
+          <Tooltip text="تغير حالة الوظيفة">
+            <ChangeAvailabilityDialog id={row.original.id} />
+          </Tooltip>
+          <Tooltip text="تغير حالة النشر">
+            <ChangePublishesDialog id={row.original.id} />
+          </Tooltip>
+          <Tooltip text="حذف">
+            <DeleteDialog
+              url={`/api/Jobs/${row.original?.id}`}
+              path={"/admin-dashboard/jobs"}
+            />
+          </Tooltip>
         </div>
       );
     },
@@ -107,8 +117,6 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
 ];
 
 export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
- 
-
   {
     accessorKey: "id",
     header: "job num",
@@ -157,27 +165,37 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
       return (
         <div className="flex justify-center ">
           <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+            <Tooltip text="Edit">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="view">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <ChangeAvailabilityDialog id={row.original.id} />
-          <ChangePublishesDialog id={row.original.id} />
-          <DeleteDialog
-            url={`/api/Jobs/${row.original?.id}`}
-            path={"/admin-dashboard/jobs"}
-          />
+          <Tooltip text="Change in job status">
+            <ChangeAvailabilityDialog id={row.original.id} />
+          </Tooltip>
+          <Tooltip text="Change in publishing status">
+            <ChangePublishesDialog id={row.original.id} />
+          </Tooltip>
+          <Tooltip text="delete">
+            <DeleteDialog
+              url={`/api/Jobs/${row.original?.id}`}
+              path={"/admin-dashboard/jobs"}
+            />
+          </Tooltip>
         </div>
       );
     },

@@ -8,6 +8,7 @@ import { Checkbox } from "../../ui/checkbox";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
+import Tooltip from "src/ui/tooltap";
 
 export type AddServicesOrder = {
   isSelected: boolean;
@@ -19,7 +20,6 @@ export type AddServicesOrder = {
 };
 
 export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
- 
   {
     id: "ar_name",
     accessorKey: "ar_name",
@@ -40,32 +40,37 @@ export const AddServicesColumns: ColumnDef<AddServicesOrder>[] = [
           <Link
             to={`/admin-dashboard/services/update-services/${row.original?.id}`}
           >
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+            <Tooltip text="تعديل">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/services/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="عرض">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <DeleteDialog
-            url={`/api/Services/${row.original?.id}`}
-            path={"/admin-dashboard/services"}
-          />
+          <Tooltip text="حذف">
+            <DeleteDialog
+              url={`/api/Services/${row.original?.id}`}
+              path={"/admin-dashboard/services"}
+            />
+          </Tooltip>
         </div>
       );
     },
   },
 ];
 export const AddEnServicesColumns: ColumnDef<AddServicesOrder>[] = [
- 
   {
     id: "en_name",
     accessorKey: "en_name",
@@ -86,25 +91,31 @@ export const AddEnServicesColumns: ColumnDef<AddServicesOrder>[] = [
           <Link
             to={`/admin-dashboard/services/update-services/${row.original?.id}`}
           >
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+            <Tooltip text="Edit">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/services/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="view">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <DeleteDialog
-            url={`/api/Services/${row.original?.id}`}
-            path={"/admin-dashboard/services"}
-          />
+          <Tooltip text="delete">
+            <DeleteDialog
+              url={`/api/Services/${row.original?.id}`}
+              path={"/admin-dashboard/services"}
+            />
+          </Tooltip>
         </div>
       );
     },
