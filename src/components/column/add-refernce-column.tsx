@@ -41,11 +41,12 @@ export const AddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
 
   {
     id: "actions",
+    header: "الإعدادات",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
             <Tooltip text="تعديل">
               <Button
@@ -99,11 +100,12 @@ export const EnAddReferenceColumns: ColumnDef<AddReferenceOrder>[] = [
 
   {
     id: "actions",
+    header: "settings",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link to={`/admin-dashboard/references/update/${row.original?.id}`}>
             <Tooltip text="Edit">
               <Button

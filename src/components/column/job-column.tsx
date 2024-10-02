@@ -73,11 +73,12 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
 
   {
     id: "actions",
+    header: "الإعدادات",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
             <Tooltip text="تعديل">
               <Button
@@ -159,11 +160,12 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
 
   {
     id: "actions",
+    header: "settings",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
             <Tooltip text="Edit">
               <Button
