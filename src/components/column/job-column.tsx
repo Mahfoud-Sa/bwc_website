@@ -9,6 +9,7 @@ import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import ChangeAvailabilityDialog from "../dailog/change-job-avalibilty";
 import ChangePublishesDialog from "../dailog/change-publish";
+import EditIcon from "src/assets/icons/edit-icon";
 
 export type AddJobOrder = {
   isSelected: boolean;
@@ -82,7 +83,7 @@ export const AddJobColumns: ColumnDef<AddJobOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
@@ -160,7 +161,7 @@ export const AddEnJobColumns: ColumnDef<AddJobOrder>[] = [
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
-              <SquarePen className="" />
+              <EditIcon/>
             </Button>
           </Link>
           <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>

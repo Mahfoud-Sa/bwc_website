@@ -22,6 +22,8 @@ import {
 } from "../../ui/sheet";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
+import EditIcon from "src/assets/icons/edit-icon";
+import Tooltip from "src/ui/tooltap";
 
 // export type AddWriterOrder = {
 //   isSelected: boolean;
@@ -56,7 +58,6 @@ export interface Soicalmedia {
   writer: null;
 }
 export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
-  
   {
     accessorKey: "image",
     header: "ص",
@@ -88,6 +89,13 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
   //   sortingFn: "datetime", // Built-in datetime sorting function
   // },
   {
+    accessorKey: "",
+    header: "عدد المنشورات",
+    cell: ({ row }) => {
+      return <p>0</p>;
+    },
+  },
+  {
     accessorKey: "ar_fullName",
     header: "المسمى الوظيفي",
   },
@@ -102,32 +110,39 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
           <Link
             to={`/admin-dashboard/writer/update-writer/${row.original?.id}`}
           >
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <SquarePen className="" />
-            </Button>
+            <Tooltip text="تعديل">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/writer/info/${row.original?.id}`}>
+          <Tooltip text="عرض">
+
             <Button
               className="bg-[#d5ae78] text-white ml-3 rounded-lg"
               size={"sm"}
             >
               <Eye className="" />
             </Button>
+          </Tooltip>
           </Link>
+          <Tooltip text="حذف">
+
           <DeleteDialog
             url={`/api/Writers/${row.original?.id}`}
             path={"/admin-dashboard/writer"}
           />
+          </Tooltip>
         </div>
       );
     },
   },
 ];
 export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
-  
   {
     accessorKey: "image",
     header: "image",
@@ -159,6 +174,13 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
   //   sortingFn: "datetime", // Built-in datetime sorting function
   // },
   {
+    accessorKey: "",
+    header: "number of publishes",
+    cell: ({ row }) => {
+      return <p>0</p>;
+    },
+  },
+  {
     accessorKey: "en_role",
     header: "role",
   },
@@ -171,25 +193,33 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
           <Link
             to={`/admin-dashboard/writer/update-writer/${row.original?.id}`}
           >
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <SquarePen className="" />
-            </Button>
+            <Tooltip text="Edit">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+                title="Edit"
+                aria-label="Edit"
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/writer/info/${row.original?.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+            <Tooltip text="view">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <DeleteDialog
-            url={`/api/Writers/${row.original?.id}`}
-            path={"/admin-dashboard/writer"}
-          />
+          <Tooltip text="delete">
+            <DeleteDialog
+              url={`/api/Writers/${row.original?.id}`}
+              path={"/admin-dashboard/writer"}
+            />
+          </Tooltip>
         </div>
       );
     },
