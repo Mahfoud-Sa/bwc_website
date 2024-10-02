@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { CgInstagram } from "react-icons/cg";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { axiosInstance } from "src/lib/http";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
@@ -12,6 +12,7 @@ import { addWriterSchema, WriterResp } from "src/types/validation";
 import Label from "src/ui/label";
 import { z } from "zod";
 import { IconType } from "react-icons";
+import { Button } from "src/ui/button";
 type ReferenceFormValue = z.infer<typeof addWriterSchema>;
 
 const socialIcons: { [key: string]: IconType } = {
@@ -106,7 +107,15 @@ export default function WriterInfo() {
               {WriterData?.en_description}
             </div>
           </div>
-          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
+          <div className="w-full -translate-x-10 flex justify-end mt-20">
+            <Link
+              to={`/admin-dashboard/writer/update-writer/${id}`}
+              className="text-lg mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2  font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            >
+              update
+            </Link>
+          </div>
+          <div className="h-[2px]  w-[95%] mx-auto bg-black mb-7"></div>
         </div>
       ) : (
         <div className="min-h-[90vh]   w-[100%] bg-[#f2f2f2]">
@@ -164,7 +173,16 @@ export default function WriterInfo() {
               {WriterData?.ar_description}
             </div>
           </div>
-          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
+
+          <div className="w-full translate-x-10 flex justify-end mt-20">
+            <Link
+              to={`/admin-dashboard/writer/update-writer/${id}`}
+              className="text-md mb-10 inline-flex h-10 items-center  justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            >
+              تعديل
+            </Link>
+          </div>
+          <div className="h-[2px]  w-[95%] mx-auto bg-black mb-7"></div>
         </div>
       )}
     </>

@@ -97,7 +97,7 @@ export default function Profile() {
     <>
       {dir === "ltr" ? (
         <main>
-          <div className="min-h-screen w-[100%] text-right bg-[#f2f2f2] flex flex-col gap-12">
+          <div className="min-h-screen w-[80%] text-right bg-[#f2f2f2] flex flex-col gap-12">
             <div className="grid grid-cols-1 ">
               <div className="col-span-1 h-0 mt-4 rounded-lg">
                 <EnBreadcrumb
@@ -140,7 +140,7 @@ export default function Profile() {
                     />
                   </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center  translate-x-32">
                   <div className="bg-white w-[60vw] flex justify-center items-center">
                     <div className="w-[80%] flex flex-col items-center justify-center gap-6 my-6">
                       <h1 className="text-3xl">UPLOAD</h1>
@@ -202,7 +202,7 @@ export default function Profile() {
         </main>
       ) : (
         <main>
-          <div className="min-h-screen w-[100%] text-right bg-[#f2f2f2] flex flex-col gap-12">
+          <div className="min-h-screen w-[80%] text-right bg-[#f2f2f2] flex flex-col gap-12">
             <div className="grid grid-cols-1 ">
               <div className="col-span-1 h-0 mt-4 rounded-lg">
                 <Breadcrumb
@@ -243,7 +243,7 @@ export default function Profile() {
                     />
                   </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center -translate-x-32">
                   <div className="bg-white w-[60vw] flex justify-center items-center">
                     <div className="w-[80%] flex flex-col items-center justify-center gap-6 my-6">
                       <h1 className="text-3xl">الرفع</h1>

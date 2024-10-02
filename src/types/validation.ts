@@ -10,19 +10,36 @@ const ACCEPTED_IMAGE_TYPES = [
 ];
 
 export const addReferenceSchema = z.object({
-  ar_title: z.string({ message: "مطلوب " }).max(20),
-  en_title: z.string({ message: "مطلوب " }).max(20),
+  ar_title: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من ارربع أحرف" })
+    .max(19, { message: "لا يمكنك إرسال أكثر من 19 حرفًا" }),
+  en_title: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من ارربع أحرف" })
+    .max(19, { message: "لا يمكنك إرسال أكثر من 19 حرفًا" }),
   link: z.string({ message: "مطلوب " }).max(1000),
 });
 export const addServicesSchema = z.object({
-  ar_name: z.string({ message: "مطلوب " }).max(20),
-  en_name: z.string({ message: "مطلوب " }).max(20),
+  ar_name: z
+    .string({ required_error: "مطلوب" })
+    .min(3, { message: "لا يمكن أن يكون أقل من ثلاثة أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
+  en_name: z
+    .string({ required_error: "مطلوب" })
+    .min(3, { message: "لا يمكن أن يكون أقل من ثلاثة أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   ar_Description: z.string({ message: "مطلوب " }).max(1000),
   en_Description: z.string({ message: "مطلوب " }).max(1000),
 });
 export const addReportSchema = z.object({
-  Ar_Title: z.string({ message: "مطلوب " }).max(20),
-  En_Title: z.string({ message: "مطلوب " }).max(20),
+  Ar_Title: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
+  En_Title: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" }),
   Img: z.string({ message: "مطلوب " }).max(1000),
   Ar_description: z.string({ message: "مطلوب " }).max(1000),
   En_description: z.string({ message: "مطلوب " }).max(1000),
@@ -38,8 +55,14 @@ export const addReportSchema = z.object({
   En_note: z.string({ message: "مطلوب " }).max(1000),
 });
 export const addJobSchema = z.object({
-  Ar_jobTitle: z.string({ message: "مطلوب " }).max(20),
-  En_jobTitle: z.string({ message: "مطلوب " }).max(20),
+  Ar_jobTitle: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
+  En_jobTitle: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {
@@ -63,8 +86,14 @@ export const addJobSchema = z.object({
   endDate: z.string(),
 });
 export const updateJobSchema = z.object({
-  Ar_jobTitle: z.string({ message: "مطلوب " }).max(20),
-  En_jobTitle: z.string({ message: "مطلوب " }).max(20),
+  Ar_jobTitle: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
+  En_jobTitle: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {
@@ -89,12 +118,27 @@ export const updateJobSchema = z.object({
   endDate: z.string(),
 });
 export const addTaskForceSchema = z.object({
-  Ar_name: z.string({ message: "مطلوب " }).max(20),
-  En_name: z.string({ message: "مطلوب " }).max(20),
-  Ar_degree: z.string({ message: "مطلوب " }).max(20),
-  En_degree: z.string({ message: "مطلوب " }).max(20),
-  Ar_role: z.string({ message: "مطلوب " }).max(20),
-  En_role: z.string({ message: "مطلوب " }).max(20),
+  Ar_name: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من ارربع أحرف" })
+    .max(19, { message: "لا يمكنك إرسال أكثر من 19 حرفًا" }),
+  En_name: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من ارربع أحرف" }),
+  Ar_degree: z
+    .string({ required_error: "مطلوب" })
+    .min(5, { message: "لا يمكن أن يكون أقل من خمس أحرف" })
+    .max(19, { message: "لا يمكنك إرسال أكثر من 19 حرفًا" }),
+  En_degree: z
+    .string({ required_error: "مطلوب" })
+    .min(5, { message: "لا يمكن أن يكون أقل من خمس أحرف" }),
+  Ar_role: z
+    .string({ required_error: "مطلوب" })
+    .min(5, { message: "لا يمكن أن يكون أقل من خمس أحرف" })
+    .max(19, { message: "لا يمكنك إرسال أكثر من 19 حرفًا" }),
+  En_role: z
+    .string({ required_error: "مطلوب" })
+    .min(5, { message: "لا يمكن أن يكون أقل من خمس أحرف" }),
   ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {
@@ -110,8 +154,13 @@ export const addTaskForceSchema = z.object({
 });
 
 export const addOrgSchema = z.object({
-  Ar_name: z.string({ message: "مطلوب " }),
-  En_name: z.string({ message: "مطلوب " }),
+  Ar_name: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
+  En_name: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" }),
   Link: z.string({ message: "مطلوب " }),
   ImageFile: z
     .instanceof(FileList)
@@ -126,8 +175,13 @@ export const addOrgSchema = z.object({
     }),
 });
 export const updateOrgSchema = z.object({
-  Ar_name: z.string({ message: "مطلوب " }),
-  En_name: z.string({ message: "مطلوب " }),
+  Ar_name: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
+  En_name: z
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" }),
   Link: z.string({ message: "مطلوب " }),
   ImageFile: z
     .instanceof(FileList)
@@ -144,11 +198,13 @@ export const updateOrgSchema = z.object({
 });
 export const addWriterSchema = z.object({
   Ar_fullName: z
-    .string({ message: "مطلوب " })
-    .nonempty("Arabic full name is required"),
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   En_fullName: z
-    .string({ message: "مطلوب " })
-    .nonempty("English full name is required"),
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {
@@ -179,11 +235,13 @@ export const addWriterSchema = z.object({
 });
 export const UpdateWriterSchema = z.object({
   Ar_fullName: z
-    .string({ message: "مطلوب " })
-    .nonempty("Arabic full name is required"),
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   En_fullName: z
-    .string({ message: "مطلوب " })
-    .nonempty("English full name is required"),
+    .string({ required_error: "مطلوب" })
+    .min(4, { message: "لا يمكن أن يكون أقل من 4 أحرف" })
+    .max(20, { message: "لا يمكنك إرسال أكثر من 20 حرفًا" }),
   ImageFile: z
     .instanceof(FileList)
     .refine((files) => files.length === 1, {

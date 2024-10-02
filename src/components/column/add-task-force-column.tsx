@@ -50,11 +50,12 @@ export const AddTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
 
   {
     id: "actions",
+    header: "الإعدادات",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link
             to={`/admin-dashboard/taskforce/update-employee/${row.original?.id}`}
           >
@@ -120,11 +121,12 @@ export const AddEnTaskForceColumns: ColumnDef<AddTaskForceOrder>[] = [
 
   {
     id: "actions",
+    header: "settings",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link
             to={`/admin-dashboard/taskforce/update-employee/${row.original?.id}`}
           >

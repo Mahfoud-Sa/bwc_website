@@ -102,11 +102,12 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
 
   {
     id: "actions",
+    header: "الإعدادات",
     cell: ({ row }) => {
       //   const { data: session } = useSession();
 
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link
             to={`/admin-dashboard/writer/update-writer/${row.original?.id}`}
           >
@@ -120,22 +121,20 @@ export const AddWriterColumns: ColumnDef<AddWriterOrder>[] = [
             </Tooltip>
           </Link>
           <Link to={`/admin-dashboard/writer/info/${row.original?.id}`}>
-          <Tooltip text="عرض">
-
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
-          </Tooltip>
+            <Tooltip text="عرض">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
           <Tooltip text="حذف">
-
-          <DeleteDialog
-            url={`/api/Writers/${row.original?.id}`}
-            path={"/admin-dashboard/writer"}
-          />
+            <DeleteDialog
+              url={`/api/Writers/${row.original?.id}`}
+              path={"/admin-dashboard/writer"}
+            />
           </Tooltip>
         </div>
       );
@@ -187,9 +186,10 @@ export const AddEnWriterColumns: ColumnDef<AddWriterOrder>[] = [
 
   {
     id: "actions",
+    header: "settings",
     cell: ({ row }) => {
       return (
-        <div className="flex justify-center ">
+        <div className="flex justify-start ">
           <Link
             to={`/admin-dashboard/writer/update-writer/${row.original?.id}`}
           >
