@@ -7,6 +7,8 @@ import VideoCourse from "../../components/(user)/videocourse";
 import { useTranslation } from "react-i18next";
 import TaskForce from "../../components/taskforce";
 import Footer from "../../components/footer";
+import Button from "src/components/button";
+import { Link } from "react-router-dom";
 
 export default function AboutUs() {
   const { t, i18n } = useTranslation();
@@ -60,35 +62,63 @@ export default function AboutUs() {
       {widthScreen.winWidth <= 980 ? (
         <>
           {dir === "ltr" ? (
-            <div className="w-full h-36 flex justify-end items-center ">
-              <div className="flex p-5">
-                <h1 className="text-3xl">{t("team-force")}</h1>
-                <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
-              </div>
-            </div>
+             <div className="w-full h-36 flex justify-around items-center ">
+             <div className="w-[20%] ">
+               <Button>
+                 <Link to={"/join-us"}>Join Us</Link>
+               </Button>
+             </div>
+             <div className="w-[80%] ">
+               <div className="flex p-5 justify-end">
+                 <h1 className="text-3xl">{t("team-force")}</h1>
+                 <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+               </div>
+             </div>
+           </div>
           ) : (
-            <div className="w-full h-36 flex justify-start items-center ">
+            <div className="w-full h-36 flex justify-around items-center ">
+            <div className="w-[80%]">
               <div className="flex p-5">
                 <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                 <h1 className="text-3xl">{t("team-force")}</h1>
               </div>
             </div>
+            <div className="w-[20%] ">
+              <Button>
+                <Link to={"/join-us"}>أنظم الينا</Link>
+              </Button>
+            </div>
+          </div>
           )}
         </>
       ) : (
         <>
           {dir === "ltr" ? (
-            <div className="w-full h-36 flex justify-end items-center ">
-              <div className="flex p-5">
-                <h1 className="text-3xl">{t("team-force")}</h1>
-                <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+            <div className="w-full h-36 flex justify-around items-center ">
+              <div className="w-[20%] ">
+                <Button>
+                  <Link to={"/join-us"}>Join Us</Link>
+                </Button>
+              </div>
+              <div className="w-[80%] ">
+                <div className="flex p-5 justify-end">
+                  <h1 className="text-3xl">{t("team-force")}</h1>
+                  <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="w-full h-36 flex justify-start items-center ">
-              <div className="flex p-5">
-                <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                <h1 className="text-3xl">{t("team-force")}</h1>
+            <div className="w-full h-36 flex justify-around items-center ">
+              <div className="w-[80%]">
+                <div className="flex p-5">
+                  <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                  <h1 className="text-3xl">{t("team-force")}</h1>
+                </div>
+              </div>
+              <div className="w-[20%] ">
+                <Button>
+                  <Link to={"/join-us"}>أنظم الينا</Link>
+                </Button>
               </div>
             </div>
           )}

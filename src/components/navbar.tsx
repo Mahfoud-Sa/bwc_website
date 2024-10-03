@@ -11,9 +11,11 @@ import DropDownLang from "./dropDownLang";
 import { CgMenuLeft } from "react-icons/cg";
 import Button from "../components/button";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { axiosInstance } from "src/lib/http";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
+  const [available, setAvailable] = useState(false);
   const [fix, setFix] = useState<boolean>();
   const [language, setLanguage] = useState<string>("");
   window.addEventListener("scroll", function () {
@@ -35,6 +37,30 @@ export default function Navbar() {
     });
   };
   //
+  const fetchJob = async () => {
+    try {
+      const response = await axiosInstance.get(
+        "/api/website/Home/AvaliableJobs"
+      );
+
+      // Assuming the API returns a boolean value directly (true or false)
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching available jobs:", error);
+
+      // Return a default value in case of error
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchJob();
+      setAvailable(data);
+    };
+
+    getData();
+  }, []);
   const onChangeLanguage = () => {
     language === "ar" ? setLanguage("en") : setLanguage("ar");
   };
@@ -42,6 +68,7 @@ export default function Navbar() {
   const changeLanguage = (code: string) => {
     i18n.changeLanguage(code);
   };
+
   //
   const [isdropDownOpen, setIsdropDownOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -179,8 +206,12 @@ export default function Navbar() {
                     to={"/join-us"}
                     className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex justify-end"
                   >
-                    {t("jobs")}
-                    <img src={job1} className="sm:mr-2" alt="" />
+                    {available && (
+                      <div className=" bg-red-500 w-3 h-3 rounded-full "></div>
+                    )}
+                    <div className="flex">
+                      {t("jobs")} <img src={job1} className="sm:mr-2" alt="" />
+                    </div>
                   </Link>
                 </li>
                 <li
@@ -211,7 +242,10 @@ export default function Navbar() {
                     className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer flex"
                   >
                     <img src={job1} className={"sm:ml-2"} alt="" />
-                    {t("jobs")}
+                    {t("jobs")}{" "}
+                    {available && (
+                      <div className=" bg-red-500 w-3 h-3 rounded-full "></div>
+                    )}
                   </Link>
                 </li>
 
@@ -270,7 +304,10 @@ export default function Navbar() {
                 to={"/join-us"}
                 className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
               >
-                {t("jobs")}
+                {t("jobs")}{" "}
+                {available && (
+                  <div className=" bg-red-500 w-3 h-3 rounded-full "></div>
+                )}
               </Link>
             </li>
             <li
@@ -290,14 +327,19 @@ export default function Navbar() {
         )}
 
         <div className="flex items-center lg:flex sm:hidden">
-          <div className="flex justify-center mx-2">
+          <div className="flex justify-center mx-2 relative">
             <Link
               to={"/join-us"}
-              className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[7.1rem] h-[2.8rem] flex justify-center items-center"
+              className="outline outline-offset-1 outline-1 outline-[#ccc]/60 rounded-full w-[7.1rem] h-[2.8rem] flex justify-center items-center relative"
             >
               <button className="inline-flex w-[7rem] h-[2.8rem] outline outline-1 outline-[#CCA972]/80 bg-black text-white items-center justify-center whitespace-nowrap rounded-full text-md font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                 {t("jobs")}
               </button>
+
+              {/* Conditionally render the badge with an animation when `available` is true */}
+              {available && (
+                <div className="absolute top-[-3px] left-[25px] bg-red-500 w-3 h-3 rounded-full animate-bounce"></div>
+              )}
             </Link>
           </div>
 
