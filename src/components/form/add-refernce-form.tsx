@@ -123,20 +123,16 @@ export default function AddReferenceForm() {
               </div>
             </div>
             <div className="grid grid-cols-4 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-              <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="الرابط" />
+              <div className=" text-start col-span-1 h-auto translate-y-10">
+                <Label text="Link" />
                 <FormField
                   control={form.control}
                   name="link"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-red-900">{"الرابط"}</FormLabel>
+                      <FormLabel className="text-red-900">{"Link"}</FormLabel>
                       <FormControl>
-                        <Input
-                          dir="rtl"
-                          placeholder="ادخل الرابط..."
-                          {...field}
-                        />
+                        <Input placeholder="Enter Link ..." {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

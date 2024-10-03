@@ -8,6 +8,13 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
+import { TbBrandX } from "react-icons/tb";
+import {
+  FaInstagram,
+  FaWhatsapp,
+  FaLinkedin,
+  FaFacebook,
+} from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { UpdateWriterSchema, WriterResp } from "src/types/validation";
@@ -54,6 +61,7 @@ export default function UpdateWriterForm() {
   const [socialMediaUrls, setSocialMediaUrls] = useState<{
     [key: string]: string;
   }>({});
+
   const cities: City[] = [
     { name: "Instagram", code: "instagram" },
     { name: "WhatsApp", code: "whatsapp" },
@@ -66,7 +74,22 @@ export default function UpdateWriterForm() {
   const { id } = useParams<{ id: string }>();
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-
+  const getIconByCode = (code: string) => {
+    switch (code) {
+      case "instagram":
+        return <FaInstagram className="text-pink-500" size={20} />;
+      case "whatsapp":
+        return <FaWhatsapp className="text-green-500" size={20} />;
+      case "X":
+        return <TbBrandX className="text-black" size={20} />;
+      case "linkedin":
+        return <FaLinkedin className="text-blue-600" size={20} />;
+      case "facebook":
+        return <FaFacebook className="text-blue-500" size={20} />;
+      default:
+        return null;
+    }
+  };
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof UpdateWriterSchema>>({
     resolver: zodResolver(UpdateWriterSchema),
@@ -398,6 +421,32 @@ export default function UpdateWriterForm() {
                       maxSelectedLabels={3}
                       className="w-full"
                       panelClassName="rounded-md bg-white px-2 shadow-lg"
+                      itemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                            {/* Render the icon */}
+                            <span className="text-lg">
+                              {option.name.toLowerCase()}
+                            </span>
+                            <i>{getIconByCode(option.code)}</i>{" "}
+                          </div>
+                        );
+                      }}
+                      selectedItemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center gap-2 ">
+                            {getIconByCode(option.code)}{" "}
+                            {/* Render the icon in selected items */}
+                            <span>{option.name.toLowerCase()}</span>
+                          </div>
+                        );
+                      }}
                     />
                   </div>
                 </div>
@@ -702,6 +751,32 @@ export default function UpdateWriterForm() {
                       maxSelectedLabels={3}
                       className="w-full"
                       panelClassName="rounded-md bg-white px-2 shadow-lg"
+                      itemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                            {/* Render the icon */}
+                            <span className="text-lg">
+                              {option.name.toLowerCase()}
+                            </span>
+                            <i>{getIconByCode(option.code)}</i>{" "}
+                          </div>
+                        );
+                      }}
+                      selectedItemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center gap-2 ">
+                            {getIconByCode(option.code)}{" "}
+                            {/* Render the icon in selected items */}
+                            <span>{option.name.toLowerCase()}</span>
+                          </div>
+                        );
+                      }}
                     />
                   </div>
                 </div>
