@@ -43,7 +43,9 @@ export default function DeleteDialog({
         queryClient.invalidateQueries({ queryKey: keys });
       }
       // Navigate and reload the page
-      window.location.href = path.startsWith("/") ? path : `/${path}`;
+      setTimeout(() => {
+        window.location.href = path.startsWith("/") ? path : `/${path}`;
+      }, 1000);
     },
   });
 
@@ -51,12 +53,12 @@ export default function DeleteDialog({
     if (isSuccess) {
       toast.success("تمت الحذف بنجاح.", {
         style: {
-          border: "1px solid #4FFFB0",
+          border: "1px solid #eb0b1a",
           padding: "16px",
-          color: "#4FFFB0",
+          color: "#eb0b1a",
         },
         iconTheme: {
-          primary: "#4FFFB0",
+          primary: "#eb0b1a",
           secondary: "#FFFAEE",
         },
       });
@@ -98,8 +100,8 @@ export default function DeleteDialog({
           </AlertDialogTrigger>
           <AlertDialogContent className="bg-[#f2f2f2]">
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogTitle dir="ltr">Are you sure?</AlertDialogTitle>
+              <AlertDialogDescription dir="ltr">
                 You can't undo this action. Data will be permanently deleted.
               </AlertDialogDescription>
             </AlertDialogHeader>

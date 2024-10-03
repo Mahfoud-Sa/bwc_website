@@ -8,7 +8,13 @@ import {
   FormLabel,
   FormMessage,
 } from "../../ui/form";
-
+import { TbBrandX } from "react-icons/tb";
+import {
+  FaInstagram,
+  FaWhatsapp,
+  FaLinkedin,
+  FaFacebook,
+} from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { addWriterSchema } from "src/types/validation";
@@ -54,6 +60,23 @@ export default function AddWriterForm() {
     { name: "LinkedIn", code: "linkedin" },
     { name: "Facebook", code: "facebook" },
   ];
+
+  const getIconByCode = (code: string) => {
+    switch (code) {
+      case "instagram":
+        return <FaInstagram className="text-pink-500" size={20} />;
+      case "whatsapp":
+        return <FaWhatsapp className="text-green-500" size={20} />;
+      case "X":
+        return <TbBrandX className="text-black" size={20} />;
+      case "linkedin":
+        return <FaLinkedin className="text-blue-600" size={20} />;
+      case "facebook":
+        return <FaFacebook className="text-blue-500" size={20} />;
+      default:
+        return null;
+    }
+  };
 
   const isSelected = (code: string): boolean => {
     return selectedCities.some((city) => city.code === code);
@@ -298,7 +321,7 @@ export default function AddWriterForm() {
               >
                 <Label text="social media" />
                 <div className="card flex justify-center items-center py-6">
-                  <div className="w-full p-2 -translate-y-6 max-w-md  bg-white border border-gray-300 rounded-lg shadow-lg">
+                  <div className="w-full p-2 -translate-y-6 max-w-md bg-white border border-gray-300 rounded-lg shadow-lg">
                     <MultiSelect
                       dir="rtl"
                       value={selectedCities}
@@ -309,6 +332,32 @@ export default function AddWriterForm() {
                       maxSelectedLabels={3}
                       className="w-full"
                       panelClassName="rounded-md bg-white px-2 shadow-lg"
+                      itemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                            {/* Render the icon */}
+                            <span className="text-lg">
+                              {option.name.toLowerCase()}
+                            </span>
+                            <i>{getIconByCode(option.code)}</i>{" "}
+                          </div>
+                        );
+                      }}
+                      selectedItemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center gap-2 ">
+                            {getIconByCode(option.code)}{" "}
+                            {/* Render the icon in selected items */}
+                            <span>{option.name.toLowerCase()}</span>
+                          </div>
+                        );
+                      }}
                     />
                   </div>
                 </div>
@@ -576,6 +625,32 @@ export default function AddWriterForm() {
                       maxSelectedLabels={3}
                       className="w-full"
                       panelClassName="rounded-md bg-white px-2 shadow-lg"
+                      itemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                            {/* Render the icon */}
+                            <span className="text-lg">
+                              {option.name.toLowerCase()}
+                            </span>
+                            <i>{getIconByCode(option.code)}</i>{" "}
+                          </div>
+                        );
+                      }}
+                      selectedItemTemplate={(option) => {
+                        // Ensure option is defined
+                        if (!option) return null;
+
+                        return (
+                          <div className="flex items-center gap-2 ">
+                            {getIconByCode(option.code)}{" "}
+                            {/* Render the icon in selected items */}
+                            <span>{option.name.toLowerCase()}</span>
+                          </div>
+                        );
+                      }}
                     />
                   </div>
                 </div>

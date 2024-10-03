@@ -14,6 +14,16 @@ import {
   FormLabel,
   FormMessage,
 } from "src/ui/form";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+} from "../../../ui/alert-dialog";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postApi } from "src/lib/http";
 import toast, { Toaster } from "react-hot-toast";
@@ -54,7 +64,7 @@ export default function Profile() {
       form.setValue("FormFile", file);
     }
   };
-
+  const path = "/admin-dashboard/profile";
   const handleRemoveFile = () => {
     form.reset();
     setSelectedFile(null);
@@ -84,8 +94,10 @@ export default function Profile() {
           secondary: "#FFFAEE",
         },
       });
-      queryClient.invalidateQueries({ queryKey: ["AddProfile"] });
-      navigate("/admin-dashboard/profile");
+
+      setTimeout(() => {
+        window.location.href = path.startsWith("/") ? path : `/${path}`;
+      }, 1000);
     },
     onError: (error) => {},
   });
@@ -115,7 +127,7 @@ export default function Profile() {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="min-h-[100vh] "
               >
-                <div className="grid grid-cols-4 w-[100%] translate-x-44 items-start  text-right h-[10vh]  ">
+                <div className="grid grid-cols-4 w-[100%] translate-x-44 items-start mb-4 text-right h-[10vh]  ">
                   <div className=" col-span-1 h-auto ">
                     <label htmlFor="" className="float-start font-semibold">
                       File Name
@@ -190,9 +202,50 @@ export default function Profile() {
                           </div>
                         </div>
                       )}
-                      <Button className="bg-black text-white w-full">
-                        SEND
-                      </Button>
+                      <AlertDialog>
+                        {/* AlertDialogTrigger wraps the SEND button */}
+                        <AlertDialogTrigger asChild>
+                          <Button className="bg-black text-white w-full">
+                            SEND
+                          </Button>
+                        </AlertDialogTrigger>
+
+                        {/* AlertDialogContent defines the dialog */}
+                        <AlertDialogContent className=" bg-white">
+                          <AlertDialogHeader>
+                            <AlertDialogTitle dir="ltr" className="text-start">
+                              Do you want to save this file ?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription
+                              dir="ltr"
+                              className="text-start"
+                            >
+                              <p>
+                                This file will be saved or the existing file
+                                will be replaced If there is...
+                              </p>
+                              <p>Click Yes if agreed</p>
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter className="flex relative gap-4 ">
+                            {/* Cancel Button */}
+                            <AlertDialogCancel className="bg-red-700 absolute right-0 text-white">
+                              Cancel
+                            </AlertDialogCancel>
+                            {/* Confirm Button */}
+                            <Button
+                              className="bg-black text-[#d5ae78]"
+                              variant="destructive"
+                              onClick={() => {
+                                // Submit the form upon confirmation
+                                form.handleSubmit(onSubmit)();
+                              }}
+                            >
+                              Yes
+                            </Button>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
                   </div>
                 </div>
@@ -293,9 +346,47 @@ export default function Profile() {
                           </div>
                         </div>
                       )}
-                      <Button className="bg-black text-white w-full">
-                        إرسال
-                      </Button>
+                      <AlertDialog>
+                        {/* AlertDialogTrigger wraps the SEND button */}
+                        <AlertDialogTrigger asChild>
+                          <Button className="bg-black text-white w-full">
+                            إرسال
+                          </Button>
+                        </AlertDialogTrigger>
+
+                        {/* AlertDialogContent defines the dialog */}
+                        <AlertDialogContent className=" bg-white">
+                          <AlertDialogHeader>
+                            <AlertDialogTitle className="text-start">
+                              هل تريد حفظ هذا الملف؟
+                            </AlertDialogTitle>
+                            <AlertDialogDescription className="text-start">
+                              <p>
+                                سوف يتم حفظ هذا الملف او استبدال الملف الموجود
+                                ان وجد ....
+                              </p>
+                              <p>اضغط نعم في حاله الموافقه</p>
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter className="flex relative gap-4 ">
+                            {/* Cancel Button */}
+                            <AlertDialogCancel className="bg-red-700 absolute right-0 text-white">
+                              إلغاء
+                            </AlertDialogCancel>
+                            {/* Confirm Button */}
+                            <Button
+                              className="bg-black text-[#d5ae78]"
+                              variant="destructive"
+                              onClick={() => {
+                                // Submit the form upon confirmation
+                                form.handleSubmit(onSubmit)();
+                              }}
+                            >
+                              نعم
+                            </Button>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
                   </div>
                 </div>
