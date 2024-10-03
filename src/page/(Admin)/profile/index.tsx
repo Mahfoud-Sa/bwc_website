@@ -205,16 +205,23 @@ export default function Profile() {
                       <AlertDialog>
                         {/* AlertDialogTrigger wraps the SEND button */}
                         <AlertDialogTrigger asChild>
-                          <Button className="bg-black text-white w-full">
+                          <Button
+                            className={`bg-black text-white w-full ${
+                              !selectedFile
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                            }`}
+                            disabled={!selectedFile}
+                          >
                             SEND
                           </Button>
                         </AlertDialogTrigger>
 
                         {/* AlertDialogContent defines the dialog */}
-                        <AlertDialogContent className=" bg-white">
+                        <AlertDialogContent className="bg-white">
                           <AlertDialogHeader>
                             <AlertDialogTitle dir="ltr" className="text-start">
-                              Do you want to save this file ?
+                              Do you want to save this file?
                             </AlertDialogTitle>
                             <AlertDialogDescription
                               dir="ltr"
@@ -222,12 +229,12 @@ export default function Profile() {
                             >
                               <p>
                                 This file will be saved or the existing file
-                                will be replaced If there is...
+                                will be replaced if there is a conflict.
                               </p>
-                              <p>Click Yes if agreed</p>
+                              <p>Click Yes if you agree.</p>
                             </AlertDialogDescription>
                           </AlertDialogHeader>
-                          <AlertDialogFooter className="flex relative gap-4 ">
+                          <AlertDialogFooter className="flex relative gap-4">
                             {/* Cancel Button */}
                             <AlertDialogCancel className="bg-red-700 absolute right-0 text-white">
                               Cancel
@@ -349,7 +356,14 @@ export default function Profile() {
                       <AlertDialog>
                         {/* AlertDialogTrigger wraps the SEND button */}
                         <AlertDialogTrigger asChild>
-                          <Button className="bg-black text-white w-full">
+                          <Button
+                            className={`bg-black text-white w-full ${
+                              !selectedFile
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                            }`}
+                            disabled={!selectedFile}
+                          >
                             إرسال
                           </Button>
                         </AlertDialogTrigger>
