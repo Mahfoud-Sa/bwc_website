@@ -167,7 +167,7 @@ export default function SideNab() {
                 </i>
               </li>
             </NavLink>
-            <li
+            {/* <li
               className={`mt-1 py-2 px-1 rounded-md flex justify-end items-center hover:bg-[rgb(213,174,120)]/[.20] hover:text-[#D5AE78] cursor-pointer ${
                 selectedItem === "Partners"
                   ? "bg-[rgb(213,174,120)]/[.20] text-[#D5AE78]"
@@ -179,7 +179,7 @@ export default function SideNab() {
               <i className="mr-2">
                 <Massage />
               </i>
-            </li>
+            </li> */}
             <NavLink to={"/admin-dashboard/writer"}>
               <li
                 className={`mt-1 py-2 px-1 rounded-md flex justify-end items-center hover:bg-[rgb(213,174,120)]/[.20] hover:text-[#D5AE78] cursor-pointer ${
@@ -388,7 +388,7 @@ export default function SideNab() {
                 المؤسسات التي نديرها
               </li>
             </NavLink>
-            <li
+            {/* <li
               className={`mt-1 py-2 px-1 rounded-md flex justify-start items-center hover:bg-[rgb(213,174,120)]/[.20] hover:text-[#D5AE78] cursor-pointer ${
                 selectedItem === "Partners"
                   ? "bg-[rgb(213,174,120)]/[.20] text-[#D5AE78]"
@@ -400,7 +400,7 @@ export default function SideNab() {
                 <Massage />
               </i>
               شركائنا
-            </li>
+            </li> */}
             <NavLink to={"/admin-dashboard/writer"}>
               <li
                 className={`mt-1 py-2 px-1 rounded-md flex justify-start items-center hover:bg-[rgb(213,174,120)]/[.20] hover:text-[#D5AE78] cursor-pointer ${
