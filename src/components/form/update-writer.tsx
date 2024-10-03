@@ -421,9 +421,9 @@ export default function UpdateWriterForm() {
                       options={cities}
                       optionLabel="name"
                       placeholder="Select social media"
-                      maxSelectedLabels={3}
+                      maxSelectedLabels={1}
                       className="w-full"
-                      panelClassName="rounded-md bg-white px-2 shadow-lg"
+                      panelClassName="rounded-md bg-white px-2 shadow-lg border-2 translate-y-[8px] border-gray-300 translate-x-[8px]"
                       itemTemplate={(option) => {
                         // Ensure option is defined
                         if (!option) return null;
@@ -432,7 +432,7 @@ export default function UpdateWriterForm() {
 
                         return (
                           <div
-                            className={`flex items-center justify-between gap-2 w-[350px] p-2 rounded-lg cursor-pointer transition-all ${
+                            className={`flex items-center justify-between gap-2 shadow-inner shadow-gray-400/40 mb-1  w-[370px] p-2 rounded-lg cursor-pointer transition-all ${
                               isItemSelected
                                 ? "bg-gray-200"
                                 : "hover:bg-gray-100"
@@ -759,9 +759,9 @@ export default function UpdateWriterForm() {
                       options={cities} // Options for all available social media platforms
                       optionLabel="name" // Show the name property in the dropdown
                       placeholder="اختار الحسابات الشخصية"
-                      maxSelectedLabels={3}
+                      maxSelectedLabels={1}
                       className="w-full"
-                      panelClassName="rounded-md bg-white px-2 shadow-lg"
+                      panelClassName="rounded-md bg-white px-2 shadow-lg border-2 translate-y-[8px] border-gray-300 -translate-x-[8px]"
                       itemTemplate={(option) => {
                         // Ensure option is defined
                         if (!option) return null;
@@ -770,7 +770,7 @@ export default function UpdateWriterForm() {
 
                         return (
                           <div
-                            className={`flex items-center justify-between gap-2 w-[350px] p-2 rounded-lg cursor-pointer transition-all ${
+                            className={`flex items-center justify-between gap-2 w-[370px] shadow-inner shadow-gray-400/40 mb-1 p-2 rounded-lg cursor-pointer transition-all ${
                               isItemSelected
                                 ? "bg-gray-200"
                                 : "hover:bg-gray-100"
