@@ -57,6 +57,7 @@ import PublishDetails from "./page/(User)/publish-details";
 import UpdateServicesIndex from "./components/form/update-services";
 import Profile from "./page/(Admin)/profile";
 import UpdateJobForm from "./components/form/update-job";
+import Departments from "./page/(User)/departments";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
   {
     path: "/publish-details",
     element: <PublishDetails />,
+  },
+  {
+    path: "/departments",
+    element: <Departments />,
   },
   {
     path: "/login",
