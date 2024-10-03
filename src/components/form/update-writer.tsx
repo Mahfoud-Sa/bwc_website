@@ -90,6 +90,9 @@ export default function UpdateWriterForm() {
         return null;
     }
   };
+  const isSelected = (code: string): boolean => {
+    return selectedCities.some((city) => city.code === code);
+  };
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof UpdateWriterSchema>>({
     resolver: zodResolver(UpdateWriterSchema),
@@ -413,10 +416,10 @@ export default function UpdateWriterForm() {
                   <div className="w-full p-2 -translate-y-6 max-w-md  bg-white border border-gray-300 rounded-lg shadow-lg">
                     <MultiSelect
                       dir="rtl"
-                      value={selectedCities} // Use the selected cities
-                      onChange={handleSelectionChange} // Update state with full objects
-                      options={cities} // Options for all available social media platforms
-                      optionLabel="name" // Show the name property in the dropdown
+                      value={selectedCities}
+                      onChange={handleSelectionChange}
+                      options={cities}
+                      optionLabel="name"
                       placeholder="Select social media"
                       maxSelectedLabels={3}
                       className="w-full"
@@ -425,13 +428,21 @@ export default function UpdateWriterForm() {
                         // Ensure option is defined
                         if (!option) return null;
 
+                        const isItemSelected = isSelected(option.code);
+
                         return (
-                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                          <div
+                            className={`flex items-center justify-between gap-2 w-[350px] p-2 rounded-lg cursor-pointer transition-all ${
+                              isItemSelected
+                                ? "bg-gray-200"
+                                : "hover:bg-gray-100"
+                            }`}
+                          >
                             {/* Render the icon */}
+                            <i>{getIconByCode(option.code)}</i>
                             <span className="text-lg">
                               {option.name.toLowerCase()}
                             </span>
-                            <i>{getIconByCode(option.code)}</i>{" "}
                           </div>
                         );
                       }}
@@ -440,7 +451,7 @@ export default function UpdateWriterForm() {
                         if (!option) return null;
 
                         return (
-                          <div className="flex items-center gap-2 ">
+                          <div className="flex items-center gap-2">
                             {getIconByCode(option.code)}{" "}
                             {/* Render the icon in selected items */}
                             <span>{option.name.toLowerCase()}</span>
@@ -755,13 +766,21 @@ export default function UpdateWriterForm() {
                         // Ensure option is defined
                         if (!option) return null;
 
+                        const isItemSelected = isSelected(option.code);
+
                         return (
-                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                          <div
+                            className={`flex items-center justify-between gap-2 w-[350px] p-2 rounded-lg cursor-pointer transition-all ${
+                              isItemSelected
+                                ? "bg-gray-200"
+                                : "hover:bg-gray-100"
+                            }`}
+                          >
                             {/* Render the icon */}
+                            <i>{getIconByCode(option.code)}</i>
                             <span className="text-lg">
                               {option.name.toLowerCase()}
                             </span>
-                            <i>{getIconByCode(option.code)}</i>{" "}
                           </div>
                         );
                       }}
@@ -770,7 +789,7 @@ export default function UpdateWriterForm() {
                         if (!option) return null;
 
                         return (
-                          <div className="flex items-center gap-2 ">
+                          <div className="flex items-center gap-2">
                             {getIconByCode(option.code)}{" "}
                             {/* Render the icon in selected items */}
                             <span>{option.name.toLowerCase()}</span>

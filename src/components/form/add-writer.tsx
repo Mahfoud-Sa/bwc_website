@@ -329,20 +329,28 @@ export default function AddWriterForm() {
                       options={cities}
                       optionLabel="name"
                       placeholder="Select social media"
-                      maxSelectedLabels={3}
+                      maxSelectedLabels={1}
                       className="w-full"
                       panelClassName="rounded-md bg-white px-2 shadow-lg"
                       itemTemplate={(option) => {
                         // Ensure option is defined
                         if (!option) return null;
 
+                        const isItemSelected = isSelected(option.code);
+
                         return (
-                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                          <div
+                            className={`flex items-center justify-between gap-2 w-[350px] p-2 rounded-lg cursor-pointer transition-all ${
+                              isItemSelected
+                                ? "bg-gray-200"
+                                : "hover:bg-gray-100"
+                            }`}
+                          >
                             {/* Render the icon */}
+                            <i>{getIconByCode(option.code)}</i>
                             <span className="text-lg">
                               {option.name.toLowerCase()}
                             </span>
-                            <i>{getIconByCode(option.code)}</i>{" "}
                           </div>
                         );
                       }}
@@ -351,7 +359,7 @@ export default function AddWriterForm() {
                         if (!option) return null;
 
                         return (
-                          <div className="flex items-center gap-2 ">
+                          <div className="flex items-center gap-2">
                             {getIconByCode(option.code)}{" "}
                             {/* Render the icon in selected items */}
                             <span>{option.name.toLowerCase()}</span>
@@ -621,7 +629,7 @@ export default function AddWriterForm() {
                       onChange={(e) => setSelectedCities(e.value)}
                       options={cities}
                       optionLabel="name"
-                      placeholder="Select social media"
+                      placeholder="اختار الحساب"
                       maxSelectedLabels={3}
                       className="w-full"
                       panelClassName="rounded-md bg-white px-2 shadow-lg"
@@ -629,13 +637,21 @@ export default function AddWriterForm() {
                         // Ensure option is defined
                         if (!option) return null;
 
+                        const isItemSelected = isSelected(option.code);
+
                         return (
-                          <div className="flex items-center justify-between gap-2 w-[350px] ">
+                          <div
+                            className={`flex items-center justify-between gap-2 w-[350px] p-2 rounded-lg cursor-pointer transition-all ${
+                              isItemSelected
+                                ? "bg-gray-200"
+                                : "hover:bg-gray-100"
+                            }`}
+                          >
                             {/* Render the icon */}
+                            <i>{getIconByCode(option.code)}</i>
                             <span className="text-lg">
                               {option.name.toLowerCase()}
                             </span>
-                            <i>{getIconByCode(option.code)}</i>{" "}
                           </div>
                         );
                       }}
@@ -644,7 +660,7 @@ export default function AddWriterForm() {
                         if (!option) return null;
 
                         return (
-                          <div className="flex items-center gap-2 ">
+                          <div className="flex items-center gap-2">
                             {getIconByCode(option.code)}{" "}
                             {/* Render the icon in selected items */}
                             <span>{option.name.toLowerCase()}</span>

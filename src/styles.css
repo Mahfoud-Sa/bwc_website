@@ -580,3 +580,6 @@ opacity: 1;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+.p-multiselect-item .p-checkbox {
+  display: none;
+}
