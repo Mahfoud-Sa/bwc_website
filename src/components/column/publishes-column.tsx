@@ -1,28 +1,11 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Button } from "../../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../../ui/dropdown-menu";
-import { SquarePen, Trash2 } from "lucide-react";
-import { Checkbox } from "../../ui/checkbox";
-
-import { type z } from "zod";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../ui/sheet";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
+import Tooltip from "src/ui/tooltap";
+import ChangePublishesDialog from "../dailog/change-publish";
 
 export type AddPublishesOrder = {
   isSelected: boolean;
@@ -33,7 +16,6 @@ export type AddPublishesOrder = {
 };
 
 export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
- 
   {
     id: "img",
     accessorKey: "img",
@@ -52,27 +34,19 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
   },
   {
     accessorKey: "name",
-    header: "العنوان",
+    header: "عنوان المنشور",
   },
   {
     accessorKey: "link",
-    header: "تاريخ النشر",
+    header: "تاريخ المنشور",
   },
   {
-    accessorKey: "link",
+    accessorKey: "name",
     header: "اسم التقرير",
   },
   {
     accessorKey: "link",
-    header: "اسم الكاتب",
-  },
-  {
-    accessorKey: "link",
-    header: "النوع",
-  },
-  {
-    accessorKey: "link",
-    header: "حالة النشر",
+    header: "نشر/الغاء النشر",
   },
 
   {
@@ -82,26 +56,111 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/organization/update/${row.original?.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <EditIcon/>
-            </Button>
+          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+            <Tooltip text="تعديل">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
           </Link>
-          <Link to={`/admin-dashboard/organization/info/${row.original.id}`}>
-            <Button
-              className="bg-[#d5ae78] text-white ml-3 rounded-lg"
-              size={"sm"}
-            >
-              <Eye className="" />
-            </Button>
+          <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
+            <Tooltip text="عرض">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
           </Link>
-          <DeleteDialog
-            url={`/api/OrgUndBWC/${row.original?.id}`}
-            path={"/admin-dashboard/organization"}
+          <Tooltip text="تغير حالة النشر">
+            <ChangePublishesDialog id={row.original.id} />
+          </Tooltip>
+          <Tooltip text="حذف">
+            <DeleteDialog
+              url={`/api/Jobs/${row.original?.id}`}
+              path={"/admin-dashboard/jobs"}
+            />
+          </Tooltip>
+        </div>
+      );
+    },
+  },
+];
+
+export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
+  {
+    id: "img",
+    accessorKey: "img",
+    header: "img",
+    cell: ({ row }) => {
+      return (
+        <div className=" w-[50px] h-[50px] rounded-full">
+          <img
+            src={row.original.img}
+            className="w-full h-full object-cover"
+            alt=""
           />
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "name",
+    header: "post title",
+  },
+  {
+    accessorKey: "link",
+    header: "Date of post",
+  },
+  {
+    accessorKey: "name",
+    header: "report name",
+  },
+  {
+    accessorKey: "link",
+    header: "publishing/unpublication",
+  },
+
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      //   const { data: session } = useSession();
+
+      return (
+        <div className="flex justify-center ">
+          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+            <Tooltip text="Edit">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
+          </Link>
+          <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
+            <Tooltip text="view">
+              <Button
+                className="bg-[#d5ae78] text-white ml-3 rounded-lg"
+                size={"sm"}
+              >
+                <Eye className="" />
+              </Button>
+            </Tooltip>
+          </Link>
+          <Tooltip text="Change publishing status">
+            <ChangePublishesDialog id={row.original.id} />
+          </Tooltip>
+          <Tooltip text="delete">
+            <DeleteDialog
+              url={`/api/Jobs/${row.original?.id}`}
+              path={"/admin-dashboard/jobs"}
+            />
+          </Tooltip>
         </div>
       );
     },
