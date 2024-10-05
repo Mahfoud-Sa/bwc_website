@@ -12,21 +12,16 @@ import {
 } from "@tanstack/react-table";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../ui/sheet";
 import image4 from "../../assets/img/1724086550980.jpg";
 import {
   AddOPublishesColumns,
+  AddENPublishesColumns,
   type AddPublishesOrder,
 } from "../column/publishes-column";
 
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
+import { useTranslation } from "react-i18next";
 // import { ReferenceResp } from "src/types/validation";
 
 export interface OrgProp {
@@ -75,8 +70,11 @@ const reference: OrgProp[] = [
   { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
 ];
 export default function PublishesTable() {
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const defaultData = useMemo<AddPublishesOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddOPublishesColumns, []);
+  const columnsMemos = useMemo(() => AddENPublishesColumns, []);
   const [data, setData] = useState<OrgProp[]>([]);
   const fetchIssueById = async () => {
     try {
@@ -103,7 +101,7 @@ export default function PublishesTable() {
     // @ts-ignore
     data: data.length ? data[0] : defaultData,
     // @ts-ignore
-    columns: columnsMemo,
+    columns: dir === "ltr" ? columnsMemos : columnsMemo,
     state: {
       rowSelection,
       columnFilters,
@@ -120,87 +118,134 @@ export default function PublishesTable() {
     getPaginationRowModel: getPaginationRowModel(),
   });
   return (
-    <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
-      <div className="col-span-4 mt-5 h-auto">
-        <div className="">
-          <div className="grid grid-cols-4 gap-2 text-right">
-            {/* Start : input Text */}
-            <div className=" col-span-1 h-auto">
-              <Label text="اسم المؤسسه" />
-              <Input
-                placeholder="اسم المؤسسه"
-                value={
-                  (table.getColumn("name")?.getFilterValue() as string) ?? ""
-                }
-                onChange={(event) =>
-                  table.getColumn("name")?.setFilterValue(event.target.value)
-                }
-              />
+    <>
+      {dir === "ltr" ? (
+        <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
+          <div className="col-span-4 mt-5 h-auto">
+            <div className="">
+              <div className="grid grid-cols-4 gap-2 text-right">
+                {/* Start : input Text */}
+                <div className="text-start col-span-1 h-auto">
+                  <Label text="publication title" />
+                  <Input
+                    placeholder="search by publication title"
+                    value={
+                      (table.getColumn("name")?.getFilterValue() as string) ??
+                      ""
+                    }
+                    onChange={(event) =>
+                      table
+                        .getColumn("name")
+                        ?.setFilterValue(event.target.value)
+                    }
+                  />
+                </div>
+                {/* End : input Text */}
+              </div>
             </div>
-            {/* End : input Text */}
-          </div>
-        </div>
-        <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
-          <div className="col-span-1 ">
-            {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
-          </div>
-          <div className="col-span-3">
-            <div className="flex flex-row-reverse gap-4 ">
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                فلتر بالتاريخ{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                حالة المنشور{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                حالة النشر{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                فلتر بعدد{" "}
-              </Button>
-              <Button
-                className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                type="submit"
-                form="searchEmployee"
-              >
-                {" "}
-                بحث سريع{" "}
-              </Button>
-              <Link to={`/admin-dashboard/add-publications/${1}`}>
-                <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                  <Plus className="ml-2" />
-                  اضافة منشور
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
+              <div className="col-span-1 ">
+                {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
+              </div>
+              <div className="col-span-3">
+                <div className="flex flex-row-reverse gap-4 ">
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    Published Date Filter{" "}
+                  </Button>
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    Publication Status{" "}
+                  </Button>
 
-      <div className="col-span-4 rounded-md">
-        {/* @ts-ignore */}
-        <OrderDataTable columns={columnsMemo} table={table} />
-      </div>
-    </div>
+                  <Link to={`/admin-dashboard/add-publications/${1}`}>
+                    <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Plus className="mr-2" />
+                      Add Publication
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-4 rounded-md">
+            {/* @ts-ignore */}
+            <OrderDataTable columns={columnsMemo} table={table} />
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-screen-3xl mx-auto grid grid-cols-4 gap-2 px-12">
+          <div className="col-span-4 mt-5 h-auto">
+            <div className="">
+              <div className="grid grid-cols-4 gap-2 text-right">
+                {/* Start : input Text */}
+                <div className=" col-span-1 h-auto">
+                  <Label text="عنوان المنشور" />
+                  <Input
+                    placeholder="بحث بعنوان المنشور"
+                    value={
+                      (table.getColumn("name")?.getFilterValue() as string) ??
+                      ""
+                    }
+                    onChange={(event) =>
+                      table
+                        .getColumn("name")
+                        ?.setFilterValue(event.target.value)
+                    }
+                  />
+                </div>
+                {/* End : input Text */}
+              </div>
+            </div>
+            <div className=" grid grid-cols-4 w-full  items-start gap-4 ">
+              <div className="col-span-1 ">
+                {/* <p className="">اجمالي نتائج البحث : {orders?.length ?? 0}</p> */}
+              </div>
+              <div className="col-span-3">
+                <div className="flex flex-row-reverse gap-4 ">
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    فلتر بالتاريخ المنشور{" "}
+                  </Button>
+                  <Button
+                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
+                    type="submit"
+                    form="searchEmployee"
+                  >
+                    {" "}
+                    حالة المنشور{" "}
+                  </Button>
+
+                  <Link to={`/admin-dashboard/add-publications/${1}`}>
+                    <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                      <Plus className="ml-2" />
+                      اضافة منشور
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-4 rounded-md">
+            {/* @ts-ignore */}
+            <OrderDataTable columns={columnsMemo} table={table} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

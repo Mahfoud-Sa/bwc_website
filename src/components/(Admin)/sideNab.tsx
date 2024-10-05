@@ -27,7 +27,7 @@ export default function SideNab() {
       {dir === "ltr" ? (
         <>
           <ul
-            className={`w-full mb-5 px-3 duration-500 ease-in-out ${"min-h-[30%]"} `}
+            className={`w-full  px-3 duration-500 ease-in-out ${"min-h-[27%]"} `}
           >
             <div className="float-end w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-end text-[#9E9E9E]">Publications</p>
@@ -250,7 +250,7 @@ export default function SideNab() {
       ) : (
         <>
           <ul
-            className={`w-full mb-5 px-3 duration-500 ease-in-out ${"min-h-[30%]"} `}
+            className={`w-full  px-3 duration-500 ease-in-out ${"min-h-[27%]"} `}
           >
             <div className="float-start w-[90%] h-[1px] bg-[#E5E5E5] mb-3"></div>
             <p className="text-[12px] text-right text-[#9E9E9E]">المنشورات</p>
