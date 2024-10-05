@@ -6,10 +6,6 @@ import { ReactComponent as TranslateIcon } from "../../assets/icons/translate-ic
 import CalendarIcon from "../../assets/icons/calendar-icon";
 import ClockCircle from "../../assets/icons/clock-circle";
 import Author from "../../components/(user)/author";
-import { ArrowBigRight, ArrowRight, MoveLeft, MoveRight } from "lucide-react";
-import { FaRightLeft } from "react-icons/fa6";
-import { Separator } from "@radix-ui/react-dropdown-menu";
-import AuthorCard from "../../components/(user)/author-card";
 import NewsList from "../../components/(user)/news-list";
 import MorePublish from "src/components/(user)/more-publish";
 export default function PublishDetails() {

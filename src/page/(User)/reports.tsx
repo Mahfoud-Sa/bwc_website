@@ -4,7 +4,7 @@ import Footer from "src/components/footer";
 import Navbar from "src/components/navbar";
 import sliderImagePlaceholder from "../../assets/img/news_1.jpg";
 import sliderImagePlaceholder1 from "../../assets/img/news_2.jpg";
-import { CalendarIcon, CalendarMinus2Icon } from "lucide-react";
+import { CalendarMinus2Icon } from "lucide-react";
 import { Input } from "src/ui/input";
 import {
   Select,
@@ -13,14 +13,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "src/ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "src/ui/popover";
-
-import Button from "src/components/button";
-import { format } from "date-fns";
-import { cn } from "src/lib/utils";
 import { Link } from "react-router-dom";
 
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 interface publish {
   imgs: string;
@@ -51,13 +46,13 @@ const publishes: publish[] = [
   },
 ];
 const Reports = () => {
-  const [date, setDate] = React.useState<Date>();
+  // const [date, setDate] = React.useState<Date>();
 
-  const { control } = useForm({
-    defaultValues: {
-      dateField: new Date("2024-01-01"), // set a static date value here
-    },
-  });
+  // const { control } = useForm({
+  //   defaultValues: {
+  //     dateField: new Date("2024-01-01"), // set a static date value here
+  //   },
+  // });
   return (
     <>
       <div className="w-full lg:h-[8vh] md:h-[8vh]  sm:h-[11vh]">

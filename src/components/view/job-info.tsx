@@ -23,7 +23,7 @@ export type JobResp = {
 };
 export default function JobInfo() {
   const { id } = useParams<{ id: string }>();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
   const fetchData = async () => {
     const response = await axiosInstance.get<JobResp>(`/api/Jobs/${id}`, {});

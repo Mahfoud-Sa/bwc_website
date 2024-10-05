@@ -8,8 +8,6 @@ import {
 } from "./select";
 import { Pagination, PaginationContent, PaginationItem } from "./pagination";
 import { Button } from "./button";
-import { cn } from "../lib/utils";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 interface DataTablePaginationProps<TData> {
@@ -19,7 +17,7 @@ interface DataTablePaginationProps<TData> {
 export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
   function getPaginationArr() {
     const currentPage = table.getState().pagination.pageIndex;

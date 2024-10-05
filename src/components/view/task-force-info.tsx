@@ -54,16 +54,20 @@ export default function TaskForceInfo() {
       {dir === "ltr" ? (
         <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2]">
           <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
-          <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[40vh]">
+          <div className=" grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[40vh] ">
             {/* <label className="text-md mb-2 block font-bold text-gray-950">
             الموظف
           </label> */}
 
-            <div className=" col-span-1 h-auto translate-y-10">
-              <label htmlFor="" className="float-start">
+            <div className=" col-span-1  translate-y-10 h-[30vh] ">
+              <label htmlFor="" className="float-start ">
                 Employee Photo
               </label>
-              <img src={TaskForceData?.img} alt="" />
+              <img
+                src={TaskForceData?.img}
+                alt=""
+                className="h-full clear-both object-contain"
+              />
             </div>
           </div>
 
@@ -107,9 +111,15 @@ export default function TaskForceInfo() {
           الموظف
         </label> */}
 
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="صورة الموظف" />
-              <img src={TaskForceData?.img} alt="" />
+            <div className=" col-span-1 h-[30vh] translate-y-10 ">
+              <label htmlFor="" className="float-start ">
+                صورة الموظف
+              </label>
+              <img
+                src={TaskForceData?.img}
+                alt=""
+                className="h-full clear-both"
+              />
             </div>
           </div>
           <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">

@@ -1,41 +1,11 @@
 import { type ColumnDef } from "@tanstack/react-table";
 import { Eye, MoreHorizontal } from "lucide-react";
 import { Button } from "../../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../../ui/dropdown-menu";
-import { SquarePen, Trash2 } from "lucide-react";
-import { Checkbox } from "../../ui/checkbox";
-
-import { type z } from "zod";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../ui/sheet";
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
 
-// export type AddWriterOrder = {
-//   isSelected: boolean;
-//   id: number;
-//   ar_fullName: string;
-//   en_fullName: string;
-//   image: string;
-//   ar_description: string;
-//   en_description: string;
-//   ar_role: string;
-//   en_role: string;
-// };
 export type AddWriterOrder = {
   isSelected: boolean;
   id: number;

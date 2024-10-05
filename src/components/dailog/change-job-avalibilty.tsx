@@ -1,17 +1,7 @@
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../../ui/form";
-import { axiosInstance, deleteApi, patchApi } from "../../lib/http";
-import { useToast } from "../../ui/use-toast";
-// import { useAuthHeader } from "react-auth-kit";
+import { Form, FormControl, FormField, FormItem } from "../../ui/form";
+import { axiosInstance, patchApi } from "../../lib/http";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Trash } from "lucide-react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -61,10 +51,6 @@ export type JobResp = {
 };
 type UpdateAvailable = z.infer<typeof formSchema>;
 export default function ChangeAvailabilityDialog({ id }: DeleteDialogProps) {
-  const availabilityOptions = [
-    { label: "متاحة", value: "true" },
-    { label: "غير متاحة", value: "false" },
-  ];
   const [states, _setStates] = useState([
     { label: "متاحة", enLable: "available", value: true },
     { label: "غير متاحة", enLable: "unavailable", value: false },

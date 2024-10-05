@@ -11,15 +11,12 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import NotFoundSearch from "src/assets/icons/not-found-search";
 import { getApi } from "src/lib/http";
 import { Button } from "src/ui/button";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -42,10 +39,10 @@ type joinUsRespon = {
   endDate: Date;
 };
 export default function Jobs() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAvailable, setIsAvailable] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(true);
   const [isAscending, setIsAscending] = useState(true);
 
   const handleSearchChange = (e: any) => {
@@ -61,11 +58,7 @@ export default function Jobs() {
   const handleSortChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsAscending(e.target.value === "newest");
   };
-  const {
-    isPending,
-    error,
-    data: joinUs,
-  } = useQuery({
+  const { data: joinUs } = useQuery({
     queryKey: ["JoinUs", searchQuery, isAvailable, isAscending],
     queryFn: () =>
       getApi<joinUsRespon[]>(

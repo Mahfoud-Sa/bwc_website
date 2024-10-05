@@ -6,10 +6,9 @@ import Footer from "src/components/footer";
 import Navbar from "src/components/navbar";
 
 export default function JoinUs() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
-
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, _setIsVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
   const handleClose = () => {
     setIsFading(true);
