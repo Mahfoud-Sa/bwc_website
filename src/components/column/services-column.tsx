@@ -1,10 +1,6 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Button } from "../../ui/button";
-
-import { SquarePen, Trash2 } from "lucide-react";
-import { Checkbox } from "../../ui/checkbox";
-
 import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";

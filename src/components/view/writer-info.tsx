@@ -1,19 +1,14 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { CgInstagram } from "react-icons/cg";
 import { Link, useParams } from "react-router-dom";
 import { axiosInstance } from "src/lib/http";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { addWriterSchema, WriterResp } from "src/types/validation";
+import { WriterResp } from "src/types/validation";
 import Label from "src/ui/label";
-import { z } from "zod";
 import { IconType } from "react-icons";
-import { Button } from "src/ui/button";
-type ReferenceFormValue = z.infer<typeof addWriterSchema>;
 
 const socialIcons: { [key: string]: IconType } = {
   Instagram: CgInstagram,
@@ -26,7 +21,7 @@ export default function WriterInfo() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const { id } = useParams<{ id: string }>();
-  const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
+
   const fetchData = async () => {
     const response = await axiosInstance.get<WriterResp>(
       `/api/Writers/${id}`,
@@ -34,20 +29,12 @@ export default function WriterInfo() {
     );
     return response.data;
   };
-  const {
-    data: WriterData,
-    error: WriterError,
-    isLoading: WriterIsLoading,
-  } = useQuery({
+  const { data: WriterData } = useQuery({
     queryKey: ["Writer", id],
     queryFn: fetchData,
     enabled: !!id,
   });
 
-  const form = useForm<z.infer<typeof addWriterSchema>>({
-    resolver: zodResolver(addWriterSchema),
-  });
-  console.log("WriterData", WriterData);
   useEffect(() => {}, [WriterData]);
   return (
     <>

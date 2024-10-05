@@ -1,5 +1,5 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Button } from "../../ui/button";
 import LinkIcon from "../../assets/icons/LinkIcon";
 import DeleteDialog from "../dailog/delete-dialog";

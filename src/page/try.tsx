@@ -1,10 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
 function Try() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isSticky, setIsSticky] = useState(false);
+  const [_isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {

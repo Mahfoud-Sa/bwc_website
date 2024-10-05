@@ -8,9 +8,9 @@ import { TaskForceRespTable } from "src/types/validation";
 import { getApi } from "src/lib/http";
 
 export default function TaskForceIndex() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
-  const { isLoading, error, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ["Taskforce"],
     queryFn: () => getApi<TaskForceRespTable[]>("/api/Taskforce"),
   });

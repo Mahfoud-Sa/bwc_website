@@ -24,10 +24,9 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
 } from "../../../ui/alert-dialog";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { postApi } from "src/lib/http";
-import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import Label from "src/ui/label";
 import { useTranslation } from "react-i18next";
 import EnBreadcrumb from "src/ui/en-breadcrumb";
@@ -48,11 +47,9 @@ const formSchema = z.object({
 });
 type ProfileFormValue = z.infer<typeof formSchema>;
 export default function Profile() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
-  const queryClient = useQueryClient();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });

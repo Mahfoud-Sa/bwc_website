@@ -24,7 +24,6 @@ import SecondOurPartners from "./components/secoundPartner";
 import Services from "./components/(user)/Services";
 import ServicesArb from "./components/(user)/ServicesArb";
 import { ServicesHomeProp, ServicesHomeResp } from "./types/validation";
-import { axiosInstance } from "./lib/http";
 import { useQuery } from "@tanstack/react-query";
 
 function App() {
@@ -33,12 +32,8 @@ function App() {
   const [topPosition, setTopPosition] = useState<number>(0);
   const [bottomPosition, setBottomPosition] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState(window.scrollY);
-  // const [data, setData] = useState<ServicesHomeProp[]>([]); // To store the services data
-  const {
-    data: services, // Renamed to `services` for clarity
-    isLoading,
-    error,
-  } = useQuery<ServicesHomeProp[]>({
+
+  const { data: services } = useQuery<ServicesHomeProp[]>({
     queryFn: () =>
       fetch(
         "https://bwc-api-testing.runasp.net/api/website/Home/Services"

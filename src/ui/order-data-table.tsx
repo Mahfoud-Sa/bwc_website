@@ -1,13 +1,8 @@
 import {
   type ColumnDef,
   flexRender,
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  type RowSelectionState,
   type Table as TableType,
 } from "@tanstack/react-table";
-import { useMemo, type Dispatch, type SetStateAction } from "react";
 import { DataTablePagination } from "./data-table-pagination";
 
 import {
@@ -30,7 +25,7 @@ export function OrderDataTable<TData, TValue>({
   columns,
   table,
 }: DataTableProps<TData, TValue>) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const dir = i18n.dir();
   return (
     <>
