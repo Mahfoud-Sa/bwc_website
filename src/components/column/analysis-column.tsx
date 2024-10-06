@@ -7,7 +7,7 @@ import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
 import ChangePublishesDialog from "../dailog/change-publish";
 
-export type AddNewOrder = {
+export type AddAnalysisOrder = {
   isSelected: boolean;
   id: number;
   name: string;
@@ -15,7 +15,7 @@ export type AddNewOrder = {
   link: string;
 };
 
-export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
+export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
   {
     id: "img",
     accessorKey: "img",
@@ -34,11 +34,11 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
   },
   {
     accessorKey: "name",
-    header: "عنوان الخبر",
+    header: "عنوان التحليل",
   },
   {
     accessorKey: "link",
-    header: "تارخ الخبر",
+    header: "تارخ التحليل",
   },
 
   {
@@ -88,7 +88,7 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
   },
 ];
 
-export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
+export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
   {
     id: "img",
     accessorKey: "img",
@@ -107,11 +107,11 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
   },
   {
     accessorKey: "name",
-    header: "news title",
+    header: "analysis title",
   },
   {
     accessorKey: "link",
-    header: "Date of news",
+    header: "Date of analysis",
   },
   {
     accessorKey: "link",
@@ -145,7 +145,7 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
               </Button>
             </Tooltip>
           </Link>
-          <Tooltip text="Change news status">
+          <Tooltip text="Change analysis status">
             <ChangePublishesDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="delete">

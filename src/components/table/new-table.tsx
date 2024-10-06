@@ -132,10 +132,10 @@ export default function NewsTable() {
             <div className="">
               <div className="grid grid-cols-4 gap-2 text-right">
                 {/* Start : input Text */}
-                <div className=" col-span-1 h-auto">
-                  <Label text="اسم المؤسسه" />
+                <div className="text-start col-span-1 h-auto">
+                  <Label text="news title" />
                   <Input
-                    placeholder="اسم المؤسسه"
+                    placeholder="search by news title"
                     value={
                       (table.getColumn("name")?.getFilterValue() as string) ??
                       ""
@@ -197,9 +197,9 @@ export default function NewsTable() {
               <div className="grid grid-cols-4 gap-2 text-right">
                 {/* Start : input Text */}
                 <div className=" col-span-1 h-auto">
-                  <Label text="اسم المؤسسه" />
+                  <Label text="عنوان الخبر" />
                   <Input
-                    placeholder="اسم المؤسسه"
+                    placeholder="بحث بعنوان الخبر"
                     value={
                       (table.getColumn("name")?.getFilterValue() as string) ??
                       ""
@@ -241,7 +241,7 @@ export default function NewsTable() {
                   <Link to={`/admin-dashboard/add-publications/${2}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />
-                      اضافة منشور
+                      اضافة الاخبار
                     </Button>
                   </Link>
                 </div>
