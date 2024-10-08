@@ -231,7 +231,7 @@ function App() {
                     >
                       <img src={enterpnure} alt="" className="w-full h-full" />
                     </div>
-                    <h1 className="text-black">1+</h1>
+
                     <p className="text-black">{t("entrepreneurship")}</p>
                   </Link>
                   <Link to={"InProucation"} className="translate-y-4">
@@ -248,7 +248,7 @@ function App() {
                         className="w-full h-full"
                       />
                     </div>
-                    <h1 className="text-black">1+</h1>
+
                     <p className="text-black">{t("project_management")}</p>
                   </Link>
                 </div>
@@ -260,7 +260,7 @@ function App() {
                     <div className="h-[60px] w-[58px] -translate-y-4">
                       <img src={anlyisit} alt="" className="w-full h-full" />
                     </div>
-                    <h1 className="text-black">1+</h1>
+
                     <p className="text-black">{t("studies")}</p>
                   </div>
                 </Link>
@@ -282,7 +282,7 @@ function App() {
                         className="w-full h-full"
                       />
                     </div>
-                    <h1 className="text-black">+1</h1>
+
                     <p className="text-black">{t("Education_and_Training")}</p>
                   </div>
 
@@ -296,7 +296,7 @@ function App() {
                     >
                       <img src={tech} alt="" className="w-full h-full" />
                     </div>
-                    <h1 className="text-black">1+</h1>
+
                     <p className="text-black">{t("software_development")}</p>
                   </div>
                 </Link>
@@ -376,7 +376,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">+1</h1>
+  
                       <p className="text-black">
                         {t("Education_and_Training")}
                       </p>
@@ -390,7 +390,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("studies")}</p>
                     </Link>
 
@@ -408,7 +408,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("entrepreneurship")}</p>
                     </Link>
 
@@ -426,7 +426,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("project_management")}</p>
                     </Link>
 
@@ -440,7 +440,7 @@ function App() {
                       >
                         <img src={tech} alt="" className="w-full h-full" />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("software_development")}</p>
                     </Link>
                   </div>
@@ -502,7 +502,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">+1</h1>
+  
                       <p className="text-black">
                         {t("Education_and_Training")}
                       </p>
@@ -516,7 +516,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("studies")}</p>
                     </Link>
 
@@ -528,7 +528,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("entrepreneurship")}</p>
                     </Link>
 
@@ -540,7 +540,7 @@ function App() {
                           className="w-full h-full"
                         />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("project_management")}</p>
                     </Link>
 
@@ -548,7 +548,7 @@ function App() {
                       <div className="h-[60px] w-[58px] -translate-y-4 -translate-x-6">
                         <img src={tech} alt="" className="w-full h-full" />
                       </div>
-                      <h1 className="text-black">1+</h1>
+
                       <p className="text-black">{t("software_development")}</p>
                     </Link>
                   </div>

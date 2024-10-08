@@ -22,7 +22,7 @@ export default function AllDepertments() {
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="software development"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -33,7 +33,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      Education and Training
+                      software development
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -42,19 +42,13 @@ export default function AllDepertments() {
                     privacy Users of MBC while browsing or using our sites
                     Electronic and our services.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    learn more
-                  </a>
                 </div>
 
                 {/* Second Section */}
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="project management"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -65,7 +59,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      Education and Training
+                      project management
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -74,12 +68,6 @@ export default function AllDepertments() {
                     privacy Users of MBC while browsing or using our sites
                     Electronic and our services.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    learn more
-                  </a>
                 </div>
 
                 {/*  */}
@@ -87,7 +75,7 @@ export default function AllDepertments() {
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="entrepreneurship"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -98,7 +86,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      Education and Training
+                      Entrepreneurship
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -107,12 +95,6 @@ export default function AllDepertments() {
                     privacy Users of MBC while browsing or using our sites
                     Electronic and our services.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    learn more
-                  </a>
                 </div>
 
                 {/*  */}
@@ -120,7 +102,7 @@ export default function AllDepertments() {
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="Studies"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -131,7 +113,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      Education and Training
+                      Studies
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -140,12 +122,6 @@ export default function AllDepertments() {
                     privacy Users of MBC while browsing or using our sites
                     Electronic and our services.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    learn more
-                  </a>
                 </div>
 
                 {/*  */}
@@ -172,45 +148,6 @@ export default function AllDepertments() {
                     privacy Users of MBC while browsing or using our sites
                     Electronic and our services.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    learn more
-                  </a>
-                </div>
-
-                {/*  */}
-
-                <div className="h-60 w-full ">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full "
-                  />
-                </div>
-                <div
-                  dir="ltr"
-                  className="flex flex-col justify-center min-h-[20vh] py-3 shadow-md px-4"
-                >
-                  <div className="flex ">
-                    <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
-                    <h2 className="text-2xl font-bold text-primary mb-4">
-                      Education and Training
-                    </h2>
-                  </div>
-                  <p className="text-gray-600 mb-4">
-                    MBC focuses on the importance of personal data privacy and
-                    protection in Digital age, doing its best to protect data
-                    privacy Users of MBC while browsing or using our sites
-                    Electronic and our services.
-                  </p>
-                  <a
-                    href="#"
-                    className="text-primary text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    learn more
-                  </a>
                 </div>
 
                 {/* Add additional sections as needed, following the same structure */}
@@ -223,7 +160,7 @@ export default function AllDepertments() {
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="التطوير البرمجي"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -231,7 +168,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      تعليم و تدريب
+                      التطوير البرمجي
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -240,19 +177,13 @@ export default function AllDepertments() {
                     ام بي سي أثناء التصفح أو استخدام مواقعنا الإلكترونية
                     وخدماتنا.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary  text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    اعرف المزيد
-                  </a>
                 </div>
 
                 {/* Second Section */}
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="إدارة مشاريع"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -260,7 +191,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      تعليم و تدريب
+                      إدارة مشاريع
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -269,12 +200,6 @@ export default function AllDepertments() {
                     ام بي سي أثناء التصفح أو استخدام مواقعنا الإلكترونية
                     وخدماتنا.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary  text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    اعرف المزيد
-                  </a>
                 </div>
 
                 {/*  */}
@@ -282,7 +207,7 @@ export default function AllDepertments() {
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="ريادة إعمال"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -290,7 +215,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      تعليم و تدريب
+                      ريادة إعمال
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -299,12 +224,6 @@ export default function AllDepertments() {
                     ام بي سي أثناء التصفح أو استخدام مواقعنا الإلكترونية
                     وخدماتنا.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary  text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    اعرف المزيد
-                  </a>
                 </div>
 
                 {/*  */}
@@ -312,7 +231,7 @@ export default function AllDepertments() {
                 <div className="h-60 w-full ">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="دراسات"
                     className="object-cover h-full w-full "
                   />
                 </div>
@@ -320,7 +239,7 @@ export default function AllDepertments() {
                   <div className="flex ">
                     <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                     <h2 className="text-2xl font-bold text-primary mb-4">
-                      تعليم و تدريب
+                      دراسات
                     </h2>
                   </div>
                   <p className="text-gray-600 mb-4">
@@ -329,12 +248,6 @@ export default function AllDepertments() {
                     ام بي سي أثناء التصفح أو استخدام مواقعنا الإلكترونية
                     وخدماتنا.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary  text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    اعرف المزيد
-                  </a>
                 </div>
 
                 {/*  */}
@@ -358,45 +271,9 @@ export default function AllDepertments() {
                     ام بي سي أثناء التصفح أو استخدام مواقعنا الإلكترونية
                     وخدماتنا.
                   </p>
-                  <a
-                    href="#"
-                    className="text-primary  text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    اعرف المزيد
-                  </a>
                 </div>
 
                 {/*  */}
-
-                <div className="h-60 w-full ">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full "
-                  />
-                </div>
-                <div className="flex flex-col justify-center min-h-[20vh] py-3 shadow-md px-4">
-                  <div className="flex ">
-                    <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                    <h2 className="text-2xl font-bold text-primary mb-4">
-                      تعليم و تدريب
-                    </h2>
-                  </div>
-                  <p className="text-gray-600 mb-4">
-                    تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                    العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات مستخدمي
-                    ام بي سي أثناء التصفح أو استخدام مواقعنا الإلكترونية
-                    وخدماتنا.
-                  </p>
-                  <a
-                    href="#"
-                    className="text-primary  text-end underline hover:no-underline mt-3 font-semibold"
-                  >
-                    اعرف المزيد
-                  </a>
-                </div>
-
-                {/* Add additional sections as needed, following the same structure */}
               </div>
             </div>
           )}
@@ -416,7 +293,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        software development
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -425,19 +302,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="software development"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -455,7 +326,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        project management
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -464,19 +335,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="project management"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -493,7 +358,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        Entrepreneurship
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -502,19 +367,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="entrepreneurship"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -531,7 +390,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        Studies
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -540,19 +399,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="studies"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -578,12 +431,6 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
@@ -608,7 +455,7 @@ export default function AllDepertments() {
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="التطوير البرمجي"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -619,7 +466,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
+                        التطوير البرمجي
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -628,12 +475,99 @@ export default function AllDepertments() {
                       مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
                       الإلكترونية وخدماتنا.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
+                  </div>
+                </div>
+
+                {/* Add additional sections as needed */}
+              </div>
+
+              <div className="flex relative mb-6">
+                {/* First Section (Image) */}
+                <div className="h-96 w-[50%] relative -z-20">
+                  <img
+                    src={allDepertments} // Replace with your image path
+                    alt="إدارة مشاريع"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+
+                {/* Second Section (Text Content) */}
+                <div className="w-[50%] relative z-10 ">
+                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
+                    <div className="flex ">
+                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                      <h2 className="text-2xl font-bold text-primary mb-4">
+                        إدارة مشاريع
+                      </h2>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
+                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
+                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
+                      الإلكترونية وخدماتنا.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Add additional sections as needed */}
+              </div>
+
+              <div className="flex relative mb-6">
+                {/* First Section (Image) */}
+                <div className="h-96 w-[50%] relative -z-20">
+                  <img
+                    src={allDepertments} // Replace with your image path
+                    alt="ريادة إعمال"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+
+                {/* Second Section (Text Content) */}
+                <div className="w-[50%] relative z-10 ">
+                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
+                    <div className="flex ">
+                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                      <h2 className="text-2xl font-bold text-primary mb-4">
+                        ريادة إعمال
+                      </h2>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
+                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
+                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
+                      الإلكترونية وخدماتنا.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Add additional sections as needed */}
+              </div>
+
+              <div className="flex relative mb-6">
+                {/* First Section (Image) */}
+                <div className="h-96 w-[50%] relative -z-20">
+                  <img
+                    src={allDepertments} // Replace with your image path
+                    alt="دراسات"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+
+                {/* Second Section (Text Content) */}
+                <div className="w-[50%] relative z-10 ">
+                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
+                    <div className="flex ">
+                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                      <h2 className="text-2xl font-bold text-primary mb-4">
+                        دراسات
+                      </h2>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
+                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
+                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
+                      الإلكترونية وخدماتنا.
+                    </p>
                   </div>
                 </div>
 
@@ -665,123 +599,6 @@ export default function AllDepertments() {
                       مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
                       الإلكترونية وخدماتنا.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
-                  </div>
-                </div>
-
-                {/* Add additional sections as needed */}
-              </div>
-
-              <div className="flex relative mb-6">
-                {/* First Section (Image) */}
-                <div className="h-96 w-[50%] relative -z-20">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full"
-                  />
-                </div>
-
-                {/* Second Section (Text Content) */}
-                <div className="w-[50%] relative z-10 ">
-                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
-                    <div className="flex ">
-                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                      <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
-                      </h2>
-                    </div>
-                    <p className="text-gray-600 mb-4">
-                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
-                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
-                      الإلكترونية وخدماتنا.
-                    </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
-                  </div>
-                </div>
-
-                {/* Add additional sections as needed */}
-              </div>
-
-              <div className="flex relative mb-6">
-                {/* First Section (Image) */}
-                <div className="h-96 w-[50%] relative -z-20">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full"
-                  />
-                </div>
-
-                {/* Second Section (Text Content) */}
-                <div className="w-[50%] relative z-10 ">
-                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
-                    <div className="flex ">
-                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                      <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
-                      </h2>
-                    </div>
-                    <p className="text-gray-600 mb-4">
-                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
-                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
-                      الإلكترونية وخدماتنا.
-                    </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
-                  </div>
-                </div>
-
-                {/* Add additional sections as needed */}
-              </div>
-
-              <div className="flex relative mb-6">
-                {/* First Section (Image) */}
-                <div className="h-96 w-[50%] relative -z-20">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full"
-                  />
-                </div>
-
-                {/* Second Section (Text Content) */}
-                <div className="w-[50%] relative z-10 ">
-                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
-                    <div className="flex ">
-                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                      <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
-                      </h2>
-                    </div>
-                    <p className="text-gray-600 mb-4">
-                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
-                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
-                      الإلكترونية وخدماتنا.
-                    </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
                   </div>
                 </div>
 
@@ -805,7 +622,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        software development
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -814,19 +631,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="software development"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -844,7 +655,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        project management
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -853,19 +664,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="project management"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -882,7 +687,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        Entrepreneurship
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -891,19 +696,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="entrepreneurship"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -920,7 +719,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] mr-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        Education and Training
+                        Studies
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -929,19 +728,13 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="studies"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -967,12 +760,6 @@ export default function AllDepertments() {
                       privacy Users of MBC while browsing or using our sites
                       Electronic and our services.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      learn more
-                    </a>
                   </div>
                 </div>
 
@@ -997,7 +784,7 @@ export default function AllDepertments() {
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
                     src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
+                    alt="التطوير البرمجي"
                     className="object-cover h-full w-full"
                   />
                 </div>
@@ -1008,7 +795,7 @@ export default function AllDepertments() {
                     <div className="flex ">
                       <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
                       <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
+                        التطوير البرمجي
                       </h2>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -1017,12 +804,99 @@ export default function AllDepertments() {
                       مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
                       الإلكترونية وخدماتنا.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
+                  </div>
+                </div>
+
+                {/* Add additional sections as needed */}
+              </div>
+
+              <div className="flex relative mb-6">
+                {/* First Section (Image) */}
+                <div className="h-96 w-[50%] relative -z-20">
+                  <img
+                    src={allDepertments} // Replace with your image path
+                    alt="إدارة مشاريع"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+
+                {/* Second Section (Text Content) */}
+                <div className="w-[50%] relative z-10 ">
+                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
+                    <div className="flex ">
+                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                      <h2 className="text-2xl font-bold text-primary mb-4">
+                        إدارة مشاريع
+                      </h2>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
+                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
+                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
+                      الإلكترونية وخدماتنا.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Add additional sections as needed */}
+              </div>
+
+              <div className="flex relative mb-6">
+                {/* First Section (Image) */}
+                <div className="h-96 w-[50%] relative -z-20">
+                  <img
+                    src={allDepertments} // Replace with your image path
+                    alt="ريادة إعمال"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+
+                {/* Second Section (Text Content) */}
+                <div className="w-[50%] relative z-10 ">
+                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
+                    <div className="flex ">
+                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                      <h2 className="text-2xl font-bold text-primary mb-4">
+                        ريادة إعمال
+                      </h2>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
+                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
+                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
+                      الإلكترونية وخدماتنا.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Add additional sections as needed */}
+              </div>
+
+              <div className="flex relative mb-6">
+                {/* First Section (Image) */}
+                <div className="h-96 w-[50%] relative -z-20">
+                  <img
+                    src={allDepertments} // Replace with your image path
+                    alt="دراسات"
+                    className="object-cover h-full w-full"
+                  />
+                </div>
+
+                {/* Second Section (Text Content) */}
+                <div className="w-[50%] relative z-10 ">
+                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
+                    <div className="flex ">
+                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
+                      <h2 className="text-2xl font-bold text-primary mb-4">
+                        دراسات
+                      </h2>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
+                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
+                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
+                      الإلكترونية وخدماتنا.
+                    </p>
                   </div>
                 </div>
 
@@ -1054,123 +928,6 @@ export default function AllDepertments() {
                       مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
                       الإلكترونية وخدماتنا.
                     </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
-                  </div>
-                </div>
-
-                {/* Add additional sections as needed */}
-              </div>
-
-              <div className="flex relative mb-6">
-                {/* First Section (Image) */}
-                <div className="h-96 w-[50%] relative -z-20">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full"
-                  />
-                </div>
-
-                {/* Second Section (Text Content) */}
-                <div className="w-[50%] relative z-10 ">
-                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
-                    <div className="flex ">
-                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                      <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
-                      </h2>
-                    </div>
-                    <p className="text-gray-600 mb-4">
-                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
-                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
-                      الإلكترونية وخدماتنا.
-                    </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
-                  </div>
-                </div>
-
-                {/* Add additional sections as needed */}
-              </div>
-
-              <div className="flex relative mb-6">
-                {/* First Section (Image) */}
-                <div className="h-96 w-[50%] relative -z-20">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full"
-                  />
-                </div>
-
-                {/* Second Section (Text Content) */}
-                <div className="w-[50%] relative z-10 ">
-                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
-                    <div className="flex ">
-                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                      <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
-                      </h2>
-                    </div>
-                    <p className="text-gray-600 mb-4">
-                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
-                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
-                      الإلكترونية وخدماتنا.
-                    </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
-                  </div>
-                </div>
-
-                {/* Add additional sections as needed */}
-              </div>
-
-              <div className="flex relative mb-6">
-                {/* First Section (Image) */}
-                <div className="h-96 w-[50%] relative -z-20">
-                  <img
-                    src={allDepertments} // Replace with your image path
-                    alt="تعليم و تدريب"
-                    className="object-cover h-full w-full"
-                  />
-                </div>
-
-                {/* Second Section (Text Content) */}
-                <div className="w-[50%] relative z-10 ">
-                  <div className="flex w-[100%] left-20 top-16 bg-white absolute mx-auto flex-col px-10 justify-center shadow-md h-60">
-                    <div className="flex ">
-                      <div className="w-3 h-10 rounded-md bg-[#CCA972] ml-2 bg-gradient-to-r from-[#A27942] "></div>
-                      <h2 className="text-2xl font-bold text-primary mb-4">
-                        تعليم و تدريب
-                      </h2>
-                    </div>
-                    <p className="text-gray-600 mb-4">
-                      تركز ام بي سي أهمية خصوصية البيانات الشخصية وحمايتها في
-                      العصر الرقمي، وتبذل قصارى جهدها لحماية خصوصية بيانات
-                      مستخدمي ام بي سي أثناء التصفح أو استخدام مواقعنا
-                      الإلكترونية وخدماتنا.
-                    </p>
-                    <a
-                      href="#"
-                      className=" underline hover:no-underline text-end text-primary font-semibold"
-                    >
-                      اعرف المزيد
-                    </a>
                   </div>
                 </div>
 

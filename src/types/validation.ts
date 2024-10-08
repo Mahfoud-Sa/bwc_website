@@ -1,12 +1,13 @@
 import { z } from "zod";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ACCEPTED_IMAGE_TYPES = [
+export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+export const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",
   "image/png",
   "image/webp",
 ];
+export const MAX_FILES = 10;
 
 export const addReferenceSchema = z.object({
   ar_title: z
@@ -263,6 +264,19 @@ export const UpdateWriterSchema = z.object({
   En_role: z.string({ message: "مطلوب " }).nonempty("English role is required"),
 });
 
+export const addPublishes = z.object({
+  ImageFile: z
+    .array(z.instanceof(File))
+    .min(1, "At least one image is required")
+    .refine(
+      (files) =>
+        files.every((file) => ACCEPTED_IMAGE_TYPES.includes(file.type)),
+      "Only accepted image types are allowed"
+    )
+    .optional(),
+  type: z.number(),
+  ar_title: z.string(),
+});
 export type ReferenceResp = {
   id: number;
   ar_title: string;
