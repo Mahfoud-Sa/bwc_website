@@ -35,7 +35,7 @@ import {
 } from "src/ui/select";
 import EngTiptap from "src/ui/EngTiptap";
 
-type ReferenceFormValue = z.infer<typeof addPublishes>;
+type PublishesFormValue = z.infer<typeof addPublishes>;
 
 const kindOfCase = [
   { label: "منشورات", value: 1 },
@@ -80,12 +80,29 @@ export default function AddPublications() {
   };
   const { mutate } = useMutation({
     mutationKey: ["AddReferences"],
-    mutationFn: (datas: ReferenceFormValue) =>
-      postApi("/api/References", {
-        // ar_title: datas.ar_title,
-        // en_title: datas.en_title,
-        // link: datas.link,
-      }),
+    mutationFn: (datas: PublishesFormValue) => {
+      const formData = new FormData();
+      formData.append("Ar_Title", datas.Ar_Title);
+      formData.append("En_Title", datas.En_Title);
+      formData.append("date_of_publish", datas.date_of_publish);
+      formData.append("Ar_description", datas.Ar_description);
+      formData.append("En_description", datas.En_description);
+      formData.append("An_note", datas.An_note);
+      formData.append("En_note", datas.En_note);
+
+      if (datas.ImageFile) {
+        formData.append("ImageFile", datas.ImageFile[0]);
+      }
+      for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append("images", selectedFiles[i]); // Change "images[]" to "images"
+      }
+
+      return postApi("/api/Publications", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    },
     onSuccess: () => {
       // toast({
       //   title: "اشعار",
@@ -103,7 +120,7 @@ export default function AddPublications() {
           secondary: "#FFFAEE",
         },
       });
-      navigate("/admin-dashboard/references");
+      navigate("/admin-dashboard/publications");
     },
     onError: (error) => {
       // toast({
@@ -136,7 +153,7 @@ export default function AddPublications() {
       setPreviewUrls(urls);
 
       // Update form state with File[]
-      form.setValue("ImageFile", fileArray);
+      form.setValue("images", fileArray);
     }
   };
 
@@ -155,10 +172,10 @@ export default function AddPublications() {
     setPreviewUrls(updatedUrls);
 
     // Update form state
-    form.setValue("ImageFile", updatedFiles);
+    form.setValue("images", updatedFiles);
   };
 
-  const onSubmit = (datas: ReferenceFormValue) => {
+  const onSubmit = (datas: PublishesFormValue) => {
     mutate(datas);
   };
 
@@ -172,7 +189,7 @@ export default function AddPublications() {
               className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9"
             >
               <div className="grid h-[100px]  grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
-                <div className="col-span-2 h-[50px] mt-7">
+                {/* <div className="col-span-2 h-[50px] mt-7">
                   <FormField
                     control={form.control}
                     name="type"
@@ -225,24 +242,31 @@ export default function AddPublications() {
                       </FormItem>
                     )}
                   />
-                </div>
+                </div> */}
               </div>
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                 <div className=" col-span-1 h-auto ">
                   <label htmlFor="">صورة المنشور</label>
-                  {/* <FormField
+                  <FormField
                     control={form.control}
                     name="ImageFile"
-                    render={() => (
+                    render={({ field }) => (
                       <FormItem>
                         <FormLabel>Upload Image</FormLabel>
                         <FormControl>
-                          <input type="file" accept="image/*" />
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                              handleFileChange(e); // Set the preview and form data
+                            }}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
@@ -250,7 +274,7 @@ export default function AddPublications() {
                   <label>إضافة صور مشنور اخرى</label>
                   <FormField
                     control={form.control}
-                    name="ImageFile"
+                    name="images"
                     render={() => (
                       <FormItem>
                         <FormLabel>Upload Images</FormLabel>
@@ -296,9 +320,9 @@ export default function AddPublications() {
                 )}
                 <div className=" col-span-1 h-auto ">
                   <Label text="عنوان المنشور" />
-                  {/* <FormField
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="Ar_Title"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-red-900">
@@ -313,13 +337,13 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
                 <div className=" col-span-1 h-auto ">
                   <Label text="Publish Title" />
-                  {/* <FormField
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="En_Title"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-red-900">
@@ -334,7 +358,7 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
@@ -388,9 +412,9 @@ export default function AddPublications() {
                 </div>
                 <div className=" col-span-1 h-auto ">
                   <Label text="تاريخ النشر" />
-                  {/* <FormField
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="date_of_publish"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-red-900">
@@ -406,7 +430,7 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
@@ -456,7 +480,7 @@ export default function AddPublications() {
                 </div>
                 <div className=" col-span-1 h-auto ">
                   <Label text="Report name" />
-                  <FormField
+                  {/* <FormField
                     control={form.control}
                     name="ar_title"
                     render={({ field }) => (
@@ -473,7 +497,7 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
@@ -481,7 +505,7 @@ export default function AddPublications() {
                   <label htmlFor="">وصف المنشور</label>
                   <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="Ar_description"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>sadasd</FormLabel>
@@ -501,13 +525,13 @@ export default function AddPublications() {
                   <label htmlFor="">Description </label>
                   <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="En_description"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>sadasd</FormLabel>
                         <FormControl>
                           <EngTiptap
-                            description={"Enter the name filed"}
+                            description={"Enter the Description "}
                             onChange={field.onChange}
                           />
                         </FormControl>
@@ -520,9 +544,9 @@ export default function AddPublications() {
               <div className="grid grid-cols-3 w-[100%]  items-start gap-4 text-right h-[20vh]  ">
                 <div className=" col-span-3 h-auto translate-y-10">
                   <Label text="ملاحظة" />
-                  {/* <FormField
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="An_note"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-red-900">
@@ -539,15 +563,15 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className="grid grid-cols-3 w-[100%]  items-start gap-4 text-right h-[20vh]  ">
                 <div className=" col-span-3 h-auto translate-y-10">
                   <Label text="Note" />
-                  {/* <FormField
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="En_note"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-red-900">{"Note"}</FormLabel>
@@ -562,7 +586,7 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className="w-full translate-x-10 flex justify-end mt-20 ">
@@ -578,7 +602,7 @@ export default function AddPublications() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9"
             >
-              <div className="grid h-[100px]  grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+              {/* <div className="grid h-[100px]  grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                 <div className="col-span-2 h-[50px] mt-7">
                   <FormField
                     control={form.control}
@@ -633,7 +657,7 @@ export default function AddPublications() {
                     )}
                   />
                 </div>
-              </div>
+              </div> */}
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                 <div className=" col-span-1 h-auto ">
                   <label htmlFor="">صورة الخبر</label>
@@ -883,7 +907,7 @@ export default function AddPublications() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9"
             >
-              <div className="grid h-[100px]  grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+              {/* <div className="grid h-[100px]  grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                 <div className="col-span-2 h-[50px] mt-7">
                   <FormField
                     control={form.control}
@@ -938,24 +962,24 @@ export default function AddPublications() {
                     )}
                   />
                 </div>
-              </div>
+              </div> */}
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                 <div className=" col-span-1 h-auto ">
                   <label htmlFor="">صورة التحليل</label>
-                  <FormField
+                  {/* <FormField
                     control={form.control}
                     name="type"
                     render={() => (
                       <FormItem>
                         <FormLabel>Upload Image</FormLabel>
                         <FormControl>
-                          {/* New Image Upload */}
+
                           <input type="file" accept="image/*" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
