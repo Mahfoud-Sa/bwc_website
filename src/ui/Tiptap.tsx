@@ -1,6 +1,7 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./Toolbar";
+import { useTranslation } from "react-i18next";
 
 export default function Tiptap({
   description,
@@ -9,24 +10,35 @@ export default function Tiptap({
   description: string;
   onChange: (richText: string) => void;
 }) {
+  const { i18n } = useTranslation();
+  const dir = i18n.dir();
   const editor = useEditor({
     extensions: [StarterKit.configure()],
     content: description,
     editorProps: {
       attributes: {
         class:
-          "rounded-md border min-h-[150px] border-input bg-background px-3 py-2 ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          "ltr rounded-md border min-h-[150px] border-gray-300 bg-white px-3 py-2 text-black ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
       },
     },
     onUpdate({ editor }) {
       onChange(editor.getHTML());
-      console.log(editor.getHTML());
     },
   });
+
   return (
-    <div className="flex flex-col justify-stretch min-h-[200px] bg-white">
-      <Toolbar editor={editor} />
-      <EditorContent editor={editor} />
-    </div>
+    <>
+      {dir === "ltr" ? (
+        <div className="border border-gray-300 bg-transparent text-black rounded-md ">
+          <Toolbar editor={editor} />
+          <EditorContent editor={editor} dir="rtl" />
+        </div>
+      ) : (
+        <div className="border border-gray-300 bg-transparent text-black rounded-md ">
+          <Toolbar editor={editor} />
+          <EditorContent editor={editor} dir="rtl" />
+        </div>
+      )}
+    </>
   );
 }
