@@ -33,6 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "src/ui/select";
+import EngTiptap from "src/ui/EngTiptap";
 
 type ReferenceFormValue = z.infer<typeof addPublishes>;
 
@@ -486,7 +487,7 @@ export default function AddPublications() {
                         <FormLabel>sadasd</FormLabel>
                         <FormControl>
                           <Tiptap
-                            description={"Enter the name filed"}
+                            description={"ادخل الوصف"}
                             onChange={field.onChange}
                           />
                         </FormControl>
@@ -505,8 +506,8 @@ export default function AddPublications() {
                       <FormItem>
                         <FormLabel>sadasd</FormLabel>
                         <FormControl>
-                          <Tiptap
-                            description={"ادخل الوصف"}
+                          <EngTiptap
+                            description={"Enter the name filed"}
                             onChange={field.onChange}
                           />
                         </FormControl>

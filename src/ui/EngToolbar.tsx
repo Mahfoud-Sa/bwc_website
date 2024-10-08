@@ -13,14 +13,14 @@ import { useTranslation } from "react-i18next";
 type Props = {
   editor: Editor | null;
 };
-export default function Toolbar({ editor }: Props) {
+export default function EngToolbar({ editor }: Props) {
   const { i18n } = useTranslation();
   const dir = i18n.dir();
   if (!editor) {
     return null;
   }
   return (
-    <div className="border border-input  rounded-t-md bg-white rounded-br-lg mb-3 ">
+    <div className="border border-input flex flex-row-reverse  rounded-t-md bg-white rounded-br-lg mb-3 ">
       <Toggle
         size="sm"
         pressed={editor.isActive("heading")}

@@ -2,8 +2,9 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./Toolbar";
 import { useTranslation } from "react-i18next";
+import EngToolbar from "./EngToolbar";
 
-export default function Tiptap({
+export default function EngTiptap({
   description,
   onChange,
 }: {
@@ -29,8 +30,8 @@ export default function Tiptap({
   return (
     <>
       <div className="border border-gray-300 bg-transparent text-black rounded-md ">
-        <Toolbar editor={editor} />
-        <EditorContent editor={editor} dir="rtl" />
+        <EngToolbar editor={editor} />
+        <EditorContent editor={editor} dir="rtl" className="text-end" />
       </div>
     </>
   );
