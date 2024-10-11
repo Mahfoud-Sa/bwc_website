@@ -292,6 +292,10 @@ export const addPublishes = z.object({
   En_description: z.string(),
   An_note: z.string(),
   En_note: z.string(),
+  tags: z.array(z.string()),
+  t2read: z.string(),
+  writersIdes: z.array(z.number()),
+  referencesIdes: z.array(z.number()),
 });
 export type ReferenceResp = {
   id: number;
@@ -309,6 +313,7 @@ export type TaskForceRespTable = {
   en_role: string;
   img: string;
 };
+
 export interface WriterResp {
   id: number;
   ar_fullName: string;
@@ -342,6 +347,28 @@ export interface Soicalmedia {
   writerId: number;
   writer: Writer | null;
 }
+export type publishes = {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[] | null;
+  date_of_publish: Date;
+  ar_table_of_content: null;
+  en_table_of_content: null;
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: any[];
+};
 export type TaskForceResp = {
   id: number;
   ar_name: string;

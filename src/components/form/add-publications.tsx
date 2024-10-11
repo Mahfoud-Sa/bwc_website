@@ -11,6 +11,8 @@ import {
   MAX_FILE_SIZE,
   ACCEPTED_IMAGE_TYPES,
   MAX_FILES,
+  publishes,
+  Writer,
 } from "../../types/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -19,8 +21,8 @@ import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
 import { Button } from "../../ui/button";
-import { useMutation } from "@tanstack/react-query";
-import { postApi } from "src/lib/http";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getApi, patchApi, postApi } from "src/lib/http";
 import { useToast } from "src/ui/use-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -34,9 +36,74 @@ import {
   SelectValue,
 } from "src/ui/select";
 import EngTiptap from "src/ui/EngTiptap";
+import { MultiSelect } from "primereact/multiselect";
+import { Badge } from "src/ui/badge";
+import { CircleX } from "lucide-react";
 
+type WriterOption = {
+  value: number;
+};
+type ReferenceOption = {
+  label: string;
+  value: number;
+};
 type PublishesFormValue = z.infer<typeof addPublishes>;
-
+interface WriterResponse {
+  data: {
+    id: number;
+    type: string;
+    ar_Title: string;
+    en_Title: string;
+    b_image: string;
+    images: string[];
+    writers: Writer[];
+    reportId: null;
+    report: null;
+    publish: boolean;
+    t2read: number;
+    tags: string[] | null;
+    date_of_publish: Date;
+    ar_table_of_content: null;
+    en_table_of_content: null;
+    ar_description: string;
+    en_description: string;
+    ar_Note: null;
+    en_Note: string;
+    references: any[];
+  };
+}
+export interface WriterProp {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: any[];
+  soicalmedia: Soicalmedia[];
+}
+interface MutationData {
+  id: number;
+  tags: string[];
+  t2read: number;
+  writersIdes: number[];
+  referencesIdes: number[];
+}
+export interface Soicalmedia {
+  id: number;
+  name: string;
+  url: string;
+  writerId: number;
+  writer: null;
+}
+export type ReferenceResp = {
+  id: number;
+  ar_title: string;
+  en_title: string;
+  link: string;
+};
 const kindOfCase = [
   { label: "منشورات", value: 1 },
   { label: "الاخبار", value: 2 },
@@ -50,13 +117,45 @@ export default function AddPublications() {
   const form = useForm<z.infer<typeof addPublishes>>({
     resolver: zodResolver(addPublishes),
   });
+  const [texts, setTexts] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState<string>("");
 
+  const handleDelete = (index: number, field: any) => {
+    const updatedTexts = texts.filter((_, i) => i !== index);
+    setTexts(updatedTexts);
+    field.onChange(updatedTexts);
+  };
+  const { data } = useQuery({
+    queryKey: ["writer"],
+    queryFn: () => getApi<WriterProp[]>("/api/Writers"),
+  });
+
+  const { data: referenceData } = useQuery({
+    queryKey: ["reference"],
+    queryFn: () => getApi<ReferenceResp[]>("/api/References"),
+  });
+
+  const [selectedWriters, setSelectedWriters] = useState<number[]>([]);
+
+  const [selectedReference, setSelectedReference] = useState<number[]>([]);
+
+  const writerOptions = data?.data.map((writer) => ({
+    label: writer.ar_fullName,
+    value: writer.id,
+  }));
+
+  const referenceOptions = referenceData?.data.map((writer) => ({
+    label: writer.ar_title,
+    value: writer.id,
+  }));
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  console.log("selectFiles", selectedFiles);
+
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
-  console.log("selectedValue", selectedValue);
+
   useEffect(() => {
+    form.setValue("writersIdes", selectedWriters);
+    form.setValue("referencesIdes", selectedReference);
     if (id) {
       const numericId = parseInt(id, 10);
       setSelectedValue(numericId);
@@ -78,8 +177,10 @@ export default function AddPublications() {
       setPreview(null);
     }
   };
-  const { mutate } = useMutation({
-    mutationKey: ["AddReferences"],
+
+  // First Mutation: Adding Publications
+  const { mutate } = useMutation<WriterResponse, Error, PublishesFormValue>({
+    mutationKey: ["AddPublishes"],
     mutationFn: (datas: PublishesFormValue) => {
       const formData = new FormData();
       formData.append("Ar_Title", datas.Ar_Title);
@@ -94,7 +195,7 @@ export default function AddPublications() {
         formData.append("ImageFile", datas.ImageFile[0]);
       }
       for (let i = 0; i < selectedFiles.length; i++) {
-        formData.append("images", selectedFiles[i]); // Change "images[]" to "images"
+        formData.append("images", selectedFiles[i]);
       }
 
       return postApi("/api/Publications", formData, {
@@ -103,31 +204,69 @@ export default function AddPublications() {
         },
       });
     },
-    onSuccess: () => {
-      // toast({
-      //   title: "اشعار",
-      //   variant: "success",
-      //   description: "تمت الاضافة بنجاح",
-      // });
-      toast.success("تمت الاضافة بنجاح.", {
+    onSuccess: (data, variables) => {
+      console.log("data.data.id", data.data.id);
+      const publishesID = data.data.id;
+      secondMutate({
+        id: publishesID,
+        tags: texts,
+        t2read: +variables.t2read,
+        writersIdes: selectedWriters,
+        referencesIdes: selectedReference,
+      });
+    },
+    onError: (error) => {
+      // Handle error
+    },
+  });
+
+  // Second Mutation: Patching Publications
+  const {
+    mutate: secondMutate,
+    isError: secondIsError,
+    isSuccess: secondIsSuccess,
+    isPending: secondIsPending,
+  } = useMutation({
+    mutationKey: ["publishesPatch"],
+    mutationFn: (datas: MutationData) => {
+      console.log("id:", datas.id);
+      console.log("Payload:", datas);
+      return patchApi(`/api/Publications/${datas.id}`, {
+        tags: datas.tags,
+        t2read: datas.t2read,
+        writersIdes: datas.writersIdes, // Corrected
+        referencesIdes: datas.referencesIdes, // Corrected
+      });
+    },
+    onSuccess: (data) => {
+      console.log("Second mutation success:", data);
+      toast.error("لم تتم العميله.", {
         style: {
-          border: "1px solid #4FFFB0",
+          border: "1px solid  #FF5733 ",
           padding: "16px",
-          color: "#4FFFB0",
+          color: " #FF5733 ",
         },
         iconTheme: {
-          primary: "#4FFFB0",
+          primary: " #FF5733 ",
           secondary: "#FFFAEE",
         },
       });
       navigate("/admin-dashboard/publications");
+      window.location.reload();
     },
     onError: (error) => {
-      // toast({
-      //   title: "لم تتم العملية",
-      //   description: error.message,
-      //   variant: "destructive",
-      // });
+      console.log("Second mutation error:", error);
+      toast.error("لم تتم العميله.", {
+        style: {
+          border: "1px solid  #FF5733 ",
+          padding: "16px",
+          color: " #FF5733 ",
+        },
+        iconTheme: {
+          primary: " #FF5733 ",
+          secondary: "#FFFAEE",
+        },
+      });
     },
   });
 
@@ -184,6 +323,12 @@ export default function AddPublications() {
       {selectedValue !== null ? (
         selectedValue === 1 ? (
           <Form {...form}>
+            {process.env.NODE_ENV === "development" && (
+              <>
+                <p>Ignore it, it just in dev mode</p>
+                <div>{JSON.stringify(form.formState.errors)}</div>
+              </>
+            )}
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9"
@@ -364,35 +509,69 @@ export default function AddPublications() {
               <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                 <div className=" col-span-1  ">
                   <label htmlFor="">اختار الكاتب</label>
-                  {/* <FormField
-                    control={form.control}
-                    name="type"
-                    render={() => (
-                      <FormItem>
-                        <FormLabel>Upload Image</FormLabel>
-                        <FormControl className="w-full">
-                          
-                          <Select>
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="ابحث بالسنة" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="light">2024</SelectItem>
-                              <SelectItem value="dark">2023</SelectItem>
-                              <SelectItem value="system">2022</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  /> */}
+                  <div className="card flex justify-center items-center">
+                    <FormField
+                      control={form.control}
+                      name="writersIdes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-red-900"></FormLabel>
+                          <FormControl>
+                            <MultiSelect
+                              dir="rtl"
+                              value={selectedWriters}
+                              onChange={(e) => setSelectedWriters(e.value)} // This will store only the selected writer IDs
+                              options={writerOptions} // writerOptions is an array of { label, value }
+                              optionLabel="label"
+                              optionValue="value"
+                              placeholder="Select writers"
+                              maxSelectedLabels={0}
+                              className="w-full rounded-md border border-gray-300 bg-white shadow-sm py-[6px] translate-y-[3px] px-2 focus:ring focus:ring-indigo-500"
+                              panelClassName="rounded-md bg-white px-2 py-2 shadow-lg border border-gray-300"
+                              itemTemplate={(option) => {
+                                if (!option) return null;
+
+                                // Check if the current item's value (ID) is in the selectedWriters array (which only holds IDs)
+                                const isItemSelected = selectedWriters.includes(
+                                  option.value
+                                );
+
+                                return (
+                                  <div
+                                    className={`flex items-center justify-between gap-2 w-[370px] shadow-inner mb-1 p-2 rounded-lg cursor-pointer transition-all ${
+                                      isItemSelected
+                                        ? "bg-gray-200"
+                                        : "hover:bg-gray-100"
+                                    }`}
+                                  >
+                                    <span className="text-lg">
+                                      {option.label}
+                                    </span>
+                                  </div>
+                                );
+                              }}
+                              selectedItemTemplate={(option) => {
+                                if (!option) return null;
+
+                                return (
+                                  <div className="flex items-center gap-2">
+                                    <span>{option.label}</span>
+                                  </div>
+                                );
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
                 <div className=" col-span-1 h-auto ">
                   <Label text="وقت القراءه" />
-                  {/* <FormField
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="t2read"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-red-900">
@@ -400,7 +579,7 @@ export default function AddPublications() {
                         </FormLabel>
                         <FormControl>
                           <Input
-                            type="number"
+                            type="text"
                             placeholder="ادخل وقت القراءه..."
                             {...field}
                           />
@@ -408,7 +587,7 @@ export default function AddPublications() {
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
+                  />
                 </div>
                 <div className=" col-span-1 h-auto ">
                   <Label text="تاريخ النشر" />
@@ -433,71 +612,130 @@ export default function AddPublications() {
                   />
                 </div>
               </div>
-              <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+              <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
                 <div className=" col-span-1  ">
                   <label htmlFor="">اختار المرجع</label>
-                  {/* <FormField
-                    control={form.control}
-                    name="type"
-                    render={() => (
-                      <FormItem>
-                        <FormLabel>Upload Image</FormLabel>
-                        <FormControl className="w-full">
-                          
-                          <Select>
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="ابحث بالسنة" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="light">2024</SelectItem>
-                              <SelectItem value="dark">2023</SelectItem>
-                              <SelectItem value="system">2022</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  /> */}
+                  <div className="card flex justify-center items-center">
+                    <FormField
+                      control={form.control}
+                      name="referencesIdes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-red-900"></FormLabel>
+                          <FormControl>
+                            <MultiSelect
+                              dir="rtl"
+                              value={selectedReference}
+                              onChange={(e) => setSelectedReference(e.value)} // This will store only the selected writer IDs
+                              options={referenceOptions} // writerOptions is an array of { label, value }
+                              optionLabel="label"
+                              optionValue="value"
+                              placeholder="Select writers"
+                              maxSelectedLabels={0}
+                              className="w-full rounded-md border border-gray-300 bg-white shadow-sm py-[6px] translate-y-[3px] px-2 focus:ring focus:ring-indigo-500"
+                              panelClassName="rounded-md bg-white px-2 py-2 shadow-lg border border-gray-300"
+                              itemTemplate={(option) => {
+                                if (!option) return null;
+
+                                // Check if the current item's value (ID) is in the selectedWriters array (which only holds IDs)
+                                const isItemSelected =
+                                  selectedReference.includes(option.value);
+
+                                return (
+                                  <div
+                                    className={`flex items-center justify-between gap-2 w-[370px] shadow-inner mb-1 p-2 rounded-lg cursor-pointer transition-all ${
+                                      isItemSelected
+                                        ? "bg-gray-200"
+                                        : "hover:bg-gray-100"
+                                    }`}
+                                  >
+                                    <span className="text-lg">
+                                      {option.label}
+                                    </span>
+                                  </div>
+                                );
+                              }}
+                              selectedItemTemplate={(option) => {
+                                if (!option) return null;
+
+                                return (
+                                  <div className="flex items-center gap-2">
+                                    <span>{option.label}</span>
+                                  </div>
+                                );
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
-                <div className=" col-span-1 h-auto ">
-                  <Label text="اسم التقرير" />
-                  {/* <FormField
+                <div className="col-span-1 h-auto ">
+                  <Label text="المهارات" />
+                  <FormField
                     control={form.control}
-                    name="ar_title"
+                    name="tags"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-red-900">
-                          {"اسم التقرير"}
-                        </FormLabel>
+                        <FormLabel className="text-red-900"></FormLabel>
                         <FormControl>
-                          <Input placeholder="ادخل اسم التقرير..." {...field} />
+                          <div className="relative">
+                            <Input
+                              dir="rtl"
+                              placeholder="ادخل المهارات..."
+                              value={inputValue}
+                              onChange={(e) => {
+                                setInputValue(e.target.value);
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter" && inputValue.trim()) {
+                                  const newValues = Array.isArray(field.value)
+                                    ? [...field.value, inputValue]
+                                    : [inputValue];
+                                  field.onChange(newValues);
+                                  setTexts(newValues);
+                                  setInputValue("");
+                                  e.preventDefault();
+                                }
+                              }}
+                              name={field.name}
+                              ref={field.ref}
+                              onBlur={field.onBlur}
+                              className="pr-20"
+                            />
+
+                            {Array.isArray(field.value) &&
+                              field.value.length > 0 && (
+                                <Badge className="absolute right-2 top-2">
+                                  {`تم تحديد ${field.value.length}`}
+                                </Badge>
+                              )}
+
+                            {Array.isArray(field.value) &&
+                              field.value.length > 0 &&
+                              field.value.map((item: string, index: number) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center  "
+                                >
+                                  <span>{item}</span>
+                                  <button
+                                    type="button"
+                                    className="ml-2 text-red-500"
+                                    onClick={() => handleDelete(index, field)}
+                                  >
+                                    <CircleX />
+                                  </button>
+                                </div>
+                              ))}
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
-                  /> */}
-                </div>
-                <div className=" col-span-1 h-auto ">
-                  <Label text="Report name" />
-                  {/* <FormField
-                    control={form.control}
-                    name="ar_title"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-red-900">
-                          {"Report name"}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="enter Report name..."
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  /> */}
+                  />
                 </div>
               </div>
               <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">

@@ -148,11 +148,6 @@ export default function AddJobForm() {
       // });
 
       const jobId = data.data.id;
-
-      console.log("Texts (ar_skiles):", texts);
-      console.log("SkillsEn (en_skiles):", skillsEn);
-      console.log("AdvancesAr (ar_advances):", advancesAr);
-      console.log("AdvancesEn (en_advances):", advancesEn);
       secondMutate({
         id: jobId,
         avaliable: variables.avaliable,

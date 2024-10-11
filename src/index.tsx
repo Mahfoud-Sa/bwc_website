@@ -85,7 +85,7 @@ const router = createBrowserRouter([
     element: <JobDetails />,
   },
   {
-    path: "/reports",
+    path: "/all-publishes",
     element: <Reports />,
   },
   {

@@ -146,9 +146,12 @@ export default function Navbar() {
                   : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
               }
             >
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer ">
+              <Link
+                to={"/departments"}
+                className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer "
+              >
                 {t("depertment")}
-              </a>
+              </Link>
             </li>
 
             <li
@@ -173,9 +176,12 @@ export default function Navbar() {
                   : "md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md"
               }
             >
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+              <Link
+                to={"/all-publishes"}
+                className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
+              >
                 {t("publishes")}
-              </a>
+              </Link>
             </li>
             <li
               className={
@@ -270,9 +276,12 @@ export default function Navbar() {
             }`}
           >
             <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+              <Link
+                to={"/departments"}
+                className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
+              >
                 {t("depertment")}
-              </a>
+              </Link>
             </li>
 
             <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[150%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
@@ -285,9 +294,12 @@ export default function Navbar() {
             </li>
 
             <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
-              <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">
+              <Link
+                to={"/all-publishes"}
+                className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer"
+              >
                 {t("publishes")}
-              </a>
+              </Link>
             </li>
             <li className="md:ml-8 sm:text-start text-xl md:my-0 my-7 md:bg-[#fff] md:w-[100%] sm:bg-[#e9eaed] sm:w-[95%] sm:px-2 sm:py-3 sm:rounded-md">
               <a className="text-gray-800 hover:text-gray-400 duration-500 cursor-pointer">

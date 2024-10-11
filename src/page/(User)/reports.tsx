@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import CarouselsReport from "src/components/carouselsReport";
 import Footer from "src/components/footer";
 import Navbar from "src/components/navbar";
 import sliderImagePlaceholder from "../../assets/img/news_1.jpg";
 import sliderImagePlaceholder1 from "../../assets/img/news_2.jpg";
-import { CalendarMinus2Icon } from "lucide-react";
+import { CalendarMinus2Icon, MoveLeft, MoveRight } from "lucide-react";
 import { Input } from "src/ui/input";
 import {
   Select,
@@ -45,6 +45,108 @@ const publishes: publish[] = [
     // writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
 ];
+
+interface PostCardProps {
+  image: string;
+  title: string;
+  timeAgo: string;
+  author: string;
+  description: string;
+}
+
+const posts: PostCardProps[] = [
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+  {
+    image: sliderImagePlaceholder,
+    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+
+  {
+    image: sliderImagePlaceholder,
+    title: "00000000000",
+    timeAgo: "قبل 22 ساعه",
+    author: "حمود عبدالرقيب احمد سيف",
+    description:
+      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
+  },
+
+  // Add more objects as needed
+];
 const Reports = () => {
   // const [date, setDate] = React.useState<Date>();
 
@@ -53,6 +155,47 @@ const Reports = () => {
   //     dateField: new Date("2024-01-01"), // set a static date value here
   //   },
   // });
+  const itemsPerPage = 3; // Display 3 posts per page
+  const totalItems = posts.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = posts.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Pagination button logic
+  const getPaginationNumbers = () => {
+    const pages = [];
+    const maxPageButtons = 3;
+
+    if (totalPages <= maxPageButtons + 2) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 2) {
+        pages.push(1, 2, 3, "...", totalPages);
+      } else if (currentPage >= totalPages - 1) {
+        pages.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(
+          1,
+          "...",
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          "...",
+          totalPages
+        );
+      }
+    }
+    return pages;
+  };
+
   return (
     <>
       <div className="w-full lg:h-[8vh] md:h-[8vh]  sm:h-[11vh]">
@@ -167,143 +310,82 @@ const Reports = () => {
         </div>
 
         <div className="">
-          <div className="grid grid-cols-2 gap-3 mt-3">
-            <div className="col-span-3 shadow p-3 rounded-sm">
-              <div className="flex flex-col md:flex-row gap-3">
-                <img
-                  src={sliderImagePlaceholder}
-                  className=" rounded-md object-cover w-full md:w-[455px] h-full md:h-[337px]"
-                />
-                <div>
-                  <h1 className="text-[40px] font-bold">
-                    التنمية قادمة: توخوا الحذر في تطلعاتكم
-                  </h1>
-                  <p>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </p>
-                  <div className="flex items-center gap-2 my-4">
-                    <img
-                      src={sliderImagePlaceholder}
-                      className=" rounded-full object-cover w-[40px] h-[40px]"
-                    />
-                    <h1>حمود عبدالرقيب احمد سيف</h1>
+          {/* Render currentItems */}
+          {currentItems.map((item, index) => (
+            <div key={index} className="grid grid-cols-2 gap-3 mt-3">
+              <div className="col-span-3 shadow p-3 rounded-sm ">
+                <div className="flex flex-col md:flex-row gap-3 ">
+                  <img
+                    src={item.image}
+                    className="rounded-md object-cover w-full md:w-[455px] h-full md:h-[337px]"
+                    alt="Post Image"
+                  />
+                  <div className="w-full">
+                    <h1 className="text-[40px] font-bold">
+                      {item.title} + {index}
+                    </h1>
+                    <p>
+                      <span className="flex font-normal text-sm gap-2 mt-2">
+                        <CalendarMinus2Icon size={19} />
+                        {item.timeAgo}
+                      </span>
+                    </p>
+                    <div className="flex items-center gap-2 my-4">
+                      <img
+                        src={item.image}
+                        className="rounded-full object-cover w-[40px] h-[40px]"
+                        alt="Author"
+                      />
+                      <h1>{item.author}</h1>
+                    </div>
+                    <p className="text-base">{item.description}</p>
+                    <Link to={"#"}>
+                      <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3">
+                        قرأ المزيد...
+                      </button>
+                    </Link>
                   </div>
-
-                  <p className="text-base">
-                    شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها
-                    الدكتور ربيع بن علي العوبثاني في مدينة المكلاو حضرموت في
-                    مارس 2021م تحمل سجل تجاري رقم(21/2831) وتعمل على إدارة
-                    وتشغيل المشاريع الاستثمارية وتقديم الدراسات الاقتصادية
-                    والاستشارات الادارية والمالية والتسويقية وحلول تكنولوجيا
-                    المعلومات وتقدم خدماتها من خلال مجموعة من الحبراء
-                    والاستشاريين المتخصصين الذين
-                  </p>
-
-                  <Link to={"#"}>
-                    <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3">
-                      قرأ المزيد...
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>
-          </div>
+          ))}
 
-          {/*  */}
+          {/* Pagination controls */}
+          <div className="mt-4 flex justify-between space-x-2">
+            <button
+              className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <MoveRight size={20} className="ml-2" />
+              <h6>السابق</h6>
+            </button>
 
-          <div className="grid grid-cols-2 gap-3 mt-3">
-            <div className="col-span-3 shadow p-3 rounded-sm">
-              <div className="flex flex-col md:flex-row gap-3">
-                <img
-                  src={sliderImagePlaceholder}
-                  className=" rounded-md object-cover w-full md:w-[455px] h-full md:h-[337px]"
-                />
-                <div>
-                  <h1 className="text-[40px] font-bold">
-                    التنمية قادمة: توخوا الحذر في تطلعاتكم
-                  </h1>
-                  <p>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </p>
-                  <div className="flex items-center gap-2 my-4">
-                    <img
-                      src={sliderImagePlaceholder}
-                      className=" rounded-full object-cover w-[40px] h-[40px]"
-                    />
-                    <h1>حمود عبدالرقيب احمد سيف</h1>
-                  </div>
-
-                  <p className="text-base">
-                    شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها
-                    الدكتور ربيع بن علي العوبثاني في مدينة المكلاو حضرموت في
-                    مارس 2021م تحمل سجل تجاري رقم(21/2831) وتعمل على إدارة
-                    وتشغيل المشاريع الاستثمارية وتقديم الدراسات الاقتصادية
-                    والاستشارات الادارية والمالية والتسويقية وحلول تكنولوجيا
-                    المعلومات وتقدم خدماتها من خلال مجموعة من الحبراء
-                    والاستشاريين المتخصصين الذين
-                  </p>
-
-                  <Link to={"#"}>
-                    <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3">
-                      قرأ المزيد...
-                    </button>
-                  </Link>
-                </div>
-              </div>
+            <div className="md:pr-0 sm:pr-5">
+              {getPaginationNumbers().map((page, index) => (
+                <button
+                  key={index}
+                  className={`px-4 py-2 rounded ml-1 ${
+                    currentPage === page
+                      ? "bg-[#d5ae78] rounded-md  text-white"
+                      : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
+                  }`}
+                  onClick={() => typeof page === "number" && paginate(page)}
+                  disabled={typeof page !== "number"}
+                >
+                  {page}
+                </button>
+              ))}
             </div>
-          </div>
 
-          {/*  */}
-
-          <div className="grid grid-cols-2 gap-3 mt-3">
-            <div className="col-span-3 shadow p-3 rounded-sm">
-              <div className="flex flex-col md:flex-row gap-3">
-                <img
-                  src={sliderImagePlaceholder}
-                  className=" rounded-md object-cover w-full md:w-[455px] h-full md:h-[337px]"
-                />
-                <div>
-                  <h1 className="text-[40px] font-bold">
-                    التنمية قادمة: توخوا الحذر في تطلعاتكم
-                  </h1>
-                  <p>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </p>
-                  <div className="flex items-center gap-2 my-4">
-                    <img
-                      src={sliderImagePlaceholder}
-                      className=" rounded-full object-cover w-[40px] h-[40px]"
-                    />
-                    <h1>حمود عبدالرقيب احمد سيف</h1>
-                  </div>
-
-                  <p className="text-base">
-                    شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها
-                    الدكتور ربيع بن علي العوبثاني في مدينة المكلاو حضرموت في
-                    مارس 2021م تحمل سجل تجاري رقم(21/2831) وتعمل على إدارة
-                    وتشغيل المشاريع الاستثمارية وتقديم الدراسات الاقتصادية
-                    والاستشارات الادارية والمالية والتسويقية وحلول تكنولوجيا
-                    المعلومات وتقدم خدماتها من خلال مجموعة من الحبراء
-                    والاستشاريين المتخصصين الذين
-                  </p>
-
-                  <Link to={"#"}>
-                    <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3">
-                      قرأ المزيد...
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <button
+              className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <h6>التالي</h6>
+              <MoveLeft className="mr-2" />
+            </button>
           </div>
         </div>
       </main>
