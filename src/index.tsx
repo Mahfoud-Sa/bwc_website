@@ -58,6 +58,7 @@ import UpdateServicesIndex from "./components/form/update-services";
 import Profile from "./page/(Admin)/profile";
 import UpdateJobForm from "./components/form/update-job";
 import Departments from "./page/(User)/departments";
+import AddNews from "./components/form/add-news";
 
 const router = createBrowserRouter([
   {
@@ -160,6 +161,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/news",
         element: <NewsIndex />,
+      },
+      {
+        path: "/admin-dashboard/Add-news/:id",
+        element: <AddNews />,
       },
       {
         path: "/admin-dashboard/analysis",

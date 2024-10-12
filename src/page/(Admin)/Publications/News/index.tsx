@@ -15,19 +15,15 @@ export default function NewsIndex() {
               <EnBreadcrumb
                 tilte1="Publications"
                 path1="/attendance"
-                tilte2=" publications"
+                tilte2="news"
                 path2="/attendance/add-Attendance"
-                tilte3="news"
-                path3=""
               />
             ) : (
               <Breadcrumb
                 tilte1="المنشورات"
                 path1="/attendance"
-                tilte2=" منشورات"
+                tilte2="الاخبار"
                 path2="/attendance/add-Attendance"
-                tilte3="الاخبار"
-                path3=""
               />
             )}
           </div>
