@@ -838,7 +838,7 @@ export default function AddNews() {
                         )}
                       />
                     </div>
-                    <div className=" col-span-1 h-auto ">
+                    <div className="text-end col-span-1 h-auto ">
                       <Label text="Publish Title" />
                       <FormField
                         control={form.control}
@@ -850,6 +850,7 @@ export default function AddNews() {
                             </FormLabel>
                             <FormControl>
                               <Input
+                                dir="ltr"
                                 placeholder="enter Publish Title..."
                                 {...field}
                               />
@@ -906,7 +907,7 @@ export default function AddNews() {
                       />
                     </div>
                     <div className="col-span-1 h-auto ">
-                      <Label text="المهارات" />
+                      <Label text="وسوم" />
                       <FormField
                         control={form.control}
                         name="tags"
@@ -917,7 +918,7 @@ export default function AddNews() {
                               <div className="relative">
                                 <Input
                                   dir="rtl"
-                                  placeholder="ادخل المهارات..."
+                                  placeholder="ادخل الوسوم..."
                                   value={inputValue}
                                   onChange={(e) => {
                                     setInputValue(e.target.value);
