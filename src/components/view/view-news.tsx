@@ -1,36 +1,9 @@
-import React, { useEffect, useState } from "react";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../../ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { addJobSchema, addPublishes } from "src/types/validation";
-import { z } from "zod";
-import Label from "src/ui/label";
-import { Input } from "src/ui/input";
-import { Button } from "../../ui/button";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { axiosInstance, postApi } from "src/lib/http";
-import { useToast } from "src/ui/use-toast";
-import { useNavigate, useParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
-import Tiptap from "src/ui/Tiptap";
-import { Textarea } from "src/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "src/ui/select";
-import { Separator } from "src/ui/separator";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { Item } from "@radix-ui/react-select";
+import { useParams } from "react-router-dom";
+import { axiosInstance } from "src/lib/http";
+import Label from "src/ui/label";
 export interface publicationView {
   id: number;
   type: string;
@@ -98,9 +71,7 @@ export interface Writer {
   soicalmedia: any[];
 }
 
-type ReferenceFormValue = z.infer<typeof addPublishes>;
-
-export default function ViewPublications() {
+export default function ViewNews() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const { id } = useParams<{ id: string }>();
@@ -121,7 +92,6 @@ export default function ViewPublications() {
     queryFn: fetchData,
     enabled: !!id,
   });
-
   return (
     <>
       {dir === "ltr" ? (
@@ -174,42 +144,17 @@ export default function ViewPublications() {
           {/*  */}
           <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
             <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="writers" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.writers.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <p>{Item.en_fullName}</p>
-                    <img src={Item.image} alt="" className="w-[100px] h-auto" />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="text-start col-span-1 h-auto translate-y-10">
               <Label text="Time to read" />
               <p>{PublicationInfoData?.t2read}</p>
             </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="references" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.references.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <a href={Item.link}>{Item.en_title}</a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/*  */}
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
             <div className="text-start col-span-1 h-auto translate-y-10">
               <Label text="Tags" />
               <div className="">
                 {PublicationInfoData?.tags.map((Item, index) => (
                   <div key={index} className="">
-                    <p>{Item}</p>
+                    <p>
+                      {index + 1} . {Item}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -235,24 +180,6 @@ export default function ViewPublications() {
             </div>
           </div>
 
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="ملاحظة" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_Note}</p>
-              </div>
-            </div>
-          </div>
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Note" />
-              <div className="">
-                <p>{PublicationInfoData?.en_Note}</p>
-              </div>
-            </div>
-          </div>
           <div className="h-[2px]  w-[95%] mx-auto bg-black mb-5"></div>
         </div>
       ) : (
@@ -305,42 +232,17 @@ export default function ViewPublications() {
           {/*  */}
           <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
             <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="كتاب" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.writers.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <p>{Item.en_fullName}</p>
-                    <img src={Item.image} alt="" className="w-[100px] h-auto" />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="text-start col-span-1 h-auto translate-y-10">
               <Label text="وقت القراءه " />
               <p>{PublicationInfoData?.t2read}</p>
             </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="مراجع" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.references.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <a href={Item.link}>{Item.en_title}</a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/*  */}
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
             <div className="text-start col-span-1 h-auto translate-y-10">
               <Label text="وسوم" />
               <div className="">
                 {PublicationInfoData?.tags.map((Item, index) => (
                   <div key={index} className="">
-                    <p>{Item}</p>
+                    <p>
+                      {index + 1} . {Item}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -366,24 +268,6 @@ export default function ViewPublications() {
             </div>
           </div>
 
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="ملاحظة" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_Note}</p>
-              </div>
-            </div>
-          </div>
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-end col-span-1 h-auto translate-y-10">
-              <Label text="Note" />
-              <div className="">
-                <p>{PublicationInfoData?.en_Note}</p>
-              </div>
-            </div>
-          </div>
           <div className="h-[2px]  w-[95%] mx-auto bg-black mb-5"></div>
         </div>
       )}
