@@ -6,13 +6,73 @@ import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
 import ChangePublishesDialog from "../dailog/change-publish";
+import ChangePublishesPublishesDialog from "../dailog/change-publish-publishes";
 
+export interface Reference {
+  id: number;
+  ar_title: string;
+  en_title: string;
+  link: string;
+  publication: Publication[];
+}
+
+export interface Publication {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: null;
+  en_table_of_content: null;
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
+}
+
+export interface Writer {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: null[];
+  soicalmedia: any[];
+}
 export type AddPublishesOrder = {
   isSelected: boolean;
   id: number;
-  name: string;
-  img: string;
-  link: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: null;
+  en_table_of_content: null;
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
 };
 
 export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
@@ -24,7 +84,7 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src={row.original.img}
+            src={row.original.b_image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -33,20 +93,43 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "ar_Title",
     header: "عنوان المنشور",
   },
   {
-    accessorKey: "link",
+    accessorKey: "date_of_publish",
     header: "تاريخ المنشور",
   },
   {
-    accessorKey: "name",
-    header: "اسم التقرير",
+    accessorKey: "type",
+    header: "النوع",
+    cell: ({ row }) => {
+      const types = row.original.type;
+      switch (types) {
+        case "News":
+          return "الاخبار";
+        case "Publication":
+          return "المنشورات";
+        case "Analysis":
+          return "تحليل";
+        default:
+          return types;
+      }
+    },
   },
   {
-    accessorKey: "link",
+    accessorKey: "report",
+    header: "اسم التقرير",
+    cell: ({ row }) => {
+      return <p>0</p>;
+    },
+  },
+  {
+    accessorKey: "publish",
     header: "نشر/الغاء النشر",
+    cell: ({ row }) => {
+      return row.original.publish === true ? "نشر" : "غير منشور";
+    },
   },
 
   {
@@ -77,7 +160,7 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="تغير حالة النشر">
-            <ChangePublishesDialog id={row.original.id} />
+            <ChangePublishesPublishesDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="حذف">
             <DeleteDialog
@@ -100,7 +183,7 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src={row.original.img}
+            src={row.original.b_image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -109,20 +192,31 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "en_Title",
     header: "post title",
   },
   {
-    accessorKey: "link",
+    accessorKey: "date_of_publish",
     header: "Date of post",
   },
+
   {
-    accessorKey: "name",
+    accessorKey: "report",
     header: "report name",
+    cell: ({ row }) => {
+      return <p>0</p>;
+    },
   },
   {
-    accessorKey: "link",
+    accessorKey: "type",
+    header: "types",
+  },
+  {
+    accessorKey: "publish",
     header: "publishing/unpublication",
+    cell: ({ row }) => {
+      return row.original.publish === true ? "publishing" : "unpublication";
+    },
   },
 
   {
@@ -153,7 +247,7 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="Change publishing status">
-            <ChangePublishesDialog id={row.original.id} />
+            <ChangePublishesPublishesDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="delete">
             <DeleteDialog

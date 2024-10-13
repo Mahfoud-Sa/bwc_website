@@ -12,13 +12,6 @@ import {
 } from "@tanstack/react-table";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../../ui/sheet";
 import image4 from "../../assets/img/1724086550980.jpg";
 import {
   AddNewsColumns,
@@ -31,61 +24,64 @@ import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
 // import { ReferenceResp } from "src/types/validation";
 
-export interface OrgProp {
+export interface newsProp {
   id: number;
-  name: string;
-  link: string;
-  imageFile: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: any[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: any[];
+  en_table_of_content: any[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: null;
+  references: any[];
 }
 
-export type OrgResp = {
+export type newsResp = {
   id: number;
-  name: string;
-  link: string;
-  imageFile: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: any[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: any[];
+  en_table_of_content: any[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: null;
+  references: any[];
 };
 
-const reference: OrgProp[] = [
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-];
 export default function NewsTable() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const defaultData = useMemo<AddNewOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddNewsColumns, []);
   const columnsMemos = useMemo(() => AddENNewsColumns, []);
-  const [data, setData] = useState<OrgProp[]>([]);
+  const [data, setData] = useState<newsProp[]>([]);
   const fetchIssueById = async () => {
     try {
-      const response = await axiosInstance.get<OrgResp>(`/api/OrgUndBWC`);
+      const response = await axiosInstance.get<newsResp>(
+        `/api/ManagingPublications?type=news&ascending=false&publish=true`
+      );
       return [response.data];
     } catch (error) {
       console.error("Error fetching issue:", error);
@@ -137,12 +133,13 @@ export default function NewsTable() {
                   <Input
                     placeholder="search by news title"
                     value={
-                      (table.getColumn("name")?.getFilterValue() as string) ??
-                      ""
+                      (table
+                        .getColumn("en_Title")
+                        ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                       table
-                        .getColumn("name")
+                        .getColumn("en_Title")
                         ?.setFilterValue(event.target.value)
                     }
                   />
@@ -201,12 +198,13 @@ export default function NewsTable() {
                   <Input
                     placeholder="بحث بعنوان الخبر"
                     value={
-                      (table.getColumn("name")?.getFilterValue() as string) ??
-                      ""
+                      (table
+                        .getColumn("ar_Title")
+                        ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                       table
-                        .getColumn("name")
+                        .getColumn("ar_Title")
                         ?.setFilterValue(event.target.value)
                     }
                   />

@@ -44,28 +44,30 @@ const formSchema = z.object({
   publish: z.boolean(),
 });
 
-export type JobResp = {
+export type PubNewsResp = {
   id: number;
-  ar_jobTitle: string;
-  en_jobTitle: string;
-  img: string;
-  avaliable: boolean;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: any[];
+  reportId: null;
+  report: null;
   publish: boolean;
-  ar_basicDescription: string;
-  en_basicDescription: string;
-  ar_skiles: string[];
-  en_skiles: string[];
-  ar_advances: string[];
-  en_advances: string[];
-  formLink: string;
-  endDate: Date;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: any[];
+  en_table_of_content: any[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: null;
+  references: any[];
 };
 type UpdateAvailable = z.infer<typeof formSchema>;
-export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
-  const availabilityOptions = [
-    { label: "نشر", value: "true" },
-    { label: "غير منشور", value: "false" },
-  ];
+export default function ChangePublishesNewsDialog({ id }: DeleteDialogProps) {
   const [publish, _setPublish] = useState([
     { label: "مشنور", enLable: "publish", value: true },
     { label: "غير منشور", enLable: "unpublished", value: false },
@@ -79,29 +81,35 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
   });
 
   const fetchData = async () => {
-    const response = await axiosInstance.get<JobResp>(`/api/Jobs/${id}`, {});
+    const response = await axiosInstance.get<PubNewsResp>(
+      `/api/ManagingPublications/${id}`,
+      {}
+    );
     return response.data;
   };
   const {
-    data: JobInfoData,
-    error: JobInfoError,
-    isLoading: JobInfoIsLoading,
+    data: NewsData,
+    error: NewsError,
+    isLoading: NewsIsLoading,
   } = useQuery({
     queryKey: ["getByIdJob", id],
     queryFn: fetchData,
     enabled: !!id,
   });
 
-  useEffect(() => {}, [JobInfoData]);
+  useEffect(() => {}, [NewsData]);
 
   const { mutate } = useMutation({
     mutationFn: (data: UpdateAvailable) => {
-      return patchApi(`/api/Jobs/Publish/${id}?publish=${data.publish}`, {});
+      return patchApi(
+        `/api/ManagingPublications/Publish/${id}?publish=${data.publish}`,
+        {}
+      );
     },
     onSuccess: (data) => {
       console.log("data", data);
       toast.success("تمت العملية بنجاح.");
-      navigate("/admin-dashboard/jobs");
+      navigate("/admin-dashboard/news");
       window.location.reload();
     },
     onError: (error) => {
@@ -148,7 +156,7 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
                                 value={
                                   field.value !== undefined
                                     ? String(field.value)
-                                    : String(JobInfoData?.publish)
+                                    : String(NewsData?.publish)
                                 }
                                 defaultValue={String(field.value)} // Show boolean as string in select
                               >
@@ -174,7 +182,7 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
                       />
                     </div>
                     <Button type="submit" className="bg-black text-white mt-3">
-                      update
+                      Edit
                     </Button>
                   </form>
                 </Form>
@@ -216,7 +224,7 @@ export default function ChangePublishesDialog({ id }: DeleteDialogProps) {
                                 value={
                                   field.value !== undefined
                                     ? String(field.value)
-                                    : String(JobInfoData?.publish)
+                                    : String(NewsData?.publish)
                                 }
                                 defaultValue={String(field.value)} // Show boolean as string in select
                               >
