@@ -112,7 +112,7 @@ const kindOfCase = [
   { label: "الاخبار", value: 2 },
   { label: "تحليلات", value: 3 },
 ] as const;
-export default function AddAnalysisTable() {
+export default function AddFormAnalysis() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const { id } = useParams<{ id: string }>();

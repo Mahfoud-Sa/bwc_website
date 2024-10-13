@@ -5,7 +5,6 @@ import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
-import ChangePublishesDialog from "../dailog/change-publish";
 import ChangePublishesStatusAnalysisDialog from "../dailog/change-publish-Analysis";
 export interface Reference {
   id: number;

@@ -59,7 +59,7 @@ import Profile from "./page/(Admin)/profile";
 import UpdateJobForm from "./components/form/update-job";
 import Departments from "./page/(User)/departments";
 import AddNews from "./components/form/add-news";
-import AddAnalysis from "./components/form/add-analysis-form";
+import AddFormAnalysis from "./components/form/add-form-analysis";
 
 const router = createBrowserRouter([
   {
@@ -173,7 +173,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin-dashboard/add-analysis/:id",
-        element: <AddAnalysis />,
+        element: <AddFormAnalysis />,
       },
       {
         path: "/admin-dashboard/view-publishes/:id",
