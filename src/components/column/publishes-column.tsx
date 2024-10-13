@@ -5,8 +5,8 @@ import DeleteDialog from "../dailog/delete-dialog";
 import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
-import ChangePublishesDialog from "../dailog/change-publish";
-import ChangePublishesPublishesDialog from "../dailog/change-publish-publishes";
+
+import ChangePublishesStatusPostDialog from "../dailog/change-publish-publishes";
 
 export interface Reference {
   id: number;
@@ -160,7 +160,7 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="تغير حالة النشر">
-            <ChangePublishesPublishesDialog id={row.original.id} />
+            <ChangePublishesStatusPostDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="حذف">
             <DeleteDialog
@@ -247,7 +247,7 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="Change publishing status">
-            <ChangePublishesPublishesDialog id={row.original.id} />
+            <ChangePublishesStatusPostDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="delete">
             <DeleteDialog

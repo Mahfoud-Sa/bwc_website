@@ -67,7 +67,7 @@ export type PubNewsResp = {
   references: any[];
 };
 type UpdateAvailable = z.infer<typeof formSchema>;
-export default function ChangePublishesPublishesDialog({
+export default function ChangePublishesStatusPostDialog({
   id,
 }: DeleteDialogProps) {
   const [publish, _setPublish] = useState([
