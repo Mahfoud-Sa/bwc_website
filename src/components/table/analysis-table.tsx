@@ -24,61 +24,107 @@ import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
 // import { ReferenceResp } from "src/types/validation";
 
-export interface OrgProp {
+export interface Reference {
   id: number;
-  name: string;
+  ar_title: string;
+  en_title: string;
   link: string;
-  imageFile: string;
+  publication: Publication[];
 }
 
-export type OrgResp = {
+export interface Publication {
   id: number;
-  name: string;
-  link: string;
-  imageFile: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: null;
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
+}
+
+export interface Writer {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: null[];
+  soicalmedia: any[];
+}
+export interface AnalysisProp {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: any[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: Reference[];
+}
+
+export type AnalysisResp = {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: any[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: Reference[];
 };
 
-const reference: OrgProp[] = [
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-];
 export default function AnalysisTable() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const defaultData = useMemo<AddAnalysisOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddAnalysisColumns, []);
   const columnsMemos = useMemo(() => AddENAnalysisColumns, []);
-  const [data, setData] = useState<OrgProp[]>([]);
+  const [data, setData] = useState<AnalysisProp[]>([]);
   const fetchIssueById = async () => {
     try {
-      const response = await axiosInstance.get<OrgResp>(`/api/OrgUndBWC`);
+      const response = await axiosInstance.get<AnalysisResp>(
+        `/api/ManagingPublications?type=Analysis&ascending=false&publish=true`
+      );
       return [response.data];
     } catch (error) {
       console.error("Error fetching issue:", error);
@@ -165,7 +211,7 @@ export default function AnalysisTable() {
                     {" "}
                     Analysis Status{" "}
                   </Button>
-                  <Link to={`/admin-dashboard/add-publications/${3}`}>
+                  <Link to={`/admin-dashboard/add-analysis/${3}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />
                       add analysis
@@ -227,7 +273,7 @@ export default function AnalysisTable() {
                     {" "}
                     حالة النشر{" "}
                   </Button>
-                  <Link to={`/admin-dashboard/add-publications/${3}`}>
+                  <Link to={`/admin-dashboard/add-analysis/${3}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />
                       اضافة التحليل

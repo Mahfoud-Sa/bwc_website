@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import AnalysisTable from "src/components/table/analysis-table";
+import AddAnalysisTable from "src/components/table/analysis-table";
+
 import Breadcrumb from "src/ui/breadcrumb";
 import EnBreadcrumb from "src/ui/en-breadcrumb";
 
@@ -33,7 +34,7 @@ export default function AnalysisIndex() {
           </div>
         </div>
 
-        <AnalysisTable />
+        <AddAnalysisTable />
       </div>
     </main>
   );

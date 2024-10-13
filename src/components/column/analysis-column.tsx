@@ -6,13 +6,72 @@ import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
 import ChangePublishesDialog from "../dailog/change-publish";
+import ChangePublishesStatusAnalysisDialog from "../dailog/change-publish-Analysis";
+export interface Reference {
+  id: number;
+  ar_title: string;
+  en_title: string;
+  link: string;
+  publication: Publication[];
+}
 
+export interface Publication {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: null;
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
+}
+
+export interface Writer {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: null[];
+  soicalmedia: any[];
+}
 export type AddAnalysisOrder = {
   isSelected: boolean;
   id: number;
-  name: string;
-  img: string;
-  link: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: any[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: Reference[];
 };
 
 export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
@@ -24,7 +83,7 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src={row.original.img}
+            src={row.original.b_image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -33,17 +92,27 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "ar_Title",
     header: "عنوان التحليل",
   },
   {
-    accessorKey: "link",
+    accessorKey: "type",
+    header: "النوع",
+    cell: ({ row }) => {
+      return row.original.type === "Analysis" ? "تحليل" : "Analysisس";
+    },
+  },
+  {
+    accessorKey: "date_of_publish",
     header: "تارخ التحليل",
   },
 
   {
-    accessorKey: "link",
+    accessorKey: "publish",
     header: "نشر/الغاء النشر",
+    cell: ({ row }) => {
+      return row.original.publish === true ? "نشر" : "غير منشور";
+    },
   },
 
   {
@@ -74,12 +143,12 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="تغير حالة النشر">
-            <ChangePublishesDialog id={row.original.id} />
+            <ChangePublishesStatusAnalysisDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="حذف">
             <DeleteDialog
-              url={`/api/Jobs/${row.original?.id}`}
-              path={"/admin-dashboard/jobs"}
+              url={`/api/ManagingPublications/${row.original?.id}`}
+              path={"/admin-dashboard/analysis"}
             />
           </Tooltip>
         </div>
@@ -97,7 +166,7 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src={row.original.img}
+            src={row.original.b_image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -106,16 +175,23 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "en_Title",
     header: "analysis title",
   },
   {
-    accessorKey: "link",
+    accessorKey: "date_of_publish",
     header: "Date of analysis",
   },
   {
-    accessorKey: "link",
+    accessorKey: "type",
+    header: "النوع",
+  },
+  {
+    accessorKey: "publish",
     header: "publishing/unpublication",
+    cell: ({ row }) => {
+      return row.original.publish === true ? "publishing" : "unpublication";
+    },
   },
 
   {
@@ -146,12 +222,12 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="Change analysis status">
-            <ChangePublishesDialog id={row.original.id} />
+            <ChangePublishesStatusAnalysisDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="delete">
             <DeleteDialog
-              url={`/api/Jobs/${row.original?.id}`}
-              path={"/admin-dashboard/jobs"}
+              url={`/api/ManagingPublications/${row.original?.id}`}
+              path={"/admin-dashboard/analysis"}
             />
           </Tooltip>
         </div>
