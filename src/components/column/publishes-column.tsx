@@ -164,8 +164,8 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
           </Tooltip>
           <Tooltip text="حذف">
             <DeleteDialog
-              url={`/api/Jobs/${row.original?.id}`}
-              path={"/admin-dashboard/jobs"}
+              url={`/api/ManagingPublications/${row.original?.id}`}
+              path={"/admin-dashboard/publications"}
             />
           </Tooltip>
         </div>
@@ -251,8 +251,8 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
           </Tooltip>
           <Tooltip text="delete">
             <DeleteDialog
-              url={`/api/Jobs/${row.original?.id}`}
-              path={"/admin-dashboard/jobs"}
+              url={`/api/ManagingPublications/${row.original?.id}`}
+              path={"/admin-dashboard/publications"}
             />
           </Tooltip>
         </div>
