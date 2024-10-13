@@ -386,7 +386,7 @@ export default function AddNews() {
                   </div>
                   <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className="text-start col-span-1 h-auto ">
-                      <label htmlFor="">Photo News</label>
+                      <label htmlFor="">News Photo</label>
                       <FormField
                         control={form.control}
                         name="ImageFile"

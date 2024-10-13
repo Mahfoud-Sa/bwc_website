@@ -23,62 +23,108 @@ import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
 // import { ReferenceResp } from "src/types/validation";
-
-export interface OrgProp {
+export interface Reference {
   id: number;
-  name: string;
+  ar_title: string;
+  en_title: string;
   link: string;
-  imageFile: string;
+  publication: Publication[];
 }
 
-export type OrgResp = {
+export interface Publication {
   id: number;
-  name: string;
-  link: string;
-  imageFile: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: null;
+  en_table_of_content: null;
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
+}
+
+export interface Writer {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: null[];
+  soicalmedia: any[];
+}
+
+export interface publishesProp {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: null;
+  en_table_of_content: null;
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
+}
+
+export type publishesResp = {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Writer[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: null;
+  en_table_of_content: null;
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: string;
+  references: null[];
 };
 
-const reference: OrgProp[] = [
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd1", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd2", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd3", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd4", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-  { id: 1, name: "asdasdasd5", link: "dfgdf", imageFile: image4 },
-];
 export default function PublishesTable() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const defaultData = useMemo<AddPublishesOrder[]>(() => [], []);
   const columnsMemo = useMemo(() => AddOPublishesColumns, []);
   const columnsMemos = useMemo(() => AddENPublishesColumns, []);
-  const [data, setData] = useState<OrgProp[]>([]);
+  const [data, setData] = useState<publishesProp[]>([]);
   const fetchIssueById = async () => {
     try {
-      const response = await axiosInstance.get<OrgResp>(`/api/OrgUndBWC`);
+      const response = await axiosInstance.get<publishesResp>(
+        `/api/ManagingPublications?type=Publication&ascending=false&publish=true`
+      );
       return [response.data];
     } catch (error) {
       console.error("Error fetching issue:", error);
@@ -130,12 +176,13 @@ export default function PublishesTable() {
                   <Input
                     placeholder="search by publication title"
                     value={
-                      (table.getColumn("name")?.getFilterValue() as string) ??
-                      ""
+                      (table
+                        .getColumn("en_Title")
+                        ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                       table
-                        .getColumn("name")
+                        .getColumn("en_Title")
                         ?.setFilterValue(event.target.value)
                     }
                   />
@@ -193,12 +240,13 @@ export default function PublishesTable() {
                   <Input
                     placeholder="بحث بعنوان المنشور"
                     value={
-                      (table.getColumn("name")?.getFilterValue() as string) ??
-                      ""
+                      (table
+                        .getColumn("ar_Title")
+                        ?.getFilterValue() as string) ?? ""
                     }
                     onChange={(event) =>
                       table
-                        .getColumn("name")
+                        .getColumn("ar_Title")
                         ?.setFilterValue(event.target.value)
                     }
                   />

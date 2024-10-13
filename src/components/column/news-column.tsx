@@ -6,13 +6,30 @@ import { Link } from "react-router-dom";
 import EditIcon from "src/assets/icons/edit-icon";
 import Tooltip from "src/ui/tooltap";
 import ChangePublishesDialog from "../dailog/change-publish";
+import ChangePublishesNewsDialog from "../dailog/change-publish-news";
 
 export type AddNewOrder = {
   isSelected: boolean;
   id: number;
-  name: string;
-  img: string;
-  link: string;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: any[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: any[];
+  en_table_of_content: any[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: null;
+  en_Note: null;
+  references: any[];
 };
 
 export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
@@ -24,7 +41,7 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src={row.original.img}
+            src={row.original.b_image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -33,17 +50,27 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "ar_Title",
     header: "عنوان الخبر",
   },
   {
-    accessorKey: "link",
+    accessorKey: "date_of_publish",
     header: "تارخ الخبر",
+  },
+  {
+    accessorKey: "type",
+    header: "النوع",
+    cell: ({ row }) => {
+      return row.original.type === "News" ? "الاخبار" : "News";
+    },
   },
 
   {
-    accessorKey: "link",
+    accessorKey: "publish",
     header: "نشر/الغاء النشر",
+    cell: ({ row }) => {
+      return row.original.publish === true ? "نشر" : "غير منشور";
+    },
   },
 
   {
@@ -74,12 +101,12 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="تغير حالة النشر">
-            <ChangePublishesDialog id={row.original.id} />
+            <ChangePublishesNewsDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="حذف">
             <DeleteDialog
-              url={`/api/Jobs/${row.original?.id}`}
-              path={"/admin-dashboard/jobs"}
+              url={`/api/ManagingPublications/${row.original?.id}`}
+              path={"/admin-dashboard/news"}
             />
           </Tooltip>
         </div>
@@ -97,7 +124,7 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
       return (
         <div className=" w-[50px] h-[50px] rounded-full">
           <img
-            src={row.original.img}
+            src={row.original.b_image}
             className="w-full h-full object-cover"
             alt=""
           />
@@ -106,16 +133,23 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "en_Title",
     header: "news title",
   },
   {
-    accessorKey: "link",
+    accessorKey: "date_of_publish",
     header: "Date of news",
   },
   {
-    accessorKey: "link",
+    accessorKey: "type",
+    header: "type",
+  },
+  {
+    accessorKey: "publish",
     header: "publishing/unpublication",
+    cell: ({ row }) => {
+      return row.original.publish === true ? "publishing" : "unpublication";
+    },
   },
 
   {
@@ -146,12 +180,12 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
             </Tooltip>
           </Link>
           <Tooltip text="Change news status">
-            <ChangePublishesDialog id={row.original.id} />
+            <ChangePublishesNewsDialog id={row.original.id} />
           </Tooltip>
           <Tooltip text="delete">
             <DeleteDialog
-              url={`/api/Jobs/${row.original?.id}`}
-              path={"/admin-dashboard/jobs"}
+              url={`/api/ManagingPublications/${row.original?.id}`}
+              path={"/admin-dashboard/news"}
             />
           </Tooltip>
         </div>
