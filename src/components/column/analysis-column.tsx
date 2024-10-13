@@ -131,7 +131,7 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
               </Button>
             </Tooltip>
           </Link>
-          <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
+          <Link to={`/admin-dashboard/view-analysis/${row.original.id}`}>
             <Tooltip text="عرض">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"
@@ -210,7 +210,7 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
               </Button>
             </Tooltip>
           </Link>
-          <Link to={`/admin-dashboard/jobs/info/${row.original.id}`}>
+          <Link to={`/admin-dashboard/view-analysis/${row.original.id}`}>
             <Tooltip text="view">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"

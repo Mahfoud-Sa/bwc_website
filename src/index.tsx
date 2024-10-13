@@ -60,6 +60,8 @@ import UpdateJobForm from "./components/form/update-job";
 import Departments from "./page/(User)/departments";
 import AddNews from "./components/form/add-news";
 import AddFormAnalysis from "./components/form/add-form-analysis";
+import ViewNews from "./components/view/view-news";
+import ViewAnalysis from "./components/view/view-analysis";
 
 const router = createBrowserRouter([
   {
@@ -168,12 +170,20 @@ const router = createBrowserRouter([
         element: <AddNews />,
       },
       {
+        path: "/admin-dashboard/view-news/:id",
+        element: <ViewNews />,
+      },
+      {
         path: "/admin-dashboard/analysis",
         element: <AnalysisIndex />,
       },
       {
         path: "/admin-dashboard/add-analysis/:id",
         element: <AddFormAnalysis />,
+      },
+      {
+        path: "/admin-dashboard/view-analysis/:id",
+        element: <ViewAnalysis />,
       },
       {
         path: "/admin-dashboard/view-publishes/:id",
