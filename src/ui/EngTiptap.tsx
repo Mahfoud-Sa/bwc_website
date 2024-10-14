@@ -3,6 +3,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./Toolbar";
 import { useTranslation } from "react-i18next";
 import EngToolbar from "./EngToolbar";
+import { useEffect } from "react";
 
 export default function EngTiptap({
   description,
@@ -26,7 +27,11 @@ export default function EngTiptap({
       onChange(editor.getHTML());
     },
   });
-
+  useEffect(() => {
+    if (editor && description !== editor.getHTML()) {
+      editor.commands.setContent(description || "");
+    }
+  }, [description, editor]);
   return (
     <>
       <div className="border border-gray-300 bg-transparent text-black rounded-md ">

@@ -2,6 +2,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./Toolbar";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export default function Tiptap({
   description,
@@ -26,6 +27,11 @@ export default function Tiptap({
     },
   });
 
+  useEffect(() => {
+    if (editor && description !== editor.getHTML()) {
+      editor.commands.setContent(description || "");
+    }
+  }, [description, editor]);
   return (
     <>
       <div className="border border-gray-300 bg-transparent text-black rounded-md ">

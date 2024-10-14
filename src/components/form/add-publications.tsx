@@ -191,7 +191,7 @@ export default function AddPublications() {
       formData.append("date_of_publish", datas.date_of_publish);
       formData.append("Ar_description", datas.Ar_description);
       formData.append("En_description", datas.En_description);
-      formData.append("An_note", datas.An_note);
+      formData.append("Ar_Note", datas.Ar_Note);
       formData.append("En_note", datas.En_note);
 
       if (datas.ImageFile) {
@@ -777,7 +777,7 @@ export default function AddPublications() {
                       <Label text="ملاحظة" />
                       <FormField
                         control={form.control}
-                        name="An_note"
+                        name="Ar_Note"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
@@ -1277,7 +1277,7 @@ export default function AddPublications() {
                       <Label text="ملاحظة" />
                       <FormField
                         control={form.control}
-                        name="An_note"
+                        name="Ar_Note"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">

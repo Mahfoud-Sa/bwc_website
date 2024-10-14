@@ -62,6 +62,8 @@ import AddNews from "./components/form/add-news";
 import AddFormAnalysis from "./components/form/add-form-analysis";
 import ViewNews from "./components/view/view-news";
 import ViewAnalysis from "./components/view/view-analysis";
+import UpdatePublications from "./components/form/update-publications";
+import UpdateNews from "./components/form/update-news";
 
 const router = createBrowserRouter([
   {
@@ -162,12 +164,20 @@ const router = createBrowserRouter([
         element: <PublicationIndex />,
       },
       {
+        path: "/admin-dashboard/update-publications/:id",
+        element: <UpdatePublications />,
+      },
+      {
         path: "/admin-dashboard/news",
         element: <NewsIndex />,
       },
       {
         path: "/admin-dashboard/Add-news/:id",
         element: <AddNews />,
+      },
+      {
+        path: "/admin-dashboard/update-news/:id",
+        element: <UpdateNews />,
       },
       {
         path: "/admin-dashboard/view-news/:id",
