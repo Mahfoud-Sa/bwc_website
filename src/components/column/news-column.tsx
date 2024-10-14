@@ -80,7 +80,7 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/update-news/${row.original?.id}`}>
             <Tooltip text="تعديل">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"
@@ -159,7 +159,7 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/update-news/${row.original?.id}`}>
             <Tooltip text="Edit">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"

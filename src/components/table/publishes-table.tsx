@@ -123,7 +123,7 @@ export default function PublishesTable() {
   const fetchIssueById = async () => {
     try {
       const response = await axiosInstance.get<publishesResp>(
-        `/api/ManagingPublications?type=Publication&ascending=false&publish=true`
+        `/api/ManagingPublications?type=publish&ascending=false&publish=true`
       );
       return [response.data];
     } catch (error) {

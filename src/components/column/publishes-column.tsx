@@ -139,7 +139,7 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/update-publications/${row.original?.id}`}>
             <Tooltip text="تعديل">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"
@@ -226,7 +226,7 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/update-publications/${row.original?.id}`}>
             <Tooltip text="Edit">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"
