@@ -684,7 +684,7 @@ export default function UpdatePublications() {
                 />
               </div>
             </div>
-            <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
+            <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right">
               <div className="text-start col-span-1  ">
                 <label htmlFor="">Reference</label>
                 <div className="card flex justify-center items-center">
@@ -882,8 +882,8 @@ export default function UpdatePublications() {
               </div>
             </div>
             <div className="w-full -translate-x-10 flex justify-end mt-20 ">
-              <Button className=" mb-10 text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                Add
+              <Button className=" mb-10 text-lg inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Edit
               </Button>
             </div>
           </form>
@@ -1159,7 +1159,7 @@ export default function UpdatePublications() {
                 />
               </div>
             </div>
-            <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
+            <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right">
               <div className=" col-span-1  ">
                 <label htmlFor="">المرجع</label>
                 <div className="card flex justify-center items-center">
@@ -1357,7 +1357,7 @@ export default function UpdatePublications() {
             </div>
             <div className="w-full translate-x-10 flex justify-end mt-20 ">
               <Button className=" mb-10 text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                إضافة
+                تعديل
               </Button>
             </div>
           </form>

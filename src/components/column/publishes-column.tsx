@@ -99,6 +99,10 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
   {
     accessorKey: "date_of_publish",
     header: "تاريخ المنشور",
+    cell: ({ row }) => {
+      return <p>{String(row.original.date_of_publish).split("T")[0]}</p>;
+    },
+    sortingFn: "datetime",
   },
   {
     accessorKey: "type",
@@ -198,6 +202,10 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
   {
     accessorKey: "date_of_publish",
     header: "Date of post",
+    cell: ({ row }) => {
+      return <p>{String(row.original.date_of_publish).split("T")[0]}</p>;
+    },
+    sortingFn: "datetime",
   },
 
   {

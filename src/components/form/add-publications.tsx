@@ -609,7 +609,7 @@ export default function AddPublications() {
                       />
                     </div>
                   </div>
-                  <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
+                  <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className="text-start col-span-1  ">
                       <label htmlFor="">Reference</label>
                       <div className="card flex justify-center items-center">
@@ -1109,7 +1109,7 @@ export default function AddPublications() {
                       />
                     </div>
                   </div>
-                  <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
+                  <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1  ">
                       <label htmlFor="">المرجع</label>
                       <div className="card flex justify-center items-center">

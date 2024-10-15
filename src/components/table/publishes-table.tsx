@@ -9,6 +9,7 @@ import {
   getFilteredRowModel,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
@@ -18,7 +19,15 @@ import {
   AddENPublishesColumns,
   type AddPublishesOrder,
 } from "../column/publishes-column";
-
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "src/ui/select";
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
@@ -162,6 +171,12 @@ export default function PublishesTable() {
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    sortingFns: {
+      myCustomSortingFn: (rowA, rowB, columnId) => {
+        return rowA.original[columnId] > rowB.original[columnId] ? 1 : -1;
+      },
+    },
   });
   return (
     <>
@@ -268,14 +283,34 @@ export default function PublishesTable() {
                     {" "}
                     فلتر بالتاريخ المنشور{" "}
                   </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      if (value === "الجميع") {
+                        // Remove all sorting
+                        table.setSorting([]);
+                      } else {
+                        table.setSorting([
+                          {
+                            id: "date_of_publish",
+                            desc: value === "الاحدث",
+                          },
+                        ]);
+                      }
+                    }}
                   >
-                    {" "}
-                    حالة المنشور{" "}
-                  </Button>
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="فلتر بالتاريخ" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>فلتر بالتاريخ</SelectLabel>
+                        <SelectItem value="الجميع">الجميع</SelectItem>
+                        <SelectItem value="الاقدم">الاقدم</SelectItem>
+                        <SelectItem value="الاحدث">الاحدث</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
 
                   <Link to={`/admin-dashboard/add-publications/${1}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
