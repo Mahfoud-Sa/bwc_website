@@ -16,7 +16,7 @@ import {
 } from "../../types/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { addAnalysis } from "src/types/validation";
+import { updateAnalysis } from "src/types/validation";
 import { z } from "zod";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
@@ -48,7 +48,7 @@ type ReferenceOption = {
   label: string;
   value: number;
 };
-type AnalysisFormValue = z.infer<typeof addAnalysis>;
+type AnalysisFormValue = z.infer<typeof updateAnalysis>;
 interface WriterResponse {
   data: {
     id: number;
@@ -148,8 +148,8 @@ export default function UpdateFormAnalysis() {
   const navigate = useNavigate();
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedValue, setSelectedValue] = useState<number | null>(null);
-  const form = useForm<z.infer<typeof addAnalysis>>({
-    resolver: zodResolver(addAnalysis),
+  const form = useForm<z.infer<typeof updateAnalysis>>({
+    resolver: zodResolver(updateAnalysis),
   });
   const [texts, setTexts] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
@@ -239,7 +239,7 @@ export default function UpdateFormAnalysis() {
 
   // First Mutation: Adding Publications
   const { mutate } = useMutation<WriterResponse, Error, AnalysisFormValue>({
-    mutationKey: ["AddAnalysis"],
+    mutationKey: ["updateAnalysis"],
     mutationFn: (datas: AnalysisFormValue) => {
       const formData = new FormData();
       formData.append("Ar_Title", datas.Ar_Title);
