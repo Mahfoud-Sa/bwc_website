@@ -123,7 +123,7 @@ export default function AnalysisTable() {
   const fetchIssueById = async () => {
     try {
       const response = await axiosInstance.get<AnalysisResp>(
-        `/api/ManagingPublications?type=Analysis&ascending=false&publish=true`
+        `/api/ManagingPublications?type=Analysise&ascending=false&publish=true`
       );
       return [response.data];
     } catch (error) {

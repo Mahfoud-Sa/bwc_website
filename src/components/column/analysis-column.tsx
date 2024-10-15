@@ -121,7 +121,7 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/update-analysis/${row.original?.id}`}>
             <Tooltip text="تعديل">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"
@@ -200,7 +200,7 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
 
       return (
         <div className="flex justify-center ">
-          <Link to={`/admin-dashboard/jobs/update-job/${row.original?.id}`}>
+          <Link to={`/admin-dashboard/update-analysis/${row.original?.id}`}>
             <Tooltip text="Edit">
               <Button
                 className="bg-[#d5ae78] text-white ml-3 rounded-lg"
