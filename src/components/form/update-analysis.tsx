@@ -247,7 +247,7 @@ export default function UpdateFormAnalysis() {
       formData.append("date_of_publish", datas.date_of_publish);
       formData.append("Ar_description", datas.Ar_description);
       formData.append("En_description", datas.En_description);
-      formData.append("An_note", datas.An_note);
+      formData.append("Ar_note", datas.Ar_note);
       formData.append("En_note", datas.En_note);
 
       if (datas.ImageFile) {
@@ -363,7 +363,7 @@ export default function UpdateFormAnalysis() {
         en_table_of_content: PublishesData.en_table_of_content,
         Ar_description: PublishesData.ar_description,
         En_description: PublishesData.en_description,
-        An_note: PublishesData.ar_Note!,
+        Ar_note: PublishesData.ar_Note!,
         En_note: PublishesData.en_Note,
       });
       setTexts(PublishesData.tags || []);
@@ -785,7 +785,7 @@ export default function UpdateFormAnalysis() {
                 <Label text="ملاحظة" />
                 <FormField
                   control={form.control}
-                  name="An_note"
+                  name="Ar_note"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">{"ملاحظة"}</FormLabel>
@@ -1350,7 +1350,7 @@ export default function UpdateFormAnalysis() {
                 <Label text="ملاحظة" />
                 <FormField
                   control={form.control}
-                  name="An_note"
+                  name="Ar_note"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">{"ملاحظة"}</FormLabel>

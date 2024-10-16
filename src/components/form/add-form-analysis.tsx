@@ -218,7 +218,7 @@ export default function AddFormAnalysis() {
       formData.append("date_of_publish", datas.date_of_publish);
       formData.append("Ar_description", datas.Ar_description);
       formData.append("En_description", datas.En_description);
-      formData.append("An_note", datas.An_note);
+      formData.append("Ar_note", datas.Ar_note);
       formData.append("En_note", datas.En_note);
 
       if (datas.ImageFile) {
@@ -716,7 +716,7 @@ export default function AddFormAnalysis() {
                       <Label text="ملاحظة" />
                       <FormField
                         control={form.control}
-                        name="An_note"
+                        name="Ar_note"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
@@ -1334,7 +1334,7 @@ export default function AddFormAnalysis() {
                       <Label text="ملاحظة" />
                       <FormField
                         control={form.control}
-                        name="An_note"
+                        name="Ar_note"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">

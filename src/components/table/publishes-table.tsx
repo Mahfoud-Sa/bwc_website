@@ -211,22 +211,73 @@ export default function PublishesTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      if (value === "All") {
+                        // Remove all sorting
+                        table.setSorting([]);
+                      } else {
+                        table.setSorting([
+                          {
+                            id: "date_of_publish",
+                            desc: value === "newest",
+                          },
+                        ]);
+                      }
+                    }}
                   >
-                    {" "}
-                    Published Date Filter{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="Published Date Filter" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>Published Date Filter</SelectLabel>
+                        <SelectItem value="All">All</SelectItem>
+                        <SelectItem value="oldest">oldest</SelectItem>
+                        <SelectItem value="newest">newest</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      table.setColumnFilters((prevFilters) => {
+                        // Remove existing 'avaliable' filter
+                        const filters = prevFilters.filter(
+                          (filter) => filter.id !== "publish"
+                        );
+
+                        if (value === "all") {
+                          // Return filters without 'publish' filter
+                          return filters;
+                        } else {
+                          // Add the 'publish' filter based on the selected value
+                          return [
+                            ...filters,
+                            {
+                              id: "publish",
+                              value: value === "publishing" ? true : false,
+                            },
+                          ];
+                        }
+                      });
+                    }}
                   >
-                    {" "}
-                    Publication Status{" "}
-                  </Button>
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="Publication Status" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>Publication Status</SelectLabel>
+                        <SelectItem value="all">All</SelectItem>
+                        <SelectItem value="publishing">publishing</SelectItem>
+                        <SelectItem value="unpublication">
+                          unpublication
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
 
                   <Link to={`/admin-dashboard/add-publications/${1}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
@@ -275,14 +326,6 @@ export default function PublishesTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
-                  >
-                    {" "}
-                    فلتر بالتاريخ المنشور{" "}
-                  </Button>
                   <Select
                     dir="rtl"
                     onValueChange={(value) => {
@@ -311,7 +354,43 @@ export default function PublishesTable() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      table.setColumnFilters((prevFilters) => {
+                        // Remove existing 'avaliable' filter
+                        const filters = prevFilters.filter(
+                          (filter) => filter.id !== "publish"
+                        );
 
+                        if (value === "الجميع") {
+                          // Return filters without 'publish' filter
+                          return filters;
+                        } else {
+                          // Add the 'publish' filter based on the selected value
+                          return [
+                            ...filters,
+                            {
+                              id: "publish",
+                              value: value === "منشور" ? true : false,
+                            },
+                          ];
+                        }
+                      });
+                    }}
+                  >
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="فلتر بالحالة" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>فلتر يحالة النشر</SelectLabel>
+                        <SelectItem value="الجميع">الجميع</SelectItem>
+                        <SelectItem value="منشور">منشور</SelectItem>
+                        <SelectItem value="غير منشور">غير منشور</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                   <Link to={`/admin-dashboard/add-publications/${1}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />

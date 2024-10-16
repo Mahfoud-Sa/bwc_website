@@ -134,6 +134,13 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
     cell: ({ row }) => {
       return row.original.publish === true ? "نشر" : "غير منشور";
     },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
+    },
   },
 
   {
@@ -224,6 +231,13 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
     header: "publishing/unpublication",
     cell: ({ row }) => {
       return row.original.publish === true ? "publishing" : "unpublication";
+    },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
     },
   },
 
