@@ -111,6 +111,7 @@ export default function ViewPublications() {
                 <img src={PublicationInfoData?.b_image} alt="" />
               </div>
             </div>
+            <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
             <div className="grid min-h-[100px] mt-4 items-start gap-4 overflow-y-scroll scroll-smooth text-right">
               <div className="text-start h-auto">
                 <label htmlFor="" className="float-start">
@@ -260,6 +261,7 @@ export default function ViewPublications() {
                 <img src={PublicationInfoData?.b_image} alt="" />
               </div>
             </div>
+            <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
             <div className="grid min-h-[100px] mt-4 items-start gap-4 overflow-y-scroll scroll-smooth text-right">
               <div className="text-start h-auto">
                 <label htmlFor="" className="float-start">

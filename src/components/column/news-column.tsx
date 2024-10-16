@@ -56,6 +56,10 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
   {
     accessorKey: "date_of_publish",
     header: "تارخ الخبر",
+    cell: ({ row }) => {
+      return <p>{String(row.original.date_of_publish).split("T")[0]}</p>;
+    },
+    sortingFn: "datetime",
   },
   {
     accessorKey: "type",
@@ -70,6 +74,13 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
     header: "نشر/الغاء النشر",
     cell: ({ row }) => {
       return row.original.publish === true ? "نشر" : "غير منشور";
+    },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
     },
   },
 
@@ -139,6 +150,10 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
   {
     accessorKey: "date_of_publish",
     header: "Date of news",
+    cell: ({ row }) => {
+      return <p>{String(row.original.date_of_publish).split("T")[0]}</p>;
+    },
+    sortingFn: "datetime",
   },
   {
     accessorKey: "type",
@@ -149,6 +164,13 @@ export const AddENNewsColumns: ColumnDef<AddNewOrder>[] = [
     header: "publishing/unpublication",
     cell: ({ row }) => {
       return row.original.publish === true ? "publishing" : "unpublication";
+    },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
     },
   },
 

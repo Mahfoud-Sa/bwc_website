@@ -212,7 +212,7 @@ export default function PublishesTable() {
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
                   <Select
-                    dir="rtl"
+                    dir="ltr"
                     onValueChange={(value) => {
                       if (value === "All") {
                         // Remove all sorting
@@ -240,7 +240,7 @@ export default function PublishesTable() {
                     </SelectContent>
                   </Select>
                   <Select
-                    dir="rtl"
+                    dir="ltr"
                     onValueChange={(value) => {
                       table.setColumnFilters((prevFilters) => {
                         // Remove existing 'avaliable' filter
