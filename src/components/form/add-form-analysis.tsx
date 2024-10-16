@@ -384,7 +384,7 @@ export default function AddFormAnalysis() {
                   </div>
                   <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className="text-start col-span-1 h-auto ">
-                      <label htmlFor="">Publication Photo</label>
+                      <label htmlFor="">Analysis Photo</label>
                       <FormField
                         control={form.control}
                         name="ImageFile"
@@ -410,19 +410,19 @@ export default function AddFormAnalysis() {
                   </div>
                   <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1 h-auto ">
-                      <Label text="عنوان المنشور" />
+                      <Label text="عنوان التحليل" />
                       <FormField
                         control={form.control}
                         name="Ar_Title"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
-                              {"عنوان المنشور"}
+                              {"عنوان التحليل"}
                             </FormLabel>
                             <FormControl>
                               <Input
                                 dir="rtl"
-                                placeholder="ادخل عنوان المنشور..."
+                                placeholder="ادخل عنوان التحليل..."
                                 {...field}
                               />
                             </FormControl>
@@ -432,19 +432,19 @@ export default function AddFormAnalysis() {
                       />
                     </div>
                     <div className="text-start col-span-1 h-auto ">
-                      <Label text="Publish Title" />
+                      <Label text="Analysis Title" />
                       <FormField
                         control={form.control}
                         name="En_Title"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
-                              {"Publish Title"}
+                              {"Analysis Title"}
                             </FormLabel>
                             <FormControl>
                               <Input
                                 dir="ltr"
-                                placeholder="enter Publish Title..."
+                                placeholder="enter Analysis Title..."
                                 {...field}
                               />
                             </FormControl>
@@ -452,6 +452,52 @@ export default function AddFormAnalysis() {
                           </FormItem>
                         )}
                       />
+                    </div>
+                    <div className="text-start col-span-1  ">
+                      <label htmlFor="">Reference</label>
+                      <div className="card flex justify-center items-center">
+                        <MultiSelect
+                          dir="ltr"
+                          value={selectedReference}
+                          onChange={(e) => setSelectedReference(e.value)} // This will store only the selected writer IDs
+                          options={referenceOptions} // writerOptions is an array of { label, value }
+                          optionLabel="label"
+                          optionValue="value"
+                          placeholder="select references"
+                          maxSelectedLabels={0}
+                          className="w-full rounded-md border border-gray-300 bg-white shadow-sm py-[6px] translate-y-[3px] px-2 focus:ring focus:ring-indigo-500"
+                          panelClassName="rounded-md bg-white px-2 py-2 shadow-lg border border-gray-300"
+                          itemTemplate={(option) => {
+                            if (!option) return null;
+
+                            // Check if the current item's value (ID) is in the selectedWriters array (which only holds IDs)
+                            const isItemSelected = selectedReference.includes(
+                              option.value
+                            );
+
+                            return (
+                              <div
+                                className={`flex items-center justify-between gap-2 w-[370px] shadow-inner mb-1 p-2 rounded-lg cursor-pointer transition-all ${
+                                  isItemSelected
+                                    ? "bg-gray-200"
+                                    : "hover:bg-gray-100"
+                                }`}
+                              >
+                                <span className="text-lg">{option.label}</span>
+                              </div>
+                            );
+                          }}
+                          selectedItemTemplate={(option) => {
+                            if (!option) return null;
+
+                            return (
+                              <div className="flex items-center gap-2">
+                                <span>{option.label}</span>
+                              </div>
+                            );
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
@@ -548,53 +594,7 @@ export default function AddFormAnalysis() {
                       />
                     </div>
                   </div>
-                  <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
-                    <div className="text-start col-span-1  ">
-                      <label htmlFor="">Reference</label>
-                      <div className="card flex justify-center items-center">
-                        <MultiSelect
-                          dir="ltr"
-                          value={selectedReference}
-                          onChange={(e) => setSelectedReference(e.value)} // This will store only the selected writer IDs
-                          options={referenceOptions} // writerOptions is an array of { label, value }
-                          optionLabel="label"
-                          optionValue="value"
-                          placeholder="select references"
-                          maxSelectedLabels={0}
-                          className="w-full rounded-md border border-gray-300 bg-white shadow-sm py-[6px] translate-y-[3px] px-2 focus:ring focus:ring-indigo-500"
-                          panelClassName="rounded-md bg-white px-2 py-2 shadow-lg border border-gray-300"
-                          itemTemplate={(option) => {
-                            if (!option) return null;
-
-                            // Check if the current item's value (ID) is in the selectedWriters array (which only holds IDs)
-                            const isItemSelected = selectedReference.includes(
-                              option.value
-                            );
-
-                            return (
-                              <div
-                                className={`flex items-center justify-between gap-2 w-[370px] shadow-inner mb-1 p-2 rounded-lg cursor-pointer transition-all ${
-                                  isItemSelected
-                                    ? "bg-gray-200"
-                                    : "hover:bg-gray-100"
-                                }`}
-                              >
-                                <span className="text-lg">{option.label}</span>
-                              </div>
-                            );
-                          }}
-                          selectedItemTemplate={(option) => {
-                            if (!option) return null;
-
-                            return (
-                              <div className="flex items-center gap-2">
-                                <span>{option.label}</span>
-                              </div>
-                            );
-                          }}
-                        />
-                      </div>
-                    </div>
+                  <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className="text-start col-span-1 h-auto ">
                       <Label text="Tags" />
                       <FormField
@@ -669,10 +669,175 @@ export default function AddFormAnalysis() {
                         )}
                       />
                     </div>
+                    <div className="col-span-1 h-auto ">
+                      <Label text="جدول محتويات" />
+                      <FormField
+                        control={form.control}
+                        name="ar_table_of_content"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-red-900"></FormLabel>
+                            <FormControl>
+                              <div className="relative">
+                                <Input
+                                  dir="rtl"
+                                  placeholder="ادخل جدول محتويات..."
+                                  value={inputValueTableOfContentAr}
+                                  onChange={(e) => {
+                                    setInputValueTableOfContentAr(
+                                      e.target.value
+                                    );
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (
+                                      e.key === "Enter" &&
+                                      inputValueTableOfContentAr.trim()
+                                    ) {
+                                      const newValues = Array.isArray(
+                                        field.value
+                                      )
+                                        ? [
+                                            ...field.value,
+                                            inputValueTableOfContentAr,
+                                          ]
+                                        : [inputValueTableOfContentAr];
+                                      field.onChange(newValues);
+                                      setTableOfContentAr(newValues);
+                                      setInputValueTableOfContentAr("");
+                                      e.preventDefault();
+                                    }
+                                  }}
+                                  name={field.name}
+                                  ref={field.ref}
+                                  onBlur={field.onBlur}
+                                  className="pr-20"
+                                />
+
+                                {Array.isArray(field.value) &&
+                                  field.value.length > 0 && (
+                                    <Badge className="absolute right-2 top-2">
+                                      {`تم تحديد ${field.value.length}`}
+                                    </Badge>
+                                  )}
+
+                                {Array.isArray(field.value) &&
+                                  field.value.length > 0 &&
+                                  field.value.map(
+                                    (item: string, index: number) => (
+                                      <div
+                                        key={index}
+                                        className="flex items-center  "
+                                      >
+                                        <span>{item}</span>
+                                        <button
+                                          type="button"
+                                          className="ml-2 text-red-500"
+                                          onClick={() =>
+                                            handleTableOfContentArDelete(
+                                              index,
+                                              field
+                                            )
+                                          }
+                                        >
+                                          <CircleX />
+                                        </button>
+                                      </div>
+                                    )
+                                  )}
+                              </div>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="text-start col-span-1 h-auto ">
+                      <Label text="Table Of Content" />
+                      <FormField
+                        control={form.control}
+                        name="en_table_of_content"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-red-900"></FormLabel>
+                            <FormControl>
+                              <div className="relative">
+                                <Input
+                                  dir="ltr"
+                                  placeholder="Enter Table Of Content ..."
+                                  value={inputValueTableOfContentEn}
+                                  onChange={(e) => {
+                                    setInputValueTableOfContentEn(
+                                      e.target.value
+                                    );
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (
+                                      e.key === "Enter" &&
+                                      inputValueTableOfContentEn.trim()
+                                    ) {
+                                      const newValues = Array.isArray(
+                                        field.value
+                                      )
+                                        ? [
+                                            ...field.value,
+                                            inputValueTableOfContentEn,
+                                          ]
+                                        : [inputValueTableOfContentEn];
+                                      field.onChange(newValues);
+                                      setTableOfContentEn(newValues);
+                                      setInputValueTableOfContentEn("");
+                                      e.preventDefault();
+                                    }
+                                  }}
+                                  name={field.name}
+                                  ref={field.ref}
+                                  onBlur={field.onBlur}
+                                  className="pr-20"
+                                />
+
+                                {Array.isArray(field.value) &&
+                                  field.value.length > 0 && (
+                                    <Badge className="absolute right-2 top-2">
+                                      {`تم تحديد ${field.value.length}`}
+                                    </Badge>
+                                  )}
+
+                                {Array.isArray(field.value) &&
+                                  field.value.length > 0 &&
+                                  field.value.map(
+                                    (item: string, index: number) => (
+                                      <div
+                                        key={index}
+                                        className="flex items-center  "
+                                      >
+                                        <span>{item}</span>
+                                        <button
+                                          type="button"
+                                          className="ml-2 text-red-500"
+                                          onClick={() =>
+                                            handleTableOfContentEnDelete(
+                                              index,
+                                              field
+                                            )
+                                          }
+                                        >
+                                          <CircleX />
+                                        </button>
+                                      </div>
+                                    )
+                                  )}
+                              </div>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
                   </div>
                   <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1 h-auto ">
-                      <label htmlFor="">وصف المنشور</label>
+                      <label htmlFor="">وصف التحليل</label>
                       <FormField
                         control={form.control}
                         name="Ar_description"
@@ -1046,7 +1211,7 @@ export default function AddFormAnalysis() {
                       />
                     </div>
                   </div>
-                  <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
+                  <div className="grid  grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[10vh]">
                     <div className="col-span-1 h-auto ">
                       <Label text="وسوم" />
                       <FormField
@@ -1290,7 +1455,7 @@ export default function AddFormAnalysis() {
 
                   <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1 h-auto ">
-                      <label htmlFor="">وصف المنشور</label>
+                      <label htmlFor="">وصف التحليل</label>
                       <FormField
                         control={form.control}
                         name="Ar_description"
