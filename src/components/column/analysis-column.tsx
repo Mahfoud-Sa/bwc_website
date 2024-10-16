@@ -104,6 +104,10 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
   {
     accessorKey: "date_of_publish",
     header: "تارخ التحليل",
+    cell: ({ row }) => {
+      return <p>{String(row.original.date_of_publish).split("T")[0]}</p>;
+    },
+    sortingFn: "datetime",
   },
 
   {
@@ -111,6 +115,13 @@ export const AddAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
     header: "نشر/الغاء النشر",
     cell: ({ row }) => {
       return row.original.publish === true ? "نشر" : "غير منشور";
+    },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
     },
   },
 
@@ -180,6 +191,10 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
   {
     accessorKey: "date_of_publish",
     header: "Date of analysis",
+    cell: ({ row }) => {
+      return <p>{String(row.original.date_of_publish).split("T")[0]}</p>;
+    },
+    sortingFn: "datetime",
   },
   {
     accessorKey: "type",
@@ -190,6 +205,13 @@ export const AddENAnalysisColumns: ColumnDef<AddAnalysisOrder>[] = [
     header: "publishing/unpublication",
     cell: ({ row }) => {
       return row.original.publish === true ? "publishing" : "unpublication";
+    },
+    filterFn: (row, columnId, filterValue) => {
+      // If no filter is applied, show all rows
+      if (filterValue === undefined) {
+        return true;
+      }
+      return row.getValue(columnId) === filterValue;
     },
   },
 

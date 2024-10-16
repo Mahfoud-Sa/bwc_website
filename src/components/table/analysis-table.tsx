@@ -9,6 +9,7 @@ import {
   getFilteredRowModel,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 import Label from "src/ui/label";
 import { Input } from "src/ui/input";
@@ -18,7 +19,15 @@ import {
   AddENAnalysisColumns,
   type AddAnalysisOrder,
 } from "../column/analysis-column";
-
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "src/ui/select";
 import { OrderDataTable } from "src/ui/order-data-table";
 import { axiosInstance } from "src/lib/http";
 import { useTranslation } from "react-i18next";
@@ -162,6 +171,12 @@ export default function AnalysisTable() {
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    sortingFns: {
+      myCustomSortingFn: (rowA, rowB, columnId) => {
+        return rowA.original[columnId] > rowB.original[columnId] ? 1 : -1;
+      },
+    },
   });
   return (
     <>
@@ -195,22 +210,73 @@ export default function AnalysisTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                  <Select
+                    dir="ltr"
+                    onValueChange={(value) => {
+                      if (value === "All") {
+                        // Remove all sorting
+                        table.setSorting([]);
+                      } else {
+                        table.setSorting([
+                          {
+                            id: "date_of_publish",
+                            desc: value === "newest",
+                          },
+                        ]);
+                      }
+                    }}
                   >
-                    {" "}
-                    Filter Date Analysis{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="Analysis Date Filter" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>Analysis Date Filter</SelectLabel>
+                        <SelectItem value="All">All</SelectItem>
+                        <SelectItem value="oldest">oldest</SelectItem>
+                        <SelectItem value="newest">newest</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    dir="ltr"
+                    onValueChange={(value) => {
+                      table.setColumnFilters((prevFilters) => {
+                        // Remove existing 'avaliable' filter
+                        const filters = prevFilters.filter(
+                          (filter) => filter.id !== "publish"
+                        );
+
+                        if (value === "all") {
+                          // Return filters without 'publish' filter
+                          return filters;
+                        } else {
+                          // Add the 'publish' filter based on the selected value
+                          return [
+                            ...filters,
+                            {
+                              id: "publish",
+                              value: value === "publishing" ? true : false,
+                            },
+                          ];
+                        }
+                      });
+                    }}
                   >
-                    {" "}
-                    Analysis Status{" "}
-                  </Button>
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="Analysis Status" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>Analysis Status</SelectLabel>
+                        <SelectItem value="all">All</SelectItem>
+                        <SelectItem value="publishing">publishing</SelectItem>
+                        <SelectItem value="unpublication">
+                          unpublication
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                   <Link to={`/admin-dashboard/add-analysis/${3}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />
@@ -257,22 +323,71 @@ export default function AnalysisTable() {
               </div>
               <div className="col-span-3">
                 <div className="flex flex-row-reverse gap-4 ">
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      if (value === "الجميع") {
+                        // Remove all sorting
+                        table.setSorting([]);
+                      } else {
+                        table.setSorting([
+                          {
+                            id: "date_of_publish",
+                            desc: value === "الاحدث",
+                          },
+                        ]);
+                      }
+                    }}
                   >
-                    {" "}
-                    فلتر بتاريخ التحليل{" "}
-                  </Button>
-                  <Button
-                    className="mr-2 bg-[#d4d4d4] hover:bg-white"
-                    type="submit"
-                    form="searchEmployee"
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="فلتر بالتاريخ" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>فلتر بالتاريخ</SelectLabel>
+                        <SelectItem value="الجميع">الجميع</SelectItem>
+                        <SelectItem value="الاقدم">الاقدم</SelectItem>
+                        <SelectItem value="الاحدث">الاحدث</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    dir="rtl"
+                    onValueChange={(value) => {
+                      table.setColumnFilters((prevFilters) => {
+                        // Remove existing 'avaliable' filter
+                        const filters = prevFilters.filter(
+                          (filter) => filter.id !== "publish"
+                        );
+
+                        if (value === "الجميع") {
+                          // Return filters without 'publish' filter
+                          return filters;
+                        } else {
+                          // Add the 'publish' filter based on the selected value
+                          return [
+                            ...filters,
+                            {
+                              id: "publish",
+                              value: value === "منشور" ? true : false,
+                            },
+                          ];
+                        }
+                      });
+                    }}
                   >
-                    {" "}
-                    حالة النشر{" "}
-                  </Button>
+                    <SelectTrigger className="w-[180px] bg-[#d4d4d4]">
+                      <SelectValue placeholder="فلتر بالحالة" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#d4d4d4]">
+                      <SelectGroup>
+                        <SelectLabel>فلتر يحالة النشر</SelectLabel>
+                        <SelectItem value="الجميع">الجميع</SelectItem>
+                        <SelectItem value="منشور">منشور</SelectItem>
+                        <SelectItem value="غير منشور">غير منشور</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                   <Link to={`/admin-dashboard/add-analysis/${3}`}>
                     <Button className="text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background  transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
                       <Plus className="ml-2" />
