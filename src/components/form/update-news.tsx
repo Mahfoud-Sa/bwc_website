@@ -259,14 +259,14 @@ export default function UpdateNews() {
     },
     onSuccess: (data) => {
       console.log("Second mutation success:", data);
-      toast.error("لم تتم العميله.", {
+      toast.success("تمت التعديل بنجاح.", {
         style: {
-          border: "1px solid  #FF5733 ",
+          border: "1px solid #4FFFB0",
           padding: "16px",
-          color: " #FF5733 ",
+          color: "#4FFFB0",
         },
         iconTheme: {
-          primary: " #FF5733 ",
+          primary: "#4FFFB0",
           secondary: "#FFFAEE",
         },
       });
@@ -515,19 +515,19 @@ export default function UpdateNews() {
                 </div>
               )}
               <div className=" col-span-1 h-auto ">
-                <Label text="عنوان المنشور" />
+                <Label text="عنوان الخبر" />
                 <FormField
                   control={form.control}
                   name="Ar_Title"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
-                        {"عنوان المنشور"}
+                        {"عنوان الخبر"}
                       </FormLabel>
                       <FormControl>
                         <Input
                           dir="rtl"
-                          placeholder="ادخل عنوان المنشور..."
+                          placeholder="ادخل عنوان الخبر..."
                           {...field}
                         />
                       </FormControl>
@@ -537,20 +537,17 @@ export default function UpdateNews() {
                 />
               </div>
               <div className="text-start col-span-1 h-auto ">
-                <Label text="Publish Title" />
+                <Label text="News Title" />
                 <FormField
                   control={form.control}
                   name="En_Title"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
-                        {"Publish Title"}
+                        {"News Title"}
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="enter Publish Title..."
-                          {...field}
-                        />
+                        <Input placeholder="enter News Title..." {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -558,7 +555,7 @@ export default function UpdateNews() {
                 />
               </div>
             </div>
-            <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+            <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className="text-start col-span-1 h-auto ">
                 <Label text="Time to read" />
                 <FormField
@@ -670,7 +667,7 @@ export default function UpdateNews() {
 
             <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className=" col-span-1 h-auto ">
-                <label htmlFor="">وصف المنشور</label>
+                <label htmlFor="">وصف الخبر</label>
                 <FormField
                   control={form.control}
                   name="Ar_description"
@@ -710,8 +707,8 @@ export default function UpdateNews() {
             </div>
 
             <div className="w-full -translate-x-10 flex justify-end mt-20 ">
-              <Button className=" mb-10 text-md inline-flex h-10 px-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000]  py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                إضافة
+              <Button className=" mb-10 text-md inline-flex h-10 px-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000]  py-2 text-lg font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                Update
               </Button>
             </div>
           </form>
@@ -786,7 +783,7 @@ export default function UpdateNews() {
             </div>
             <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className=" col-span-1 h-auto ">
-                <label htmlFor="">صورة المنشور</label>
+                <label htmlFor="">صورة الخبر</label>
                 <FormField
                   control={form.control}
                   name="ImageFile"
@@ -811,7 +808,7 @@ export default function UpdateNews() {
             </div>
             <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className="col-span-1 h-auto">
-                <label>إضافة صور مشنور اخرى</label>
+                <label>إضافة صور للخبر اخرى</label>
                 <FormField
                   control={form.control}
                   name="images"
@@ -857,17 +854,17 @@ export default function UpdateNews() {
                 </div>
               )}
               <div className=" col-span-1 h-auto ">
-                <Label text="عنوان المنشور" />
+                <Label text="عنوان الخبر" />
                 <FormField
                   control={form.control}
                   name="Ar_Title"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
-                        {"عنوان المنشور"}
+                        {"عنوان الخبر"}
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="ادخل عنوان المنشور..." {...field} />
+                        <Input placeholder="ادخل عنوان الخبر..." {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -875,19 +872,19 @@ export default function UpdateNews() {
                 />
               </div>
               <div className="text-end col-span-1 h-auto ">
-                <Label text="Publish Title" />
+                <Label text="News Title" />
                 <FormField
                   control={form.control}
                   name="En_Title"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-red-900">
-                        {"Publish Title"}
+                        {"News Title"}
                       </FormLabel>
                       <FormControl>
                         <Input
                           dir="ltr"
-                          placeholder="enter Publish Title..."
+                          placeholder="enter News Title..."
                           {...field}
                         />
                       </FormControl>
@@ -897,7 +894,7 @@ export default function UpdateNews() {
                 />
               </div>
             </div>
-            <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+            <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className=" col-span-1 h-auto ">
                 <Label text="وقت القراءه" />
                 <FormField
@@ -1008,7 +1005,7 @@ export default function UpdateNews() {
 
             <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className=" col-span-1 h-auto ">
-                <label htmlFor="">وصف المنشور</label>
+                <label htmlFor="">وصف الخبر</label>
                 <FormField
                   control={form.control}
                   name="Ar_description"
@@ -1048,8 +1045,8 @@ export default function UpdateNews() {
             </div>
 
             <div className="w-full translate-x-10 flex justify-end mt-20 ">
-              <Button className=" mb-10 text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-4 py-2 text-sm font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-                إضافة
+              <Button className=" mb-10 text-md inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-[#000] px-10 py-2 text-lg font-bold text-white ring-offset-background transition-colors hover:bg-[#201f1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                تعديل
               </Button>
             </div>
           </form>

@@ -462,19 +462,19 @@ export default function AddNews() {
                       </div>
                     )}
                     <div className=" col-span-1 h-auto ">
-                      <Label text="عنوان المنشور" />
+                      <Label text="عنوان الخبر" />
                       <FormField
                         control={form.control}
                         name="Ar_Title"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
-                              {"عنوان المنشور"}
+                              {"عنوان الخبر"}
                             </FormLabel>
                             <FormControl>
                               <Input
                                 dir="rtl"
-                                placeholder="ادخل عنوان المنشور..."
+                                placeholder="ادخل عنوان الخبر..."
                                 {...field}
                               />
                             </FormControl>
@@ -484,18 +484,18 @@ export default function AddNews() {
                       />
                     </div>
                     <div className="text-start col-span-1 h-auto ">
-                      <Label text="Publish Title" />
+                      <Label text="News Title" />
                       <FormField
                         control={form.control}
                         name="En_Title"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
-                              {"Publish Title"}
+                              {"News Title"}
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="enter Publish Title..."
+                                placeholder="enter News Title..."
                                 {...field}
                               />
                             </FormControl>
@@ -629,7 +629,7 @@ export default function AddNews() {
 
                   <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1 h-auto ">
-                      <label htmlFor="">وصف المنشور</label>
+                      <label htmlFor="">وصف الخبر</label>
                       <FormField
                         control={form.control}
                         name="Ar_description"
@@ -745,7 +745,7 @@ export default function AddNews() {
                   </div>
                   <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1 h-auto ">
-                      <label htmlFor="">صورة المنشور</label>
+                      <label htmlFor="">صورة الخبر</label>
                       <FormField
                         control={form.control}
                         name="ImageFile"
@@ -770,7 +770,7 @@ export default function AddNews() {
                   </div>
                   <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className="col-span-1 h-auto">
-                      <label>إضافة صور مشنور اخرى</label>
+                      <label>إضافة صور للخبر اخرى</label>
                       <FormField
                         control={form.control}
                         name="images"
@@ -818,18 +818,18 @@ export default function AddNews() {
                       </div>
                     )}
                     <div className=" col-span-1 h-auto ">
-                      <Label text="عنوان المنشور" />
+                      <Label text="عنوان الخبر" />
                       <FormField
                         control={form.control}
                         name="Ar_Title"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-red-900">
-                              {"عنوان المنشور"}
+                              {"عنوان الخبر"}
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="ادخل عنوان المنشور..."
+                                placeholder="ادخل عنوان الخبر..."
                                 {...field}
                               />
                             </FormControl>
@@ -984,7 +984,7 @@ export default function AddNews() {
 
                   <div className="grid  h-[250px] grid-cols-1 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
                     <div className=" col-span-1 h-auto ">
-                      <label htmlFor="">وصف المنشور</label>
+                      <label htmlFor="">وصف الخبر</label>
                       <FormField
                         control={form.control}
                         name="Ar_description"
