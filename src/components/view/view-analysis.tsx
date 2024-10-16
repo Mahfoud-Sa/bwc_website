@@ -97,76 +97,229 @@ export default function ViewAnalysis() {
     <>
       {dir === "ltr" ? (
         <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9">
-          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
-          <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
-            <div className="text-start col-span-1 h-auto ">
-              <label htmlFor="" className="float-start">
-                publication image
-              </label>
-              <img src={PublicationInfoData?.b_image} alt="" />
+          <div className="border-2 border-black w-[100%] rounded-lg my-5 p-2 mx-auto ">
+            <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
+              <div className="text-start col-span-1 h-auto ">
+                <label htmlFor="" className="float-start">
+                  Analysis image
+                </label>
+                <img src={PublicationInfoData?.b_image} alt="" />
+              </div>
             </div>
-          </div>
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="عنوان المنشور" />
-              <p>{PublicationInfoData?.ar_Title}</p>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Publish Title" />
-              <p>{PublicationInfoData?.en_Title}</p>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Date of Publication" />
-              <p>{String(PublicationInfoData?.date_of_publish)}</p>
-            </div>
-          </div>
-
-          {/*  */}
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="writers" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.writers.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <p>{Item.en_fullName}</p>
-                    <img src={Item.image} alt="" className="w-[100px] h-auto" />
-                  </div>
-                ))}
+            <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="عنوان الخبر" />
+                <p>{PublicationInfoData?.ar_Title}</p>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Analysis Title" />
+                <p>{PublicationInfoData?.en_Title}</p>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Date of Publication" />
+                <p>
+                  {String(PublicationInfoData?.date_of_publish).split("T")[0]}
+                </p>
               </div>
             </div>
 
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Time to read" />
-              <p>{PublicationInfoData?.t2read}</p>
+            {/*  */}
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="writers" />
+                <div className="flex flex-wrap gap-4">
+                  {PublicationInfoData?.writers.map((Item, index) => (
+                    <div key={index} className="flex items-end gap-4">
+                      <p>{Item.en_fullName}</p>
+                      <img
+                        src={Item.image}
+                        alt=""
+                        className="w-[100px] h-auto"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Time to read" />
+                <p>{PublicationInfoData?.t2read}</p>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="references" />
+                <div className="flex flex-wrap gap-4">
+                  {PublicationInfoData?.references.map((Item, index) => (
+                    <div key={index} className="flex items-end gap-4">
+                      <a href={Item.link}>{Item.en_title}</a>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="references" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.references.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <a href={Item.link}>{Item.en_title}</a>
-                  </div>
-                ))}
+
+            {/*  */}
+
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Tags" />
+                <div className="">
+                  {PublicationInfoData?.tags.map((Item, index) => (
+                    <div key={index} className="">
+                      <p>
+                        {index}. {Item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="جدول محتويات" />
+                <div className="">
+                  {PublicationInfoData?.ar_table_of_content.map(
+                    (Item, index) => (
+                      <div key={index} className="">
+                        <p>
+                          {index}. {Item}
+                        </p>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Table Of Content" />
+                <div className="">
+                  {PublicationInfoData?.en_table_of_content.map(
+                    (Item, index) => (
+                      <div key={index} className="">
+                        <p>
+                          {index}. {Item}
+                        </p>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/*  */}
+            <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="وصف الخبر" />
+                <div className="">
+                  {PublicationInfoData?.ar_description && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: PublicationInfoData.ar_description,
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Description" />
+                <div className="">
+                  {PublicationInfoData?.en_description && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: PublicationInfoData.en_description,
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/*  */}
+            <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="ملاحظة" />
+                <div className="break-words whitespace-pre-wrap">
+                  <p>{PublicationInfoData?.ar_Note}</p>
+                </div>
+              </div>
+            </div>
+            {/*  */}
+            <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Note" />
+                <div className="break-words whitespace-pre-wrap">
+                  <p>{PublicationInfoData?.en_Note}</p>
+                </div>
               </div>
             </div>
           </div>
-
-          {/*  */}
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Tags" />
-              <div className="">
-                {PublicationInfoData?.tags.map((Item, index) => (
-                  <div key={index} className="">
-                    <p>
-                      {index}. {Item}
-                    </p>
-                  </div>
-                ))}
+        </div>
+      ) : (
+        <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9">
+          <div className="border-2 border-black w-[100%] rounded-lg my-5 p-2 mx-auto ">
+            <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
+              <div className="text-start col-span-1 h-auto ">
+                <label htmlFor="" className="float-start">
+                  صورة الخبر
+                </label>
+                <img src={PublicationInfoData?.b_image} alt="" />
               </div>
             </div>
+            <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="عنوان الخبر" />
+                <p>{PublicationInfoData?.ar_Title}</p>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="Analysis Title" />
+                <p>{PublicationInfoData?.en_Title}</p>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="تاريخ النشر" />
+                <p>
+                  {String(PublicationInfoData?.date_of_publish).split("T")[0]}
+                </p>
+              </div>
+            </div>
+
+            {/*  */}
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="كتاب" />
+                <div className="flex flex-wrap gap-4">
+                  {PublicationInfoData?.writers.map((Item, index) => (
+                    <div key={index} className="flex items-end gap-4">
+                      <p>{Item.en_fullName}</p>
+                      <img
+                        src={Item.image}
+                        alt=""
+                        className="w-[100px] h-auto"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="وقت القراءه " />
+                <p>{PublicationInfoData?.t2read}</p>
+              </div>
+              <div className="text-start col-span-1 h-auto translate-y-10">
+                <Label text="مراجع" />
+                <div className="flex flex-wrap gap-4">
+                  {PublicationInfoData?.references.map((Item, index) => (
+                    <div key={index} className="flex items-end gap-4">
+                      <a href={Item.link}>{Item.en_title}</a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/*  */}
+
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
                 <Label text="وسوم" />
@@ -213,189 +366,53 @@ export default function ViewAnalysis() {
             {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="وصف المنشور" />
+                <Label text="وصف الخبر" />
                 <div className="">
-                  <p>{PublicationInfoData?.ar_description}</p>
+                  {PublicationInfoData?.ar_description && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: PublicationInfoData.ar_description,
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className="text-end col-span-1 h-auto translate-y-10">
+                <Label text="Description" />
+                <div className="">
+                  {PublicationInfoData?.en_description && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: PublicationInfoData.en_description,
+                      }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/*  */}
+            <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className=" col-span-1 h-auto translate-y-10">
+                <Label text="ملاحظة" />
+                <div className="break-words whitespace-pre-wrap">
+                  <p>{PublicationInfoData?.ar_Note}</p>
+                </div>
+              </div>
+            </div>
+            {/*  */}
+            <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
+              <div className="text-end col-span-1 h-auto translate-y-10">
+                <Label text="Note" />
+                <div className="break-words whitespace-pre-wrap">
+                  <p>{PublicationInfoData?.en_Note}</p>
                 </div>
               </div>
             </div>
           </div>
-
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="وصف المنشور" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_description}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Description" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="ملاحظة" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_Note}</p>
-              </div>
-            </div>
-          </div>
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Note" />
-              <div className="">
-                <p>{PublicationInfoData?.en_Note}</p>
-              </div>
-            </div>
-          </div>
-          <div className="h-[2px]  w-[95%] mx-auto bg-black mb-5"></div>
-        </div>
-      ) : (
-        <div className="min-h-[90vh]  w-[100%] bg-[#f2f2f2] px-9">
-          <div className="h-[2px]  w-[95%] mx-auto bg-black"></div>
-          <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
-            <div className="text-start col-span-1 h-auto ">
-              <label htmlFor="" className="float-start">
-                صورة المنشور
-              </label>
-              <img src={PublicationInfoData?.b_image} alt="" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="عنوان المنشور" />
-              <p>{PublicationInfoData?.ar_Title}</p>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Publish Title" />
-              <p>{PublicationInfoData?.en_Title}</p>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="تاريخ النشر" />
-              <p>{String(PublicationInfoData?.date_of_publish)}</p>
-            </div>
-          </div>
-
-          {/*  */}
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="كتاب" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.writers.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <p>{Item.en_fullName}</p>
-                    <img src={Item.image} alt="" className="w-[100px] h-auto" />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="وقت القراءه " />
-              <p>{PublicationInfoData?.t2read}</p>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="مراجع" />
-              <div className="flex flex-wrap gap-4">
-                {PublicationInfoData?.references.map((Item, index) => (
-                  <div key={index} className="flex items-end gap-4">
-                    <a href={Item.link}>{Item.en_title}</a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/*  */}
-
-          <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="وسوم" />
-              <div className="">
-                {PublicationInfoData?.tags.map((Item, index) => (
-                  <div key={index} className="">
-                    <p>
-                      {index}. {Item}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="جدول محتويات" />
-              <div className="">
-                {PublicationInfoData?.ar_table_of_content.map((Item, index) => (
-                  <div key={index} className="">
-                    <p>
-                      {index}. {Item}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="text-start col-span-1 h-auto translate-y-10">
-              <Label text="Table Of Content" />
-              <div className="">
-                {PublicationInfoData?.en_table_of_content.map((Item, index) => (
-                  <div key={index} className="">
-                    <p>
-                      {index}. {Item}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="وصف المنشور" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_description}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-end col-span-1 h-auto translate-y-10">
-              <Label text="Description" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className=" col-span-1 h-auto translate-y-10">
-              <Label text="ملاحظة" />
-              <div className="">
-                <p>{PublicationInfoData?.ar_Note}</p>
-              </div>
-            </div>
-          </div>
-          {/*  */}
-          <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-            <div className="text-end col-span-1 h-auto translate-y-10">
-              <Label text="Note" />
-              <div className="">
-                <p>{PublicationInfoData?.en_Note}</p>
-              </div>
-            </div>
-          </div>
-          <div className="h-[2px]  w-[95%] mx-auto bg-black mb-5"></div>
         </div>
       )}
     </>
