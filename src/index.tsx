@@ -48,7 +48,6 @@ import UpdateWriterForm from "./components/form/update-writer";
 import UpdateTaskForce from "./components/form/update-taskforce-form";
 import UpdateOrg from "./components/form/update-org";
 import JoinUs from "./page/(User)/join-us";
-import Reports from "./page/(User)/reports";
 import JobDetails from "./page/(User)/job-details";
 import AddPublications from "./components/form/add-publications";
 import ReportDetials from "./page/(User)/report-detials";
@@ -65,6 +64,7 @@ import ViewAnalysis from "./components/view/view-analysis";
 import UpdatePublications from "./components/form/update-publications";
 import UpdateNews from "./components/form/update-news";
 import UpdateFormAnalysis from "./components/form/update-analysis";
+import PublicationPage from "./page/(User)/publicationPage";
 
 const router = createBrowserRouter([
   {
@@ -93,14 +93,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/all-publishes",
-    element: <Reports />,
+    element: <PublicationPage />,
   },
   {
     path: "/report-detials",
     element: <ReportDetials />,
   },
   {
-    path: "/publish-details",
+    path: "/publish-details/:id",
     element: <PublishDetails />,
   },
   {

@@ -569,6 +569,20 @@ opacity: 1;
 .job {
   text-align: start;
 }
+.publication {
+  text-align: start;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  width: 100%; /* Ensure the element respects the container's width */
+  max-width: 100%; /* Prevent overflow beyond the parent container */
+  overflow-wrap: anywhere; /* Allow breaking of long words anywhere */
+}
+
 .text-shadow {
   text-shadow: 1px 1px 2px black, 0 0 1em #d5ae78, 0 0 0.2em #cca972;
 }
