@@ -21,7 +21,9 @@ import { getApi } from "src/lib/http";
 import { useTranslation } from "react-i18next";
 import formattedDateEn from "src/utilities/formattedDateEn";
 import formattedDate from "src/utilities/formattedDate";
-
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ar";
 interface publish {
   imgs: string;
   title: string;
@@ -50,6 +52,15 @@ const publishes: publish[] = [
     // writers: { name: "حمود احمد سيف العطاس", img: writerImagePlaceholder },
   },
 ];
+
+export interface sidInfo {
+  id: number;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  date_of_publish: Date;
+  type: string;
+}
 
 interface PostCardProps {
   image: string;
@@ -181,26 +192,46 @@ const posts: PostCardProps[] = [
   // Add more objects as needed
 ];
 const PublicationPage = () => {
+  dayjs.extend(relativeTime);
+  dayjs.locale("ar");
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedValue, setSelectedValue] = useState("all");
   const [isPublish, setIsPublish] = useState(false);
   const [isAscending, setIsAscending] = useState(true);
   // const [date, setDate] = React.useState<Date>();
+  const handleSearchChange = (e: any) => {
+    setSearchQuery(e.target.value);
+  };
 
-  // const { control } = useForm({
-  //   defaultValues: {
-  //     dateField: new Date("2024-01-01"), // set a static date value here
-  //   },
-  // });
+  // Handle value change from Select
+  const handleAvailabilityChange = (value: string) => {
+    setIsPublish(value === "publish");
+  };
+  const handleAscendingChange = (value: string) => {
+    setIsAscending(value === "oldest");
+  };
+  console.log("isPublish", isPublish);
   const { data: PubResp } = useQuery({
-    queryKey: ["ManagingPublications", searchQuery, isPublish, isAscending],
+    queryKey: [
+      "ManagingPublications",
+      searchQuery,
+      isPublish,
+      isAscending,
+      selectedValue,
+    ],
     queryFn: () =>
       getApi<PublicationResp[]>(
-        `api/ManagingPublications?query=${searchQuery}&type=all&ascending=${isAscending}&publish=${isPublish}`
+        `api/ManagingPublications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}&publish=${isPublish}`
       ),
   });
-  console.log("PubResp", PubResp?.data);
+
+  const { data: SidInfoResp } = useQuery({
+    queryKey: ["ReadMore", searchQuery, isPublish, isAscending],
+    queryFn: () => getApi<sidInfo[]>(`api/website/Publications/ReadMore/5`),
+  });
+  console.log("SidInfoResp", SidInfoResp?.data);
   const itemsPerPage = 3; // Display 3 posts per page
   const totalItems = PubResp?.data.length || 0;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -241,7 +272,10 @@ const PublicationPage = () => {
     }
     return pages;
   };
-
+  const getRelativeTime = (date: string | Date, language: string): string => {
+    dayjs.locale(language);
+    return dayjs().to(dayjs(date));
+  };
   return (
     <>
       {dir === "ltr" ? (
@@ -257,74 +291,30 @@ const PublicationPage = () => {
               </div>
             </div>
             <div className=" grid grid-cols-3 gap-3">
-              <div className=" col-span-3 md:col-span-1">
-                <div className="p-3 bg-[#D5AE78] rounded-[8px]">
-                  <h1 className="font-bold">اقرأ أيضًا في التقارير</h1>
+              <div dir="ltr" className=" col-span-3 md:col-span-1">
+                <div className="p-3 bg-[#D5AE78] rounded-[8px] text-start">
+                  <h1 className="font-bold">Read also in publications</h1>
                 </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
+
+                <div className="border-[2px] border-[#D2D2D2] rounded-lg p-2 mt-2">
+                  {SidInfoResp?.data.map((item, index) => (
+                    <Link
+                      to={`/publish-details/${item.id}`}
+                      className="flex mt-4 gap-2 shadow-sm hover:bg-gray-100 cursor-pointer"
+                    >
+                      <img
+                        src={item.b_image}
+                        className="w-[92px] h-[70.18px] object-cover rounded-sm"
+                      />
+                      <div className="flex flex-col">
+                        <span>{item.en_Title}</span>
+                        <span className="flex font-normal text-sm gap-2 mt-2">
+                          <CalendarMinus2Icon size={19} />
+                          {`${getRelativeTime(item.date_of_publish, "en")} ago`}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
               <div className=" col-span-3 md:col-span-2">
@@ -334,23 +324,54 @@ const PublicationPage = () => {
 
             <div className="grid grid-cols-4 gap-3 mt-3">
               <div className=" col-span-4 md:col-span-1">
-                <Input dir="ltr" type="date" />
+                <div className=" col-span-4 md:col-span-1">
+                  <Select dir="ltr" onValueChange={handleAvailabilityChange}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="publish statut" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="publish">publish</SelectItem>
+                      <SelectItem value="unpublish">unpublish</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <div className=" col-span-4 md:col-span-1">
-                <Select dir="ltr">
+                <div className=" col-span-4 md:col-span-1">
+                  <Select dir="ltr" onValueChange={handleAscendingChange}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="select Publication order" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="oldest">oldest</SelectItem>
+                      <SelectItem value="newest">newest</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div className=" col-span-4 md:col-span-1">
+                <Select
+                  dir="ltr"
+                  onValueChange={(value) => setSelectedValue(value)}
+                >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Search by Year" />
+                    <SelectValue placeholder="search by type " />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">2024</SelectItem>
-                    <SelectItem value="dark">2023</SelectItem>
-                    <SelectItem value="system">2022</SelectItem>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="publish">publish</SelectItem>
+                    <SelectItem value="news">news</SelectItem>
+                    <SelectItem value="analysis">analysis</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              <div className=" col-span-4 md:col-span-2">
+              <div className=" col-span-4 md:col-span-1">
                 <Input
                   dir="ltr"
+                  type="text"
+                  id="simple-search"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
                   className=" rounded-[32.5px]"
                   placeholder="Search by the name of the publication"
                 />
@@ -360,78 +381,73 @@ const PublicationPage = () => {
             <div className="">
               {/* Render currentItems */}
               {currentItems?.map((item, index) => (
-                <div
-                  key={index}
-                  dir="ltr"
-                  className="grid grid-cols-2 gap-3 mt-3"
-                >
-                  <div className="col-span-3 shadow p-3 rounded-sm ">
-                    <div className="flex flex-col md:flex-row gap-3 ">
-                      <img
-                        src={item.b_image}
-                        className="rounded-md object-fill w-full md:w-[455px] h-full md:h-[337px]"
-                        alt="Post Image"
-                      />
-                      <div className="w-full">
-                        <h1 className="text-[40px] font-bold">
-                          {item.en_Title} + ${item.id}
+                <div key={index} dir="ltr" className="mt-6">
+                  <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 bg-white">
+                    <img
+                      src={item.b_image}
+                      className="rounded-md object-cover w-full lg:w-[455px] h-auto lg:h-[300px]"
+                      alt="Post Image"
+                    />
+                    <div className="w-full">
+                      <h1 className="text-2xl font-bold text-gray-800">
+                        {item.en_Title}
+                      </h1>
+                      <p className="flex items-center gap-2 text-sm text-gray-500 mt-3">
+                        <CalendarMinus2Icon size={19} />
+                        {formattedDateEn(new Date(item.date_of_publish))}
+                      </p>
+                      <p
+                        className={
+                          item.type === "publish"
+                            ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#CEA461] mt-2"
+                            : item.type === "news"
+                            ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#69DB57] mt-2"
+                            : item.type === "analysis"
+                            ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#979797] mt-2"
+                            : ""
+                        }
+                      >
+                        {item.type}
+                      </p>
+                      <div className="flex items-center gap-3 my-4">
+                        <img
+                          src={item.b_image}
+                          className="rounded-full object-cover w-[40px] h-[40px]"
+                          alt="Author"
+                        />
+                        <h1 className="font-medium text-gray-700">
+                          {item.ar_Title}
                         </h1>
-                        <p>
-                          <span className="flex font-normal text-sm gap-2 mt-2">
-                            <CalendarMinus2Icon size={19} />
-                            {formattedDateEn(new Date(item.date_of_publish))}
-                          </span>
-                          <span
-                            className={
-                              item.type === "publish"
-                                ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
-                                : item.type === "news"
-                                ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
-                                : item.type === "analysis"
-                                ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
-                                : ""
-                            }
-                          >
-                            {item.type}
-                          </span>
-                        </p>
-                        <div className="flex items-center gap-2 my-4">
-                          <img
-                            src={item.b_image}
-                            className="rounded-full object-cover w-[40px] h-[40px]"
-                            alt="Author"
-                          />
-                          <h1>{item.ar_Title}</h1>
-                        </div>
-                        <p className="text-base publication">
-                          {item?.en_description && (
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: item.en_description,
-                              }}
-                            />
-                          )}
-                        </p>
-                        <Link to={`/publish-details/${item.id}`}>
-                          <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3">
-                            Read more...
-                          </button>
-                        </Link>
                       </div>
+                      <p className="text-gray-600 text-base leading-6">
+                        {item?.en_description && (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: item.en_description,
+                            }}
+                          />
+                        )}
+                      </p>
+                      <Link to={`/publish-details/${item.id}`}>
+                        <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
+                          Read More ...
+                        </button>
+                      </Link>
                     </div>
                   </div>
+                  <div className="bg-[#CCA972] h-1 w-full mt-4"></div>
                 </div>
               ))}
 
               {/* Pagination controls */}
-              <div className="mt-4 flex justify-between space-x-2">
+              <div dir="ltr" className="mt-4 flex justify-between space-x-2">
                 <button
                   className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
                   onClick={() => paginate(currentPage - 1)}
                   disabled={currentPage === 1}
                 >
-                  <MoveRight size={20} className="ml-2" />
-                  <h6>السابق</h6>
+                  <h6>prev</h6>
+                  <MoveLeft className="ml-2" />
                 </button>
 
                 <div className="md:pr-0 sm:pr-5">
@@ -452,12 +468,12 @@ const PublicationPage = () => {
                 </div>
 
                 <button
-                  className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                  className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex items-center border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
                   onClick={() => paginate(currentPage + 1)}
                   disabled={currentPage === totalPages}
                 >
-                  <h6>التالي</h6>
-                  <MoveLeft className="mr-2" />
+                  <h6>next</h6>
+                  <MoveRight size={20} className="ml-2" />
                 </button>
               </div>
             </div>
@@ -486,164 +502,149 @@ const PublicationPage = () => {
                 <div className="p-3 bg-[#D5AE78] rounded-[8px]">
                   <h1 className="font-bold">اقرأ أيضًا في التقارير</h1>
                 </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
-                </div>
-                <div className="flex mt-4 gap-2 shadow-sm">
-                  <img
-                    src={sliderImagePlaceholder}
-                    className="w-[92px] h-[70.18px] object-cover rounded-sm"
-                  />
-                  <div className="flex flex-col">
-                    <span>التنمية قادمة: توخوا الحذر في تطلعاتكم</span>
-                    <span className="flex font-normal text-sm gap-2 mt-2">
-                      <CalendarMinus2Icon size={19} />
-                      قبل 22 ساعه
-                    </span>
-                  </div>
+                <div className="border-[2px] border-[#D2D2D2] rounded-lg p-2 mt-2">
+                  {SidInfoResp?.data.map((item, index) => (
+                    <Link
+                      to={`/publish-details/${item.id}`}
+                      className="flex mt-4 gap-2 shadow-sm hover:bg-gray-100 cursor-pointer"
+                    >
+                      <img
+                        src={item.b_image}
+                        className="w-[92px] h-[70.18px] object-cover rounded-sm"
+                      />
+                      <div className="flex flex-col">
+                        <span>{item.ar_Title}</span>
+                        <span className="flex font-normal text-sm gap-2 mt-2">
+                          <CalendarMinus2Icon size={19} />
+                          {`قبل ${getRelativeTime(item.date_of_publish, "ar")}`}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-4 gap-3 mt-3">
-              <div className=" col-span-4 md:col-span-2">
+              <div className=" col-span-4 md:col-span-1">
                 <Input
                   className=" rounded-[32.5px]"
-                  placeholder="بحث باسم التقارير"
+                  placeholder="بحث باسم المنشور"
+                  type="text"
+                  id="simple-search"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
                 />
               </div>
               <div className=" col-span-4 md:col-span-1">
-                <Select>
+                <Select
+                  dir="rtl"
+                  onValueChange={(value) => setSelectedValue(value)}
+                >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="ابحث بالسنة" />
+                    <SelectValue placeholder="ابحث بالنوع " />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">2024</SelectItem>
-                    <SelectItem value="dark">2023</SelectItem>
-                    <SelectItem value="system">2022</SelectItem>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="publish">publish</SelectItem>
+                    <SelectItem value="news">news</SelectItem>
+                    <SelectItem value="analysis">analysis</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className=" col-span-4 md:col-span-1">
-                <Input type="date" />
+                <div className=" col-span-4 md:col-span-1">
+                  <Select dir="rtl" onValueChange={handleAvailabilityChange}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="حالة النشر" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="publish">منشور</SelectItem>
+                      <SelectItem value="unpublish">غير منشور</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div className=" col-span-4 md:col-span-1">
+                <div className=" col-span-4 md:col-span-1">
+                  <Select dir="rtl" onValueChange={handleAscendingChange}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="فلتر بالتاريخ" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="oldest">الاقدم</SelectItem>
+                      <SelectItem value="newest">الاحدث</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
 
             <div className="">
               {/* Render currentItems */}
               {currentItems?.map((item, index) => (
-                <div key={index} className="grid grid-cols-2 gap-3 mt-3">
-                  <div className="col-span-3 shadow p-3 rounded-sm ">
-                    <div className="flex flex-col md:flex-row gap-3 ">
-                      <img
-                        src={item.b_image}
-                        className="rounded-md object-fill w-full md:w-[455px] h-full md:h-[337px]"
-                        alt="Post Image"
-                      />
-                      <div className="w-full">
-                        <h1 className="text-[40px] font-bold">
-                          {item.ar_Title} + ${item.id}
+                <div key={index} dir="rtl" className="mt-6">
+                  <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 bg-white">
+                    <img
+                      src={item.b_image}
+                      className="rounded-md object-cover w-full lg:w-[455px] h-auto lg:h-[300px]"
+                      alt="Post Image"
+                    />
+                    <div className="w-full">
+                      <h1 className="text-2xl font-bold text-gray-800">
+                        {item.ar_Title}
+                      </h1>
+                      <p className="flex items-center gap-2 text-sm text-gray-500 mt-3">
+                        <CalendarMinus2Icon size={19} />
+                        {formattedDateEn(new Date(item.date_of_publish))}
+                      </p>
+                      <p
+                        className={
+                          item.type === "publish"
+                            ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#CEA461] mt-2"
+                            : item.type === "news"
+                            ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#69DB57] mt-2"
+                            : item.type === "analysis"
+                            ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#979797] mt-2"
+                            : ""
+                        }
+                      >
+                        {item.type === "publish"
+                          ? "منشور"
+                          : item.type === "news"
+                          ? "الاخبار"
+                          : item.type === "analysis"
+                          ? "تحليلات"
+                          : ""}
+                      </p>
+                      <div className="flex items-center gap-3 my-4">
+                        <img
+                          src={item.b_image}
+                          className="rounded-full object-cover w-[40px] h-[40px]"
+                          alt="Author"
+                        />
+                        <h1 className="font-medium text-gray-700">
+                          {item.ar_Title}
                         </h1>
-                        <p>
-                          <span className="flex font-normal text-sm gap-2 mt-2">
-                            <CalendarMinus2Icon size={19} />
-                            {formattedDate(new Date(item.date_of_publish))}
-                          </span>
-                          <span
-                            className={
-                              item.type === "publish"
-                                ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
-                                : item.type === "news"
-                                ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
-                                : item.type === "analysis"
-                                ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
-                                : ""
-                            }
-                          >
-                            {item.type === "publish"
-                              ? "منشور"
-                              : item.type === "news"
-                              ? "الاخبار"
-                              : item.type === "analysis"
-                              ? "تحليلات"
-                              : ""}
-                          </span>
-                        </p>
-                        <div className="flex items-center gap-2 my-4">
-                          <img
-                            src={item.b_image}
-                            className="rounded-full object-cover w-[40px] h-[40px]"
-                            alt="Author"
-                          />
-                          <h1>{item.ar_Title}</h1>
-                        </div>
-                        <p className="text-base publication">
-                          {item?.ar_description && (
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: item.ar_description,
-                              }}
-                            />
-                          )}
-                        </p>
-                        <Link to={`/publish-details/${item.id}`}>
-                          <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3">
-                            قرأ المزيد...
-                          </button>
-                        </Link>
                       </div>
+                      <p className="text-gray-600 text-base leading-6">
+                        {item?.en_description && (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: item.en_description,
+                            }}
+                          />
+                        )}
+                      </p>
+                      <Link to={`/publish-details/${item.id}`}>
+                        <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
+                          اقرأ المزيد...
+                        </button>
+                      </Link>
                     </div>
                   </div>
+                  <div className="bg-[#CCA972] h-1 w-full mt-4"></div>
                 </div>
               ))}
 
