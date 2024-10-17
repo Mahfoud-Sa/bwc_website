@@ -8,7 +8,9 @@ import ClockCircle from "../../assets/icons/clock-circle";
 import Author from "../../components/(user)/author";
 import NewsList from "../../components/(user)/news-list";
 import MorePublish from "src/components/(user)/more-publish";
+import { useParams } from "react-router-dom";
 export default function PublishDetails() {
+  const { id } = useParams<{ id: string }>();
   return (
     <div>
       <div className="w-full lg:h-[8vh] md:h-[8vh]  sm:h-[11vh]">
