@@ -65,6 +65,8 @@ import UpdatePublications from "./components/form/update-publications";
 import UpdateNews from "./components/form/update-news";
 import UpdateFormAnalysis from "./components/form/update-analysis";
 import PublicationPage from "./page/(User)/publicationPage";
+import AnalysisDetails from "./page/(User)/anylis-page";
+import NewsDetails from "./page/(User)/new-page";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +104,14 @@ const router = createBrowserRouter([
   {
     path: "/publish-details/:id",
     element: <PublishDetails />,
+  },
+  {
+    path: "/Analysis-details/:id",
+    element: <AnalysisDetails />,
+  },
+  {
+    path: "/news-details/:id",
+    element: <NewsDetails />,
   },
   {
     path: "/departments",
