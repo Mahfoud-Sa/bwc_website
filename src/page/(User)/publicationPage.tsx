@@ -98,99 +98,6 @@ export enum Type {
   Publish = "publish",
 }
 
-const posts: PostCardProps[] = [
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-  {
-    image: sliderImagePlaceholder,
-    title: "التنمية قادمة: توخوا الحذر في تطلعاتكم",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-
-  {
-    image: sliderImagePlaceholder,
-    title: "00000000000",
-    timeAgo: "قبل 22 ساعه",
-    author: "حمود عبدالرقيب احمد سيف",
-    description:
-      "شركه عالم الاعمال هي شركه وطنية ذات مسؤولية محدودة. أسسها الدكتور ربيع بن علي العوبثاني...",
-  },
-
-  // Add more objects as needed
-];
 const PublicationPage = () => {
   dayjs.extend(relativeTime);
   dayjs.locale("ar");
@@ -223,13 +130,13 @@ const PublicationPage = () => {
     ],
     queryFn: () =>
       getApi<PublicationResp[]>(
-        `api/ManagingPublications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}&publish=${isPublish}`
+        `/api/ManagingPublications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}&publish=${isPublish}`
       ),
   });
 
   const { data: SidInfoResp } = useQuery({
-    queryKey: ["ReadMore", searchQuery, isPublish, isAscending],
-    queryFn: () => getApi<sidInfo[]>(`api/website/Publications/ReadMore/5`),
+    queryKey: ["ReadMore"],
+    queryFn: () => getApi<sidInfo[]>(`/api/website/Publications/ReadMore/5`),
   });
   console.log("SidInfoResp", SidInfoResp?.data);
   const itemsPerPage = 3; // Display 3 posts per page
@@ -419,7 +326,7 @@ const PublicationPage = () => {
                           {item.ar_Title}
                         </h1>
                       </div>
-                      <p className="text-gray-600 text-base leading-6">
+                      <p className="text-gray-600 text-base leading-6 publicationEn">
                         {item?.en_description && (
                           <div
                             dangerouslySetInnerHTML={{
@@ -544,11 +451,11 @@ const PublicationPage = () => {
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="ابحث بالنوع " />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="publish">publish</SelectItem>
-                    <SelectItem value="news">news</SelectItem>
-                    <SelectItem value="analysis">analysis</SelectItem>
+                  <SelectContent className="bg-white">
+                    <SelectItem value="all">الكل</SelectItem>
+                    <SelectItem value="publish">مشنورات</SelectItem>
+                    <SelectItem value="news">الاخبار</SelectItem>
+                    <SelectItem value="analysis">تحليلات</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -584,14 +491,14 @@ const PublicationPage = () => {
             <div className="">
               {/* Render currentItems */}
               {currentItems?.map((item, index) => (
-                <div key={index} dir="rtl" className="mt-6">
-                  <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 bg-white">
+                <div key={index} className="mt-6 ">
+                  <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 min-h-80 ">
                     <img
                       src={item.b_image}
                       className="rounded-md object-cover w-full lg:w-[455px] h-auto lg:h-[300px]"
                       alt="Post Image"
                     />
-                    <div className="w-full">
+                    <div className="w-full h-[300px] relative ">
                       <h1 className="text-2xl font-bold text-gray-800">
                         {item.ar_Title}
                       </h1>
@@ -628,18 +535,21 @@ const PublicationPage = () => {
                           {item.ar_Title}
                         </h1>
                       </div>
-                      <p className="text-gray-600 text-base leading-6">
-                        {item?.en_description && (
+                      <p className="text-gray-600 text-base leading-6 publication">
+                        {item?.ar_description && (
                           <div
                             dangerouslySetInnerHTML={{
-                              __html: item.en_description,
+                              __html: item.ar_description,
                             }}
                           />
                         )}
                       </p>
-                      <Link to={`/publish-details/${item.id}`}>
+                      <Link
+                        to={`/publish-details/${item.id}`}
+                        className="absolute bottom-4 w-full"
+                      >
                         <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
-                          اقرأ المزيد...
+                          إقراء المزيد ...
                         </button>
                       </Link>
                     </div>
