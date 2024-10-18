@@ -105,7 +105,7 @@ const PublicationPage = () => {
   const dir = i18n.dir();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedValue, setSelectedValue] = useState("all");
-  const [isPublish, setIsPublish] = useState(false);
+  const [isPublish, setIsPublish] = useState(true);
   const [isAscending, setIsAscending] = useState(true);
   // const [date, setDate] = React.useState<Date>();
   const handleSearchChange = (e: any) => {
@@ -130,7 +130,7 @@ const PublicationPage = () => {
     ],
     queryFn: () =>
       getApi<PublicationResp[]>(
-        `/api/ManagingPublications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}&publish=${isPublish}`
+        `/api/website/Publications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}&publish=${isPublish}`
       ),
   });
 
