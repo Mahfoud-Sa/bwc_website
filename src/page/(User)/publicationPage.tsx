@@ -545,7 +545,15 @@ const PublicationPage = () => {
                         )}
                       </p>
                       <Link
-                        to={`/publish-details/${item.id}`}
+                        to={
+                          item.type === "publish"
+                            ? `/publish-details/${item.id}`
+                            : item.type === "news"
+                            ? `/news-details/${item.id}`
+                            : item.type === "analysis"
+                            ? `/Analysis-details/${item.id}`
+                            : ""
+                        }
                         className="absolute bottom-4 w-full"
                       >
                         <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
