@@ -71,7 +71,7 @@ export default function AnalysisDetails() {
     queryFn: () =>
       getApi<AnalysisResp>(`/api/website/Publications/Details/${id}`),
   });
-  console.log("AnalysisDetails", AnalysisDetails?.data);
+
   const getRelativeTime = (date: string | Date, language: string): string => {
     dayjs.locale(language);
     return dayjs().to(dayjs(date));
@@ -191,13 +191,14 @@ export default function AnalysisDetails() {
                 {AnalysisDetails?.data.ar_Title}
               </h1>
               {/* Image Section */}
-              <div className="mb-8 relative min-h-[652px] ">
+              <div className="mb-8 relative h-[400px] overflow-hidden">
                 <img
                   src={AnalysisDetails?.data.b_image} // Replace with actual image path
                   alt="Report cover"
-                  className="w-full absolute md:static object-cover h-full"
+                  className="w-full h-full object-contain"
                 />
               </div>
+
               <div className="grid grid-cols-6 gap-x-2 gap-y-2">
                 <div className=" col-span-6 md:col-span-4 ">
                   <div className="flex flex-col md:flex-row justify-between md:h-[70px] bg-[#D5AE78] items-center mb-4 rounded-lg">
@@ -228,8 +229,10 @@ export default function AnalysisDetails() {
                         <div className="">
                           <img
                             src={items.image} // Replace with actual image path
-                            alt="Report cover"
-                            className=" object-contain "
+                            className="rounded-full object-cover mr-4 mb-4"
+                            width="60" // Add fixed width here
+                            height="60" // Add fixed height here
+                            alt={`Image of ${items.ar_fullName}`}
                           />
                         </div>
                         <span className="text-base font-bold">
@@ -285,7 +288,7 @@ export default function AnalysisDetails() {
                   <div dir="ltr" className="mb-[47px] bg-[#EEEEEE] py-5 px-3">
                     <button
                       onClick={toggleDiv}
-                      className="flex items-center px-4 py-2 relative   bg-white rounded hover:bg-gray-200 text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
+                      className="flex items-center px-4 py-2 relative bg-white rounded hover:bg-gray-200 text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
                     >
                       <span>{isOpen ? "إخفاء المراجع" : "إظهار المراجع"}</span>
                       <span className="ml-2 transform transition-transform">
@@ -293,14 +296,15 @@ export default function AnalysisDetails() {
                       </span>
                     </button>
                     {isOpen && (
-                      <div className="mt-4 p-4  rounded ">
-                        <p>
+                      <div className="mt-4 p-4 rounded">
+                        <p className="flex flex-wrap gap-2">
                           {AnalysisDetails?.data.references.map(
                             (item, index) => (
                               <a
+                                key={index}
                                 href={`${item.link}`}
                                 target="_blank"
-                                className="border-[1px] border-black text-base rounded-3xl p-2 ml-2 hover:bg-gray-100"
+                                className="border-[1px] border-black text-base rounded-3xl p-2 hover:bg-gray-100"
                               >
                                 {item.ar_title}
                               </a>
@@ -312,6 +316,36 @@ export default function AnalysisDetails() {
                   </div>
 
                   <div className="w-full border-t my-14"></div>
+
+                  <div dir="ltr" className="mb-[47px]">
+                    {AnalysisDetails?.data.writers.map((item, index) => (
+                      <div
+                        className="border border-gray-300 rounded-lg p-4 mx-auto w-[100%] mb-2 flex items-center"
+                        key={index}
+                      >
+                        <div className="flex-1 pr-4  ">
+                          <p className="m-0 text-base text-end leading-6">
+                            {item.ar_description}
+                          </p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <img
+                            src={item.image}
+                            className="rounded-full object-cover mb-2"
+                            width="60"
+                            height="60"
+                            alt={`Image of ${item.ar_fullName}`}
+                          />
+                          <span className="font-bold text-lg">
+                            {item.ar_fullName}
+                          </span>
+                          <span className="text-gray-500 text-sm">
+                            {item.ar_role}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className=" hidden md:block col-span-6 md:col-span-2 h-10">
                   {/* last news here */}

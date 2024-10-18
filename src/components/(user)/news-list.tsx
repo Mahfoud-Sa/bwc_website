@@ -1,11 +1,24 @@
 import React from "react";
 import NewsCard from "./news-card";
-
+import { useQuery } from "@tanstack/react-query";
+import { getApi } from "src/lib/http";
+export interface sidInfo {
+  id: number;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  date_of_publish: Date;
+  type: string;
+}
 export default function NewsList() {
+  const { data: sideInfos } = useQuery({
+    queryKey: ["sideInfos"],
+    queryFn: () => getApi<sidInfo[]>(`/api/website/Publications/ReadMore/5`),
+  });
   return (
     <div className="rounded-lg border m-2  divide-y-2">
-      {dataNews.map((item) => (
-        <NewsCard key={item.title} {...item} />
+      {sideInfos?.data.map((item) => (
+        <NewsCard key={item.ar_Title} {...item} />
       ))}
     </div>
   );
