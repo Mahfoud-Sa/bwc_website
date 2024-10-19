@@ -180,7 +180,7 @@ export default function AnalysisDetails() {
           <div className="w-full lg:h-[8vh] md:h-[8vh]  sm:h-[11vh]">
             <Navbar />
           </div>
-          <div className=" min-h-screen md:p-4">
+          <div className=" min-h-screen md:p-4 p-4">
             {/* Main Content Section */}
             <main className="md:max-w-[90vw] mx-auto  md:p-6">
               <h1 className=" text-[36px] font-bold mb-[43px] flex items-center gap-x-2">

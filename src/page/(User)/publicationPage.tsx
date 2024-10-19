@@ -105,32 +105,21 @@ const PublicationPage = () => {
   const dir = i18n.dir();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedValue, setSelectedValue] = useState("all");
-  const [isPublish, setIsPublish] = useState(true);
   const [isAscending, setIsAscending] = useState(true);
   // const [date, setDate] = React.useState<Date>();
   const handleSearchChange = (e: any) => {
     setSearchQuery(e.target.value);
   };
 
-  // Handle value change from Select
-  const handleAvailabilityChange = (value: string) => {
-    setIsPublish(value === "publish");
-  };
   const handleAscendingChange = (value: string) => {
     setIsAscending(value === "oldest");
   };
-  console.log("isPublish", isPublish);
+
   const { data: PubResp } = useQuery({
-    queryKey: [
-      "ManagingPublications",
-      searchQuery,
-      isPublish,
-      isAscending,
-      selectedValue,
-    ],
+    queryKey: ["ManagingPublications", searchQuery, isAscending, selectedValue],
     queryFn: () =>
       getApi<PublicationResp[]>(
-        `/api/website/Publications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}&publish=${isPublish}`
+        `/api/website/Publications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}`
       ),
   });
 
@@ -232,19 +221,6 @@ const PublicationPage = () => {
             <div className="grid grid-cols-4 gap-3 mt-3">
               <div className=" col-span-4 md:col-span-1">
                 <div className=" col-span-4 md:col-span-1">
-                  <Select dir="ltr" onValueChange={handleAvailabilityChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="publish statut" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="publish">publish</SelectItem>
-                      <SelectItem value="unpublish">unpublish</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className=" col-span-4 md:col-span-1">
-                <div className=" col-span-4 md:col-span-1">
                   <Select dir="ltr" onValueChange={handleAscendingChange}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="select Publication order" />
@@ -272,7 +248,7 @@ const PublicationPage = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className=" col-span-4 md:col-span-1">
+              <div className=" col-span-4 md:col-span-2">
                 <Input
                   dir="ltr"
                   type="text"
@@ -433,7 +409,7 @@ const PublicationPage = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-3 mt-3">
-              <div className=" col-span-4 md:col-span-1">
+              <div className=" col-span-4 md:col-span-2">
                 <Input
                   className=" rounded-[32.5px]"
                   placeholder="بحث باسم المنشور"
@@ -460,19 +436,6 @@ const PublicationPage = () => {
                 </Select>
               </div>
 
-              <div className=" col-span-4 md:col-span-1">
-                <div className=" col-span-4 md:col-span-1">
-                  <Select dir="rtl" onValueChange={handleAvailabilityChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="حالة النشر" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="publish">منشور</SelectItem>
-                      <SelectItem value="unpublish">غير منشور</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
               <div className=" col-span-4 md:col-span-1">
                 <div className=" col-span-4 md:col-span-1">
                   <Select dir="rtl" onValueChange={handleAscendingChange}>
