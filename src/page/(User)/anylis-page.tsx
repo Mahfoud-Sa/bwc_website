@@ -74,6 +74,7 @@ export default function AnalysisDetails() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const { id } = useParams<{ id: string }>();
+  const [modalOpen, setModalOpen] = useState(false);
   const { data: AnalysisDetails } = useQuery({
     queryKey: ["AnalysisDetails"],
     queryFn: () =>
@@ -86,6 +87,15 @@ export default function AnalysisDetails() {
   };
   const [isOpen, setIsOpen] = useState(false);
 
+  const openModal = () => {
+    if (AnalysisDetails?.data.b_image) {
+      setModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   const toggleDiv = () => {
     setIsOpen(!isOpen);
   };
@@ -116,9 +126,34 @@ export default function AnalysisDetails() {
                   src={AnalysisDetails?.data.b_image} // Replace with actual image path
                   alt="Report cover"
                   className="w-full h-full object-contain"
+                  onClick={openModal}
                 />
               </div>
-
+              {modalOpen && (
+                <div
+                  className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+                  onClick={closeModal}
+                >
+                  <div
+                    className="relative w-[100%] h-[100%] overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <>
+                      <img
+                        src={AnalysisDetails?.data.b_image!}
+                        className="w-[80%] h-[100%] mx-auto object-contain"
+                        alt=""
+                      />
+                      <button
+                        onClick={closeModal}
+                        className="absolute top-4 right-4 p-2 rounded-full bg-white text-black hover:bg-gray-200"
+                      >
+                        &times;
+                      </button>
+                    </>
+                  </div>
+                </div>
+              )}
               <div className="grid grid-cols-6 gap-x-2 gap-y-2">
                 <div className=" col-span-6 md:col-span-4 ">
                   <div className="flex flex-col md:flex-row justify-between md:h-[70px] bg-[#D5AE78] items-center mb-4 rounded-lg">
@@ -310,9 +345,34 @@ export default function AnalysisDetails() {
                   src={AnalysisDetails?.data.b_image} // Replace with actual image path
                   alt="Report cover"
                   className="w-full h-full object-contain"
+                  onClick={openModal}
                 />
               </div>
-
+              {modalOpen && (
+                <div
+                  className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+                  onClick={closeModal}
+                >
+                  <div
+                    className="relative w-[100%] h-[100%] overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <>
+                      <img
+                        src={AnalysisDetails?.data.b_image!}
+                        className="w-[80%] h-[100%] mx-auto object-contain"
+                        alt=""
+                      />
+                      <button
+                        onClick={closeModal}
+                        className="absolute top-4 right-4 p-2 rounded-full bg-white text-black hover:bg-gray-200"
+                      >
+                        &times;
+                      </button>
+                    </>
+                  </div>
+                </div>
+              )}
               <div className="grid grid-cols-6 gap-x-2 gap-y-2">
                 <div className=" col-span-6 md:col-span-4 ">
                   <div className="flex flex-col md:flex-row justify-between md:h-[70px] bg-[#D5AE78] items-center mb-4 rounded-lg">
