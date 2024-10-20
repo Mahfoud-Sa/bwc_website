@@ -123,7 +123,9 @@ export default function MorePublish() {
 
           {/* Show More Section */}
           <div className="text-center mt-4 text-[#CCA972]">
-            <button className="font-semibold text-lg">Read More</button>
+            <Link to={"/all-publishes"} className="font-semibold text-lg">
+              Read More
+            </Link>
           </div>
         </div>
       ) : (
@@ -214,7 +216,9 @@ export default function MorePublish() {
 
           {/* Show More Section */}
           <div className="text-center mt-4 text-[#CCA972]">
-            <button className="font-semibold text-lg">إظهار المزيد</button>
+            <Link to={"/all-publishes"} className="font-semibold text-lg">
+              إظهار المزيد
+            </Link>
           </div>
         </div>
       )}

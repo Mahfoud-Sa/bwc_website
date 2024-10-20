@@ -105,7 +105,7 @@ const PublicationPage = () => {
   const dir = i18n.dir();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedValue, setSelectedValue] = useState("all");
-  const [isAscending, setIsAscending] = useState(true);
+  const [isAscending, setIsAscending] = useState(false);
   // const [date, setDate] = React.useState<Date>();
   const handleSearchChange = (e: any) => {
     setSearchQuery(e.target.value);
