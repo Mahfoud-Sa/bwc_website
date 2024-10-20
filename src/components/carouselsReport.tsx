@@ -71,7 +71,7 @@ interface CarouselProps {
   publishes: publish[];
 }
 
-export default function CarouselsReport({ publishes }: CarouselProps) {
+export default function CarouselsReport() {
   const [slide, setSlide] = useState(0);
   const { t, i18n } = useTranslation();
   const { data: SliderResp } = useQuery({
@@ -80,11 +80,9 @@ export default function CarouselsReport({ publishes }: CarouselProps) {
   });
   console.log("SliderResp", SliderResp?.data);
   const nextSlide = () => {
-    setSlide(slide === publishes.length - 1 ? 0 : slide + 1);
-  };
+    const newSlide = SliderResp?.data.length ?? 0;
 
-  const prevSlide = () => {
-    setSlide(slide === 0 ? publishes.length - 1 : slide - 1);
+    setSlide(slide === newSlide - 1 ? 0 : slide + 1);
   };
 
   const dir = i18n.dir();
@@ -129,7 +127,9 @@ export default function CarouselsReport({ publishes }: CarouselProps) {
                         src={item.b_image}
                         key={idx}
                         className={
-                          slide === idx ? "slide" : "slide slide-hidden"
+                          slide === idx
+                            ? "slide object-fill"
+                            : "slide object-fill slide-hidden"
                         }
                       />
                       <div className="bg-[#979CA1]/[.70] md:min-h-[20vh] sm:min-h-[30vh]">
@@ -246,7 +246,11 @@ export default function CarouselsReport({ publishes }: CarouselProps) {
                     <img
                       src={item.b_image}
                       key={idx}
-                      className={slide === idx ? "slide" : "slide slide-hidden"}
+                      className={
+                        slide === idx
+                          ? "slide object-fill"
+                          : "slide object-fill slide-hidden"
+                      }
                     />
 
                     <div
@@ -262,31 +266,46 @@ export default function CarouselsReport({ publishes }: CarouselProps) {
                         }
                         key={idx}
                       >
-                        <h2 className={dir==="ltr"?("publishesHero-en"):("publishesHero")}>{item.en_Title}</h2>
+                        <h2
+                          className={
+                            dir === "ltr" ? "publishesHero-en" : "publishesHero"
+                          }
+                        >
+                          {item.en_Title}
+                        </h2>
                         <p className="mt-4">
                           {}
                           {dir === "ltr"
                             ? formattedDateEn(new Date(item.date_of_publish))
                             : formattedDateEn(new Date(item.date_of_publish))}
                         </p>
-                        <div
-                          className={
-                            dir === "ltr"
-                              ? "inside-image-en-pub"
-                              : "inside-image-pub"
-                          }
-                        >
-                          <p>{item?.writers[0]?.en_fullName}</p>
-                          <img
-                            src={item?.writers[0]?.image}
-                            className={
-                              item?.writers[0]?.image
-                                ? "w-[50px] h-[50px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
-                                : ""
-                            }
-                            alt=""
-                          />
-                        </div>
+                        {dir === "ltr" ? (
+                          <div dir="ltr" className={"inside-image-pub"}>
+                            <p>{item?.writers[0]?.en_fullName}</p>
+                            <img
+                              src={item?.writers[0]?.image}
+                              className={
+                                item?.writers[0]?.image
+                                  ? "w-[50px] h-[50px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                                  : ""
+                              }
+                              alt=""
+                            />
+                          </div>
+                        ) : (
+                          <div className="inside-image-pub">
+                            <p>{item?.writers[0]?.en_fullName}</p>
+                            <img
+                              src={item?.writers[0]?.image}
+                              className={
+                                item?.writers[0]?.image
+                                  ? "w-[50px] h-[50px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                                  : ""
+                              }
+                              alt=""
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ar";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 interface INews {
   id: number;
   ar_Title: string;
@@ -32,7 +33,18 @@ export default function NewsCard({
   return (
     <>
       {dir === "ltr" ? (
-        <div className="p-4 flex items-center">
+        <Link
+          to={
+            type === "publish"
+              ? `/publish-details/${id}`
+              : type === "news"
+              ? `/news-details/${id}`
+              : type === "analysis"
+              ? `/Analysis-details/${id}`
+              : ""
+          }
+          className="p-4 flex items-center hover:bg-gray-100 cursor-pointer"
+        >
           <div className="size-20  min-w-[80px] ">
             <img
               src={b_image} // Replace with actual image path
@@ -47,9 +59,20 @@ export default function NewsCard({
               {` ${getRelativeTime(date_of_publish, "en")}`}
             </span>
           </div>
-        </div>
+        </Link>
       ) : (
-        <div className="p-4 flex items-center">
+        <Link
+          to={
+            type === "publish"
+              ? `/publish-details/${id}`
+              : type === "news"
+              ? `/news-details/${id}`
+              : type === "analysis"
+              ? `/Analysis-details/${id}`
+              : ""
+          }
+          className="p-4 flex items-center hover:bg-gray-100 cursor-pointer"
+        >
           <div className="size-20  min-w-[80px] ">
             <img
               src={b_image} // Replace with actual image path
@@ -64,7 +87,7 @@ export default function NewsCard({
               {` ${getRelativeTime(date_of_publish, "ar")}`}
             </span>
           </div>
-        </div>
+        </Link>
       )}
     </>
   );

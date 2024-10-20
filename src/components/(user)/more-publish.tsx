@@ -7,6 +7,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ar";
 import { CalendarMinus2Icon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export interface sidInfo {
   id: number;
@@ -35,7 +36,7 @@ export default function MorePublish() {
   return (
     <>
       {dir === "ltr" ? (
-        <div dir="ltr" className="container mx-auto sm:px-0 md:px-4">
+        <div dir="ltr" className="container-pub mx-auto sm:px-0 md:px-4 ">
           {/* Display Images */}
           <div
             className={`mt-8   ${
@@ -45,7 +46,16 @@ export default function MorePublish() {
             }`}
           >
             {sideInfos?.data.map((img, index) => (
-              <div
+              <Link
+                to={
+                  img.type === "publish"
+                    ? `/publish-details/${img.id}`
+                    : img.type === "news"
+                    ? `/news-details/${img.id}`
+                    : img.type === "analysis"
+                    ? `/Analysis-details/${img.id}`
+                    : ""
+                }
                 key={index}
                 className={`${
                   sideInfos?.data.length >= 3 ? "" : "w-1/4"
@@ -69,23 +79,37 @@ export default function MorePublish() {
                     )}`}</p>
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
           {/* Mobile Version */}
-          <div className="flex md:hidden flex-col space-y-4 mt-8 w-full">
+          <div className="flex md:hidden flex-col space-y-4 mt-8 w-full ">
             {sideInfos?.data.map((img, index) => (
-              <div key={index} className="w-full shadow-md mx-auto">
+              <Link
+                to={
+                  img.type === "publish"
+                    ? `/publish-details/${img.id}`
+                    : img.type === "news"
+                    ? `/news-details/${img.id}`
+                    : img.type === "analysis"
+                    ? `/Analysis-details/${img.id}`
+                    : ""
+                }
+                key={index}
+                className={`w-1/ mb-4 relative h-96`}
+              >
                 <img
-                  className="rounded-lg object-cover w-full"
+                  className="rounded-lg object-cover h-full w-full"
                   src={img.b_image}
                   alt=""
                 />
-                <div className="text-[#D1D1D1] mt-2 px-4">
-                  <p className="text-xl font-bold">{img.en_Title}</p>
-                  <div className="h-1 w-full bg-[#D5AE78] rounded-full mt-1"></div>
-                  <span className="flex items-center font-normal text-sm gap-2 mt-2">
+                <div className="absolute text-[#D1D1D1] bottom-0 w-full right-0 mb-4">
+                  <p className="text-xl w-[95%] mx-auto font-bold">
+                    {img.en_Title}
+                  </p>
+                  <div className="h-1 w-[95%] mx-auto bg-[#D5AE78] rounded-full"></div>
+                  <span className="flex font-normal w-[95%] mx-auto text-sm gap-2 mt-2">
                     <CalendarMinus2Icon size={25} />
                     <p className="text-lg">{` ${getRelativeTime(
                       img.date_of_publish,
@@ -93,7 +117,7 @@ export default function MorePublish() {
                     )}`}</p>
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -103,7 +127,7 @@ export default function MorePublish() {
           </div>
         </div>
       ) : (
-        <div className="container mx-auto sm:px-0 md:px-4">
+        <div className="container-pub mx-auto sm:px-0 md:px-4">
           {/* Display Images */}
           <div
             className={`mt-8   ${
@@ -113,7 +137,16 @@ export default function MorePublish() {
             }`}
           >
             {sideInfos?.data.map((img, index) => (
-              <div
+              <Link
+                to={
+                  img.type === "publish"
+                    ? `/publish-details/${img.id}`
+                    : img.type === "news"
+                    ? `/news-details/${img.id}`
+                    : img.type === "analysis"
+                    ? `/Analysis-details/${img.id}`
+                    : ""
+                }
                 key={index}
                 className={`${
                   sideInfos?.data.length >= 3 ? "" : "w-1/4"
@@ -137,23 +170,37 @@ export default function MorePublish() {
                     )}`}</p>
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
           {/* Mobile Version */}
           <div className="flex md:hidden flex-col space-y-4 mt-8 w-full">
             {sideInfos?.data.map((img, index) => (
-              <div key={index} className="w-full shadow-md mx-auto">
+              <Link
+                to={
+                  img.type === "publish"
+                    ? `/publish-details/${img.id}`
+                    : img.type === "news"
+                    ? `/news-details/${img.id}`
+                    : img.type === "analysis"
+                    ? `/Analysis-details/${img.id}`
+                    : ""
+                }
+                key={index}
+                className={`w-1/ mb-4 relative h-96`}
+              >
                 <img
-                  className="rounded-lg object-cover w-full"
+                  className="rounded-lg object-cover h-full w-full"
                   src={img.b_image}
                   alt=""
                 />
-                <div className="text-[#D1D1D1] mt-2 px-4">
-                  <p className="text-xl font-bold">{img.ar_Title}</p>
-                  <div className="h-1 w-full bg-[#D5AE78] rounded-full mt-1"></div>
-                  <span className="flex items-center font-normal text-sm gap-2 mt-2">
+                <div className="absolute text-[#D1D1D1] bottom-0 w-full right-0 mb-4">
+                  <p className="text-xl w-[95%] mx-auto font-bold">
+                    {img.ar_Title}
+                  </p>
+                  <div className="h-1 w-[95%] mx-auto bg-[#D5AE78] rounded-full"></div>
+                  <span className="flex font-normal w-[95%] mx-auto text-sm gap-2 mt-2">
                     <CalendarMinus2Icon size={25} />
                     <p className="text-lg">{` ${getRelativeTime(
                       img.date_of_publish,
@@ -161,7 +208,7 @@ export default function MorePublish() {
                     )}`}</p>
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

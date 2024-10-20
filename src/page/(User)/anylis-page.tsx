@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "src/components/footer";
 import Navbar from "src/components/navbar";
 import mainImgUrl from "../../assets/img/report-details-image.png";
@@ -61,6 +61,14 @@ export interface Writer {
 }
 
 export default function AnalysisDetails() {
+  const [language, setLanguage] = useState<string>("");
+  const onChangeLanguage = () => {
+    language === "ar" ? setLanguage("en") : setLanguage("ar");
+  };
+
+  const changeLanguage = (code: string) => {
+    i18n.changeLanguage(code);
+  };
   dayjs.extend(relativeTime);
   dayjs.locale("ar");
   const { t, i18n } = useTranslation();
@@ -81,6 +89,10 @@ export default function AnalysisDetails() {
   const toggleDiv = () => {
     setIsOpen(!isOpen);
   };
+  useEffect(() => {
+    changeLanguage(language);
+    document.body.dir = i18n.dir();
+  }, [i18n, i18n.language, language]);
   return (
     <>
       {dir === "ltr" ? (
@@ -127,7 +139,12 @@ export default function AnalysisDetails() {
                     </div>
                     <button className="bg-[#C4A171]  md:h-[68px] w-full md:w-fit flex items-center place-content-center gap-x-2  text-black px-4 py-2 rounded-[8px]">
                       <TranslateIcon />
-                      <span>اقرأ هذا باللغة بالعربية</span>
+                      <span
+                        onClick={onChangeLanguage}
+                        className="cursor-pointer"
+                      >
+                        اقرأ هذا باللغة بالعربية
+                      </span>
                     </button>
                   </div>
                   {/*-------- author ------------- */}
@@ -150,7 +167,7 @@ export default function AnalysisDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوسوم</h2>
+                    <h2 className="text-xl font-bold mb-5">Tags</h2>
                     <p>
                       {AnalysisDetails?.data.tags.map((item, index) => (
                         <span className="border-[1px] border-black text-base rounded-3xl p-2 ml-2 hover:bg-gray-100">
@@ -315,7 +332,12 @@ export default function AnalysisDetails() {
                       </div>
                     </div>
                     <button className="bg-[#C4A171]  md:h-[68px] w-full md:w-fit flex items-center place-content-center gap-x-2  text-black px-4 py-2 rounded-[8px]">
-                      <span>Read this in English</span>
+                      <span
+                        onClick={onChangeLanguage}
+                        className="cursor-pointer"
+                      >
+                        Read this in English
+                      </span>
                       <TranslateIcon />
                     </button>
                   </div>
