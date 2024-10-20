@@ -76,7 +76,7 @@ export interface PublicationResp {
   en_Title: null | string;
   b_image: string;
   images: string[];
-  writers: any[];
+  writers: Writer[];
   reportId: null;
   report: null;
   publish: boolean;
@@ -91,7 +91,18 @@ export interface PublicationResp {
   en_Note: null | string;
   references: any[];
 }
-
+export interface Writer {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: null[];
+  soicalmedia: any[];
+}
 export enum Type {
   Analysis = "analysis",
   News = "news",
@@ -274,11 +285,14 @@ const PublicationPage = () => {
               {currentItems?.map((item, index) => (
                 <div key={index} dir="ltr" className="mt-6">
                   <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 bg-white">
-                    <img
-                      src={item.b_image}
-                      className="rounded-md object-cover w-full lg:w-[455px] h-auto lg:h-[300px]"
-                      alt="Post Image"
-                    />
+                    <div className="w-full h-[300px] md:w-[455px] md:h-[300px] overflow-hidden rounded-md">
+                      <img
+                        src={item.b_image}
+                        className="object-cover w-full h-full"
+                        alt="Post Image"
+                      />
+                    </div>
+
                     <div className="w-full">
                       <h1 className="text-2xl font-bold text-gray-800">
                         {item.en_Title}
@@ -300,23 +314,37 @@ const PublicationPage = () => {
                       >
                         {item.type}
                       </p>
-                      <div className="flex items-center gap-3 my-4">
-                        <img
-                          src={item.b_image}
-                          className="rounded-full object-cover w-[40px] h-[40px]"
-                          alt="Author"
-                        />
-                        <h1 className="font-medium text-gray-700">
-                          {item.ar_Title}
-                        </h1>
-                      </div>
+                      {item.type === "news" ? (
+                        <div className="h-20"></div>
+                      ) : (
+                        <div className="flex flex-wrap">
+                          {item.writers.map((writersPub, index) => (
+                            <div className="flex items-center gap-3 my-4">
+                              <img
+                                src={writersPub.image}
+                                className="rounded-full object-cover w-[40px] h-[40px]"
+                                alt="Author"
+                              />
+                              <h1 className="font-medium text-gray-700">
+                                {writersPub.en_fullName}
+                              </h1>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       <p className="text-gray-600 text-base leading-6 publicationEn">
-                        {item?.en_description && (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: item.en_description,
-                            }}
-                          />
+                        {item.type === "news" ? (
+                          <>
+                            {item?.en_description && (
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: item.en_description,
+                                }}
+                              />
+                            )}
+                          </>
+                        ) : (
+                          <>{item.en_Note}</>
                         )}
                       </p>
                       <Link
@@ -482,11 +510,14 @@ const PublicationPage = () => {
               {currentItems?.map((item, index) => (
                 <div key={index} className="mt-6 ">
                   <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 min-h-80 ">
-                    <img
-                      src={item.b_image}
-                      className="rounded-md object-cover w-full lg:w-[455px] h-auto lg:h-[300px]"
-                      alt="Post Image"
-                    />
+                    <div className="w-full h-[300px] md:w-[455px] md:h-[300px] overflow-hidden rounded-md">
+                      <img
+                        src={item.b_image}
+                        className="object-cover w-full h-full"
+                        alt="Post Image"
+                      />
+                    </div>
+
                     <div className="w-full h-[300px] relative ">
                       <h1 className="text-2xl font-bold text-gray-800">
                         {item.ar_Title}
@@ -514,23 +545,37 @@ const PublicationPage = () => {
                           ? "تحليلات"
                           : ""}
                       </p>
-                      <div className="flex items-center gap-3 my-4">
-                        <img
-                          src={item.b_image}
-                          className="rounded-full object-cover w-[40px] h-[40px]"
-                          alt="Author"
-                        />
-                        <h1 className="font-medium text-gray-700">
-                          {item.ar_Title}
-                        </h1>
-                      </div>
+                      {item.type === "news" ? (
+                        <div className="h-20"></div>
+                      ) : (
+                        <div className="flex flex-wrap">
+                          {item.writers.map((writersPub, index) => (
+                            <div className="flex items-center gap-3 my-4">
+                              <img
+                                src={writersPub.image}
+                                className="rounded-full object-cover w-[40px] h-[40px]"
+                                alt="Author"
+                              />
+                              <h1 className="font-medium text-gray-700">
+                                {writersPub.ar_fullName}
+                              </h1>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       <p className="text-gray-600 text-base leading-6 publication">
-                        {item?.ar_description && (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: item.ar_description,
-                            }}
-                          />
+                        {item.type === "news" ? (
+                          <>
+                            {item?.ar_description && (
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: item.ar_description,
+                                }}
+                              />
+                            )}
+                          </>
+                        ) : (
+                          <>{item.ar_Note}</>
                         )}
                       </p>
                       <Link

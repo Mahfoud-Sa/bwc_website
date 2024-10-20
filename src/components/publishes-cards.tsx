@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import imga from "../assets/img/1706714290731.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,6 +11,7 @@ import PublishesImage3 from "../assets/img/publish_3.jpg";
 import PublishesImage4 from "../assets/img/publish_4.jpg";
 import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
 import { Link } from "react-router-dom";
+import { axiosInstance } from "src/lib/http";
 interface publishesDataCard {
   img: string;
   type: string;
@@ -66,12 +67,134 @@ const Cards: publishesDataCard[] = [
     writer: { name: "إعلام الشركة والمؤسسة", img: writerImagePlaceholder },
   },
 ];
+
+export interface LastPubRespHome {
+  id: number;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  date_of_publish: Date;
+  ar_description: string;
+  en_description: string;
+  type: Type;
+  writers: WriterElement[];
+}
+export type LastPubRespHomeProp = {
+  id: number;
+  name: string;
+  img: string;
+  link: string;
+};
+export interface WriterElement {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: PublicationElement[];
+  soicalmedia: any[];
+}
+
+export interface PublicationElement {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: Array<PublicationWriter | null>;
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: string;
+  en_Note: string;
+  references: any[];
+}
+
+export interface PublicationWriter {
+  id: number;
+  ar_fullName: string;
+  en_fullName: string;
+  image: string;
+  ar_description: string;
+  en_description: string;
+  ar_role: string;
+  en_role: string;
+  publication: Array<PurplePublication | null>;
+  soicalmedia: any[];
+}
+
+export interface PurplePublication {
+  id: number;
+  type: string;
+  ar_Title: string;
+  en_Title: string;
+  b_image: string;
+  images: string[];
+  writers: null[];
+  reportId: null;
+  report: null;
+  publish: boolean;
+  t2read: number;
+  tags: string[];
+  date_of_publish: Date;
+  ar_table_of_content: string[];
+  en_table_of_content: string[];
+  ar_description: string;
+  en_description: string;
+  ar_Note: string;
+  en_Note: string;
+  references: any[];
+}
+
+export enum Type {
+  Analysis = "analysis",
+  News = "news",
+  Publish = "publish",
+}
 export default function PublishesCards() {
+  const [data, setData] = useState<LastPubRespHome[]>([]);
+  const fetchIssueById = async () => {
+    try {
+      const response = await axiosInstance.get<LastPubRespHomeProp>(
+        `/api/website/Home/LastPublications`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching issue:", error);
+      throw error;
+    }
+  };
+  console.log("data", data);
+  useEffect(() => {
+    const getData = async () => {
+      const result = await fetchIssueById();
+      if (Array.isArray(result)) {
+        setData(result as LastPubRespHome[]);
+      } else {
+        console.error("Data is not an array", result);
+      }
+    };
+
+    getData();
+  }, []);
+
+  const counter = data.length;
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: counter === 1 ? 1 : counter === 2 ? 2 : counter === 3 ? 3 : 4,
     slidesToScroll: 3,
     rtl: true,
     responsive: [
@@ -108,64 +231,139 @@ export default function PublishesCards() {
       },
     ],
   };
+
   return (
     <div className="slider-container">
-      <Slider {...settings}>
-        {Cards.map((item, idx) => (
-          <Link
-            target="_blank"
-            to={item.link}
-            className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
-            key={idx}
-          >
-            <div className="md:w-full md:h-60 sm:w-full sm:h-52">
-              <img
-                className="object-cover w-full h-full"
-                src={item.img}
-                alt="Sunset in the mountains"
-              />
-            </div>
-            <div className="px-6 pt-4 pb-2 text-end">
-              <span
-                className={
-                  item.type === "منشور"
-                    ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
-                    : item.type === "الاخبار"
-                    ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
-                    : item.type === "تحليلات"
-                    ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
-                    : ""
-                }
-              >
-                {item.type}
-              </span>
-            </div>
-            <div className="px-6 py-4 text-end">
-              <p dir="rtl" className="publishesTitle">
-                {item.title}
-              </p>
-              <div className="font-bold text-sm mb-2 mt-2">
-                {formattedDate(item.date)}
+      {data.length === 1 ? (
+        <Slider {...settings}>
+          <div className="whitespace-nowrap">
+            <Link
+              target="_blank"
+              to={data[0].ar_Title}
+              className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
+            >
+              <div className="md:w-full md:h-60 sm:w-full sm:h-52">
+                <img
+                  className="object-cover w-full h-full"
+                  src={data[0].b_image}
+                  alt="Sunset in the mountains"
+                />
               </div>
-            </div>
-            <div
-              className={item?.writer ? "w-11/12 m-auto h-[1px] bg-black" : ""}
-            ></div>
-            <div className="flex justify-end px-4 py-4 w-full h-full ">
-              <p className="mr-3">{item?.writer?.name}</p>
-              <img
-                src={item?.writer?.img}
+              <div className="px-6 pt-4 pb-2 text-end">
+                <span
+                  className={
+                    data[0].type === "publish"
+                      ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                      : data[0].type === "news"
+                      ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                      : data[0].type === "analysis"
+                      ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                      : ""
+                  }
+                >
+                  {data[0].type === "publish"
+                    ? "منشور"
+                    : data[0].type === "news"
+                    ? "الاخبار"
+                    : data[0].type === "analysis"
+                    ? "تحليلات"
+                    : ""}
+                </span>
+              </div>
+              <div className="px-6 py-4 text-end">
+                <p dir="rtl" className="publishesTitle">
+                  {data[0].ar_Title}
+                </p>
+                <div className="font-bold text-sm mb-2 mt-2">
+                  {formattedDate(new Date(data[0].date_of_publish))}
+                </div>
+              </div>
+              <div
                 className={
-                  item?.writer?.img
-                    ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
-                    : ""
+                  data[0].writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
                 }
-                alt=""
-              />
-            </div>
-          </Link>
-        ))}
-      </Slider>
+              ></div>
+              <div className="flex justify-end px-4 py-4 w-full h-full ">
+                <p className="mr-3">{data[0]?.writers[0].ar_fullName}</p>
+                <img
+                  src={data[0].writers[0].image}
+                  className={
+                    data[0].writers[0].image
+                      ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                      : ""
+                  }
+                  alt=""
+                />
+              </div>
+            </Link>
+          </div>
+        </Slider>
+      ) : (
+        <Slider {...settings}>
+          {data.map((item, idx) => (
+            <Link
+              target="_blank"
+              to={`item.id`}
+              className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
+              key={idx}
+            >
+              <div className="md:w-full md:h-60 sm:w-full sm:h-52">
+                <img
+                  className="object-cover w-full h-full"
+                  src={item.b_image}
+                  alt="Sunset in the mountains"
+                />
+              </div>
+              <div className="px-6 pt-4 pb-2 text-end">
+                <span
+                  className={
+                    item.type === "publish"
+                      ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                      : item.type === "news"
+                      ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                      : item.type === "analysis"
+                      ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                      : ""
+                  }
+                >
+                  {item.type === "publish"
+                    ? "منشور"
+                    : item.type === "news"
+                    ? "الاخبار"
+                    : item.type === "analysis"
+                    ? "تحليلات"
+                    : ""}
+                </span>
+              </div>
+              <div className="px-6 py-4 text-end">
+                <p dir="rtl" className="publishesTitle">
+                  {item.ar_Title}
+                </p>
+                <div className="font-bold text-sm mb-2 mt-2">
+                  {formattedDate(new Date(item.date_of_publish))}
+                </div>
+              </div>
+              <div
+                className={
+                  item.writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
+                }
+              ></div>
+              <div className="flex justify-end px-4 py-4 w-full h-full ">
+                <p className="mr-3">{item?.writers[0]?.ar_fullName}</p>
+                <img
+                  src={item?.writers[0]?.image}
+                  className={
+                    item?.writers[0]?.image
+                      ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                      : ""
+                  }
+                  alt=""
+                />
+              </div>
+            </Link>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }
