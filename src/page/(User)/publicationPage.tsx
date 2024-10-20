@@ -195,7 +195,15 @@ const PublicationPage = () => {
                 <div className="border-[2px] border-[#D2D2D2] rounded-lg p-2 mt-2">
                   {SidInfoResp?.data.map((item, index) => (
                     <Link
-                      to={`/publish-details/${item.id}`}
+                      to={
+                        item.type === "publish"
+                          ? `/publish-details/${item.id}`
+                          : item.type === "news"
+                          ? `/news-details/${item.id}`
+                          : item.type === "analysis"
+                          ? `/Analysis-details/${item.id}`
+                          : ""
+                      }
                       className="flex mt-4 gap-2 shadow-sm hover:bg-gray-100 cursor-pointer"
                     >
                       <img
@@ -214,7 +222,7 @@ const PublicationPage = () => {
                 </div>
               </div>
               <div className=" col-span-3 md:col-span-2">
-                <CarouselsReport publishes={publishes} />
+                <CarouselsReport />
               </div>
             </div>
 
@@ -311,7 +319,17 @@ const PublicationPage = () => {
                           />
                         )}
                       </p>
-                      <Link to={`/publish-details/${item.id}`}>
+                      <Link
+                        to={
+                          item.type === "publish"
+                            ? `/publish-details/${item.id}`
+                            : item.type === "news"
+                            ? `/news-details/${item.id}`
+                            : item.type === "analysis"
+                            ? `/Analysis-details/${item.id}`
+                            : ""
+                        }
+                      >
                         <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
                           Read More ...
                         </button>
@@ -379,16 +397,24 @@ const PublicationPage = () => {
             </div>
             <div className=" grid grid-cols-3 gap-3">
               <div className=" col-span-3 md:col-span-2">
-                <CarouselsReport publishes={publishes} />
+                <CarouselsReport />
               </div>
               <div className=" col-span-3 md:col-span-1">
                 <div className="p-3 bg-[#D5AE78] rounded-[8px]">
-                  <h1 className="font-bold">اقرأ أيضًا في التقارير</h1>
+                  <h1 className="font-bold">اقرأ أيضًا في المنشورات</h1>
                 </div>
                 <div className="border-[2px] border-[#D2D2D2] rounded-lg p-2 mt-2">
                   {SidInfoResp?.data.map((item, index) => (
                     <Link
-                      to={`/publish-details/${item.id}`}
+                      to={
+                        item.type === "publish"
+                          ? `/publish-details/${item.id}`
+                          : item.type === "news"
+                          ? `/news-details/${item.id}`
+                          : item.type === "analysis"
+                          ? `/Analysis-details/${item.id}`
+                          : ""
+                      }
                       className="flex mt-4 gap-2 shadow-sm hover:bg-gray-100 cursor-pointer"
                     >
                       <img
