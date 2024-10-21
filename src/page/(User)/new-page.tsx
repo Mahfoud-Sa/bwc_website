@@ -190,7 +190,7 @@ export default function NewsDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Tags</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Tags</h2>
                     <p className="flex flex-wrap">
                       {NewssDetails?.data.tags.map((item, index) => (
                         <span
@@ -204,7 +204,7 @@ export default function NewsDetails() {
                   </div>
                   <div className=" grid min-h-[100px] my-4 items-start gap-4 overflow-y-scroll scroll-smooth text-start">
                     <label htmlFor="" className="">
-                      more photos of the Publication
+                      ✅ More Photos Of The News
                     </label>
                     <div className="overflow-y-auto min-h-96">
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -252,7 +252,7 @@ export default function NewsDetails() {
                     </div>
                   )}
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Description</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Description</h2>
                     <p>
                       {NewssDetails?.data.en_description && (
                         <div
@@ -380,7 +380,7 @@ export default function NewsDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوسوم</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ الوسوم</h2>
                     <p className="flex flex-wrap">
                       {NewssDetails?.data.tags.map((item, index) => (
                         <span
@@ -398,7 +398,7 @@ export default function NewsDetails() {
                       htmlFor=""
                       className="block mb-2 text-lg font-semibold"
                     >
-                      صور اخرى للمنشور
+                      ✅ صور اخرى الخبر
                     </label>
                     <div className="overflow-y-auto min-h-96">
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -448,7 +448,7 @@ export default function NewsDetails() {
                   )}
 
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوصف</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ الوصف</h2>
                     <p>
                       {NewssDetails?.data.ar_description && (
                         <div
