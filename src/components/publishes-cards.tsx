@@ -12,6 +12,8 @@ import PublishesImage4 from "../assets/img/publish_4.jpg";
 import writerImagePlaceholder from "../assets/img/IMG_9024.jpg";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "src/lib/http";
+import { useTranslation } from "react-i18next";
+import formattedDateEn from "src/utilities/formattedDateEn";
 interface publishesDataCard {
   img: string;
   type: string;
@@ -163,6 +165,8 @@ export enum Type {
   Publish = "publish",
 }
 export default function PublishesCards() {
+  const { t, i18n } = useTranslation();
+  const dir = i18n.dir();
   const [data, setData] = useState<LastPubRespHome[]>([]);
   const fetchIssueById = async () => {
     try {
@@ -233,137 +237,295 @@ export default function PublishesCards() {
   };
 
   return (
-    <div className="slider-container">
-      {data.length === 1 ? (
-        <Slider {...settings}>
-          <div className="whitespace-nowrap">
-            <Link
-              target="_blank"
-              to={data[0].ar_Title}
-              className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
-            >
-              <div className="md:w-full md:h-60 sm:w-full sm:h-52">
-                <img
-                  className="object-cover w-full h-full"
-                  src={data[0].b_image}
-                  alt="Sunset in the mountains"
-                />
-              </div>
-              <div className="px-6 pt-4 pb-2 text-end">
-                <span
-                  className={
+    <>
+      {dir === "ltr" ? (
+        <div className="slider-container">
+          {data.length === 1 ? (
+            <Slider {...settings}>
+              <div className="whitespace-nowrap">
+                <Link
+                  target="_blank"
+                  to={
                     data[0].type === "publish"
-                      ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                      ? `/publish-details/${data[0].id}`
                       : data[0].type === "news"
-                      ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                      ? `/news-details/${data[0].id}`
                       : data[0].type === "analysis"
-                      ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                      ? `/Analysis-details/${data[0].id}`
                       : ""
                   }
+                  className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
                 >
-                  {data[0].type === "publish"
-                    ? "منشور"
-                    : data[0].type === "news"
-                    ? "الاخبار"
-                    : data[0].type === "analysis"
-                    ? "تحليلات"
-                    : ""}
-                </span>
+                  <div className="md:w-full md:h-60 sm:w-full sm:h-52">
+                    <img
+                      className="object-cover w-full h-full"
+                      src={data[0].b_image}
+                      alt="Sunset in the mountains"
+                    />
+                  </div>
+                  <div className="px-6 pt-4 pb-2 text-end">
+                    <span
+                      className={
+                        data[0].type === "publish"
+                          ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                          : data[0].type === "news"
+                          ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                          : data[0].type === "analysis"
+                          ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                          : ""
+                      }
+                    >
+                      {data[0].type}
+                    </span>
+                  </div>
+                  <div className="px-6 py-4 text-end">
+                    <p dir="rtl" className="publishesTitle">
+                      {data[0].en_Title}
+                    </p>
+                    <div className="font-bold text-sm mb-2 mt-2">
+                      {formattedDate(new Date(data[0].date_of_publish))}
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      data[0].writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
+                    }
+                  ></div>
+                  <div className="flex justify-end px-4 py-4 w-full h-full ">
+                    <p className="mr-3">{data[0]?.writers[0].en_fullName}</p>
+                    <img
+                      src={data[0].writers[0].image}
+                      className={
+                        data[0].writers[0].image
+                          ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                          : ""
+                      }
+                      alt=""
+                    />
+                  </div>
+                </Link>
               </div>
-              <div className="px-6 py-4 text-end">
-                <p dir="rtl" className="publishesTitle">
-                  {data[0].ar_Title}
-                </p>
-                <div className="font-bold text-sm mb-2 mt-2">
-                  {formattedDate(new Date(data[0].date_of_publish))}
-                </div>
-              </div>
-              <div
-                className={
-                  data[0].writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
-                }
-              ></div>
-              <div className="flex justify-end px-4 py-4 w-full h-full ">
-                <p className="mr-3">{data[0]?.writers[0].ar_fullName}</p>
-                <img
-                  src={data[0].writers[0].image}
-                  className={
-                    data[0].writers[0].image
-                      ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
-                      : ""
-                  }
-                  alt=""
-                />
-              </div>
-            </Link>
-          </div>
-        </Slider>
-      ) : (
-        <Slider {...settings}>
-          {data.map((item, idx) => (
-            <Link
-              target="_blank"
-              to={`item.id`}
-              className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
-              key={idx}
-            >
-              <div className="md:w-full md:h-60 sm:w-full sm:h-52">
-                <img
-                  className="object-cover w-full h-full"
-                  src={item.b_image}
-                  alt="Sunset in the mountains"
-                />
-              </div>
-              <div className="px-6 pt-4 pb-2 text-end">
-                <span
-                  className={
+            </Slider>
+          ) : (
+            <Slider {...settings}>
+              {data.map((item, idx) => (
+                <Link
+                  target="_blank"
+                  to={
                     item.type === "publish"
-                      ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                      ? `/publish-details/${item.id}`
                       : item.type === "news"
-                      ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                      ? `/news-details/${item.id}`
                       : item.type === "analysis"
-                      ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                      ? `/Analysis-details/${item.id}`
                       : ""
                   }
+                  className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
+                  key={idx}
+                  dir="rtl"
                 >
-                  {item.type === "publish"
-                    ? "منشور"
-                    : item.type === "news"
-                    ? "الاخبار"
-                    : item.type === "analysis"
-                    ? "تحليلات"
-                    : ""}
-                </span>
+                  <div className="md:w-full md:h-60 sm:w-full sm:h-52">
+                    <img
+                      className="object-cover w-full h-full"
+                      src={item.b_image}
+                      alt="Sunset in the mountains"
+                    />
+                  </div>
+                  <div className="px-6 pt-4 pb-2 text-end">
+                    <span
+                      className={
+                        item.type === "publish"
+                          ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                          : item.type === "news"
+                          ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                          : item.type === "analysis"
+                          ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                          : ""
+                      }
+                    >
+                      {item.type}
+                    </span>
+                  </div>
+                  <div className="px-6 py-4 text-end">
+                    <p dir="ltr" className="publishesTitle">
+                      {item.en_Title}
+                    </p>
+                    <div className="font-bold text-sm mb-2 mt-2">
+                      {formattedDateEn(new Date(item.date_of_publish))}
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      item.writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
+                    }
+                  ></div>
+                  <div className="flex justify-end px-4 py-4 w-full h-full ">
+                    <p className="ml-3">{item?.writers[0]?.en_fullName}</p>
+                    <img
+                      src={item?.writers[0]?.image}
+                      className={
+                        item?.writers[0]?.image
+                          ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                          : ""
+                      }
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              ))}
+            </Slider>
+          )}
+        </div>
+      ) : (
+        <div className="slider-container">
+          {data.length === 1 ? (
+            <Slider {...settings}>
+              <div className="whitespace-nowrap">
+                <Link
+                  target="_blank"
+                  to={data[0].ar_Title}
+                  className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
+                >
+                  <div className="md:w-full md:h-60 sm:w-full sm:h-52">
+                    <img
+                      className="object-cover w-full h-full"
+                      src={
+                        data[0].type === "publish"
+                          ? `/publish-details/${data[0].id}`
+                          : data[0].type === "news"
+                          ? `/news-details/${data[0].id}`
+                          : data[0].type === "analysis"
+                          ? `/Analysis-details/${data[0].id}`
+                          : ""
+                      }
+                      alt="Sunset in the mountains"
+                    />
+                  </div>
+                  <div className="px-6 pt-4 pb-2 text-end">
+                    <span
+                      className={
+                        data[0].type === "publish"
+                          ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                          : data[0].type === "news"
+                          ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                          : data[0].type === "analysis"
+                          ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                          : ""
+                      }
+                    >
+                      {data[0].type === "publish"
+                        ? "منشور"
+                        : data[0].type === "news"
+                        ? "الاخبار"
+                        : data[0].type === "analysis"
+                        ? "تحليلات"
+                        : ""}
+                    </span>
+                  </div>
+                  <div className="px-6 py-4 text-end">
+                    <p dir="rtl" className="publishesTitle">
+                      {data[0].ar_Title}
+                    </p>
+                    <div className="font-bold text-sm mb-2 mt-2">
+                      {formattedDate(new Date(data[0].date_of_publish))}
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      data[0].writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
+                    }
+                  ></div>
+                  <div className="flex justify-end px-4 py-4 w-full h-full ">
+                    <p className="mr-3">{data[0]?.writers[0].ar_fullName}</p>
+                    <img
+                      src={data[0].writers[0].image}
+                      className={
+                        data[0].writers[0].image
+                          ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                          : ""
+                      }
+                      alt=""
+                    />
+                  </div>
+                </Link>
               </div>
-              <div className="px-6 py-4 text-end">
-                <p dir="rtl" className="publishesTitle">
-                  {item.ar_Title}
-                </p>
-                <div className="font-bold text-sm mb-2 mt-2">
-                  {formattedDate(new Date(item.date_of_publish))}
-                </div>
-              </div>
-              <div
-                className={
-                  item.writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
-                }
-              ></div>
-              <div className="flex justify-end px-4 py-4 w-full h-full ">
-                <p className="mr-3">{item?.writers[0]?.ar_fullName}</p>
-                <img
-                  src={item?.writers[0]?.image}
-                  className={
-                    item?.writers[0]?.image
-                      ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+            </Slider>
+          ) : (
+            <Slider {...settings}>
+              {data.map((item, idx) => (
+                <Link
+                  target="_blank"
+                  to={
+                    item.type === "publish"
+                      ? `/publish-details/${item.id}`
+                      : item.type === "news"
+                      ? `/news-details/${item.id}`
+                      : item.type === "analysis"
+                      ? `/Analysis-details/${item.id}`
                       : ""
                   }
-                  alt=""
-                />
-              </div>
-            </Link>
-          ))}
-        </Slider>
+                  className="max-w-sm rounded h-[500px]  overflow-hidden shadow-lg cursor-pointer hover:bg-[#FFDAA0]/[.35] hover:scale-105 hover:duration-300 "
+                  key={idx}
+                >
+                  <div className="md:w-full md:h-60 sm:w-full sm:h-52">
+                    <img
+                      className="object-cover w-full h-full"
+                      src={item.b_image}
+                      alt="Sunset in the mountains"
+                    />
+                  </div>
+                  <div className="px-6 pt-4 pb-2 text-end">
+                    <span
+                      className={
+                        item.type === "publish"
+                          ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#CEA461] mr-2 mb-2"
+                          : item.type === "news"
+                          ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#69DB57] mr-2 mb-2"
+                          : item.type === "analysis"
+                          ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-5  text-sm font-semibold text-[#979797] mr-2 mb-2"
+                          : ""
+                      }
+                    >
+                      {item.type === "publish"
+                        ? "منشور"
+                        : item.type === "news"
+                        ? "الاخبار"
+                        : item.type === "analysis"
+                        ? "تحليلات"
+                        : ""}
+                    </span>
+                  </div>
+                  <div className="px-6 py-4 text-end">
+                    <p dir="rtl" className="publishesTitle">
+                      {item.ar_Title}
+                    </p>
+                    <div className="font-bold text-sm mb-2 mt-2">
+                      {formattedDate(new Date(item.date_of_publish))}
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      item.writers ? "w-11/12 m-auto h-[1px] bg-black" : ""
+                    }
+                  ></div>
+                  <div className="flex justify-end px-4 py-4 w-full h-full ">
+                    <p className="mr-3">{item?.writers[0]?.ar_fullName}</p>
+                    <img
+                      src={item?.writers[0]?.image}
+                      className={
+                        item?.writers[0]?.image
+                          ? "w-[40px] h-[40px] bg-cover rounded-full outline outline-offset-0.5 outline-[#CCA972]"
+                          : ""
+                      }
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              ))}
+            </Slider>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }

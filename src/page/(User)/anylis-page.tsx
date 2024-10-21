@@ -202,7 +202,7 @@ export default function AnalysisDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Tags</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Tags</h2>
                     <p>
                       {AnalysisDetails?.data.tags.map((item, index) => (
                         <span className="border-[1px] border-black text-base rounded-3xl p-2 ml-2 hover:bg-gray-100">
@@ -213,7 +213,7 @@ export default function AnalysisDetails() {
                   </div>
                   {/* ------ Report description ----------- */}
                   <div className="mb-[47px] mt-7">
-                    <h2 className="text-xl font-bold mb-5">Table Of Content</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Table Of Content</h2>
                     <ul>
                       {AnalysisDetails?.data.en_table_of_content.map(
                         (x, index) => (
@@ -224,10 +224,11 @@ export default function AnalysisDetails() {
                   </div>
 
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Description</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Description</h2>
                     <p>
                       {AnalysisDetails?.data.en_description && (
                         <div
+                          className="max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: AnalysisDetails.data.en_description,
                           }}
@@ -237,8 +238,10 @@ export default function AnalysisDetails() {
                   </div>
                   {/* ------ note ----------- */}
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Note</h2>
-                    <p>{AnalysisDetails?.data.en_Note}</p>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Note</h2>
+                    <div className="max-w-[800px] break-words">
+                      {AnalysisDetails?.data.en_Note}
+                    </div>
                   </div>
                   {/* <div className="w-full max-w-md mx-auto">
    
@@ -421,7 +424,7 @@ export default function AnalysisDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوسوم</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ الوسوم</h2>
                     <p>
                       {AnalysisDetails?.data.tags.map((item, index) => (
                         <span className="border-[1px] border-black text-base rounded-3xl p-2 ml-2 hover:bg-gray-100">
@@ -432,7 +435,7 @@ export default function AnalysisDetails() {
                   </div>
                   {/* ------ Report description ----------- */}
                   <div className="mb-[47px] mt-7">
-                    <h2 className="text-xl font-bold mb-5">جدول محتويات</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ جدول محتويات</h2>
                     <ul>
                       {AnalysisDetails?.data.ar_table_of_content.map(
                         (x, index) => (
@@ -443,10 +446,11 @@ export default function AnalysisDetails() {
                   </div>
 
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوصف</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ الوصف</h2>
                     <p>
                       {AnalysisDetails?.data.ar_description && (
                         <div
+                        className="max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: AnalysisDetails.data.ar_description,
                           }}
@@ -456,8 +460,8 @@ export default function AnalysisDetails() {
                   </div>
                   {/* ------ note ----------- */}
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">ملاحظة</h2>
-                    <p>{AnalysisDetails?.data.ar_Note}</p>
+                    <h2 className="text-xl font-bold mb-5"> ✅ ملاحظة</h2>
+                    <div className="max-w-[800px] break-words">{AnalysisDetails?.data.ar_Note}</div>
                   </div>
                   {/* <div className="w-full max-w-md mx-auto">
      

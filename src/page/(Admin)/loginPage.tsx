@@ -5,6 +5,7 @@ import login1 from "../../assets/img/عالم الأعمال خلفية أبيض
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+
 interface RefreshToken {
   token: string;
 }
@@ -38,10 +39,10 @@ export default function LoginPage() {
           email: "hamoud@gmail.com",
           password: loginPassword,
         },
-        auth: {
-          username: usernameServer,
-          password: password,
-        },
+        // auth: {
+        //   username: usernameServer,
+        //   password: password,
+        // },
         headers: { "X-Requested-With": "XMLHttpRequest" },
       });
       console.log("Login successful:", response.data);

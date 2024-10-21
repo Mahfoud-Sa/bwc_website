@@ -213,7 +213,7 @@ export default function PublishDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Tags</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Tags</h2>
                     <p>
                       {PPublicDetails?.data.tags.map((item, index) => (
                         <span className="border-[1px] border-black text-base rounded-3xl p-2 ml-2 hover:bg-gray-100">
@@ -224,9 +224,9 @@ export default function PublishDetails() {
                   </div>
                   <div className=" grid min-h-[100px] my-4 items-start gap-4 overflow-y-scroll scroll-smooth text-start">
                     <label htmlFor="" className="">
-                      more photos of the Publication
+                      ✅ More Photos Of The Publication
                     </label>
-                    <div className="overflow-y-auto max-h-96">
+                    <div className="overflow-y-auto min-h-96">
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {PPublicDetails?.data.images.map((item, index) => (
                           <div
@@ -272,10 +272,11 @@ export default function PublishDetails() {
                     </div>
                   )}
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Description</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Description</h2>
                     <p>
                       {PPublicDetails?.data.en_description && (
                         <div
+                          className="max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: PPublicDetails.data.en_description,
                           }}
@@ -285,8 +286,10 @@ export default function PublishDetails() {
                   </div>
                   {/* ------ note ----------- */}
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">Note</h2>
-                    <p>{PPublicDetails?.data.en_Note}</p>
+                    <h2 className="text-xl font-bold mb-5"> ✅ Note</h2>
+                    <div className="max-w-[800px] break-words">
+                      {PPublicDetails?.data.en_Note}
+                    </div>
                   </div>
                   {/* <div className="w-full max-w-md mx-auto">
  
@@ -470,7 +473,7 @@ export default function PublishDetails() {
                     ))}
                   </div>
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوسوم</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ الوسوم</h2>
                     <p>
                       {PPublicDetails?.data.tags.map((item, index) => (
                         <span className="border-[1px] border-black text-base rounded-3xl p-2 ml-2 hover:bg-gray-100">
@@ -484,9 +487,9 @@ export default function PublishDetails() {
                       htmlFor=""
                       className="block mb-2 text-lg font-semibold"
                     >
-                      صور اخرى للمنشور
+                      ✅ صور اخرى للمنشور
                     </label>
-                    <div className="overflow-y-auto max-h-96">
+                    <div className="overflow-y-auto min-h-96">
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {PPublicDetails?.data.images.map((item, index) => (
                           <div
@@ -534,7 +537,7 @@ export default function PublishDetails() {
                   )}
 
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">الوصف</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ الوصف</h2>
                     <p>
                       {PPublicDetails?.data.ar_description && (
                         <div
@@ -547,7 +550,7 @@ export default function PublishDetails() {
                   </div>
                   {/* ------ note ----------- */}
                   <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5">ملاحظة</h2>
+                    <h2 className="text-xl font-bold mb-5"> ✅ ملاحظة</h2>
                     <p>{PPublicDetails?.data.ar_Note}</p>
                   </div>
                   {/* <div className="w-full max-w-md mx-auto">
