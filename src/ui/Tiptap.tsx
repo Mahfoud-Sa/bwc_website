@@ -1,5 +1,8 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
+import ListItem from "@tiptap/extension-list-item";
 import Toolbar from "./Toolbar";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
@@ -14,7 +17,7 @@ export default function Tiptap({
   const { i18n } = useTranslation();
   const dir = i18n.dir();
   const editor = useEditor({
-    extensions: [StarterKit.configure()],
+    extensions: [StarterKit.configure(), BulletList, OrderedList, ListItem],
     content: description,
     editorProps: {
       attributes: {
@@ -34,10 +37,14 @@ export default function Tiptap({
   }, [description, editor]);
   return (
     <>
-      <div className="border border-gray-300 bg-transparent text-black rounded-md ">
+      <div className="custom-html-editor-en border border-gray-300 bg-transparent text-black rounded-md">
+      <div className="sticky top-0 bg-white z-10">
         <Toolbar editor={editor} />
-        <EditorContent editor={editor} dir="rtl" />
       </div>
+      <div className="max-h-[300px] overflow-y-auto editor-content-en">
+        <EditorContent editor={editor} dir="rtl" className="text-start" />
+      </div>
+    </div>
     </>
   );
 }

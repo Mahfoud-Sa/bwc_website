@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "src/lib/http";
@@ -75,6 +75,7 @@ export interface Writer {
 export default function ViewAnalysis() {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
+  const [modalOpen, setModalOpen] = useState(false);
   const { id } = useParams<{ id: string }>();
 
   const fetchData = async () => {
@@ -89,10 +90,20 @@ export default function ViewAnalysis() {
     error: PublicationInfoError,
     isLoading: PublicationInfoIsLoading,
   } = useQuery({
-    queryKey: ["getByIdPublication", id],
+    queryKey: ["getByIdAnalysis", id],
     queryFn: fetchData,
     enabled: !!id,
   });
+
+  const openModal = () => {
+    if (PublicationInfoData?.b_image) {
+      setModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <>
       {dir === "ltr" ? (
@@ -103,13 +114,43 @@ export default function ViewAnalysis() {
                 <label htmlFor="" className="float-start">
                   Analysis image
                 </label>
-                <img src={PublicationInfoData?.b_image} alt="" />
+                <img
+                  src={PublicationInfoData?.b_image}
+                  className="cursor-pointer"
+                  onClick={openModal}
+                  alt=""
+                />
               </div>
             </div>
+            {modalOpen && (
+              <div
+                className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+                onClick={closeModal}
+              >
+                <div
+                  className="relative w-[100%] h-[100%] overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <>
+                    <img
+                      src={PublicationInfoData?.b_image!}
+                      className="w-[80%] h-[80%] mx-auto object-contain"
+                      alt=""
+                    />
+                    <button
+                      onClick={closeModal}
+                      className="absolute top-4 right-4 p-2 rounded-full bg-white text-black hover:bg-gray-200"
+                    >
+                      &times;
+                    </button>
+                  </>
+                </div>
+              </div>
+            )}
             <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="عنوان الخبر" />
+                <Label text="عنوان التحيل" />
                 <p>{PublicationInfoData?.ar_Title}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
@@ -125,7 +166,7 @@ export default function ViewAnalysis() {
             </div>
 
             {/*  */}
-            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
                 <Label text="writers" />
                 <div className="flex flex-wrap gap-4">
@@ -207,8 +248,8 @@ export default function ViewAnalysis() {
             {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="وصف الخبر" />
-                <div className="">
+                <Label text="وصف التحليل" />
+                <div className="custom-html-content">
                   {PublicationInfoData?.ar_description && (
                     <div
                       dangerouslySetInnerHTML={{
@@ -223,7 +264,7 @@ export default function ViewAnalysis() {
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
                 <Label text="Description" />
-                <div className="">
+                <div className="custom-html-content-en">
                   {PublicationInfoData?.en_description && (
                     <div
                       dangerouslySetInnerHTML={{
@@ -261,15 +302,45 @@ export default function ViewAnalysis() {
             <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
               <div className="text-start col-span-1 h-auto ">
                 <label htmlFor="" className="float-start">
-                  صورة الخبر
+                  صورة التحليل
                 </label>
-                <img src={PublicationInfoData?.b_image} alt="" />
+                <img
+                  src={PublicationInfoData?.b_image}
+                  className="cursor-pointer"
+                  onClick={openModal}
+                  alt=""
+                />
               </div>
             </div>
+            {modalOpen && (
+              <div
+                className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+                onClick={closeModal}
+              >
+                <div
+                  className="relative w-[100%] h-[100%] overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <>
+                    <img
+                      src={PublicationInfoData?.b_image!}
+                      className="w-[80%] h-[80%] mx-auto object-contain"
+                      alt=""
+                    />
+                    <button
+                      onClick={closeModal}
+                      className="absolute top-4 right-4 p-2 rounded-full bg-white text-black hover:bg-gray-200"
+                    >
+                      &times;
+                    </button>
+                  </>
+                </div>
+              </div>
+            )}
             <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="عنوان الخبر" />
+                <Label text="عنوان التحليل" />
                 <p>{PublicationInfoData?.ar_Title}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
@@ -285,7 +356,7 @@ export default function ViewAnalysis() {
             </div>
 
             {/*  */}
-            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
+            <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
                 <Label text="كتاب" />
                 <div className="flex flex-wrap gap-4">
@@ -366,8 +437,8 @@ export default function ViewAnalysis() {
             {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="وصف الخبر" />
-                <div className="">
+                <Label text="وصف التحليل" />
+                <div className="custom-html-content">
                   {PublicationInfoData?.ar_description && (
                     <div
                       dangerouslySetInnerHTML={{
@@ -382,7 +453,7 @@ export default function ViewAnalysis() {
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-end col-span-1 h-auto translate-y-10">
                 <Label text="Description" />
-                <div className="">
+                <div className="custom-html-content-en">
                   {PublicationInfoData?.en_description && (
                     <div
                       dangerouslySetInnerHTML={{

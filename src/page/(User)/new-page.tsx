@@ -256,7 +256,7 @@ export default function NewsDetails() {
                     <p>
                       {NewssDetails?.data.en_description && (
                         <div
-                          className="max-w-[800px] break-words"
+                          className="custom-html-content-en max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: NewssDetails.data.en_description,
                           }}
@@ -452,7 +452,7 @@ export default function NewsDetails() {
                     <p>
                       {NewssDetails?.data.ar_description && (
                         <div
-                          className="max-w-[800px] break-words"
+                          className="custom-html-content max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: NewssDetails.data.ar_description,
                           }}

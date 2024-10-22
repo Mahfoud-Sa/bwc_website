@@ -27,6 +27,9 @@ export default function Toolbar({ editor }: Props) {
         onPressedChange={() =>
           editor.chain().focus().toggleHeading({ level: 2 }).run()
         }
+        className={`${
+          editor.isActive("heading") ? "bg-black text-gray-100" : "bg-gray-100"
+        } focus:outline-none focus:bg-black focus:text-gray-100`}
       >
         <Heading2 className="h-4 w-4" />
       </Toggle>
@@ -34,6 +37,9 @@ export default function Toolbar({ editor }: Props) {
         size="sm"
         pressed={editor.isActive("bold")}
         onPressedChange={() => editor.chain().focus().toggleBold().run()}
+        className={`${
+          editor.isActive("bold") ? "bg-black text-gray-100" : "bg-gray-100"
+        } focus:outline-none focus:bg-black focus:text-gray-100`}
       >
         <Bold className="h-4 w-4" />
       </Toggle>
@@ -41,6 +47,9 @@ export default function Toolbar({ editor }: Props) {
         size="sm"
         pressed={editor.isActive("italic")}
         onPressedChange={() => editor.chain().focus().toggleItalic().run()}
+        className={`${
+          editor.isActive("italic") ? "bg-black text-gray-100" : "bg-gray-100"
+        } focus:outline-none focus:bg-black focus:text-gray-100`}
       >
         <Italic className="h-4 w-4" />
       </Toggle>
@@ -48,6 +57,9 @@ export default function Toolbar({ editor }: Props) {
         size="sm"
         pressed={editor.isActive("strike")}
         onPressedChange={() => editor.chain().focus().toggleStrike().run()}
+        className={`${
+          editor.isActive("strike") ? "bg-black text-gray-100" : "bg-gray-100"
+        } focus:outline-none focus:bg-black focus:text-gray-100`}
       >
         <Strikethrough className="h-4 w-4" />
       </Toggle>
@@ -55,6 +67,11 @@ export default function Toolbar({ editor }: Props) {
         size="sm"
         pressed={editor.isActive("bulletList")}
         onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
+        className={`${
+          editor.isActive("bulletList")
+            ? "bg-black text-gray-100"
+            : "bg-gray-100"
+        } focus:outline-none focus:bg-black focus:text-gray-100`}
       >
         <List className="h-4 w-4" />
       </Toggle>
@@ -62,6 +79,11 @@ export default function Toolbar({ editor }: Props) {
         size="sm"
         pressed={editor.isActive("orderedList")}
         onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+        className={`${
+          editor.isActive("orderedList")
+            ? "bg-black text-gray-100"
+            : "bg-gray-100"
+        } focus:outline-none focus:bg-black focus:text-gray-100`}
       >
         <ListOrdered className="h-4 w-4" />
       </Toggle>

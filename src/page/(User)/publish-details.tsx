@@ -271,12 +271,12 @@ export default function PublishDetails() {
                       </div>
                     </div>
                   )}
-                  <div className="mb-[47px]">
-                    <h2 className="text-xl font-bold mb-5"> ✅ Description</h2>
-                    <p>
+                  <div className="mb-[47px] ">
+                    <h2 className="text-xl font-bold mb-5 "> ✅ Description</h2>
+                    <p >
                       {PPublicDetails?.data.en_description && (
                         <div
-                          className="max-w-[800px] break-words"
+                          className="custom-html-content-en max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: PPublicDetails.data.en_description,
                           }}
@@ -541,6 +541,7 @@ export default function PublishDetails() {
                     <p>
                       {PPublicDetails?.data.ar_description && (
                         <div
+                          className="custom-html-content max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: PPublicDetails.data.ar_description,
                           }}

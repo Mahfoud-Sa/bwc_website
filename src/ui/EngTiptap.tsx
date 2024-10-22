@@ -1,5 +1,8 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
+import ListItem from "@tiptap/extension-list-item";
 import Toolbar from "./Toolbar";
 import { useTranslation } from "react-i18next";
 import EngToolbar from "./EngToolbar";
@@ -15,7 +18,7 @@ export default function EngTiptap({
   const { i18n } = useTranslation();
   const dir = i18n.dir();
   const editor = useEditor({
-    extensions: [StarterKit.configure()],
+    extensions: [StarterKit.configure(), BulletList, OrderedList, ListItem],
     content: description,
     editorProps: {
       attributes: {
@@ -27,17 +30,21 @@ export default function EngTiptap({
       onChange(editor.getHTML());
     },
   });
+
   useEffect(() => {
     if (editor && description !== editor.getHTML()) {
       editor.commands.setContent(description || "");
     }
   }, [description, editor]);
+
   return (
-    <>
-      <div className="border border-gray-300 bg-transparent text-black rounded-md ">
+    <div className="custom-html-editor border border-gray-300 bg-transparent text-black rounded-md">
+      <div className="sticky top-0 bg-white z-10">
         <EngToolbar editor={editor} />
+      </div>
+      <div className="max-h-[300px] overflow-y-auto editor-content">
         <EditorContent editor={editor} dir="rtl" className="text-end" />
       </div>
-    </>
+    </div>
   );
 }
