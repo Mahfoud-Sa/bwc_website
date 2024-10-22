@@ -297,10 +297,6 @@ const PublicationPage = () => {
                       <h1 className="text-2xl font-bold text-gray-800">
                         {item.en_Title}
                       </h1>
-                      <p className="flex items-center gap-2 text-sm text-gray-500 mt-3">
-                        <CalendarMinus2Icon size={19} />
-                        {formattedDateEn(new Date(item.date_of_publish))}
-                      </p>
                       <p
                         className={
                           item.type === "publish"
@@ -314,6 +310,11 @@ const PublicationPage = () => {
                       >
                         {item.type}
                       </p>
+                      <p className="flex items-center gap-2 text-sm text-gray-500 mt-3 md:text-gray-500 sm:text-black sm:py-2 sm:px-2 md:py-0 md:px-0 sm:rounded-lg md:rounded-none  md:bg-white sm:bg-[#E3E3E3]">
+                        <CalendarMinus2Icon size={19} />
+                        {formattedDateEn(new Date(item.date_of_publish))}
+                      </p>
+
                       {item.type === "news" ? (
                         <div className="h-20"></div>
                       ) : (
@@ -518,14 +519,11 @@ const PublicationPage = () => {
                       />
                     </div>
 
-                    <div className="w-full h-[300px] relative ">
+                    <div className="w-full min-h-[300px]  ">
                       <h1 className="text-2xl font-bold text-gray-800">
                         {item.ar_Title}
                       </h1>
-                      <p className="flex items-center gap-2 text-sm text-gray-500 mt-3">
-                        <CalendarMinus2Icon size={19} />
-                        {formattedDateEn(new Date(item.date_of_publish))}
-                      </p>
+
                       <p
                         className={
                           item.type === "publish"
@@ -545,6 +543,11 @@ const PublicationPage = () => {
                           ? "تحليلات"
                           : ""}
                       </p>
+                      <p className="flex items-center gap-2 text-sm md:text-gray-500 sm:text-black sm:py-2 sm:px-2 md:py-0 md:px-0 sm:rounded-lg md:rounded-none  mt-3 md:bg-white sm:bg-[#E3E3E3]">
+                        <CalendarMinus2Icon size={19} className="" />
+                        {formattedDateEn(new Date(item.date_of_publish))}
+                      </p>
+
                       {item.type === "news" ? (
                         <div className="h-20"></div>
                       ) : (
@@ -588,7 +591,7 @@ const PublicationPage = () => {
                             ? `/Analysis-details/${item.id}`
                             : ""
                         }
-                        className="absolute bottom-4 w-full"
+                        className="  w-full"
                       >
                         <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
                           إقراء المزيد ...

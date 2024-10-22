@@ -678,7 +678,6 @@ opacity: 1;
 @media (min-width: 300px) {
   .container-pub {
     max-width: 400px;
- 
   }
 }
 @media (min-width: 768px) {
@@ -700,4 +699,109 @@ opacity: 1;
   .container-pub {
     max-width: 1536px;
   }
+}
+.custom-html-editor ul,
+.custom-html-editor ol {
+  padding-left: 1.5rem; /* Indent the list */
+  list-style-position: outside; /* Make sure markers are outside */
+  list-style-type: disc; /* Use bullets for unordered lists */
+}
+
+.custom-html-editor ol {
+  list-style-type: decimal; /* Use numbers for ordered lists */
+}
+
+.custom-html-editor li {
+  margin-bottom: 0.5rem; /* Add space between list items */
+  padding-right: 0.5rem; /* Adjust space between marker and text */
+  text-align: left; /* Ensure the text aligns correctly on the right */
+  direction: ltr;
+}
+.custom-html-editor {
+  background-color: #fff; /* Ensure a white background for better readability */
+  border-radius: 8px; /* Smooth rounded edges */
+}
+
+.custom-html-editor .editor-content {
+  padding: 8px; /* Space around the editor content */
+}
+
+/* ------------ */
+.custom-html-editor-en ul,
+.custom-html-editor-en ol {
+  padding-right: 1.5rem; /* Indent the list */
+  list-style-position: outside; /* Make sure markers are outside */
+  list-style-type: disc; /* Use bullets for unordered lists */
+}
+
+.custom-html-editor-en ol {
+  list-style-type: decimal; /* Use numbers for ordered lists */
+}
+
+.custom-html-editor-en li {
+  margin-bottom: 0.5rem; /* Add space between list items */
+  padding-left: 0.5rem; /* Adjust space between marker and text */
+  text-align: right; /* Ensure the text aligns correctly on the right */
+  direction: rtl;
+}
+.custom-html-editor-en {
+  background-color: #fff; /* Ensure a white background for better readability */
+  border-radius: 8px; /* Smooth rounded edges */
+}
+
+.custom-html-editor-en .editor-content-en {
+  padding: 8px; /* Space around the editor content */
+}
+
+/* ------------- */
+.custom-html-content ul,
+.custom-html-content ol {
+  padding-right: 1.5rem; /* Indent the list */
+  list-style-position: outside; /* Make sure markers are outside */
+  list-style-type: disc; /* Use bullets for unordered lists */
+}
+
+.custom-html-content ol {
+  list-style-type: decimal; /* Use numbers for ordered lists */
+}
+
+.custom-html-content li {
+  margin-bottom: 0.5rem; /* Add space between list items */
+  padding-left: 0.5rem; /* Adjust space between marker and text */
+  text-align: right; /* Ensure the text aligns correctly on the right */
+  direction: rtl;
+}
+.custom-html-content , .custom-html-content-view {
+  background-color: transparent; /* Ensure a white background for better readability */
+  border-radius: 8px; /* Smooth rounded edges */
+}
+
+.custom-html-content  {
+  padding: 8px; /* Space around the editor content */
+}
+/* ------------- */
+.custom-html-content-en ul,
+.custom-html-content-en ol {
+  padding-left: 1.5rem; /* Indent the list */
+  list-style-position: outside; /* Make sure markers are outside */
+  list-style-type: disc; /* Use bullets for unordered lists */
+}
+
+.custom-html-content-en ol {
+  list-style-type: decimal; /* Use numbers for ordered lists */
+}
+
+.custom-html-content-en li {
+  margin-bottom: 0.5rem; /* Add space between list items */
+  padding-right: 0.5rem; /* Adjust space between marker and text */
+  text-align: left; /* Ensure the text aligns correctly on the right */
+  direction: ltr;
+}
+.custom-html-content-en {
+  background-color: transparent; /* Ensure a white background for better readability */
+  border-radius: 8px; /* Smooth rounded edges */
+}
+
+.custom-html-content  {
+  padding: 8px; /* Space around the editor content */
 }

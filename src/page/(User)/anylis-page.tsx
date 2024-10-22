@@ -228,7 +228,7 @@ export default function AnalysisDetails() {
                     <p>
                       {AnalysisDetails?.data.en_description && (
                         <div
-                          className="max-w-[800px] break-words"
+                          className="custom-html-content-en max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: AnalysisDetails.data.en_description,
                           }}
@@ -450,7 +450,7 @@ export default function AnalysisDetails() {
                     <p>
                       {AnalysisDetails?.data.ar_description && (
                         <div
-                        className="max-w-[800px] break-words"
+                        className="custom-html-content max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: AnalysisDetails.data.ar_description,
                           }}
