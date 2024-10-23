@@ -153,7 +153,7 @@ export default function CarouselsReport() {
                             {}
                             {dir === "ltr"
                               ? formattedDateEn(new Date(item.date_of_publish))
-                              : formattedDateEn(new Date(item.date_of_publish))}
+                              : formattedDate(new Date(item.date_of_publish))}
                           </p>
                           {dir === "ltr" ? (
                             <div
@@ -277,7 +277,7 @@ export default function CarouselsReport() {
                           {}
                           {dir === "ltr"
                             ? formattedDateEn(new Date(item.date_of_publish))
-                            : formattedDateEn(new Date(item.date_of_publish))}
+                            : formattedDate(new Date(item.date_of_publish))}
                         </p>
                         {dir === "ltr" ? (
                           <div dir="ltr" className={"inside-image-pub"}>

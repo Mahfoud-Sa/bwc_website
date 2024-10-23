@@ -24,6 +24,7 @@ import formattedDate from "src/utilities/formattedDate";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ar";
+import { LoaderIcon } from "react-hot-toast";
 interface publish {
   imgs: string;
   title: string;
@@ -126,7 +127,7 @@ const PublicationPage = () => {
     setIsAscending(value === "oldest");
   };
 
-  const { data: PubResp } = useQuery({
+  const { data: PubResp,isPending } = useQuery({
     queryKey: ["ManagingPublications", searchQuery, isAscending, selectedValue],
     queryFn: () =>
       getApi<PublicationResp[]>(
@@ -183,6 +184,13 @@ const PublicationPage = () => {
     dayjs.locale(language);
     return dayjs().to(dayjs(date));
   };
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center w-full ">
+        <LoaderIcon className="mt-12 flex animate-spin items-center justify-end duration-1000" />
+      </div>
+    );
+  }
   return (
     <>
       {dir === "ltr" ? (
@@ -225,7 +233,7 @@ const PublicationPage = () => {
                         <span>{item.en_Title}</span>
                         <span className="flex font-normal text-sm gap-2 mt-2">
                           <CalendarMinus2Icon size={19} />
-                          {`${getRelativeTime(item.date_of_publish, "en")} ago`}
+                          {`${getRelativeTime(item.date_of_publish, "en")}`}
                         </span>
                       </div>
                     </Link>
@@ -320,7 +328,7 @@ const PublicationPage = () => {
                       ) : (
                         <div className="flex flex-wrap">
                           {item.writers.map((writersPub, index) => (
-                            <div className="flex items-center gap-3 my-4">
+                            <div className="flex items-center gap-3 my-4 ml-3">
                               <img
                                 src={writersPub.image}
                                 className="rounded-full object-cover w-[40px] h-[40px]"
@@ -359,7 +367,7 @@ const PublicationPage = () => {
                             : ""
                         }
                       >
-                        <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
+                        <button className="bg-[#E3E3E3] hover:bg-[#c3c3c3] text-center w-full mt-6 py-3 rounded-md">
                           Read More ...
                         </button>
                       </Link>
@@ -454,7 +462,7 @@ const PublicationPage = () => {
                         <span>{item.ar_Title}</span>
                         <span className="flex font-normal text-sm gap-2 mt-2">
                           <CalendarMinus2Icon size={19} />
-                          {`قبل ${getRelativeTime(item.date_of_publish, "ar")}`}
+                          {` ${getRelativeTime(item.date_of_publish, "ar")}`}
                         </span>
                       </div>
                     </Link>
@@ -553,7 +561,7 @@ const PublicationPage = () => {
                       ) : (
                         <div className="flex flex-wrap">
                           {item.writers.map((writersPub, index) => (
-                            <div className="flex items-center gap-3 my-4">
+                            <div className="flex items-center gap-3 my-4 mr-2">
                               <img
                                 src={writersPub.image}
                                 className="rounded-full object-cover w-[40px] h-[40px]"
@@ -593,7 +601,7 @@ const PublicationPage = () => {
                         }
                         className="  w-full"
                       >
-                        <button className="bg-[#E3E3E3] text-center w-full mt-6 py-3 rounded-md">
+                        <button className="bg-[#E3E3E3] hover:bg-[#c3c3c3] text-center w-full mt-6 py-3 rounded-md">
                           إقراء المزيد ...
                         </button>
                       </Link>

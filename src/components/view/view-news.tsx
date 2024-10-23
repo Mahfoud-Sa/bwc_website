@@ -120,9 +120,10 @@ export default function ViewNews() {
           <div className="border-2 border-black w-[100%] rounded-lg my-5 p-2 mx-auto ">
             <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
               <div className="text-start col-span-1 h-auto ">
-                <label htmlFor="" className="float-start">
+                <label htmlFor="" className="float-start font-bold text-xl">
                   News image
                 </label>
+
                 <img
                   src={PublicationInfoData?.b_image}
                   alt=""
@@ -159,9 +160,10 @@ export default function ViewNews() {
             <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
             <div className="grid min-h-[100px] mt-4 items-start gap-4 overflow-y-scroll scroll-smooth text-right">
               <div className="text-start h-auto">
-                <label htmlFor="" className="float-start">
+                <label htmlFor="" className="float-start font-bold text-xl">
                   More News Image
                 </label>
+
                 <div className="flex flex-wrap gap-4">
                   {PublicationInfoData?.images.map((item, index) => (
                     <div key={index} className="flex-shrink-0">
@@ -203,15 +205,15 @@ export default function ViewNews() {
 
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="عنوان الخبر" />
+                <label className="font-bold text-xl">عنوان الخبر</label>
                 <p>{PublicationInfoData?.ar_Title}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="News Title" />
+                <label className="font-bold text-xl">News Title</label>
                 <p>{PublicationInfoData?.en_Title}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="Date of Publication" />
+                <label className="font-bold text-xl">Date of Publication</label>
                 <p>
                   {String(PublicationInfoData?.date_of_publish).split("T")[0]}
                 </p>
@@ -221,11 +223,11 @@ export default function ViewNews() {
             {/*  */}
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="Time to read" />
+                <label className="font-bold text-xl">Time to read</label>
                 <p>{PublicationInfoData?.t2read}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="Tags" />
+                <label className="font-bold text-xl">Tags</label>
                 <div className="">
                   {PublicationInfoData?.tags.map((Item, index) => (
                     <div key={index} className="">
@@ -241,10 +243,11 @@ export default function ViewNews() {
             {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="وصف الخبر" />
+                <label className="font-bold text-xl">وصف الخبر</label>
                 <div className="custom-html-content">
                   {PublicationInfoData?.ar_description && (
                     <div
+                      className="break-words whitespace-pre-wrap"
                       dangerouslySetInnerHTML={{
                         __html: PublicationInfoData.ar_description,
                       }}
@@ -256,10 +259,11 @@ export default function ViewNews() {
 
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="Description" />
+                <label className="font-bold text-xl">Description</label>
                 <div className="custom-html-content-en">
                   {PublicationInfoData?.en_description && (
                     <div
+                      className="break-words whitespace-pre-wrap"
                       dangerouslySetInnerHTML={{
                         __html: PublicationInfoData.en_description,
                       }}
@@ -268,13 +272,9 @@ export default function ViewNews() {
                 </div>
               </div>
             </div>
-
-            {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-              <div className=" col-span-1 h-auto translate-y-10">
-                <div className="">
-                  <p>{PublicationInfoData?.ar_Note}</p>
-                </div>
+              <div className="text-end col-span-1 h-auto translate-y-10">
+                <div className="break-words whitespace-pre-wrap"></div>
               </div>
             </div>
           </div>
@@ -284,9 +284,10 @@ export default function ViewNews() {
           <div className="border-2 border-black w-[100%] rounded-lg my-5 p-2 mx-auto ">
             <div className="grid   grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right min-h-[20vh] ">
               <div className="text-start col-span-1 h-auto ">
-                <label htmlFor="" className="float-start">
+                <label htmlFor="" className="float-start font-bold text-xl">
                   صورة الخبر
                 </label>
+
                 <img
                   src={PublicationInfoData?.b_image}
                   className="cursor-pointer"
@@ -323,7 +324,7 @@ export default function ViewNews() {
             <div className="h-[2px]  w-[100%] mx-auto bg-black my-3"></div>
             <div className="grid min-h-[100px] mt-4 items-start gap-4 overflow-y-scroll scroll-smooth text-right">
               <div className="text-start h-auto">
-                <label htmlFor="" className="float-start">
+                <label htmlFor="" className="float-start font-bold text-xl">
                   صور اخرى للخبر
                 </label>
                 <div className="flex flex-wrap gap-4">
@@ -367,15 +368,15 @@ export default function ViewNews() {
 
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="عنوان الخبر" />
+                <label className="font-bold text-xl">عنوان الخبر</label>
                 <p>{PublicationInfoData?.ar_Title}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="News Title" />
+                <label className="font-bold text-xl">News Title</label>
                 <p>{PublicationInfoData?.en_Title}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="تاريخ النشر" />
+                <label className="font-bold text-xl">تاريخ النشر</label>
                 <p>
                   {String(PublicationInfoData?.date_of_publish).split("T")[0]}
                 </p>
@@ -385,11 +386,11 @@ export default function ViewNews() {
             {/*  */}
             <div className="grid grid-cols-3 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="وقت القراءه " />
+                <label className="font-bold text-xl">وقت القراءه</label>
                 <p>{PublicationInfoData?.t2read}</p>
               </div>
               <div className="text-start col-span-1 h-auto translate-y-10">
-                <Label text="وسوم" />
+                <label className="font-bold text-xl">وسوم</label>
                 <div className="">
                   {PublicationInfoData?.tags.map((Item, index) => (
                     <div key={index} className="">
@@ -405,10 +406,11 @@ export default function ViewNews() {
             {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className=" col-span-1 h-auto translate-y-10">
-                <Label text="وصف الخبر" />
+                <label className="font-bold text-xl">وصف الخبر</label>
                 <div className="custom-html-content">
                   {PublicationInfoData?.ar_description && (
                     <div
+                      className="break-words whitespace-pre-wrap"
                       dangerouslySetInnerHTML={{
                         __html: PublicationInfoData.ar_description,
                       }}
@@ -420,10 +422,11 @@ export default function ViewNews() {
 
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
               <div className="text-end col-span-1 h-auto translate-y-10">
-                <Label text="Description" />
+                <label className="font-bold text-xl">Description</label>
                 <div className="custom-html-content-en">
                   {PublicationInfoData?.en_description && (
                     <div
+                      className="break-words whitespace-pre-wrap"
                       dangerouslySetInnerHTML={{
                         __html: PublicationInfoData.en_description,
                       }}
@@ -432,13 +435,9 @@ export default function ViewNews() {
                 </div>
               </div>
             </div>
-
-            {/*  */}
             <div className="grid grid-cols-1 w-[100%] px-10 items-start gap-4 text-right min-h-[20vh]  ">
-              <div className=" col-span-1 h-auto translate-y-10">
-                <div className="">
-                  <p>{PublicationInfoData?.ar_Note}</p>
-                </div>
+              <div className="text-end col-span-1 h-auto translate-y-10">
+                <div className="break-words whitespace-pre-wrap"></div>
               </div>
             </div>
           </div>
