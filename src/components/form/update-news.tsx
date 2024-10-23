@@ -466,7 +466,7 @@ export default function UpdateNews() {
                 />
               </div>
             </div>
-            <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+            <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className="text-start col-span-1 h-auto">
                 <label>Add other photos</label>
                 <FormField
@@ -491,29 +491,11 @@ export default function UpdateNews() {
                     </FormItem>
                   )}
                 />
+                {selectedFiles.map((x) => (
+                  <p key={x.name}>{x.name}</p>
+                ))}
               </div>
-              {error && <p className="error">{error}</p>}
-              {previewUrls.length > 0 && (
-                <div className="preview-container">
-                  {previewUrls.map((url, index) => (
-                    <div key={index} className="image-preview">
-                      <img
-                        src={url}
-                        alt={`Preview ${index + 1}`}
-                        width={100}
-                        height={100}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteImage(index)}
-                        aria-label={`Delete image ${index + 1}`}
-                      >
-                        &times;
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
+
               <div className=" col-span-1 h-auto ">
                 <Label text="عنوان الخبر" />
                 <FormField
@@ -806,7 +788,7 @@ export default function UpdateNews() {
                 />
               </div>
             </div>
-            <div className="grid  h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
+            <div className="grid  min-h-[100px] grid-cols-3 items-start gap-4 overflow-y-scroll scroll-smooth text-right ">
               <div className="col-span-1 h-auto">
                 <label>إضافة صور للخبر اخرى</label>
                 <FormField
@@ -830,29 +812,11 @@ export default function UpdateNews() {
                     </FormItem>
                   )}
                 />
+                {selectedFiles.map((x) => (
+                  <p key={x.name}>{x.name}</p>
+                ))}
               </div>
-              {error && <p className="error">{error}</p>}
-              {previewUrls.length > 0 && (
-                <div className="preview-container">
-                  {previewUrls.map((url, index) => (
-                    <div key={index} className="image-preview">
-                      <img
-                        src={url}
-                        alt={`Preview ${index + 1}`}
-                        width={100}
-                        height={100}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteImage(index)}
-                        aria-label={`Delete image ${index + 1}`}
-                      >
-                        &times;
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
+
               <div className=" col-span-1 h-auto ">
                 <Label text="عنوان الخبر" />
                 <FormField

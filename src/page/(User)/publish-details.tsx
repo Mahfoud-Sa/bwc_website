@@ -179,7 +179,8 @@ export default function PublishDetails() {
                       <div className="flex items-center gap-x-2">
                         <ClockCircle />
                         <span>
-                          Time to read: {String(PPublicDetails?.data.t2read)}
+                          Time to read: {String(PPublicDetails?.data.t2read)}{" "}
+                          minutes
                         </span>
                       </div>
                     </div>
@@ -273,7 +274,7 @@ export default function PublishDetails() {
                   )}
                   <div className="mb-[47px] ">
                     <h2 className="text-xl font-bold mb-5 "> ✅ Description</h2>
-                    <p >
+                    <p>
                       {PPublicDetails?.data.en_description && (
                         <div
                           className="custom-html-content-en max-w-[800px] break-words"
@@ -439,7 +440,8 @@ export default function PublishDetails() {
                       <div className="flex items-center gap-x-2">
                         <ClockCircle />
                         <span>
-                          وقت القراءة: {String(PPublicDetails?.data.t2read)}
+                          وقت القراءة: {String(PPublicDetails?.data.t2read)}{" "}
+                          دقيقه
                         </span>
                       </div>
                     </div>
