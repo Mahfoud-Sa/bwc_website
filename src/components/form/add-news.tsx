@@ -230,15 +230,14 @@ export default function AddNews() {
       });
     },
     onSuccess: (data) => {
-      console.log("Second mutation success:", data);
-      toast.error("لم تتم العميله.", {
+      toast.success("تمت الاضافة بنجاح.", {
         style: {
-          border: "1px solid  #FF5733 ",
+          border: "1px solid #4FFFB0",
           padding: "16px",
-          color: " #FF5733 ",
+          color: "#4FFFB0",
         },
         iconTheme: {
-          primary: " #FF5733 ",
+          primary: "#4FFFB0",
           secondary: "#FFFAEE",
         },
       });
