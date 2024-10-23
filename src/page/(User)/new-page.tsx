@@ -156,7 +156,8 @@ export default function NewsDetails() {
                       <div className="flex items-center gap-x-2">
                         <ClockCircle />
                         <span>
-                          Time to read: {String(NewssDetails?.data.t2read)}
+                          Time to read: {String(NewssDetails?.data.t2read)}{" "}
+                          minutes
                         </span>
                       </div>
                     </div>
@@ -346,7 +347,7 @@ export default function NewsDetails() {
                       <div className="flex items-center gap-x-2">
                         <ClockCircle />
                         <span>
-                          وقت القراءة: {String(NewssDetails?.data.t2read)}
+                          وقت القراءة: {String(NewssDetails?.data.t2read)} دقيقه
                         </span>
                       </div>
                     </div>

@@ -25,6 +25,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ar";
 import { LoaderIcon } from "react-hot-toast";
+import JobNotFound from "src/assets/icons/job-not-found";
 interface publish {
   imgs: string;
   title: string;
@@ -116,22 +117,40 @@ const PublicationPage = () => {
   const { t, i18n } = useTranslation();
   const dir = i18n.dir();
   const [searchQuery, setSearchQuery] = useState("");
+  const [submittedQuery, setSubmittedQuery] = useState("");
   const [selectedValue, setSelectedValue] = useState("all");
   const [isAscending, setIsAscending] = useState(false);
   // const [date, setDate] = React.useState<Date>();
-  const handleSearchChange = (e: any) => {
-    setSearchQuery(e.target.value);
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    // If input is empty, reset the submitted query
+    if (value.trim() === "") {
+      setSubmittedQuery(""); // This will trigger the query to reset
+    }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setSubmittedQuery(searchQuery); // Update submitted value to trigger search
+    }
+  };
   const handleAscendingChange = (value: string) => {
     setIsAscending(value === "oldest");
   };
 
-  const { data: PubResp,isPending } = useQuery({
-    queryKey: ["ManagingPublications", searchQuery, isAscending, selectedValue],
+  const { data: PubResp, isPending } = useQuery({
+    queryKey: [
+      "ManagingPublications",
+      submittedQuery,
+      isAscending,
+      selectedValue,
+    ],
     queryFn: () =>
       getApi<PublicationResp[]>(
-        `/api/website/Publications?query=${searchQuery}&type=${selectedValue}&ascending=${isAscending}`
+        `/api/website/Publications?query=${submittedQuery}&type=${selectedValue}&ascending=${isAscending}`
       ),
   });
 
@@ -245,29 +264,26 @@ const PublicationPage = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-3 mt-3">
-              <div className=" col-span-4 md:col-span-1">
-                <div className=" col-span-4 md:col-span-1">
-                  <Select dir="ltr" onValueChange={handleAscendingChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="select Publication order" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="oldest">oldest</SelectItem>
-                      <SelectItem value="newest">newest</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className=" col-span-4 md:col-span-1">
+            <div className="grid grid-cols-4  gap-3 mt-3">
+              <div className="col-span-4 md:col-span-1 flex justify-between gap-4">
+                <Select dir="ltr" onValueChange={handleAscendingChange}>
+                  <SelectTrigger className="w-[48%] rounded-lg border-2 border-gray-300 px-4 py-2 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    <SelectValue placeholder="select Publication order" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    <SelectItem value="oldest">oldest</SelectItem>
+                    <SelectItem value="newest">newest</SelectItem>
+                  </SelectContent>
+                </Select>
+
                 <Select
                   dir="ltr"
                   onValueChange={(value) => setSelectedValue(value)}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-[48%] rounded-lg border-2 border-gray-300 px-4 py-2 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300">
                     <SelectValue placeholder="search by type " />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     <SelectItem value="all">All</SelectItem>
                     <SelectItem value="publish">publish</SelectItem>
                     <SelectItem value="news">news</SelectItem>
@@ -275,146 +291,163 @@ const PublicationPage = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className=" col-span-4 md:col-span-2">
+
+              <div className="col-span-4 md:col-span-2">
                 <Input
                   dir="ltr"
                   type="text"
                   id="simple-search"
                   value={searchQuery}
-                  onChange={handleSearchChange}
-                  className=" rounded-[32.5px]"
+                  onChange={handleSearchChange} // Update state as the user types
+                  onKeyDown={handleKeyDown}
+                  className="rounded-[32.5px]"
                   placeholder="Search by the name of the publication"
                 />
               </div>
+
+              <div className="col-span-4 md:col-span-1"></div>
             </div>
+            {currentItems && currentItems.length > 0 ? (
+              <div className="">
+                {/* Render currentItems */}
+                {currentItems?.map((item, index) => (
+                  <div key={index} dir="ltr" className="mt-6">
+                    <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 bg-white">
+                      <div className="w-full h-[300px] md:w-[455px] md:h-[300px] overflow-hidden rounded-md">
+                        <img
+                          src={item.b_image}
+                          className="object-cover w-full h-full"
+                          alt="Post Image"
+                        />
+                      </div>
 
-            <div className="">
-              {/* Render currentItems */}
-              {currentItems?.map((item, index) => (
-                <div key={index} dir="ltr" className="mt-6">
-                  <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 bg-white">
-                    <div className="w-full h-[300px] md:w-[455px] md:h-[300px] overflow-hidden rounded-md">
-                      <img
-                        src={item.b_image}
-                        className="object-cover w-full h-full"
-                        alt="Post Image"
-                      />
-                    </div>
+                      <div className="w-full">
+                        <h1 className="text-2xl font-bold text-gray-800">
+                          {item.en_Title}
+                        </h1>
+                        <p
+                          className={
+                            item.type === "publish"
+                              ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#CEA461] mt-2"
+                              : item.type === "news"
+                              ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#69DB57] mt-2"
+                              : item.type === "analysis"
+                              ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#979797] mt-2"
+                              : ""
+                          }
+                        >
+                          {item.type}
+                        </p>
+                        <p className="flex items-center gap-2 text-sm text-gray-500 mt-3 md:text-gray-500 sm:text-black sm:py-2 sm:px-2 md:py-0 md:px-0 sm:rounded-lg md:rounded-none  md:bg-white sm:bg-[#E3E3E3]">
+                          <CalendarMinus2Icon size={19} />
+                          {formattedDateEn(new Date(item.date_of_publish))}
+                        </p>
 
-                    <div className="w-full">
-                      <h1 className="text-2xl font-bold text-gray-800">
-                        {item.en_Title}
-                      </h1>
-                      <p
-                        className={
-                          item.type === "publish"
-                            ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#CEA461] mt-2"
-                            : item.type === "news"
-                            ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#69DB57] mt-2"
-                            : item.type === "analysis"
-                            ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#979797] mt-2"
-                            : ""
-                        }
-                      >
-                        {item.type}
-                      </p>
-                      <p className="flex items-center gap-2 text-sm text-gray-500 mt-3 md:text-gray-500 sm:text-black sm:py-2 sm:px-2 md:py-0 md:px-0 sm:rounded-lg md:rounded-none  md:bg-white sm:bg-[#E3E3E3]">
-                        <CalendarMinus2Icon size={19} />
-                        {formattedDateEn(new Date(item.date_of_publish))}
-                      </p>
-
-                      {item.type === "news" ? (
-                        <div className="h-20"></div>
-                      ) : (
-                        <div className="flex flex-wrap">
-                          {item.writers.map((writersPub, index) => (
-                            <div className="flex items-center gap-3 my-4 ml-3">
-                              <img
-                                src={writersPub.image}
-                                className="rounded-full object-cover w-[40px] h-[40px]"
-                                alt="Author"
-                              />
-                              <h1 className="font-medium text-gray-700">
-                                {writersPub.en_fullName}
-                              </h1>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      <p className="text-gray-600 text-base leading-6 publicationEn">
                         {item.type === "news" ? (
-                          <>
-                            {item?.en_description && (
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: item.en_description,
-                                }}
-                              />
-                            )}
-                          </>
+                          <div className="h-20"></div>
                         ) : (
-                          <>{item.en_Note}</>
+                          <div className="flex flex-wrap">
+                            {item.writers.map((writersPub, index) => (
+                              <div className="flex items-center gap-3 my-4 ml-3">
+                                <img
+                                  src={writersPub.image}
+                                  className="rounded-full object-cover w-[40px] h-[40px]"
+                                  alt="Author"
+                                />
+                                <h1 className="font-medium text-gray-700">
+                                  {writersPub.en_fullName}
+                                </h1>
+                              </div>
+                            ))}
+                          </div>
                         )}
-                      </p>
-                      <Link
-                        to={
-                          item.type === "publish"
-                            ? `/publish-details/${item.id}`
-                            : item.type === "news"
-                            ? `/news-details/${item.id}`
-                            : item.type === "analysis"
-                            ? `/Analysis-details/${item.id}`
-                            : ""
-                        }
-                      >
-                        <button className="bg-[#E3E3E3] hover:bg-[#c3c3c3] text-center w-full mt-6 py-3 rounded-md">
-                          Read More ...
-                        </button>
-                      </Link>
+                        <p className="text-gray-600 text-base leading-6 publicationEn">
+                          {item.type === "news" ? (
+                            <>
+                              {item?.en_description && (
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.en_description,
+                                  }}
+                                />
+                              )}
+                            </>
+                          ) : (
+                            <>{item.en_Note}</>
+                          )}
+                        </p>
+                        <Link
+                          to={
+                            item.type === "publish"
+                              ? `/publish-details/${item.id}`
+                              : item.type === "news"
+                              ? `/news-details/${item.id}`
+                              : item.type === "analysis"
+                              ? `/Analysis-details/${item.id}`
+                              : ""
+                          }
+                        >
+                          <button className="bg-[#E3E3E3] hover:bg-[#c3c3c3] text-center w-full mt-6 py-3 rounded-md">
+                            Read More ...
+                          </button>
+                        </Link>
+                      </div>
                     </div>
+                    <div className="bg-[#CCA972] h-1 w-full mt-4"></div>
                   </div>
-                  <div className="bg-[#CCA972] h-1 w-full mt-4"></div>
+                ))}
+
+                {/* Pagination controls */}
+                <div dir="ltr" className="mt-4 flex justify-between space-x-2">
+                  <button
+                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  >
+                    <h6>prev</h6>
+                    <MoveLeft className="ml-2" />
+                  </button>
+
+                  <div className="md:pr-0 sm:pr-5">
+                    {getPaginationNumbers().map((page, index) => (
+                      <button
+                        key={index}
+                        className={`px-4 py-2 rounded ml-1 ${
+                          currentPage === page
+                            ? "bg-[#d5ae78] rounded-md  text-white"
+                            : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
+                        }`}
+                        onClick={() =>
+                          typeof page === "number" && paginate(page)
+                        }
+                        disabled={typeof page !== "number"}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex items-center border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  >
+                    <h6>next</h6>
+                    <MoveRight size={20} className="ml-2" />
+                  </button>
                 </div>
-              ))}
-
-              {/* Pagination controls */}
-              <div dir="ltr" className="mt-4 flex justify-between space-x-2">
-                <button
-                  className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                  onClick={() => paginate(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  <h6>prev</h6>
-                  <MoveLeft className="ml-2" />
-                </button>
-
-                <div className="md:pr-0 sm:pr-5">
-                  {getPaginationNumbers().map((page, index) => (
-                    <button
-                      key={index}
-                      className={`px-4 py-2 rounded ml-1 ${
-                        currentPage === page
-                          ? "bg-[#d5ae78] rounded-md  text-white"
-                          : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
-                      }`}
-                      onClick={() => typeof page === "number" && paginate(page)}
-                      disabled={typeof page !== "number"}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                </div>
-
-                <button
-                  className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex items-center border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                  onClick={() => paginate(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  <h6>next</h6>
-                  <MoveRight size={20} className="ml-2" />
-                </button>
               </div>
-            </div>
+            ) : (
+              <div className=" h-full w-full flex justify-center items-center">
+                <div className=" text-center">
+                  <JobNotFound />
+                  <p>
+                    There is no result of your search, try another publication
+                    search
+                  </p>
+                </div>
+              </div>
+            )}
           </main>
           <footer className="min-h-[65vh] p-2 overflow-hidden relative bg-black mt-10">
             <Footer />
@@ -472,6 +505,7 @@ const PublicationPage = () => {
             </div>
 
             <div className="grid grid-cols-4 gap-3 mt-3">
+              <div className="col-span-4 md:col-span-1"></div>
               <div className=" col-span-4 md:col-span-2">
                 <Input
                   className=" rounded-[32.5px]"
@@ -479,15 +513,16 @@ const PublicationPage = () => {
                   type="text"
                   id="simple-search"
                   value={searchQuery}
-                  onChange={handleSearchChange}
+                  onChange={handleSearchChange} // Update state as the user types
+                  onKeyDown={handleKeyDown}
                 />
               </div>
-              <div className=" col-span-4 md:col-span-1">
+              <div className="col-span-4 md:col-span-1 flex justify-between gap-4">
                 <Select
                   dir="rtl"
                   onValueChange={(value) => setSelectedValue(value)}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-[48%] rounded-lg border-2 border-gray-300 px-4 py-2 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300">
                     <SelectValue placeholder="ابحث بالنوع " />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
@@ -497,158 +532,164 @@ const PublicationPage = () => {
                     <SelectItem value="analysis">تحليلات</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
 
-              <div className=" col-span-4 md:col-span-1">
-                <div className=" col-span-4 md:col-span-1">
-                  <Select dir="rtl" onValueChange={handleAscendingChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="فلتر بالتاريخ" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="oldest">الاقدم</SelectItem>
-                      <SelectItem value="newest">الاحدث</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                <Select dir="rtl" onValueChange={handleAscendingChange}>
+                  <SelectTrigger className="w-[48%] rounded-lg border-2 border-gray-300 px-4 py-2 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    <SelectValue placeholder="فلتر بالتاريخ" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    <SelectItem value="oldest">الاقدم</SelectItem>
+                    <SelectItem value="newest">الاحدث</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
+            {currentItems && currentItems.length > 0 ? (
+              <div className="">
+                {/* Render currentItems */}
+                {currentItems?.map((item, index) => (
+                  <div key={index} className="mt-6 ">
+                    <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 min-h-80 ">
+                      <div className="w-full h-[300px] md:w-[455px] md:h-[300px] overflow-hidden rounded-md">
+                        <img
+                          src={item.b_image}
+                          className="object-cover w-full h-full"
+                          alt="Post Image"
+                        />
+                      </div>
 
-            <div className="">
-              {/* Render currentItems */}
-              {currentItems?.map((item, index) => (
-                <div key={index} className="mt-6 ">
-                  <div className="shadow p-6 rounded-lg flex flex-col lg:flex-row gap-6 min-h-80 ">
-                    <div className="w-full h-[300px] md:w-[455px] md:h-[300px] overflow-hidden rounded-md">
-                      <img
-                        src={item.b_image}
-                        className="object-cover w-full h-full"
-                        alt="Post Image"
-                      />
-                    </div>
+                      <div className="w-full min-h-[300px]  ">
+                        <h1 className="text-2xl font-bold text-gray-800">
+                          {item.ar_Title}
+                        </h1>
 
-                    <div className="w-full min-h-[300px]  ">
-                      <h1 className="text-2xl font-bold text-gray-800">
-                        {item.ar_Title}
-                      </h1>
-
-                      <p
-                        className={
-                          item.type === "publish"
-                            ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#CEA461] mt-2"
+                        <p
+                          className={
+                            item.type === "publish"
+                              ? "inline-block bg-[#FFDAA0]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#CEA461] mt-2"
+                              : item.type === "news"
+                              ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#69DB57] mt-2"
+                              : item.type === "analysis"
+                              ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#979797] mt-2"
+                              : ""
+                          }
+                        >
+                          {item.type === "publish"
+                            ? "منشور"
                             : item.type === "news"
-                            ? "inline-block bg-[#C5FFBC]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#69DB57] mt-2"
+                            ? "الاخبار"
                             : item.type === "analysis"
-                            ? "inline-block bg-[#DBDBDB]/[.35] rounded-[5px] px-3 text-sm font-semibold text-[#979797] mt-2"
-                            : ""
-                        }
-                      >
-                        {item.type === "publish"
-                          ? "منشور"
-                          : item.type === "news"
-                          ? "الاخبار"
-                          : item.type === "analysis"
-                          ? "تحليلات"
-                          : ""}
-                      </p>
-                      <p className="flex items-center gap-2 text-sm md:text-gray-500 sm:text-black sm:py-2 sm:px-2 md:py-0 md:px-0 sm:rounded-lg md:rounded-none  mt-3 md:bg-white sm:bg-[#E3E3E3]">
-                        <CalendarMinus2Icon size={19} className="" />
-                        {formattedDateEn(new Date(item.date_of_publish))}
-                      </p>
+                            ? "تحليلات"
+                            : ""}
+                        </p>
+                        <p className="flex items-center gap-2 text-sm md:text-gray-500 sm:text-black sm:py-2 sm:px-2 md:py-0 md:px-0 sm:rounded-lg md:rounded-none  mt-3 md:bg-white sm:bg-[#E3E3E3]">
+                          <CalendarMinus2Icon size={19} className="" />
+                          {formattedDateEn(new Date(item.date_of_publish))}
+                        </p>
 
-                      {item.type === "news" ? (
-                        <div className="h-20"></div>
-                      ) : (
-                        <div className="flex flex-wrap">
-                          {item.writers.map((writersPub, index) => (
-                            <div className="flex items-center gap-3 my-4 mr-2">
-                              <img
-                                src={writersPub.image}
-                                className="rounded-full object-cover w-[40px] h-[40px]"
-                                alt="Author"
-                              />
-                              <h1 className="font-medium text-gray-700">
-                                {writersPub.ar_fullName}
-                              </h1>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      <p className="text-gray-600 text-base leading-6 publication">
                         {item.type === "news" ? (
-                          <>
-                            {item?.ar_description && (
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: item.ar_description,
-                                }}
-                              />
-                            )}
-                          </>
+                          <div className="h-20"></div>
                         ) : (
-                          <>{item.ar_Note}</>
+                          <div className="flex flex-wrap">
+                            {item.writers.map((writersPub, index) => (
+                              <div className="flex items-center gap-3 my-4 mr-2">
+                                <img
+                                  src={writersPub.image}
+                                  className="rounded-full object-cover w-[40px] h-[40px]"
+                                  alt="Author"
+                                />
+                                <h1 className="font-medium text-gray-700">
+                                  {writersPub.ar_fullName}
+                                </h1>
+                              </div>
+                            ))}
+                          </div>
                         )}
-                      </p>
-                      <Link
-                        to={
-                          item.type === "publish"
-                            ? `/publish-details/${item.id}`
-                            : item.type === "news"
-                            ? `/news-details/${item.id}`
-                            : item.type === "analysis"
-                            ? `/Analysis-details/${item.id}`
-                            : ""
-                        }
-                        className="  w-full"
-                      >
-                        <button className="bg-[#E3E3E3] hover:bg-[#c3c3c3] text-center w-full mt-6 py-3 rounded-md">
-                          إقراء المزيد ...
-                        </button>
-                      </Link>
+                        <p className="text-gray-600 text-base leading-6 publication">
+                          {item.type === "news" ? (
+                            <>
+                              {item?.ar_description && (
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.ar_description,
+                                  }}
+                                />
+                              )}
+                            </>
+                          ) : (
+                            <>{item.ar_Note}</>
+                          )}
+                        </p>
+                        <Link
+                          to={
+                            item.type === "publish"
+                              ? `/publish-details/${item.id}`
+                              : item.type === "news"
+                              ? `/news-details/${item.id}`
+                              : item.type === "analysis"
+                              ? `/Analysis-details/${item.id}`
+                              : ""
+                          }
+                          className="  w-full"
+                        >
+                          <button className="bg-[#E3E3E3] hover:bg-[#c3c3c3] text-center w-full mt-6 py-3 rounded-md">
+                            إقراء المزيد ...
+                          </button>
+                        </Link>
+                      </div>
                     </div>
+                    <div className="bg-[#CCA972] h-1 w-full mt-4"></div>
                   </div>
-                  <div className="bg-[#CCA972] h-1 w-full mt-4"></div>
+                ))}
+
+                {/* Pagination controls */}
+                <div className="mt-4 flex justify-between space-x-2">
+                  <button
+                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  >
+                    <MoveRight size={20} className="ml-2" />
+                    <h6>السابق</h6>
+                  </button>
+
+                  <div className="md:pr-0 sm:pr-5">
+                    {getPaginationNumbers().map((page, index) => (
+                      <button
+                        key={index}
+                        className={`px-4 py-2 rounded ml-1 ${
+                          currentPage === page
+                            ? "bg-[#d5ae78] rounded-md  text-white"
+                            : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
+                        }`}
+                        onClick={() =>
+                          typeof page === "number" && paginate(page)
+                        }
+                        disabled={typeof page !== "number"}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  >
+                    <h6>التالي</h6>
+                    <MoveLeft className="mr-2" />
+                  </button>
                 </div>
-              ))}
-
-              {/* Pagination controls */}
-              <div className="mt-4 flex justify-between space-x-2">
-                <button
-                  className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 flex items-center border border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                  onClick={() => paginate(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  <MoveRight size={20} className="ml-2" />
-                  <h6>السابق</h6>
-                </button>
-
-                <div className="md:pr-0 sm:pr-5">
-                  {getPaginationNumbers().map((page, index) => (
-                    <button
-                      key={index}
-                      className={`px-4 py-2 rounded ml-1 ${
-                        currentPage === page
-                          ? "bg-[#d5ae78] rounded-md  text-white"
-                          : "bg-white border border-black  rounded-md text-black hover:bg-[#d5ae78] hover:text-white"
-                      }`}
-                      onClick={() => typeof page === "number" && paginate(page)}
-                      disabled={typeof page !== "number"}
-                    >
-                      {page}
-                    </button>
-                  ))}
-                </div>
-
-                <button
-                  className="md:px-4 md:py-2 sm:px-4 sm:py-2 sm:h-10 border flex border-black text-black rounded-md hover:bg-[#d5ae78] hover:text-white"
-                  onClick={() => paginate(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  <h6>التالي</h6>
-                  <MoveLeft className="mr-2" />
-                </button>
               </div>
-            </div>
+            ) : (
+              <div className=" h-full w-full flex justify-center items-center">
+                <div className=" text-center">
+                  <JobNotFound />
+                  <p>لا توجد نتيجة للبحث، جرب البحث باسم منشور اخرى</p>
+                </div>
+              </div>
+            )}
           </main>
           <footer className="min-h-[65vh] p-2 overflow-hidden relative bg-black mt-10">
             <Footer />

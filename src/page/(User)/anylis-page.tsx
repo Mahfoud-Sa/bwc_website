@@ -168,7 +168,8 @@ export default function AnalysisDetails() {
                       <div className="flex items-center gap-x-2">
                         <ClockCircle />
                         <span>
-                          Time to read: {String(AnalysisDetails?.data.t2read)}
+                          Time to read: {String(AnalysisDetails?.data.t2read)}{" "}
+                          minutes
                         </span>
                       </div>
                     </div>
@@ -213,7 +214,10 @@ export default function AnalysisDetails() {
                   </div>
                   {/* ------ Report description ----------- */}
                   <div className="mb-[47px] mt-7">
-                    <h2 className="text-xl font-bold mb-5"> ✅ Table Of Content</h2>
+                    <h2 className="text-xl font-bold mb-5">
+                      {" "}
+                      ✅ Table Of Content
+                    </h2>
                     <ul>
                       {AnalysisDetails?.data.en_table_of_content.map(
                         (x, index) => (
@@ -390,7 +394,8 @@ export default function AnalysisDetails() {
                       <div className="flex items-center gap-x-2">
                         <ClockCircle />
                         <span>
-                          وقت القراءة: {String(AnalysisDetails?.data.t2read)}
+                          وقت القراءة: {String(AnalysisDetails?.data.t2read)}{" "}
+                          دقيقه
                         </span>
                       </div>
                     </div>
@@ -450,7 +455,7 @@ export default function AnalysisDetails() {
                     <p>
                       {AnalysisDetails?.data.ar_description && (
                         <div
-                        className="custom-html-content max-w-[800px] break-words"
+                          className="custom-html-content max-w-[800px] break-words"
                           dangerouslySetInnerHTML={{
                             __html: AnalysisDetails.data.ar_description,
                           }}
@@ -461,7 +466,9 @@ export default function AnalysisDetails() {
                   {/* ------ note ----------- */}
                   <div className="mb-[47px]">
                     <h2 className="text-xl font-bold mb-5"> ✅ ملاحظة</h2>
-                    <div className="max-w-[800px] break-words">{AnalysisDetails?.data.ar_Note}</div>
+                    <div className="max-w-[800px] break-words">
+                      {AnalysisDetails?.data.ar_Note}
+                    </div>
                   </div>
                   {/* <div className="w-full max-w-md mx-auto">
      

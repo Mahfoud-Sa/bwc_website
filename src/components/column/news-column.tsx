@@ -73,7 +73,7 @@ export const AddNewsColumns: ColumnDef<AddNewOrder>[] = [
     accessorKey: "publish",
     header: "نشر/الغاء النشر",
     cell: ({ row }) => {
-      return row.original.publish === true ? "نشر" : "غير منشور";
+      return row.original.publish === true ? "منشور" : "غير منشور";
     },
     filterFn: (row, columnId, filterValue) => {
       // If no filter is applied, show all rows

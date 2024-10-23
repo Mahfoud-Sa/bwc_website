@@ -432,7 +432,8 @@ export const updateAnalysis = z.object({
     })
     .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files[0].type), {
       message: "Only JPEG, JPG, PNG, and WEBP files are accepted.",
-    }).optional(),
+    })
+    .optional(),
   date_of_publish: z.string(),
   Ar_description: z.string(),
   En_description: z.string(),

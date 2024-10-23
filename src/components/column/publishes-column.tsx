@@ -121,18 +121,12 @@ export const AddOPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
       }
     },
   },
-  {
-    accessorKey: "report",
-    header: "اسم التقرير",
-    cell: ({ row }) => {
-      return <p>0</p>;
-    },
-  },
+
   {
     accessorKey: "publish",
     header: "نشر/الغاء النشر",
     cell: ({ row }) => {
-      return row.original.publish === true ? "نشر" : "غير منشور";
+      return row.original.publish === true ? "منشور" : "غير منشور";
     },
     filterFn: (row, columnId, filterValue) => {
       // If no filter is applied, show all rows
@@ -215,13 +209,6 @@ export const AddENPublishesColumns: ColumnDef<AddPublishesOrder>[] = [
     sortingFn: "datetime",
   },
 
-  {
-    accessorKey: "report",
-    header: "report name",
-    cell: ({ row }) => {
-      return <p>0</p>;
-    },
-  },
   {
     accessorKey: "type",
     header: "types",
