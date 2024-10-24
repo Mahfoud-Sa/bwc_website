@@ -1,5 +1,8 @@
 import React from "react";
 import allDepertments from "../../assets/img/all-departmemts.png";
+import learn from "../../assets/img/تعليم والتدريب.jpg";
+import management from "../../assets/img/ادارة المشاريع.jpg";
+import enterpurnore from "../../assets/img/ريادة الاعمال.jpg";
 import { useMediaQuery } from "react-responsive";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +24,7 @@ export default function AllDepertments() {
                 {/* First Section */}
                 <div className="h-60 w-full ">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={learn} // Replace with your image path
                     alt="Education and Training"
                     className="object-cover h-full w-full "
                   />
@@ -53,7 +56,7 @@ export default function AllDepertments() {
                 {/* Second Section */}
                 <div className="h-60 w-full ">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={management} // Replace with your image path
                     alt="Project Management"
                     className="object-cover h-full w-full "
                   />
@@ -85,7 +88,7 @@ export default function AllDepertments() {
 
                 <div className="h-60 w-full ">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={enterpurnore} // Replace with your image path
                     alt="Entrepreneurship"
                     className="object-cover h-full w-full "
                   />
@@ -153,7 +156,7 @@ export default function AllDepertments() {
                 {/* First Section */}
                 <div className="h-60 w-full ">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={learn} // Replace with your image path
                     alt="التعليم والتدريب"
                     className="object-cover h-full w-full "
                   />
@@ -179,7 +182,7 @@ export default function AllDepertments() {
                 {/* Second Section */}
                 <div className="h-60 w-full ">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={management} // Replace with your image path
                     alt="إدارة مشاريع"
                     className="object-cover h-full w-full "
                   />
@@ -206,7 +209,7 @@ export default function AllDepertments() {
 
                 <div className="h-60 w-full ">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={enterpurnore} // Replace with your image path
                     alt="ريادة إعمال"
                     className="object-cover h-full w-full "
                   />
@@ -292,7 +295,7 @@ export default function AllDepertments() {
 
                 <div className="h-[500px] w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={learn} // Replace with your image path
                     alt="Education and Trainingt"
                     className="object-cover h-full w-full"
                   />
@@ -330,7 +333,7 @@ export default function AllDepertments() {
 
                 <div className="h-[500px] w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={management} // Replace with your image path
                     alt="Project Management"
                     className="object-cover h-full w-full"
                   />
@@ -369,7 +372,7 @@ export default function AllDepertments() {
 
                 <div className="h-[500px] w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={enterpurnore} // Replace with your image path
                     alt="Entrepreneurshipt"
                     className="object-cover h-full w-full"
                   />
@@ -423,7 +426,7 @@ export default function AllDepertments() {
                 {/* First Section (Image) */}
                 <div className="min-h-[500px] w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={learn} // Replace with your image path
                     alt="التعليم والتدريب"
                     className="object-cover h-full w-full"
                   />
@@ -458,7 +461,7 @@ export default function AllDepertments() {
                 {/* First Section (Image) */}
                 <div className="min-h-[500px] w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={management} // Replace with your image path
                     alt="إدارة مشاريع"
                     className="object-cover h-full w-full"
                   />
@@ -491,7 +494,7 @@ export default function AllDepertments() {
                 {/* First Section (Image) */}
                 <div className="min-h-[500px] w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={enterpurnore} // Replace with your image path
                     alt="ريادة إعمال"
                     className="object-cover h-full w-full"
                   />
@@ -590,7 +593,7 @@ export default function AllDepertments() {
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={learn} // Replace with your image path
                     alt="Education and Trainingt"
                     className="object-cover h-full w-full"
                   />
@@ -628,7 +631,7 @@ export default function AllDepertments() {
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={management} // Replace with your image path
                     alt="project management"
                     className="object-cover h-full w-full"
                   />
@@ -666,7 +669,7 @@ export default function AllDepertments() {
 
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={enterpurnore} // Replace with your image path
                     alt="entrepreneurship"
                     className="object-cover h-full w-full"
                   />
@@ -719,7 +722,7 @@ export default function AllDepertments() {
                 {/* First Section (Image) */}
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={learn} // Replace with your image path
                     alt="التعليم والتدريب"
                     className="object-cover h-full w-full"
                   />
@@ -754,7 +757,7 @@ export default function AllDepertments() {
                 {/* First Section (Image) */}
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={management} // Replace with your image path
                     alt="إدارة مشاريع"
                     className="object-cover h-full w-full"
                   />
@@ -788,7 +791,7 @@ export default function AllDepertments() {
                 {/* First Section (Image) */}
                 <div className="h-96 w-[50%] relative -z-20">
                   <img
-                    src={allDepertments} // Replace with your image path
+                    src={enterpurnore} // Replace with your image path
                     alt="ريادة إعمال"
                     className="object-cover h-full w-full"
                   />
